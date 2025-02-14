@@ -84,12 +84,12 @@ public class Patient implements Serializable
         this.patientId = patientId;
     }
 
-    public String getPatientName()
+    public String getPatientname()
     {
         return patientName;
     }
 
-    public void setPatientName(String patientName)
+    public void setPatientname(String patientName)
     {
         this.patientName = patientName;
     }

@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab" aria-controls="basic-details" aria-selected="true">Basic Patient Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="add-patient-tab" data-toggle="tab" href="#add-patient" role="tab" aria-controls="add-patient" aria-selected="false">Add Patient</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Current Dashboard</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="basic-details" role="tabpanel" aria-labelledby="basic-details-tab">
+      <!-- Basic Patient Details content goes here -->
+      <app-basic-patients-details></app-basic-patients-details>
+    </div>
+    <div class="tab-pane fade" id="add-patient" role="tabpanel" aria-labelledby="add-patient-tab">
+      <!-- Add Patient content goes here -->
+      <app-add-patient></app-add-patient>
+    </div>
+    <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+      <!-- Current Dashboard content goes here -->
+      <p>Current Dashboard works!</p>
+    </div>
+  </div>
+</div>

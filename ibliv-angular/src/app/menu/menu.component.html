@@ -1,0 +1,13 @@
+<p-drawer [(visible)]="visible" [dismissible]="true" [closeOnEscape]="true" [closable]="true">
+  <h2>Menu</h2>
+  <ul>
+    <li><a (click)="visible=false" [routerLink]="['/home/admitted-patients']" >Admitted Patients</a></li>
+    <li><a (click)="visible=false" [routerLink]="['/home/all-patients']" >All Patients</a></li>
+    <li><a (click)="visible=false" [routerLink]="['/home/doctors']" >Doctors</a></li>
+    <li><a (click)="visible=false" [routerLink]="['/home/nurses']" >Nurses</a></li>
+    <li><a (click)="visible=false" [routerLink]="['/home/add-patient']" >Add Patient</a></li>
+  </ul>
+</p-drawer>
+<p-button severity="info" *ngIf="!visible" (click)="visible=!visible" [style]="{'--p-button-primary-color':'red'}">
+  <i class="pi pi-bars"></i>
+</p-button>

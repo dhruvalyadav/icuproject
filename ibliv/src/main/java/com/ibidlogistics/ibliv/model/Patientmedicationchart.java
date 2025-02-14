@@ -43,7 +43,7 @@ public class Patientmedicationchart implements Serializable {
     @Column(name = "drug")
     private String drug;
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
     @Column(name = "dose")
     private String dose;

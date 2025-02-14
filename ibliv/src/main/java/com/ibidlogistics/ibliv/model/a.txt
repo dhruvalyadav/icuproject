@@ -1,0 +1,6673 @@
+package com.ibidlogistics.ibliv.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.Basic;
+import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.Date;
+
+@Entity
+@Table(name = "anthropometry")
+public class Anthropometry
+{
+
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "anthropometryid")
+    private Integer anthropometryId;
+
+    @ManyToOne
+    @JoinColumn(name = "patient", nullable = false)
+    @JsonBackReference("patien-anthropometryList")
+    private Patient patient;
+
+    @Column(name = "weight", precision = 20, scale = 6)
+    private BigDecimal weight;
+
+    @Column(name = "height", precision = 20, scale = 6)
+    private BigDecimal height;
+
+    @Column(name = "bmi", precision = 20, scale = 6)
+    private BigDecimal bmi;
+
+    @Column(name = "bsaboyd", precision = 20, scale = 6)
+    private BigDecimal bsaBoyd;
+
+    @Column(name = "updatedby")
+    private Integer updatedBy;
+
+    // Getters and Setters
+    public Integer getAnthropometryId()
+    {
+        return anthropometryId;
+    }
+
+    public void setAnthropometryId(Integer anthropometryId)
+    {
+        this.anthropometryId = anthropometryId;
+    }
+
+    public Patient getPatient()
+    {
+        return patient;
+    }
+
+    public void setPatient(Patient patient)
+    {
+        this.patient = patient;
+    }
+
+    public BigDecimal getWeight()
+    {
+        return weight;
+    }
+
+    public void setWeight(BigDecimal weight)
+    {
+        this.weight = weight;
+    }
+
+    public BigDecimal getHeight()
+    {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height)
+    {
+        this.height = height;
+    }
+
+    public BigDecimal getBmi()
+    {
+        return bmi;
+    }
+
+    public void setBmi(BigDecimal bmi)
+    {
+        this.bmi = bmi;
+    }
+
+    public BigDecimal getBsaBoyd()
+    {
+        return bsaBoyd;
+    }
+
+    public void setBsaBoyd(BigDecimal bsaBoyd)
+    {
+        this.bsaBoyd = bsaBoyd;
+    }
+
+    public Integer getUpdatedBy()
+    {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Integer updatedBy)
+    {
+        this.updatedBy = updatedBy;
+    }
+
+    public Anthropometry()
+    {
+    }
+
+    public int getCreatedby()
+    {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby)
+    {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate()
+    {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate)
+    {
+        this.createddate = createddate;
+    }
+
+    public Date getUpdateddate()
+    {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate)
+    {
+        this.updateddate = updateddate;
+    }
+}
+package com.ibidlogistics.ibliv.model;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "applicationversion")
+public class ApplicationVersion {
+
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "versionid", nullable = false, updatable = false)
+	private Integer versionId;
+
+	@Column(name = "versionnumber", length = 50)
+	private String versionNumber;
+
+	@Column(name = "active")
+	private Integer active;
+
+
+	@Column(name = "updatedby")
+	private Integer updatedBy;
+
+	// Getters and Setters
+	public Integer getVersionId() {
+		return versionId;
+	}
+
+	public void setVersionId(Integer versionId) {
+		this.versionId = versionId;
+	}
+
+	public String getVersionNumber() {
+		return versionNumber;
+	}
+
+	public void setVersionNumber(String versionNumber) {
+		this.versionNumber = versionNumber;
+	}
+
+	public Integer getActive() {
+		return active;
+	}
+
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+
+
+	public Integer getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(Integer updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public ApplicationVersion() {
+	}
+
+	public int getCreatedby() {
+        return createdby;
+	}
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "consultantpatientvisit")
+@NamedQueries({
+    @NamedQuery(name = "Consultantpatientvisit.findAll", query = "SELECT c FROM Consultantpatientvisit c")})
+public class Consultantpatientvisit implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "consultantpatientvisitid")
+    private Integer consultantpatientvisitid;
+    @Column(name = "datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+    @JoinColumn(name = "doctor", referencedColumnName = "userid")
+    @ManyToOne
+    private User doctor;
+
+    public Consultantpatientvisit() {
+    }
+
+    public Consultantpatientvisit(Integer consultantpatientvisitid) {
+        this.consultantpatientvisitid = consultantpatientvisitid;
+    }
+
+    public Consultantpatientvisit(Integer consultantpatientvisitid, int createdby) {
+        this.consultantpatientvisitid = consultantpatientvisitid;
+        this.createdby = createdby;
+    }
+
+    public Integer getConsultantpatientvisitid() {
+        return consultantpatientvisitid;
+    }
+
+    public void setConsultantpatientvisitid(Integer consultantpatientvisitid) {
+        this.consultantpatientvisitid = consultantpatientvisitid;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (consultantpatientvisitid != null ? consultantpatientvisitid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Consultantpatientvisit)) {
+            return false;
+        }
+        Consultantpatientvisit other = (Consultantpatientvisit) object;
+        if ((this.consultantpatientvisitid == null && other.consultantpatientvisitid != null) || (this.consultantpatientvisitid != null && !this.consultantpatientvisitid.equals(other.consultantpatientvisitid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Consultantpatientvisit[ consultantpatientvisitid=" + consultantpatientvisitid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "division")
+@NamedQueries({
+    @NamedQuery(name = "Division.findAll", query = "SELECT d FROM Division d")})
+public class Division implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "divisionid")
+    private Integer divisionid;
+    @Basic(optional = false)
+    @Column(name = "divisionname")
+    private String divisionname;
+    @Basic(optional = false)
+    @Column(name = "divisioncode")
+    private String divisioncode;
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    @Basic(optional = false)
+    @Column(name = "active")
+    private int active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(mappedBy = "division")
+    private List<Role> roleList;
+
+    public Division() {
+    }
+
+    public Division(Integer divisionid) {
+        this.divisionid = divisionid;
+    }
+
+    public Division(Integer divisionid, String divisionname, String divisioncode, int active, int createdby) {
+        this.divisionid = divisionid;
+        this.divisionname = divisionname;
+        this.divisioncode = divisioncode;
+        this.active = active;
+        this.createdby = createdby;
+    }
+
+    public Integer getDivisionid() {
+        return divisionid;
+    }
+
+    public void setDivisionid(Integer divisionid) {
+        this.divisionid = divisionid;
+    }
+
+    public String getDivisionname() {
+        return divisionname;
+    }
+
+    public void setDivisionname(String divisionname) {
+        this.divisionname = divisionname;
+    }
+
+    public String getDivisioncode() {
+        return divisioncode;
+    }
+
+    public void setDivisioncode(String divisioncode) {
+        this.divisioncode = divisioncode;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+//        this.roleList = roleList;
+        if(this.roleList==null) this.roleList=new ArrayList<>();
+        if(roleList!=null)
+        {
+            this.roleList.clear();
+            this.roleList.addAll(roleList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (divisionid != null ? divisionid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Division)) {
+            return false;
+        }
+        Division other = (Division) object;
+        if ((this.divisionid == null && other.divisionid != null) || (this.divisionid != null && !this.divisionid.equals(other.divisionid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Division[ divisionid=" + divisionid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "embolism")
+@NamedQueries({
+    @NamedQuery(name = "Embolism.findAll", query = "SELECT e FROM Embolism e")})
+public class Embolism implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "embolismid")
+    private Integer embolismid;
+    @Column(name = "dvtrisk")
+    private String dvtrisk;
+    @Column(name = "anticoagulation")
+    private String anticoagulation;
+    @Column(name = "compression")
+    private String compression;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+
+    public Embolism() {
+    }
+
+    public Embolism(Integer embolismid) {
+        this.embolismid = embolismid;
+    }
+
+    public Embolism(Integer embolismid, int createdby) {
+        this.embolismid = embolismid;
+        this.createdby = createdby;
+    }
+
+    public Integer getEmbolismid() {
+        return embolismid;
+    }
+
+    public void setEmbolismid(Integer embolismid) {
+        this.embolismid = embolismid;
+    }
+
+    public String getDvtrisk() {
+        return dvtrisk;
+    }
+
+    public void setDvtrisk(String dvtrisk) {
+        this.dvtrisk = dvtrisk;
+    }
+
+    public String getAnticoagulation() {
+        return anticoagulation;
+    }
+
+    public void setAnticoagulation(String anticoagulation) {
+        this.anticoagulation = anticoagulation;
+    }
+
+    public String getCompression() {
+        return compression;
+    }
+
+    public void setCompression(String compression) {
+        this.compression = compression;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (embolismid != null ? embolismid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Embolism)) {
+            return false;
+        }
+        Embolism other = (Embolism) object;
+        if ((this.embolismid == null && other.embolismid != null) || (this.embolismid != null && !this.embolismid.equals(other.embolismid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Embolism[ embolismid=" + embolismid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "hourlyobservation")
+@NamedQueries({
+    @NamedQuery(name = "Hourlyobservation.findAll", query = "SELECT h FROM Hourlyobservation h")})
+public class Hourlyobservation implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "hourlyobservationid")
+    private Integer hourlyobservationid;
+    @Basic(optional = false)
+    @Column(name = "timeslot")
+    private int timeslot;
+    @Column(name = "value")
+    private Integer value;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+    @JoinColumn(name = "vital", referencedColumnName = "vitalid")
+    @ManyToOne(optional = false)
+    private Vital vital;
+
+    public Hourlyobservation() {
+    }
+
+    public Hourlyobservation(Integer hourlyobservationid) {
+        this.hourlyobservationid = hourlyobservationid;
+    }
+
+    public Hourlyobservation(Integer hourlyobservationid, int timeslot, int createdby) {
+        this.hourlyobservationid = hourlyobservationid;
+        this.timeslot = timeslot;
+        this.createdby = createdby;
+    }
+
+    public Integer getHourlyobservationid() {
+        return hourlyobservationid;
+    }
+
+    public void setHourlyobservationid(Integer hourlyobservationid) {
+        this.hourlyobservationid = hourlyobservationid;
+    }
+
+    public int getTimeslot() {
+        return timeslot;
+    }
+
+    public void setTimeslot(int timeslot) {
+        this.timeslot = timeslot;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    public Vital getVital() {
+        return vital;
+    }
+
+    public void setVital(Vital vital) {
+        this.vital = vital;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (hourlyobservationid != null ? hourlyobservationid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Hourlyobservation)) {
+            return false;
+        }
+        Hourlyobservation other = (Hourlyobservation) object;
+        if ((this.hourlyobservationid == null && other.hourlyobservationid != null) || (this.hourlyobservationid != null && !this.hourlyobservationid.equals(other.hourlyobservationid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Hourlyobservation[ hourlyobservationid=" + hourlyobservationid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "icu")
+@NamedQueries({
+    @NamedQuery(name = "Icu.findAll", query = "SELECT i FROM Icu i")})
+public class Icu implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "icuid")
+    private Integer icuid;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "active")
+    private Integer active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
+    private List<Patientadmission> patientadmissionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
+    private List<Shiftrmonurse> shiftrmonurseList;
+
+    public Icu() {
+    }
+
+    public Icu(Integer icuid) {
+        this.icuid = icuid;
+    }
+
+    public Icu(Integer icuid, int createdby) {
+        this.icuid = icuid;
+        this.createdby = createdby;
+    }
+
+    public Integer getIcuid() {
+        return icuid;
+    }
+
+    public void setIcuid(Integer icuid) {
+        this.icuid = icuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientadmission> getPatientadmissionList() {
+        return patientadmissionList;
+    }
+
+    public void setPatientadmissionList(List<Patientadmission> patientadmissionList) {
+//        this.patientadmissionList = patientadmissionList;
+        if(this.patientadmissionList==null) this.patientadmissionList=new ArrayList<>();
+        if(patientadmissionList!=null)
+        {
+            this.patientadmissionList.clear();
+            this.patientadmissionList.addAll(patientadmissionList);
+        }
+    }
+
+    public List<Shiftrmonurse> getShiftrmonurseList() {
+        return shiftrmonurseList;
+    }
+
+    public void setShiftrmonurseList(List<Shiftrmonurse> shiftrmonurseList) {
+//        this.shiftrmonurseList = shiftrmonurseList;
+        if(this.shiftrmonurseList==null) this.shiftrmonurseList=new ArrayList<>();
+        if(shiftrmonurseList!=null)
+        {
+            this.shiftrmonurseList.clear();
+            this.shiftrmonurseList.addAll(shiftrmonurseList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (icuid != null ? icuid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Icu)) {
+            return false;
+        }
+        Icu other = (Icu) object;
+        if ((this.icuid == null && other.icuid != null) || (this.icuid != null && !this.icuid.equals(other.icuid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Icu[ icuid=" + icuid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "ivfluid")
+@NamedQueries({
+    @NamedQuery(name = "Ivfluid.findAll", query = "SELECT i FROM Ivfluid i")})
+public class Ivfluid implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ivfluidid")
+    private Integer ivfluidid;
+    @Basic(optional = false)
+    @Column(name = "ivfluidname")
+    private int ivfluidname;
+    @Column(name = "active")
+    private Integer active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ivfluid")
+    private List<Patientivfluid> patientivfluidList;
+
+    public Ivfluid() {
+    }
+
+    public Ivfluid(Integer ivfluidid) {
+        this.ivfluidid = ivfluidid;
+    }
+
+    public Ivfluid(Integer ivfluidid, int ivfluidname, int createdby) {
+        this.ivfluidid = ivfluidid;
+        this.ivfluidname = ivfluidname;
+        this.createdby = createdby;
+    }
+
+    public Integer getIvfluidid() {
+        return ivfluidid;
+    }
+
+    public void setIvfluidid(Integer ivfluidid) {
+        this.ivfluidid = ivfluidid;
+    }
+
+    public int getIvfluidname() {
+        return ivfluidname;
+    }
+
+    public void setIvfluidname(int ivfluidname) {
+        this.ivfluidname = ivfluidname;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientivfluid> getPatientivfluidList() {
+        return patientivfluidList;
+    }
+
+    public void setPatientivfluidList(List<Patientivfluid> patientivfluidList) {
+//        this.patientivfluidList = patientivfluidList;
+        if(this.patientivfluidList==null) this.patientivfluidList=new ArrayList<>();
+        if(patientivfluidList!=null)
+        {
+            this.patientivfluidList.clear();
+            this.patientivfluidList.addAll(patientivfluidList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (ivfluidid != null ? ivfluidid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Ivfluid)) {
+            return false;
+        }
+        Ivfluid other = (Ivfluid) object;
+        if ((this.ivfluidid == null && other.ivfluidid != null) || (this.ivfluidid != null && !this.ivfluidid.equals(other.ivfluidid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Ivfluid[ ivfluidid=" + ivfluidid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "linestubes")
+@NamedQueries({
+    @NamedQuery(name = "Linestubes.findAll", query = "SELECT l FROM Linestubes l")})
+public class Linestubes implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "linestubesid")
+    private Integer linestubesid;
+    @Basic(optional = false)
+    @Column(name = "linestubesname")
+    private int linestubesname;
+    @Column(name = "active")
+    private Integer active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "linestubes")
+    private List<Patientlinestubes> patientlinestubesList;
+
+    public Linestubes() {
+    }
+
+    public Linestubes(Integer linestubesid) {
+        this.linestubesid = linestubesid;
+    }
+
+    public Linestubes(Integer linestubesid, int linestubesname, int createdby) {
+        this.linestubesid = linestubesid;
+        this.linestubesname = linestubesname;
+        this.createdby = createdby;
+    }
+
+    public Integer getLinestubesid() {
+        return linestubesid;
+    }
+
+    public void setLinestubesid(Integer linestubesid) {
+        this.linestubesid = linestubesid;
+    }
+
+    public int getLinestubesname() {
+        return linestubesname;
+    }
+
+    public void setLinestubesname(int linestubesname) {
+        this.linestubesname = linestubesname;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientlinestubes> getPatientlinestubesList() {
+        return patientlinestubesList;
+    }
+
+    public void setPatientlinestubesList(List<Patientlinestubes> patientlinestubesList) {
+//        this.patientlinestubesList = patientlinestubesList;
+        if(this.patientlinestubesList==null) this.patientlinestubesList=new ArrayList<>();
+        if(patientlinestubesList!=null)
+        {
+            this.patientlinestubesList.clear();
+            this.patientlinestubesList.addAll(patientlinestubesList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (linestubesid != null ? linestubesid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Linestubes)) {
+            return false;
+        }
+        Linestubes other = (Linestubes) object;
+        if ((this.linestubesid == null && other.linestubesid != null) || (this.linestubesid != null && !this.linestubesid.equals(other.linestubesid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Linestubes[ linestubesid=" + linestubesid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "menudetails")
+@NamedQueries(
+{
+    @NamedQuery(name = "Menudetails.findAll", query = "SELECT m FROM Menudetails m")
+})
+public class Menudetails implements Serializable
+{
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "menuid")
+    private Integer menuid;
+    @Basic(optional = false)
+    @Column(name = "mainname")
+    private String mainname;
+    @Basic(optional = false)
+    @Column(name = "subname")
+    private String subname;
+    @Column(name = "link")
+    private String link;
+    @Column(name = "classname")
+    private String classname;
+    @Column(name = "mainsort")
+    private Integer mainsort;
+    @Column(name = "subsort")
+    private Integer subsort;
+    @Basic(optional = false)
+    @Column(name = "active")
+    private int active;
+    @Basic(optional = false)
+    @Column(name = "ionicactive")
+    private int ionicactive;
+    @Column(name = "mainicon")
+    private String mainicon;
+    @Column(name = "subicon")
+    private String subicon;
+    @Column(name = "ionicdashboardicon")
+    private String ionicdashboardicon;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(mappedBy = "menu")
+    private List<Roleaccess> roleaccessList;
+
+    public Menudetails()
+    {
+    }
+
+    public Menudetails(Integer menuid)
+    {
+        this.menuid = menuid;
+    }
+
+    public Menudetails(Integer menuid, String mainname, String subname, int active, int ionicactive, int createdby)
+    {
+        this.menuid = menuid;
+        this.mainname = mainname;
+        this.subname = subname;
+        this.active = active;
+        this.ionicactive = ionicactive;
+        this.createdby = createdby;
+    }
+
+    public Integer getMenuid()
+    {
+        return menuid;
+    }
+
+    public void setMenuid(Integer menuid)
+    {
+        this.menuid = menuid;
+    }
+
+    public String getMainname()
+    {
+        return mainname;
+    }
+
+    public void setMainname(String mainname)
+    {
+        this.mainname = mainname;
+    }
+
+    public String getSubname()
+    {
+        return subname;
+    }
+
+    public void setSubname(String subname)
+    {
+        this.subname = subname;
+    }
+
+    public String getLink()
+    {
+        return link;
+    }
+
+    public void setLink(String link)
+    {
+        this.link = link;
+    }
+
+    public String getClassname()
+    {
+        return classname;
+    }
+
+    public void setClassname(String classname)
+    {
+        this.classname = classname;
+    }
+
+    public Integer getMainsort()
+    {
+        return mainsort;
+    }
+
+    public void setMainsort(Integer mainsort)
+    {
+        this.mainsort = mainsort;
+    }
+
+    public Integer getSubsort()
+    {
+        return subsort;
+    }
+
+    public void setSubsort(Integer subsort)
+    {
+        this.subsort = subsort;
+    }
+
+    public int getActive()
+    {
+        return active;
+    }
+
+    public void setActive(int active)
+    {
+        this.active = active;
+    }
+
+    public int getIonicactive()
+    {
+        return ionicactive;
+    }
+
+    public void setIonicactive(int ionicactive)
+    {
+        this.ionicactive = ionicactive;
+    }
+
+    public String getMainicon()
+    {
+        return mainicon;
+    }
+
+    public void setMainicon(String mainicon)
+    {
+        this.mainicon = mainicon;
+    }
+
+    public String getSubicon()
+    {
+        return subicon;
+    }
+
+    public void setSubicon(String subicon)
+    {
+        this.subicon = subicon;
+    }
+
+    public String getIonicdashboardicon()
+    {
+        return ionicdashboardicon;
+    }
+
+    public void setIonicdashboardicon(String ionicdashboardicon)
+    {
+        this.ionicdashboardicon = ionicdashboardicon;
+    }
+
+    public int getCreatedby()
+    {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby)
+    {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate()
+    {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate)
+    {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby()
+    {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby)
+    {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate()
+    {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate)
+    {
+        this.updateddate = updateddate;
+    }
+
+    public List<Roleaccess> getRoleaccessList()
+    {
+        return roleaccessList;
+    }
+
+    public void setRoleaccessList(List<Roleaccess> roleaccessList)
+    {
+//        this.roleaccessList = roleaccessList;
+        if(this.roleaccessList==null) this.roleaccessList=new ArrayList<>();
+        if(roleaccessList!=null)
+        {
+            this.roleaccessList.clear();
+            this.roleaccessList.addAll(roleaccessList);
+        }
+        
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (menuid != null ? menuid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Menudetails))
+        {
+            return false;
+        }
+        Menudetails other = (Menudetails) object;
+        if ((this.menuid == null && other.menuid != null) || (this.menuid != null && !this.menuid.equals(other.menuid)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.ibidlogistics.ibliv.model.Menudetails[ menuid=" + menuid + " ]";
+    }
+
+}
+package com.ibidlogistics.ibliv.model;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "patient")
+public class Patient implements Serializable
+{
+
+    @Column(name = "dob")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dob;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JsonManagedReference("patien-anthropometryList")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", orphanRemoval = true)
+    private List<Anthropometry> anthropometryList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private List<Patientadmission> patientadmissionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private List<Patientinfusion> patientinfusionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private List<Patientivfluid> patientivfluidList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private List<Patientsosmedication> patientsosmedicationList;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "patientid")
+    private Integer patientId;
+
+    @Column(name = "patientname", length = 50)
+    private String patientName;
+
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "sex", length = 50)
+    private String sex;
+
+    @Column(name = "address", length = 2000)
+    private String address;
+
+    @Column(name = "contact", length = 50)
+    private String contact;
+
+    @Column(name = "active")
+    private Integer active;
+
+    @Column(name = "updatedby")
+    private Integer updatedBy;
+
+    // Getters and Setters
+    public Integer getPatientId()
+    {
+        return patientId;
+    }
+
+    public void setPatientId(Integer patientId)
+    {
+        this.patientId = patientId;
+    }
+
+    public String getPatientName()
+    {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName)
+    {
+        this.patientName = patientName;
+    }
+
+    public Integer getAge()
+    {
+        return age;
+    }
+
+    public void setAge(Integer age)
+    {
+        this.age = age;
+    }
+
+    public String getSex()
+    {
+        return sex;
+    }
+
+    public void setSex(String sex)
+    {
+        this.sex = sex;
+    }
+
+    public String getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    public String getContact()
+    {
+        return contact;
+    }
+
+    public void setContact(String contact)
+    {
+        this.contact = contact;
+    }
+
+    public Integer getActive()
+    {
+        return active;
+    }
+
+    public void setActive(Integer active)
+    {
+        this.active = active;
+    }
+
+    public Integer getUpdatedBy()
+    {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Integer updatedBy)
+    {
+        this.updatedBy = updatedBy;
+    }
+
+    public Patient()
+    {
+    }
+
+    public Date getDob()
+    {
+        return dob;
+    }
+
+    public void setDob(Date dob)
+    {
+        this.dob = dob;
+    }
+
+    public int getCreatedby()
+    {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby)
+    {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate()
+    {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate)
+    {
+        this.createddate = createddate;
+    }
+
+    public Date getUpdateddate()
+    {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate)
+    {
+        this.updateddate = updateddate;
+    }
+
+    public List<Anthropometry> getAnthropometryList()
+    {
+        return anthropometryList;
+    }
+
+    public void setAnthropometryList(List<Anthropometry> anthropometryList)
+    {
+//        this.anthropometryList = anthropometryList;
+        if(this.anthropometryList==null) this.anthropometryList=new ArrayList<>();
+        if(anthropometryList!=null)
+        {
+            this.anthropometryList.clear();
+            this.anthropometryList.addAll(anthropometryList);
+        }
+    }
+
+    public List<Patientadmission> getPatientadmissionList()
+    {
+        return patientadmissionList;
+    }
+
+    public void setPatientadmissionList(List<Patientadmission> patientadmissionList)
+    {
+//        this.patientadmissionList = patientadmissionList;
+        if(this.patientadmissionList==null) this.patientadmissionList=new ArrayList<>();
+        if(patientadmissionList!=null)
+        {
+            this.patientadmissionList.clear();
+            this.patientadmissionList.addAll(patientadmissionList);
+        }
+
+    }
+
+    public List<Patientinfusion> getPatientinfusionList()
+    {
+        return patientinfusionList;
+    }
+
+    public void setPatientinfusionList(List<Patientinfusion> patientinfusionList)
+    {
+//        this.patientinfusionList = patientinfusionList;
+        if(this.patientinfusionList==null) this.patientinfusionList=new ArrayList<>();
+        if(patientinfusionList!=null)
+        {
+            this.patientinfusionList.clear();
+            this.patientinfusionList.addAll(patientinfusionList);
+        }
+    }
+
+    public List<Patientivfluid> getPatientivfluidList()
+    {
+        return patientivfluidList;
+    }
+
+    public void setPatientivfluidList(List<Patientivfluid> patientivfluidList)
+    {
+//        this.patientivfluidList = patientivfluidList;
+        if(this.patientivfluidList==null) this.patientivfluidList=new ArrayList<>();
+        if(patientivfluidList!=null)
+        {
+            this.patientivfluidList.clear();
+            this.patientivfluidList.addAll(patientivfluidList);
+        }
+    }
+
+    public List<Patientsosmedication> getPatientsosmedicationList()
+    {
+        return patientsosmedicationList;
+    }
+
+    public void setPatientsosmedicationList(List<Patientsosmedication> patientsosmedicationList)
+    {
+//        this.patientsosmedicationList = patientsosmedicationList;
+        if(this.patientsosmedicationList==null) this.patientsosmedicationList=new ArrayList<>();
+        if(patientsosmedicationList!=null)
+        {
+            this.patientsosmedicationList.clear();
+            this.patientsosmedicationList.addAll(patientsosmedicationList);
+        }
+    }
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientadditionalscores")
+@NamedQueries({
+    @NamedQuery(name = "Patientadditionalscores.findAll", query = "SELECT p FROM Patientadditionalscores p")})
+public class Patientadditionalscores implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientadditionalscoresid")
+    private Integer patientadditionalscoresid;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "qsofa")
+    private BigDecimal qsofa;
+    @Column(name = "mews")
+    private BigDecimal mews;
+    @Column(name = "apacheiv")
+    private BigDecimal apacheiv;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+
+    public Patientadditionalscores() {
+    }
+
+    public Patientadditionalscores(Integer patientadditionalscoresid) {
+        this.patientadditionalscoresid = patientadditionalscoresid;
+    }
+
+    public Patientadditionalscores(Integer patientadditionalscoresid, int createdby) {
+        this.patientadditionalscoresid = patientadditionalscoresid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientadditionalscoresid() {
+        return patientadditionalscoresid;
+    }
+
+    public void setPatientadditionalscoresid(Integer patientadditionalscoresid) {
+        this.patientadditionalscoresid = patientadditionalscoresid;
+    }
+
+    public BigDecimal getQsofa() {
+        return qsofa;
+    }
+
+    public void setQsofa(BigDecimal qsofa) {
+        this.qsofa = qsofa;
+    }
+
+    public BigDecimal getMews() {
+        return mews;
+    }
+
+    public void setMews(BigDecimal mews) {
+        this.mews = mews;
+    }
+
+    public BigDecimal getApacheiv() {
+        return apacheiv;
+    }
+
+    public void setApacheiv(BigDecimal apacheiv) {
+        this.apacheiv = apacheiv;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientadditionalscoresid != null ? patientadditionalscoresid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientadditionalscores)) {
+            return false;
+        }
+        Patientadditionalscores other = (Patientadditionalscores) object;
+        if ((this.patientadditionalscoresid == null && other.patientadditionalscoresid != null) || (this.patientadditionalscoresid != null && !this.patientadditionalscoresid.equals(other.patientadditionalscoresid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientadditionalscores[ patientadditionalscoresid=" + patientadditionalscoresid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientadditionaltests")
+@NamedQueries({
+    @NamedQuery(name = "Patientadditionaltests.findAll", query = "SELECT p FROM Patientadditionaltests p")})
+public class Patientadditionaltests implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientadditionaltestsid")
+    private Integer patientadditionaltestsid;
+    @Column(name = "ambulation")
+    private String ambulation;
+    @Column(name = "incentivespirometry")
+    private String incentivespirometry;
+    @Column(name = "belt")
+    private String belt;
+    @Column(name = "dressing")
+    private String dressing;
+    @Column(name = "trachettsectretion")
+    private String trachettsectretion;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+    @JoinColumn(name = "physiothearpy", referencedColumnName = "physiothearpyid")
+    @ManyToOne(optional = false)
+    private Physiothearpy physiothearpy;
+
+    public Patientadditionaltests() {
+    }
+
+    public Patientadditionaltests(Integer patientadditionaltestsid) {
+        this.patientadditionaltestsid = patientadditionaltestsid;
+    }
+
+    public Patientadditionaltests(Integer patientadditionaltestsid, int createdby) {
+        this.patientadditionaltestsid = patientadditionaltestsid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientadditionaltestsid() {
+        return patientadditionaltestsid;
+    }
+
+    public void setPatientadditionaltestsid(Integer patientadditionaltestsid) {
+        this.patientadditionaltestsid = patientadditionaltestsid;
+    }
+
+    public String getAmbulation() {
+        return ambulation;
+    }
+
+    public void setAmbulation(String ambulation) {
+        this.ambulation = ambulation;
+    }
+
+    public String getIncentivespirometry() {
+        return incentivespirometry;
+    }
+
+    public void setIncentivespirometry(String incentivespirometry) {
+        this.incentivespirometry = incentivespirometry;
+    }
+
+    public String getBelt() {
+        return belt;
+    }
+
+    public void setBelt(String belt) {
+        this.belt = belt;
+    }
+
+    public String getDressing() {
+        return dressing;
+    }
+
+    public void setDressing(String dressing) {
+        this.dressing = dressing;
+    }
+
+    public String getTrachettsectretion() {
+        return trachettsectretion;
+    }
+
+    public void setTrachettsectretion(String trachettsectretion) {
+        this.trachettsectretion = trachettsectretion;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    public Physiothearpy getPhysiothearpy() {
+        return physiothearpy;
+    }
+
+    public void setPhysiothearpy(Physiothearpy physiothearpy) {
+        this.physiothearpy = physiothearpy;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientadditionaltestsid != null ? patientadditionaltestsid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientadditionaltests)) {
+            return false;
+        }
+        Patientadditionaltests other = (Patientadditionaltests) object;
+        if ((this.patientadditionaltestsid == null && other.patientadditionaltestsid != null) || (this.patientadditionaltestsid != null && !this.patientadditionaltestsid.equals(other.patientadditionaltestsid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientadditionaltests[ patientadditionaltestsid=" + patientadditionaltestsid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientadmission")
+@NamedQueries(
+{
+    @NamedQuery(name = "Patientadmission.findAll", query = "SELECT p FROM Patientadmission p")
+})
+public class Patientadmission implements Serializable
+{
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientadmissionid")
+    private Integer patientadmissionid;
+    @Column(name = "admissiondate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date admissiondate;
+    @Column(name = "icuadmissiondate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date icuadmissiondate;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
+    private List<Patientdaysheet> patientdaysheetList;
+    @JoinColumn(name = "icu", referencedColumnName = "icuid")
+    @ManyToOne(optional = false)
+    private Icu icu;
+    @JoinColumn(name = "patient", referencedColumnName = "patientid")
+    @ManyToOne(optional = false)
+    private Patient patient;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
+    private List<Patientmedicationchart> patientmedicationchartList;
+
+    public Patientadmission()
+    {
+    }
+
+    public Patientadmission(Integer patientadmissionid)
+    {
+        this.patientadmissionid = patientadmissionid;
+    }
+
+    public Patientadmission(Integer patientadmissionid, int createdby)
+    {
+        this.patientadmissionid = patientadmissionid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientadmissionid()
+    {
+        return patientadmissionid;
+    }
+
+    public void setPatientadmissionid(Integer patientadmissionid)
+    {
+        this.patientadmissionid = patientadmissionid;
+    }
+
+    public Date getAdmissiondate()
+    {
+        return admissiondate;
+    }
+
+    public void setAdmissiondate(Date admissiondate)
+    {
+        this.admissiondate = admissiondate;
+    }
+
+    public Date getIcuadmissiondate()
+    {
+        return icuadmissiondate;
+    }
+
+    public void setIcuadmissiondate(Date icuadmissiondate)
+    {
+        this.icuadmissiondate = icuadmissiondate;
+    }
+
+    public int getCreatedby()
+    {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby)
+    {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate()
+    {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate)
+    {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby()
+    {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby)
+    {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate()
+    {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate)
+    {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientdaysheet> getPatientdaysheetList()
+    {
+        return patientdaysheetList;
+    }
+
+    public void setPatientdaysheetList(List<Patientdaysheet> patientdaysheetList)
+    {
+//        this.patientdaysheetList = patientdaysheetList;
+        if (this.patientdaysheetList == null)
+        {
+            this.patientdaysheetList = new ArrayList<>();
+        }
+        if (patientdaysheetList != null)
+        {
+            this.patientdaysheetList.clear();
+            this.patientdaysheetList.addAll(patientdaysheetList);
+        }
+
+    }
+
+    public Icu getIcu()
+    {
+        return icu;
+    }
+
+    public void setIcu(Icu icu)
+    {
+        this.icu = icu;
+    }
+
+    public Patient getPatient()
+    {
+        return patient;
+    }
+
+    public void setPatient(Patient patient)
+    {
+        this.patient = patient;
+    }
+
+    public List<Patientmedicationchart> getPatientmedicationchartList()
+    {
+        return patientmedicationchartList;
+    }
+
+    public void setPatientmedicationchartList(List<Patientmedicationchart> patientmedicationchartList)
+    {
+//        this.patientmedicationchartList = patientmedicationchartList;
+        if (this.patientmedicationchartList == null)
+        {
+            this.patientmedicationchartList = new ArrayList<>();
+        }
+        if (patientmedicationchartList != null)
+        {
+            this.patientmedicationchartList.clear();
+            this.patientmedicationchartList.addAll(patientmedicationchartList);
+        }
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (patientadmissionid != null ? patientadmissionid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientadmission))
+        {
+            return false;
+        }
+        Patientadmission other = (Patientadmission) object;
+        if ((this.patientadmissionid == null && other.patientadmissionid != null) || (this.patientadmissionid != null && !this.patientadmissionid.equals(other.patientadmissionid)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.ibidlogistics.ibliv.model.Patientadmission[ patientadmissionid=" + patientadmissionid + " ]";
+    }
+
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientdaysheet")
+@NamedQueries({
+    @NamedQuery(name = "Patientdaysheet.findAll", query = "SELECT p FROM Patientdaysheet p")})
+public class Patientdaysheet implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientdaysheetid")
+    private Integer patientdaysheetid;
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientadmission", referencedColumnName = "patientadmissionid")
+    @ManyToOne(optional = false)
+    private Patientadmission patientadmission;
+    @JoinColumn(name = "consultant1", referencedColumnName = "userid")
+    @ManyToOne
+    private User consultant1;
+    @JoinColumn(name = "consultant2", referencedColumnName = "userid")
+    @ManyToOne
+    private User consultant2;
+    @JoinColumn(name = "consultant3", referencedColumnName = "userid")
+    @ManyToOne
+    private User consultant3;
+    @JoinColumn(name = "intensivist", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User intensivist;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Patientlinestubes> patientlinestubesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Hourlyobservation> hourlyobservationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Rmonurselog> rmonurselogList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Consultantpatientvisit> consultantpatientvisitList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Patientadditionaltests> patientadditionaltestsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Patientadditionalscores> patientadditionalscoresList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Embolism> embolismList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    private List<Patientventilator> patientventilatorList;
+
+    public Patientdaysheet() {
+    }
+
+    public Patientdaysheet(Integer patientdaysheetid) {
+        this.patientdaysheetid = patientdaysheetid;
+    }
+
+    public Patientdaysheet(Integer patientdaysheetid, int createdby) {
+        this.patientdaysheetid = patientdaysheetid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientdaysheetid() {
+        return patientdaysheetid;
+    }
+
+    public void setPatientdaysheetid(Integer patientdaysheetid) {
+        this.patientdaysheetid = patientdaysheetid;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientadmission getPatientadmission() {
+        return patientadmission;
+    }
+
+    public void setPatientadmission(Patientadmission patientadmission) {
+        this.patientadmission = patientadmission;
+    }
+
+    public User getConsultant1() {
+        return consultant1;
+    }
+
+    public void setConsultant1(User consultant1) {
+        this.consultant1 = consultant1;
+    }
+
+    public User getConsultant2() {
+        return consultant2;
+    }
+
+    public void setConsultant2(User consultant2) {
+        this.consultant2 = consultant2;
+    }
+
+    public User getConsultant3() {
+        return consultant3;
+    }
+
+    public void setConsultant3(User consultant3) {
+        this.consultant3 = consultant3;
+    }
+
+    public User getIntensivist() {
+        return intensivist;
+    }
+
+    public void setIntensivist(User intensivist) {
+        this.intensivist = intensivist;
+    }
+
+    public List<Patientlinestubes> getPatientlinestubesList() {
+        return patientlinestubesList;
+    }
+
+    public void setPatientlinestubesList(List<Patientlinestubes> patientlinestubesList) {
+//        this.patientlinestubesList = patientlinestubesList;
+        if (this.patientlinestubesList == null)
+        {
+            this.patientlinestubesList = new ArrayList<>();
+        }
+        if (patientlinestubesList != null)
+        {
+            this.patientlinestubesList.clear();
+            this.patientlinestubesList.addAll(patientlinestubesList);
+        }
+    }
+
+    public List<Hourlyobservation> getHourlyobservationList() {
+        return hourlyobservationList;
+    }
+
+    public void setHourlyobservationList(List<Hourlyobservation> hourlyobservationList) {
+//        this.hourlyobservationList = hourlyobservationList;
+        if (this.hourlyobservationList == null)
+        {
+            this.hourlyobservationList = new ArrayList<>();
+        }
+        if (hourlyobservationList != null)
+        {
+            this.hourlyobservationList.clear();
+            this.hourlyobservationList.addAll(hourlyobservationList);
+        }
+    }
+
+    public List<Rmonurselog> getRmonurselogList() {
+        return rmonurselogList;
+    }
+
+    public void setRmonurselogList(List<Rmonurselog> rmonurselogList) {
+//        this.rmonurselogList = rmonurselogList;
+        if (this.rmonurselogList == null)
+        {
+            this.rmonurselogList = new ArrayList<>();
+        }
+        if (rmonurselogList != null)
+        {
+            this.rmonurselogList.clear();
+            this.rmonurselogList.addAll(rmonurselogList);
+        }
+    }
+
+    public List<Consultantpatientvisit> getConsultantpatientvisitList() {
+        return consultantpatientvisitList;
+    }
+
+    public void setConsultantpatientvisitList(List<Consultantpatientvisit> consultantpatientvisitList) {
+//        this.consultantpatientvisitList = consultantpatientvisitList;
+        if (this.consultantpatientvisitList == null)
+        {
+            this.consultantpatientvisitList = new ArrayList<>();
+        }
+        if (consultantpatientvisitList != null)
+        {
+            this.consultantpatientvisitList.clear();
+            this.consultantpatientvisitList.addAll(consultantpatientvisitList);
+        }
+    }
+
+    public List<Patientadditionaltests> getPatientadditionaltestsList() {
+        return patientadditionaltestsList;
+    }
+
+    public void setPatientadditionaltestsList(List<Patientadditionaltests> patientadditionaltestsList) {
+//        this.patientadditionaltestsList = patientadditionaltestsList;
+        if (this.patientadditionaltestsList == null)
+        {
+            this.patientadditionaltestsList = new ArrayList<>();
+        }
+        if (patientadditionaltestsList != null)
+        {
+            this.patientadditionaltestsList.clear();
+            this.patientadditionaltestsList.addAll(patientadditionaltestsList);
+        }
+    }
+
+    public List<Patientadditionalscores> getPatientadditionalscoresList() {
+        return patientadditionalscoresList;
+    }
+
+    public void setPatientadditionalscoresList(List<Patientadditionalscores> patientadditionalscoresList) {
+//        this.patientadditionalscoresList = patientadditionalscoresList;
+        if (this.patientadditionalscoresList == null)
+        {
+            this.patientadditionalscoresList = new ArrayList<>();
+        }
+        if (patientadditionalscoresList != null)
+        {
+            this.patientadditionalscoresList.clear();
+            this.patientadditionalscoresList.addAll(patientadditionalscoresList);
+        }
+    }
+
+    public List<Embolism> getEmbolismList() {
+        return embolismList;
+    }
+
+    public void setEmbolismList(List<Embolism> embolismList) {
+//        this.embolismList = embolismList;
+        if (this.embolismList == null)
+        {
+            this.embolismList = new ArrayList<>();
+        }
+        if (embolismList != null)
+        {
+            this.embolismList.clear();
+            this.embolismList.addAll(embolismList);
+        }
+    }
+
+    public List<Patientventilator> getPatientventilatorList() {
+        return patientventilatorList;
+    }
+
+    public void setPatientventilatorList(List<Patientventilator> patientventilatorList) {
+        this.patientventilatorList = patientventilatorList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientdaysheetid != null ? patientdaysheetid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientdaysheet)) {
+            return false;
+        }
+        Patientdaysheet other = (Patientdaysheet) object;
+        if ((this.patientdaysheetid == null && other.patientdaysheetid != null) || (this.patientdaysheetid != null && !this.patientdaysheetid.equals(other.patientdaysheetid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientdaysheet[ patientdaysheetid=" + patientdaysheetid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientinfusion")
+@NamedQueries({
+    @NamedQuery(name = "Patientinfusion.findAll", query = "SELECT p FROM Patientinfusion p")})
+public class Patientinfusion implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientinfusionid")
+    private Integer patientinfusionid;
+    @Column(name = "time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date time;
+    @Column(name = "fluidname")
+    private String fluidname;
+    @Column(name = "fluidvolume")
+    private String fluidvolume;
+    @Column(name = "ivmedication")
+    private String ivmedication;
+    @Column(name = "dose")
+    private String dose;
+    @Column(name = "rate")
+    private String rate;
+    @Column(name = "starttime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date starttime;
+    @Column(name = "endtime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endtime;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patient", referencedColumnName = "patientid")
+    @ManyToOne(optional = false)
+    private Patient patient;
+    @JoinColumn(name = "preparedby", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User preparedby;
+
+    public Patientinfusion() {
+    }
+
+    public Patientinfusion(Integer patientinfusionid) {
+        this.patientinfusionid = patientinfusionid;
+    }
+
+    public Patientinfusion(Integer patientinfusionid, int createdby) {
+        this.patientinfusionid = patientinfusionid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientinfusionid() {
+        return patientinfusionid;
+    }
+
+    public void setPatientinfusionid(Integer patientinfusionid) {
+        this.patientinfusionid = patientinfusionid;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getFluidname() {
+        return fluidname;
+    }
+
+    public void setFluidname(String fluidname) {
+        this.fluidname = fluidname;
+    }
+
+    public String getFluidvolume() {
+        return fluidvolume;
+    }
+
+    public void setFluidvolume(String fluidvolume) {
+        this.fluidvolume = fluidvolume;
+    }
+
+    public String getIvmedication() {
+        return ivmedication;
+    }
+
+    public void setIvmedication(String ivmedication) {
+        this.ivmedication = ivmedication;
+    }
+
+    public String getDose() {
+        return dose;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public Date getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public User getPreparedby() {
+        return preparedby;
+    }
+
+    public void setPreparedby(User preparedby) {
+        this.preparedby = preparedby;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientinfusionid != null ? patientinfusionid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientinfusion)) {
+            return false;
+        }
+        Patientinfusion other = (Patientinfusion) object;
+        if ((this.patientinfusionid == null && other.patientinfusionid != null) || (this.patientinfusionid != null && !this.patientinfusionid.equals(other.patientinfusionid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientinfusion[ patientinfusionid=" + patientinfusionid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientivfluid")
+@NamedQueries({
+    @NamedQuery(name = "Patientivfluid.findAll", query = "SELECT p FROM Patientivfluid p")})
+public class Patientivfluid implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientivfluidid")
+    private Integer patientivfluidid;   
+    @Column(name = "rate")
+    private String rate;
+    @Column(name = "additionaldrugs")
+    private String additionaldrugs;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "ivfluid", referencedColumnName = "ivfluidid")
+    @ManyToOne(optional = false)
+    private Ivfluid ivfluid;
+    @JoinColumn(name = "patient", referencedColumnName = "patientid")
+    @ManyToOne(optional = false)
+    private Patient patient;
+
+    public Patientivfluid() {
+    }
+
+    public Patientivfluid(Integer patientivfluidid) {
+        this.patientivfluidid = patientivfluidid;
+    }
+
+    public Patientivfluid(Integer patientivfluidid, int createdby) {
+        this.patientivfluidid = patientivfluidid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientivfluidid() {
+        return patientivfluidid;
+    }
+
+    public void setPatientivfluidid(Integer patientivfluidid) {
+        this.patientivfluidid = patientivfluidid;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getAdditionaldrugs() {
+        return additionaldrugs;
+    }
+
+    public void setAdditionaldrugs(String additionaldrugs) {
+        this.additionaldrugs = additionaldrugs;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Ivfluid getIvfluid() {
+        return ivfluid;
+    }
+
+    public void setIvfluid(Ivfluid ivfluid) {
+        this.ivfluid = ivfluid;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientivfluidid != null ? patientivfluidid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientivfluid)) {
+            return false;
+        }
+        Patientivfluid other = (Patientivfluid) object;
+        if ((this.patientivfluidid == null && other.patientivfluidid != null) || (this.patientivfluidid != null && !this.patientivfluidid.equals(other.patientivfluidid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientivfluid[ patientivfluidid=" + patientivfluidid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientlinestubes")
+@NamedQueries({
+    @NamedQuery(name = "Patientlinestubes.findAll", query = "SELECT p FROM Patientlinestubes p")})
+public class Patientlinestubes implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientlinestubesid")
+    private Integer patientlinestubesid;
+    @Column(name = "dateofinsertion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateofinsertion;
+    @Column(name = "site")
+    private String site;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "linestubes", referencedColumnName = "linestubesid")
+    @ManyToOne(optional = false)
+    private Linestubes linestubes;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+
+    public Patientlinestubes() {
+    }
+
+    public Patientlinestubes(Integer patientlinestubesid) {
+        this.patientlinestubesid = patientlinestubesid;
+    }
+
+    public Patientlinestubes(Integer patientlinestubesid, int createdby) {
+        this.patientlinestubesid = patientlinestubesid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientlinestubesid() {
+        return patientlinestubesid;
+    }
+
+    public void setPatientlinestubesid(Integer patientlinestubesid) {
+        this.patientlinestubesid = patientlinestubesid;
+    }
+
+    public Date getDateofinsertion() {
+        return dateofinsertion;
+    }
+
+    public void setDateofinsertion(Date dateofinsertion) {
+        this.dateofinsertion = dateofinsertion;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Linestubes getLinestubes() {
+        return linestubes;
+    }
+
+    public void setLinestubes(Linestubes linestubes) {
+        this.linestubes = linestubes;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientlinestubesid != null ? patientlinestubesid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientlinestubes)) {
+            return false;
+        }
+        Patientlinestubes other = (Patientlinestubes) object;
+        if ((this.patientlinestubesid == null && other.patientlinestubesid != null) || (this.patientlinestubesid != null && !this.patientlinestubesid.equals(other.patientlinestubesid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientlinestubes[ patientlinestubesid=" + patientlinestubesid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientmedicationchart")
+@NamedQueries({
+    @NamedQuery(name = "Patientmedicationchart.findAll", query = "SELECT p FROM Patientmedicationchart p")})
+public class Patientmedicationchart implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientmedicationchartid")
+    private Integer patientmedicationchartid;
+    @Column(name = "drug")
+    private String drug;
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    @Column(name = "dose")
+    private String dose;
+    @Column(name = "route")
+    private String route;
+    @Column(name = "frequency")
+    private String frequency;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientadmission", referencedColumnName = "patientadmissionid")
+    @ManyToOne(optional = false)
+    private Patientadmission patientadmission;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientmedicationchart")
+    private List<Patientmedicationlog> patientmedicationlogList;
+
+    public Patientmedicationchart() {
+    }
+
+    public Patientmedicationchart(Integer patientmedicationchartid) {
+        this.patientmedicationchartid = patientmedicationchartid;
+    }
+
+    public Patientmedicationchart(Integer patientmedicationchartid, int createdby) {
+        this.patientmedicationchartid = patientmedicationchartid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientmedicationchartid() {
+        return patientmedicationchartid;
+    }
+
+    public void setPatientmedicationchartid(Integer patientmedicationchartid) {
+        this.patientmedicationchartid = patientmedicationchartid;
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDose() {
+        return dose;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientadmission getPatientadmission() {
+        return patientadmission;
+    }
+
+    public void setPatientadmission(Patientadmission patientadmission) {
+        this.patientadmission = patientadmission;
+    }
+
+    public List<Patientmedicationlog> getPatientmedicationlogList() {
+        return patientmedicationlogList;
+    }
+
+    public void setPatientmedicationlogList(List<Patientmedicationlog> patientmedicationlogList) {
+//        this.patientmedicationlogList = patientmedicationlogList;
+        if (this.patientmedicationlogList == null)
+        {
+            this.patientmedicationlogList = new ArrayList<>();
+        }
+        if (patientmedicationlogList != null)
+        {
+            this.patientmedicationlogList.clear();
+            this.patientmedicationlogList.addAll(patientmedicationlogList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientmedicationchartid != null ? patientmedicationchartid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientmedicationchart)) {
+            return false;
+        }
+        Patientmedicationchart other = (Patientmedicationchart) object;
+        if ((this.patientmedicationchartid == null && other.patientmedicationchartid != null) || (this.patientmedicationchartid != null && !this.patientmedicationchartid.equals(other.patientmedicationchartid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientmedicationchart[ patientmedicationchartid=" + patientmedicationchartid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientmedicationlog")
+@NamedQueries({
+    @NamedQuery(name = "Patientmedicationlog.findAll", query = "SELECT p FROM Patientmedicationlog p")})
+public class Patientmedicationlog implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientmedicationlogid")
+    private Integer patientmedicationlogid;
+    @Column(name = "drug")
+    private String drug;
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    @Column(name = "dose")
+    private String dose;
+    @Column(name = "route")
+    private String route;
+    @Column(name = "Administrationtime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date administrationtime;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientmedicationchart", referencedColumnName = "patientmedicationchartid")
+    @ManyToOne(optional = false)
+    private Patientmedicationchart patientmedicationchart;
+    @JoinColumn(name = "administeredby", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User administeredby;
+
+    public Patientmedicationlog() {
+    }
+
+    public Patientmedicationlog(Integer patientmedicationlogid) {
+        this.patientmedicationlogid = patientmedicationlogid;
+    }
+
+    public Patientmedicationlog(Integer patientmedicationlogid, int createdby) {
+        this.patientmedicationlogid = patientmedicationlogid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientmedicationlogid() {
+        return patientmedicationlogid;
+    }
+
+    public void setPatientmedicationlogid(Integer patientmedicationlogid) {
+        this.patientmedicationlogid = patientmedicationlogid;
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDose() {
+        return dose;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public Date getAdministrationtime() {
+        return administrationtime;
+    }
+
+    public void setAdministrationtime(Date administrationtime) {
+        this.administrationtime = administrationtime;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientmedicationchart getPatientmedicationchart() {
+        return patientmedicationchart;
+    }
+
+    public void setPatientmedicationchart(Patientmedicationchart patientmedicationchart) {
+        this.patientmedicationchart = patientmedicationchart;
+    }
+
+    public User getAdministeredby() {
+        return administeredby;
+    }
+
+    public void setAdministeredby(User administeredby) {
+        this.administeredby = administeredby;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientmedicationlogid != null ? patientmedicationlogid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientmedicationlog)) {
+            return false;
+        }
+        Patientmedicationlog other = (Patientmedicationlog) object;
+        if ((this.patientmedicationlogid == null && other.patientmedicationlogid != null) || (this.patientmedicationlogid != null && !this.patientmedicationlogid.equals(other.patientmedicationlogid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientmedicationlog[ patientmedicationlogid=" + patientmedicationlogid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientsosmedication")
+@NamedQueries({
+    @NamedQuery(name = "Patientsosmedication.findAll", query = "SELECT p FROM Patientsosmedication p")})
+public class Patientsosmedication implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientsosmedicationid")
+    private Integer patientsosmedicationid;
+    @Column(name = "indication")
+    private String indication;
+    @Column(name = "drug")
+    private String drug;
+    @Column(name = "dose")
+    private String dose;
+    @Column(name = "route")
+    private String route;
+    @Column(name = "time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date time;
+    @Column(name = "telephoneverbal")
+    private String telephoneverbal;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patient", referencedColumnName = "patientid")
+    @ManyToOne(optional = false)
+    private Patient patient;
+    @JoinColumn(name = "administeredby", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User administeredby;
+    @JoinColumn(name = "orderedbydoctor", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User orderedbydoctor;
+
+    public Patientsosmedication() {
+    }
+
+    public Patientsosmedication(Integer patientsosmedicationid) {
+        this.patientsosmedicationid = patientsosmedicationid;
+    }
+
+    public Patientsosmedication(Integer patientsosmedicationid, int createdby) {
+        this.patientsosmedicationid = patientsosmedicationid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientsosmedicationid() {
+        return patientsosmedicationid;
+    }
+
+    public void setPatientsosmedicationid(Integer patientsosmedicationid) {
+        this.patientsosmedicationid = patientsosmedicationid;
+    }
+
+    public String getIndication() {
+        return indication;
+    }
+
+    public void setIndication(String indication) {
+        this.indication = indication;
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+
+    public String getDose() {
+        return dose;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getTelephoneverbal() {
+        return telephoneverbal;
+    }
+
+    public void setTelephoneverbal(String telephoneverbal) {
+        this.telephoneverbal = telephoneverbal;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public User getAdministeredby() {
+        return administeredby;
+    }
+
+    public void setAdministeredby(User administeredby) {
+        this.administeredby = administeredby;
+    }
+
+    public User getOrderedbydoctor() {
+        return orderedbydoctor;
+    }
+
+    public void setOrderedbydoctor(User orderedbydoctor) {
+        this.orderedbydoctor = orderedbydoctor;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientsosmedicationid != null ? patientsosmedicationid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientsosmedication)) {
+            return false;
+        }
+        Patientsosmedication other = (Patientsosmedication) object;
+        if ((this.patientsosmedicationid == null && other.patientsosmedicationid != null) || (this.patientsosmedicationid != null && !this.patientsosmedicationid.equals(other.patientsosmedicationid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientsosmedication[ patientsosmedicationid=" + patientsosmedicationid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "patientventilator")
+@NamedQueries({
+    @NamedQuery(name = "Patientventilator.findAll", query = "SELECT p FROM Patientventilator p")})
+public class Patientventilator implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientventilatorid")
+    private Integer patientventilatorid;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "fio2")
+    private BigDecimal fio2;
+    @Column(name = "peepcpap")
+    private BigDecimal peepcpap;
+    @Column(name = "rate")
+    private BigDecimal rate;
+    @Column(name = "tv")
+    private BigDecimal tv;
+    @Column(name = "ppeak")
+    private BigDecimal ppeak;
+    @Column(name = "mv")
+    private BigDecimal mv;
+    @Column(name = "spo2")
+    private BigDecimal spo2;
+    @Column(name = "cuffpressure")
+    private BigDecimal cuffpressure;
+    @Column(name = "epap")
+    private BigDecimal epap;
+    @Column(name = "peakinsppressure")
+    private BigDecimal peakinsppressure;
+    @Column(name = "plateaupressure")
+    private BigDecimal plateaupressure;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+    @JoinColumn(name = "ventilatormode", referencedColumnName = "ventilatormodeid")
+    @ManyToOne(optional = false)
+    private Ventilatormode ventilatormode;
+
+    public Patientventilator() {
+    }
+
+    public Patientventilator(Integer patientventilatorid) {
+        this.patientventilatorid = patientventilatorid;
+    }
+
+    public Patientventilator(Integer patientventilatorid, int createdby) {
+        this.patientventilatorid = patientventilatorid;
+        this.createdby = createdby;
+    }
+
+    public Integer getPatientventilatorid() {
+        return patientventilatorid;
+    }
+
+    public void setPatientventilatorid(Integer patientventilatorid) {
+        this.patientventilatorid = patientventilatorid;
+    }
+
+    public BigDecimal getFio2() {
+        return fio2;
+    }
+
+    public void setFio2(BigDecimal fio2) {
+        this.fio2 = fio2;
+    }
+
+    public BigDecimal getPeepcpap() {
+        return peepcpap;
+    }
+
+    public void setPeepcpap(BigDecimal peepcpap) {
+        this.peepcpap = peepcpap;
+    }
+
+    public BigDecimal getRate() {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
+    }
+
+    public BigDecimal getTv() {
+        return tv;
+    }
+
+    public void setTv(BigDecimal tv) {
+        this.tv = tv;
+    }
+
+    public BigDecimal getPpeak() {
+        return ppeak;
+    }
+
+    public void setPpeak(BigDecimal ppeak) {
+        this.ppeak = ppeak;
+    }
+
+    public BigDecimal getMv() {
+        return mv;
+    }
+
+    public void setMv(BigDecimal mv) {
+        this.mv = mv;
+    }
+
+    public BigDecimal getSpo2() {
+        return spo2;
+    }
+
+    public void setSpo2(BigDecimal spo2) {
+        this.spo2 = spo2;
+    }
+
+    public BigDecimal getCuffpressure() {
+        return cuffpressure;
+    }
+
+    public void setCuffpressure(BigDecimal cuffpressure) {
+        this.cuffpressure = cuffpressure;
+    }
+
+    public BigDecimal getEpap() {
+        return epap;
+    }
+
+    public void setEpap(BigDecimal epap) {
+        this.epap = epap;
+    }
+
+    public BigDecimal getPeakinsppressure() {
+        return peakinsppressure;
+    }
+
+    public void setPeakinsppressure(BigDecimal peakinsppressure) {
+        this.peakinsppressure = peakinsppressure;
+    }
+
+    public BigDecimal getPlateaupressure() {
+        return plateaupressure;
+    }
+
+    public void setPlateaupressure(BigDecimal plateaupressure) {
+        this.plateaupressure = plateaupressure;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    public Ventilatormode getVentilatormode() {
+        return ventilatormode;
+    }
+
+    public void setVentilatormode(Ventilatormode ventilatormode) {
+        this.ventilatormode = ventilatormode;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientventilatorid != null ? patientventilatorid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patientventilator)) {
+            return false;
+        }
+        Patientventilator other = (Patientventilator) object;
+        if ((this.patientventilatorid == null && other.patientventilatorid != null) || (this.patientventilatorid != null && !this.patientventilatorid.equals(other.patientventilatorid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patientventilator[ patientventilatorid=" + patientventilatorid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "physiothearpy")
+@NamedQueries({
+    @NamedQuery(name = "Physiothearpy.findAll", query = "SELECT p FROM Physiothearpy p")})
+public class Physiothearpy implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "physiothearpyid")
+    private Integer physiothearpyid;
+    @Basic(optional = false)
+    @Column(name = "physiothearpy")
+    private String physiothearpy;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "physiothearpy")
+    private List<Patientadditionaltests> patientadditionaltestsList;
+
+    public Physiothearpy() {
+    }
+
+    public Physiothearpy(Integer physiothearpyid) {
+        this.physiothearpyid = physiothearpyid;
+    }
+
+    public Physiothearpy(Integer physiothearpyid, String physiothearpy, int createdby) {
+        this.physiothearpyid = physiothearpyid;
+        this.physiothearpy = physiothearpy;
+        this.createdby = createdby;
+    }
+
+    public Integer getPhysiothearpyid() {
+        return physiothearpyid;
+    }
+
+    public void setPhysiothearpyid(Integer physiothearpyid) {
+        this.physiothearpyid = physiothearpyid;
+    }
+
+    public String getPhysiothearpy() {
+        return physiothearpy;
+    }
+
+    public void setPhysiothearpy(String physiothearpy) {
+        this.physiothearpy = physiothearpy;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientadditionaltests> getPatientadditionaltestsList() {
+        return patientadditionaltestsList;
+    }
+
+    public void setPatientadditionaltestsList(List<Patientadditionaltests> patientadditionaltestsList) {
+//        this.patientadditionaltestsList = patientadditionaltestsList;
+        if (this.patientadditionaltestsList == null)
+        {
+            this.patientadditionaltestsList = new ArrayList<>();
+        }
+        if (patientadditionaltestsList != null)
+        {
+            this.patientadditionaltestsList.clear();
+            this.patientadditionaltestsList.addAll(patientadditionaltestsList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (physiothearpyid != null ? physiothearpyid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Physiothearpy)) {
+            return false;
+        }
+        Physiothearpy other = (Physiothearpy) object;
+        if ((this.physiothearpyid == null && other.physiothearpyid != null) || (this.physiothearpyid != null && !this.physiothearpyid.equals(other.physiothearpyid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Physiothearpy[ physiothearpyid=" + physiothearpyid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "resettoken")
+@NamedQueries({
+    @NamedQuery(name = "Resettoken.findAll", query = "SELECT r FROM Resettoken r")})
+public class Resettoken implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "resettokenid")
+    private Integer resettokenid;
+    @Column(name = "token")
+    private String token;
+    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    @JoinColumn(name = "user", referencedColumnName = "userid")
+    @ManyToOne
+    private User user;
+
+    public Resettoken() {
+    }
+
+    public Resettoken(Integer resettokenid) {
+        this.resettokenid = resettokenid;
+    }
+
+    public Integer getResettokenid() {
+        return resettokenid;
+    }
+
+    public void setResettokenid(Integer resettokenid) {
+        this.resettokenid = resettokenid;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (resettokenid != null ? resettokenid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Resettoken)) {
+            return false;
+        }
+        Resettoken other = (Resettoken) object;
+        if ((this.resettokenid == null && other.resettokenid != null) || (this.resettokenid != null && !this.resettokenid.equals(other.resettokenid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Resettoken[ resettokenid=" + resettokenid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "rmonurselog")
+@NamedQueries({
+    @NamedQuery(name = "Rmonurselog.findAll", query = "SELECT r FROM Rmonurselog r")})
+public class Rmonurselog implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "rmonurselogid")
+    private Integer rmonurselogid;
+    @Column(name = "datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+    @JoinColumn(name = "rmonurse", referencedColumnName = "userid")
+    @ManyToOne
+    private User rmonurse;
+
+    public Rmonurselog() {
+    }
+
+    public Rmonurselog(Integer rmonurselogid) {
+        this.rmonurselogid = rmonurselogid;
+    }
+
+    public Rmonurselog(Integer rmonurselogid, int createdby) {
+        this.rmonurselogid = rmonurselogid;
+        this.createdby = createdby;
+    }
+
+    public Integer getRmonurselogid() {
+        return rmonurselogid;
+    }
+
+    public void setRmonurselogid(Integer rmonurselogid) {
+        this.rmonurselogid = rmonurselogid;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    public User getRmonurse() {
+        return rmonurse;
+    }
+
+    public void setRmonurse(User rmonurse) {
+        this.rmonurse = rmonurse;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (rmonurselogid != null ? rmonurselogid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Rmonurselog)) {
+            return false;
+        }
+        Rmonurselog other = (Rmonurselog) object;
+        if ((this.rmonurselogid == null && other.rmonurselogid != null) || (this.rmonurselogid != null && !this.rmonurselogid.equals(other.rmonurselogid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Rmonurselog[ rmonurselogid=" + rmonurselogid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "role")
+@NamedQueries(
+{
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
+})
+public class Role implements Serializable
+{
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "roleid")
+    private Integer roleid;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "rolecode")
+    private String rolecode;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "active")
+    private Integer active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "division", referencedColumnName = "divisionid")
+    @ManyToOne
+    private Division division;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    private List<Roleaccess> roleaccessList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    private List<Userrole> userroleList;
+
+    public Role()
+    {
+    }
+
+    public Role(Integer roleid)
+    {
+        this.roleid = roleid;
+    }
+
+    public Role(Integer roleid, int createdby)
+    {
+        this.roleid = roleid;
+        this.createdby = createdby;
+    }
+
+    public Integer getRoleid()
+    {
+        return roleid;
+    }
+
+    public void setRoleid(Integer roleid)
+    {
+        this.roleid = roleid;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getRolecode()
+    {
+        return rolecode;
+    }
+
+    public void setRolecode(String rolecode)
+    {
+        this.rolecode = rolecode;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public Integer getActive()
+    {
+        return active;
+    }
+
+    public void setActive(Integer active)
+    {
+        this.active = active;
+    }
+
+    public int getCreatedby()
+    {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby)
+    {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate()
+    {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate)
+    {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby()
+    {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby)
+    {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate()
+    {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate)
+    {
+        this.updateddate = updateddate;
+    }
+
+    public Division getDivision()
+    {
+        return division;
+    }
+
+    public void setDivision(Division division)
+    {
+        this.division = division;
+    }
+
+    public List<Roleaccess> getRoleaccessList()
+    {
+        return roleaccessList;
+    }
+
+    public void setRoleaccessList(List<Roleaccess> roleaccessList)
+    {
+//        this.roleaccessList = roleaccessList;
+        if (this.roleaccessList == null)
+        {
+            this.roleaccessList = new ArrayList<>();
+        }
+        if (roleaccessList != null)
+        {
+            this.roleaccessList.clear();
+            this.roleaccessList.addAll(roleaccessList);
+        }
+    }
+
+    public List<Userrole> getUserroleList()
+    {
+        return userroleList;
+    }
+
+    public void setUserroleList(List<Userrole> userroleList)
+    {
+//        this.userroleList = userroleList;
+        if (this.userroleList == null)
+        {
+            this.userroleList = new ArrayList<>();
+        }
+        if (userroleList != null)
+        {
+            this.userroleList.clear();
+            this.userroleList.addAll(userroleList);
+        }
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (roleid != null ? roleid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Role))
+        {
+            return false;
+        }
+        Role other = (Role) object;
+        if ((this.roleid == null && other.roleid != null) || (this.roleid != null && !this.roleid.equals(other.roleid)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.ibidlogistics.ibliv.model.Role[ roleid=" + roleid + " ]";
+    }
+
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "roleaccess")
+@NamedQueries({
+    @NamedQuery(name = "Roleaccess.findAll", query = "SELECT r FROM Roleaccess r")})
+public class Roleaccess implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "roleaccessid")
+    private Integer roleaccessid;
+    @Column(name = "ionicmenu")
+    private Integer ionicmenu;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "menu", referencedColumnName = "menuid")
+    @ManyToOne
+    private Menudetails menu;
+    @JoinColumn(name = "role", referencedColumnName = "roleid")
+    @ManyToOne(optional = false)
+    private Role role;
+
+    public Roleaccess() {
+    }
+
+    public Roleaccess(Integer roleaccessid) {
+        this.roleaccessid = roleaccessid;
+    }
+
+    public Roleaccess(Integer roleaccessid, int createdby) {
+        this.roleaccessid = roleaccessid;
+        this.createdby = createdby;
+    }
+
+    public Integer getRoleaccessid() {
+        return roleaccessid;
+    }
+
+    public void setRoleaccessid(Integer roleaccessid) {
+        this.roleaccessid = roleaccessid;
+    }
+
+    public Integer getIonicmenu() {
+        return ionicmenu;
+    }
+
+    public void setIonicmenu(Integer ionicmenu) {
+        this.ionicmenu = ionicmenu;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Menudetails getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menudetails menu) {
+        this.menu = menu;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (roleaccessid != null ? roleaccessid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Roleaccess)) {
+            return false;
+        }
+        Roleaccess other = (Roleaccess) object;
+        if ((this.roleaccessid == null && other.roleaccessid != null) || (this.roleaccessid != null && !this.roleaccessid.equals(other.roleaccessid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Roleaccess[ roleaccessid=" + roleaccessid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "shiftrmonurse")
+@NamedQueries({
+    @NamedQuery(name = "Shiftrmonurse.findAll", query = "SELECT s FROM Shiftrmonurse s")})
+public class Shiftrmonurse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "shiftrmonurseid")
+    private Integer shiftrmonurseid;
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Basic(optional = false)
+    @Column(name = "shift")
+    private int shift;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "icu", referencedColumnName = "icuid")
+    @ManyToOne(optional = false)
+    private Icu icu;
+    @JoinColumn(name = "rmo", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User rmo;
+    @JoinColumn(name = "nurse", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User nurse;
+
+    public Shiftrmonurse() {
+    }
+
+    public Shiftrmonurse(Integer shiftrmonurseid) {
+        this.shiftrmonurseid = shiftrmonurseid;
+    }
+
+    public Shiftrmonurse(Integer shiftrmonurseid, int shift, int createdby) {
+        this.shiftrmonurseid = shiftrmonurseid;
+        this.shift = shift;
+        this.createdby = createdby;
+    }
+
+    public Integer getShiftrmonurseid() {
+        return shiftrmonurseid;
+    }
+
+    public void setShiftrmonurseid(Integer shiftrmonurseid) {
+        this.shiftrmonurseid = shiftrmonurseid;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getShift() {
+        return shift;
+    }
+
+    public void setShift(int shift) {
+        this.shift = shift;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Icu getIcu() {
+        return icu;
+    }
+
+    public void setIcu(Icu icu) {
+        this.icu = icu;
+    }
+
+    public User getRmo() {
+        return rmo;
+    }
+
+    public void setRmo(User rmo) {
+        this.rmo = rmo;
+    }
+
+    public User getNurse() {
+        return nurse;
+    }
+
+    public void setNurse(User nurse) {
+        this.nurse = nurse;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (shiftrmonurseid != null ? shiftrmonurseid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Shiftrmonurse)) {
+            return false;
+        }
+        Shiftrmonurse other = (Shiftrmonurse) object;
+        if ((this.shiftrmonurseid == null && other.shiftrmonurseid != null) || (this.shiftrmonurseid != null && !this.shiftrmonurseid.equals(other.shiftrmonurseid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Shiftrmonurse[ shiftrmonurseid=" + shiftrmonurseid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "user")
+@NamedQueries({
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")})
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "userid")
+    private Integer userid;
+    @Basic(optional = false)
+    @Column(name = "name")
+    private String name;
+    @Column(name = "id")
+    private String id;
+    @Column(name = "mobileno")
+    private String mobileno;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "active")
+    private Integer active;
+    @Basic(optional = false)
+    @Column(name = "username")
+    private String username;
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(mappedBy = "consultant1")
+    private List<Patientdaysheet> patientdaysheetList;
+    @OneToMany(mappedBy = "consultant2")
+    private List<Patientdaysheet> patientdaysheetList1;
+    @OneToMany(mappedBy = "consultant3")
+    private List<Patientdaysheet> patientdaysheetList2;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "intensivist")
+    private List<Patientdaysheet> patientdaysheetList3;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "administeredby")
+    private List<Patientmedicationlog> patientmedicationlogList;
+    @OneToMany(mappedBy = "rmonurse")
+    private List<Rmonurselog> rmonurselogList;
+    @OneToMany(mappedBy = "doctor")
+    private List<Consultantpatientvisit> consultantpatientvisitList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rmo")
+    private List<Shiftrmonurse> shiftrmonurseList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nurse")
+    private List<Shiftrmonurse> shiftrmonurseList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preparedby")
+    private List<Patientinfusion> patientinfusionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Userrole> userroleList;
+    @OneToMany(mappedBy = "user")
+    private List<Usertoken> usertokenList;
+    @OneToMany(mappedBy = "user")
+    private List<Resettoken> resettokenList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "administeredby")
+    private List<Patientsosmedication> patientsosmedicationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderedbydoctor")
+    private List<Patientsosmedication> patientsosmedicationList1;
+
+    public User() {
+    }
+
+    public User(Integer userid) {
+        this.userid = userid;
+    }
+
+    public User(Integer userid, String name, String username, String password, int createdby) {
+        this.userid = userid;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.createdby = createdby;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMobileno() {
+        return mobileno;
+    }
+
+    public void setMobileno(String mobileno) {
+        this.mobileno = mobileno;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientdaysheet> getPatientdaysheetList() {
+        return patientdaysheetList;
+    }
+
+    public void setPatientdaysheetList(List<Patientdaysheet> patientdaysheetList) {
+//        this.patientdaysheetList = patientdaysheetList;
+        if (this.patientdaysheetList == null)
+        {
+            this.patientdaysheetList = new ArrayList<>();
+        }
+        if (patientdaysheetList != null)
+        {
+            this.patientdaysheetList.clear();
+            this.patientdaysheetList.addAll(patientdaysheetList);
+        }
+    }
+
+    public List<Patientdaysheet> getPatientdaysheetList1() {
+        return patientdaysheetList1;
+    }
+
+    public void setPatientdaysheetList1(List<Patientdaysheet> patientdaysheetList1) {
+//        this.patientdaysheetList1 = patientdaysheetList1;
+        if (this.patientdaysheetList1 == null)
+        {
+            this.patientdaysheetList1 = new ArrayList<>();
+        }
+        if (patientdaysheetList1 != null)
+        {
+            this.patientdaysheetList1.clear();
+            this.patientdaysheetList1.addAll(patientdaysheetList1);
+        }
+    }
+
+    public List<Patientdaysheet> getPatientdaysheetList2() {
+        return patientdaysheetList2;
+    }
+
+    public void setPatientdaysheetList2(List<Patientdaysheet> patientdaysheetList2) {
+//        this.patientdaysheetList2 = patientdaysheetList2;
+        if (this.patientdaysheetList2 == null)
+        {
+            this.patientdaysheetList2 = new ArrayList<>();
+        }
+        if (patientdaysheetList2 != null)
+        {
+            this.patientdaysheetList2.clear();
+            this.patientdaysheetList2.addAll(patientdaysheetList2);
+        }
+    }
+
+    public List<Patientdaysheet> getPatientdaysheetList3() {
+        return patientdaysheetList3;
+    }
+
+    public void setPatientdaysheetList3(List<Patientdaysheet> patientdaysheetList3) {
+//        this.patientdaysheetList3 = patientdaysheetList3;
+        if (this.patientdaysheetList3 == null)
+        {
+            this.patientdaysheetList3 = new ArrayList<>();
+        }
+        if (patientdaysheetList3 != null)
+        {
+            this.patientdaysheetList3.clear();
+            this.patientdaysheetList3.addAll(patientdaysheetList3);
+        }
+    }
+
+    public List<Patientmedicationlog> getPatientmedicationlogList() {
+        return patientmedicationlogList;
+    }
+
+    public void setPatientmedicationlogList(List<Patientmedicationlog> patientmedicationlogList) {
+//        this.patientmedicationlogList = patientmedicationlogList;
+        if (this.patientmedicationlogList == null)
+        {
+            this.patientmedicationlogList = new ArrayList<>();
+        }
+        if (patientmedicationlogList != null)
+        {
+            this.patientmedicationlogList.clear();
+            this.patientmedicationlogList.addAll(patientmedicationlogList);
+        }
+    }
+
+    public List<Rmonurselog> getRmonurselogList() {
+        return rmonurselogList;
+    }
+
+    public void setRmonurselogList(List<Rmonurselog> rmonurselogList) {
+//        this.rmonurselogList = rmonurselogList;
+        if (this.rmonurselogList == null)
+        {
+            this.rmonurselogList = new ArrayList<>();
+        }
+        if (rmonurselogList != null)
+        {
+            this.rmonurselogList.clear();
+            this.rmonurselogList.addAll(rmonurselogList);
+        }
+    }
+
+    public List<Consultantpatientvisit> getConsultantpatientvisitList() {
+        return consultantpatientvisitList;
+    }
+
+    public void setConsultantpatientvisitList(List<Consultantpatientvisit> consultantpatientvisitList) {
+//        this.consultantpatientvisitList = consultantpatientvisitList;
+        if (this.consultantpatientvisitList == null)
+        {
+            this.consultantpatientvisitList = new ArrayList<>();
+        }
+        if (consultantpatientvisitList != null)
+        {
+            this.consultantpatientvisitList.clear();
+            this.consultantpatientvisitList.addAll(consultantpatientvisitList);
+        }
+    }
+
+    public List<Shiftrmonurse> getShiftrmonurseList() {
+        return shiftrmonurseList;
+    }
+
+    public void setShiftrmonurseList(List<Shiftrmonurse> shiftrmonurseList) {
+//        this.shiftrmonurseList = shiftrmonurseList;
+        if (this.shiftrmonurseList == null)
+        {
+            this.shiftrmonurseList = new ArrayList<>();
+        }
+        if (shiftrmonurseList != null)
+        {
+            this.shiftrmonurseList.clear();
+            this.shiftrmonurseList.addAll(shiftrmonurseList);
+        }
+    }
+
+    public List<Shiftrmonurse> getShiftrmonurseList1() {
+        return shiftrmonurseList1;
+    }
+
+    public void setShiftrmonurseList1(List<Shiftrmonurse> shiftrmonurseList1) {
+//        this.shiftrmonurseList1 = shiftrmonurseList1;
+        if (this.shiftrmonurseList1 == null)
+        {
+            this.shiftrmonurseList1 = new ArrayList<>();
+        }
+        if (shiftrmonurseList1 != null)
+        {
+            this.shiftrmonurseList1.clear();
+            this.shiftrmonurseList1.addAll(shiftrmonurseList1);
+        }
+    }
+
+    public List<Patientinfusion> getPatientinfusionList() {
+        return patientinfusionList;
+    }
+
+    public void setPatientinfusionList(List<Patientinfusion> patientinfusionList) {
+//        this.patientinfusionList = patientinfusionList;
+        if (this.patientinfusionList == null)
+        {
+            this.patientinfusionList = new ArrayList<>();
+        }
+        if (patientinfusionList != null)
+        {
+            this.patientinfusionList.clear();
+            this.patientinfusionList.addAll(patientinfusionList);
+        }
+    }
+
+    public List<Userrole> getUserroleList() {
+        return userroleList;
+    }
+
+    public void setUserroleList(List<Userrole> userroleList) {
+//        this.userroleList = userroleList;
+        if (this.userroleList == null)
+        {
+            this.userroleList = new ArrayList<>();
+        }
+        if (userroleList != null)
+        {
+            this.userroleList.clear();
+            this.userroleList.addAll(userroleList);
+        }
+    }
+
+    public List<Usertoken> getUsertokenList() {
+        return usertokenList;
+    }
+
+    public void setUsertokenList(List<Usertoken> usertokenList) {
+//        this.usertokenList = usertokenList;
+        if (this.usertokenList == null)
+        {
+            this.usertokenList = new ArrayList<>();
+        }
+        if (usertokenList != null)
+        {
+            this.usertokenList.clear();
+            this.usertokenList.addAll(usertokenList);
+        }
+    }
+
+    public List<Resettoken> getResettokenList() {
+        return resettokenList;
+    }
+
+    public void setResettokenList(List<Resettoken> resettokenList) {
+//        this.resettokenList = resettokenList;
+        if (this.resettokenList == null)
+        {
+            this.resettokenList = new ArrayList<>();
+        }
+        if (resettokenList != null)
+        {
+            this.resettokenList.clear();
+            this.resettokenList.addAll(resettokenList);
+        }
+    }
+
+    public List<Patientsosmedication> getPatientsosmedicationList() {
+        return patientsosmedicationList;
+    }
+
+    public void setPatientsosmedicationList(List<Patientsosmedication> patientsosmedicationList) {
+//        this.patientsosmedicationList = patientsosmedicationList;
+        if (this.patientsosmedicationList == null)
+        {
+            this.patientsosmedicationList = new ArrayList<>();
+        }
+        if (patientsosmedicationList != null)
+        {
+            this.patientsosmedicationList.clear();
+            this.patientsosmedicationList.addAll(patientsosmedicationList);
+        }
+    }
+
+    public List<Patientsosmedication> getPatientsosmedicationList1() {
+        return patientsosmedicationList1;
+    }
+
+    public void setPatientsosmedicationList1(List<Patientsosmedication> patientsosmedicationList1) {
+//        this.patientsosmedicationList1 = patientsosmedicationList1;
+        if (this.patientsosmedicationList1 == null)
+        {
+            this.patientsosmedicationList1 = new ArrayList<>();
+        }
+        if (patientsosmedicationList1 != null)
+        {
+            this.patientsosmedicationList1.clear();
+            this.patientsosmedicationList1.addAll(patientsosmedicationList1);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (userid != null ? userid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.userid == null && other.userid != null) || (this.userid != null && !this.userid.equals(other.userid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.User[ userid=" + userid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "userrole")
+@NamedQueries({
+    @NamedQuery(name = "Userrole.findAll", query = "SELECT u FROM Userrole u")})
+public class Userrole implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "userroleid")
+    private Integer userroleid;
+    @Basic(optional = false)
+    @Column(name = "active")
+    private int active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @JoinColumn(name = "role", referencedColumnName = "roleid")
+    @ManyToOne(optional = false)
+    private Role role;
+    @JoinColumn(name = "user", referencedColumnName = "userid")
+    @ManyToOne(optional = false)
+    private User user;
+
+    public Userrole() {
+    }
+
+    public Userrole(Integer userroleid) {
+        this.userroleid = userroleid;
+    }
+
+    public Userrole(Integer userroleid, int active, int createdby) {
+        this.userroleid = userroleid;
+        this.active = active;
+        this.createdby = createdby;
+    }
+
+    public Integer getUserroleid() {
+        return userroleid;
+    }
+
+    public void setUserroleid(Integer userroleid) {
+        this.userroleid = userroleid;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (userroleid != null ? userroleid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Userrole)) {
+            return false;
+        }
+        Userrole other = (Userrole) object;
+        if ((this.userroleid == null && other.userroleid != null) || (this.userroleid != null && !this.userroleid.equals(other.userroleid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Userrole[ userroleid=" + userroleid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "usertoken")
+@NamedQueries({
+    @NamedQuery(name = "Usertoken.findAll", query = "SELECT u FROM Usertoken u")})
+public class Usertoken implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "usertokenid")
+    private Integer usertokenid;
+    @Column(name = "token")
+    private String token;
+    @Column(name = "fcmtoken")
+    private String fcmtoken;
+    @Column(name = "datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
+    @JoinColumn(name = "user", referencedColumnName = "userid")
+    @ManyToOne
+    private User user;
+
+    public Usertoken() {
+    }
+
+    public Usertoken(Integer usertokenid) {
+        this.usertokenid = usertokenid;
+    }
+
+    public Integer getUsertokenid() {
+        return usertokenid;
+    }
+
+    public void setUsertokenid(Integer usertokenid) {
+        this.usertokenid = usertokenid;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getFcmtoken() {
+        return fcmtoken;
+    }
+
+    public void setFcmtoken(String fcmtoken) {
+        this.fcmtoken = fcmtoken;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (usertokenid != null ? usertokenid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Usertoken)) {
+            return false;
+        }
+        Usertoken other = (Usertoken) object;
+        if ((this.usertokenid == null && other.usertokenid != null) || (this.usertokenid != null && !this.usertokenid.equals(other.usertokenid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Usertoken[ usertokenid=" + usertokenid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "ventilatormode")
+@NamedQueries({
+    @NamedQuery(name = "Ventilatormode.findAll", query = "SELECT v FROM Ventilatormode v")})
+public class Ventilatormode implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ventilatormodeid")
+    private Integer ventilatormodeid;
+    @Column(name = "ventilatormode")
+    private String ventilatormode;
+    @Column(name = "active")
+    private Integer active;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ventilatormode")
+    private List<Patientventilator> patientventilatorList;
+
+    public Ventilatormode() {
+    }
+
+    public Ventilatormode(Integer ventilatormodeid) {
+        this.ventilatormodeid = ventilatormodeid;
+    }
+
+    public Ventilatormode(Integer ventilatormodeid, int createdby) {
+        this.ventilatormodeid = ventilatormodeid;
+        this.createdby = createdby;
+    }
+
+    public Integer getVentilatormodeid() {
+        return ventilatormodeid;
+    }
+
+    public void setVentilatormodeid(Integer ventilatormodeid) {
+        this.ventilatormodeid = ventilatormodeid;
+    }
+
+    public String getVentilatormode() {
+        return ventilatormode;
+    }
+
+    public void setVentilatormode(String ventilatormode) {
+        this.ventilatormode = ventilatormode;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Patientventilator> getPatientventilatorList() {
+        return patientventilatorList;
+    }
+
+    public void setPatientventilatorList(List<Patientventilator> patientventilatorList) {
+//        this.patientventilatorList = patientventilatorList;
+        if (this.patientventilatorList == null)
+        {
+            this.patientventilatorList = new ArrayList<>();
+        }
+        if (patientventilatorList != null)
+        {
+            this.patientventilatorList.clear();
+            this.patientventilatorList.addAll(patientventilatorList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (ventilatormodeid != null ? ventilatormodeid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Ventilatormode)) {
+            return false;
+        }
+        Ventilatormode other = (Ventilatormode) object;
+        if ((this.ventilatormodeid == null && other.ventilatormodeid != null) || (this.ventilatormodeid != null && !this.ventilatormodeid.equals(other.ventilatormodeid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Ventilatormode[ ventilatormodeid=" + ventilatormodeid + " ]";
+    }
+    
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.ibidlogistics.ibliv.model;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Laptop
+ */
+@Entity
+@Table(name = "vital")
+@NamedQueries({
+    @NamedQuery(name = "Vital.findAll", query = "SELECT v FROM Vital v")})
+public class Vital implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "vitalid")
+    private Integer vitalid;
+    @Column(name = "vitalname")
+    private String vitalname;
+    @Column(name = "vitalcategory")
+    private String vitalcategory;
+    @Column(name = "active")
+    private Integer active;
+    @Column(name = "categorysortorder")
+    private Integer categorysortorder;
+    @Column(name = "sortorder")
+    private Integer sortorder;
+    @Basic(optional = false)
+    @Column(name = "createdby")
+    private int createdby;
+    @Column(name = "createddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
+    @Column(name = "updateddate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateddate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vital")
+    private List<Hourlyobservation> hourlyobservationList;
+
+    public Vital() {
+    }
+
+    public Vital(Integer vitalid) {
+        this.vitalid = vitalid;
+    }
+
+    public Vital(Integer vitalid, int createdby) {
+        this.vitalid = vitalid;
+        this.createdby = createdby;
+    }
+
+    public Integer getVitalid() {
+        return vitalid;
+    }
+
+    public void setVitalid(Integer vitalid) {
+        this.vitalid = vitalid;
+    }
+
+    public String getVitalname() {
+        return vitalname;
+    }
+
+    public void setVitalname(String vitalname) {
+        this.vitalname = vitalname;
+    }
+
+    public String getVitalcategory() {
+        return vitalcategory;
+    }
+
+    public void setVitalcategory(String vitalcategory) {
+        this.vitalcategory = vitalcategory;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public Integer getCategorysortorder() {
+        return categorysortorder;
+    }
+
+    public void setCategorysortorder(Integer categorysortorder) {
+        this.categorysortorder = categorysortorder;
+    }
+
+    public Integer getSortorder() {
+        return sortorder;
+    }
+
+    public void setSortorder(Integer sortorder) {
+        this.sortorder = sortorder;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
+        return updateddate;
+    }
+
+    public void setUpdateddate(Date updateddate) {
+        this.updateddate = updateddate;
+    }
+
+    public List<Hourlyobservation> getHourlyobservationList() {
+        return hourlyobservationList;
+    }
+
+    public void setHourlyobservationList(List<Hourlyobservation> hourlyobservationList) {
+//        this.hourlyobservationList = hourlyobservationList;
+        if (this.hourlyobservationList == null)
+        {
+            this.hourlyobservationList = new ArrayList<>();
+        }
+        if (hourlyobservationList != null)
+        {
+            this.hourlyobservationList.clear();
+            this.hourlyobservationList.addAll(hourlyobservationList);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (vitalid != null ? vitalid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Vital)) {
+            return false;
+        }
+        Vital other = (Vital) object;
+        if ((this.vitalid == null && other.vitalid != null) || (this.vitalid != null && !this.vitalid.equals(other.vitalid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Vital[ vitalid=" + vitalid + " ]";
+    }
+    
+}

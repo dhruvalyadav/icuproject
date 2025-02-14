@@ -1,0 +1,30 @@
+<!-- filepath: /E:/BhadugaleSir/ibliv-mono/ibliv-angular/src/app/basic-patient-details/basic-patient-details.component.html -->
+<div class="container mt-4">
+  <h3>Basic Patient Details</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Address</th>
+        <th scope="col">Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ patient.patientname }}</td>
+        <td>{{ patient.age }}</td>
+        <td>{{ patient.sex }}</td>
+        <td>{{ patient.address }}</td>
+        <td>{{ patient.contact }}</td>
+        <th class="text-center">
+          <button class="btn btn-primary" (click)="editPatient(patient.pateintid)">Edit</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="deletePatient(patient.pateintid)">Delete</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
