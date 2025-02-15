@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Patient } from '../entities';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WebClient } from '../web-client';
 
 @Component({
@@ -16,6 +16,9 @@ export class AddPatientComponent implements OnInit {
   webClient=inject(WebClient);
 
   patient=new Patient;
+  patients:any;
+
+  constructor(private route:Router){}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params)=>{
@@ -23,6 +26,9 @@ export class AddPatientComponent implements OnInit {
       {
         const id=params.get('id');
         //fetch patient details from API
+        this.webClient.get<Patient>(`/patient/${id}`).then((res)=>{
+          this.patient=res;
+        })
       }
     });
   }
@@ -31,6 +37,7 @@ export class AddPatientComponent implements OnInit {
   {
     this.webClient.post<Patient,Patient>('/add-patient',this.patient).then((res)=>{
       alert('Patient added');
+      this.route.navigate(['/home/basic-patient-details']);
     });
   }
 }

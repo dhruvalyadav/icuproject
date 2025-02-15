@@ -9,6 +9,7 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { BasicPatientsDetailsComponent } from './basic-patients-details/basic-patients-details.component';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     component:HomeComponent,
     children:
     [
+      {
+        path: "dashboard",
+        component:DashboardComponent
+      },
       {
         path: "admitted-patients",
         component:AdmittedPatientsComponent
@@ -43,7 +48,7 @@ const routes: Routes = [
         path:"basic-patient-details", component:BasicPatientsDetailsComponent
       },
       {
-        path:"edit-patient",component:EditPatientComponent
+        path:"edit-patient/:id",component:AddPatientComponent
       }
     ]
   }

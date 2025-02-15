@@ -18,12 +18,14 @@ import { NursesComponent } from './nurses/nurses.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { providePrimeNG } from 'primeng/config';
 import { DrawerModule } from 'primeng/drawer';
+import { ToolbarModule } from 'primeng/toolbar';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import Material from '@primeng/themes/material';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { BasicPatientsDetailsComponent } from './basic-patients-details/basic-patients-details.component';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { EditPatientComponent } from './edit-patient/edit-patient.component';
     NursesComponent,
     AddPatientComponent,
     BasicPatientsDetailsComponent,
-    EditPatientComponent
+    EditPatientComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { EditPatientComponent } from './edit-patient/edit-patient.component';
     BrowserAnimationsModule,
     ButtonModule,
     DrawerModule,
+    ToolbarModule
   ],
   providers: [provideHttpClient(withFetch()), provideAnimationsAsync(), providePrimeNG({ ripple: true, theme: { preset: Material } })],
   bootstrap: [AppComponent]

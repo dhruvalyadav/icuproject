@@ -1,5 +1,6 @@
+import { WebClient } from './../web-client';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Patient } from '../entities';
 
 @Component({
@@ -11,29 +12,37 @@ import { Patient } from '../entities';
 })
 export class EditPatientComponent implements OnInit
 {
-  patient = new Patient;
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+  activatedRoute=inject(ActivatedRoute);
+  webClient=inject(WebClient);
+
+  patient=new Patient;
 
   ngOnInit(): void
   {
-    this.activatedRoute.params.subscribe(params =>
-    {
-      this.patient.patientid = +params['id']; // The '+' converts the string to a number
+    this.activatedRoute.paramMap.subscribe((params)=>{
+      if(params.has('id'))
+      {
+        const id=params.get('id');
+        //fetch patient details from API
+      }
     });
     this.getPatientById();
   }
   getPatientById()
   {
-
+    this.webClient.get<Patient>('/patient/{id}').then((res)=>{
+      this.patient=res;
+    })
   }
 
+  readData(){
 
+  }
   updatePatient()
   {
-
+    this.webClient.put('/update-patient',this.patient).then((res)=>{
+      alert("patient updated");
+    })
   }
 
 }

@@ -1,6 +1,6 @@
 import { Patient } from './../entities';
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WebClient } from '../web-client';
 
@@ -18,6 +18,8 @@ export class BasicPatientsDetailsComponent implements OnInit
   activatedRoute = inject(ActivatedRoute);
   webClient = inject(WebClient);
 
+  constructor(private route:Router){}
+
   ngOnInit(): void
   {
     this.getAllPatients();
@@ -29,14 +31,27 @@ export class BasicPatientsDetailsComponent implements OnInit
     this.patients=res;
     console.log('patient list ',res);
   });
-
   }
   deletePatient(id: any)
   {
+    this.activatedRoute.paramMap.subscribe((params)=>{
+      if(params.has('id'))
+      {
+        const id=params.get('id');
+        //fetch patient details from API
+        this.webClient.get<Patient>(`/patient/${id}`).then((res)=>{
+          this.patients=res;
+        })
+      }
+    });
+    this.webClient.delete<Patient>(`/delete/${id}`).then((res)=>{
+      alert("patient deleted");
+      this.getAllPatients();
+    })
 
   }
   editPatient(id: any)
   {
-
+    this.route.navigate(['/home/edit-patient',id]);
   }
 }

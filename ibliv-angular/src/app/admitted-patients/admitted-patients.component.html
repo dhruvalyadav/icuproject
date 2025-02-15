@@ -1,27 +1,14 @@
-<div class="container mt-4">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab" aria-controls="basic-details" aria-selected="true">Basic Patient Details</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="add-patient-tab" data-toggle="tab" href="#add-patient" role="tab" aria-controls="add-patient" aria-selected="false">Add Patient</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Current Dashboard</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="basic-details" role="tabpanel" aria-labelledby="basic-details-tab">
-      <!-- Basic Patient Details content goes here -->
-      <app-basic-patients-details></app-basic-patients-details>
-    </div>
-    <div class="tab-pane fade" id="add-patient" role="tabpanel" aria-labelledby="add-patient-tab">
-      <!-- Add Patient content goes here -->
-      <app-add-patient></app-add-patient>
-    </div>
-    <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-      <!-- Current Dashboard content goes here -->
-      <p>Current Dashboard works!</p>
-    </div>
-  </div>
-</div>
+<p-toolbar [style]="{ 'border-radius': '3rem', 'padding': '1rem 1rem 1rem 1.5rem' }">
+  <ng-template #start>
+      <div class="flex items-center gap-2">
+          <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 2rem; margin-right: 1rem">
+              <path d="..." fill="var(--p-primary-color)" />
+              <mask id="mask0_1_52" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="33"></mask>
+          </svg>
+          <p-button label="Basic Patient details" text plain [routerLink]="['/home/basic-patient-details']"/>
+          <p-button label="Add Patient" text plain [routerLink]="['/home/add-patient']"/>
+          <p-button label="Dashboard" text plain [routerLink]="['/home/dashboard']"/>
+      </div>
+  </ng-template>
+</p-toolbar>
+<router-outlet></router-outlet>

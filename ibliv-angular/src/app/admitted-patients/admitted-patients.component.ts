@@ -9,5 +9,14 @@ import { Patientadmission } from '../entities';
   styleUrl: './admitted-patients.component.scss'
 })
 export class AdmittedPatientsComponent {
+forDashboard() {
+throw new Error('Method not implemented.');
+}
+onAddPatient() {
+throw new Error('Method not implemented.');
+}
+onBasicDetails() {
+throw new Error('Method not implemented.');
+}
     admittedPatient=new Patientadmission;
 }

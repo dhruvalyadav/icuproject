@@ -47,6 +47,7 @@ public class PatientController
     
     @DeleteMapping("/delete/{id}")
     public void deletePatient(@PathVariable int id){
+        System.out.println(id);
         repository.deleteById(id);
     }
     

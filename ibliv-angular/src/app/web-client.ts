@@ -16,10 +16,11 @@ export class WebClient
     if (this.TOKEN) headers['token'] = this.TOKEN;
     return firstValueFrom(this.http.get<T>(environment.BASE_URL + url, { headers: headers }));
   }
-  public getAll<T>(url:String):Observable<T>{
-    let headers :any={};
-  if (this.TOKEN) headers['token'] = this.TOKEN;
-  return this.http.get<T>(environment.BASE_URL + url, { headers : headers });
+  public getAll<T>(url: String): Observable<T>
+  {
+    let headers: any = {};
+    if (this.TOKEN) headers['token'] = this.TOKEN;
+    return this.http.get<T>(environment.BASE_URL + url, { headers: headers });
 
   }
   public post<T, U>(url: string, data: T)
