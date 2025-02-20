@@ -1,0 +1,117 @@
+<style>
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    flex: 1;
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+
+  .form-control {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
+<style>
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+</style>
+
+<form>
+  <div class="form-group">
+    <label for="fio2">FIO2</label>
+    <input type="number" class="form-control" id="fio2" name="fio2" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="peepcpap">PEEP/CPAP</label>
+    <input type="number" class="form-control" id="peepcpap" name="peepcpap" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="rate">Rate</label>
+    <input type="number" class="form-control" id="rate" name="rate" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="tv">TV</label>
+    <input type="number" class="form-control" id="tv" name="tv" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="ppeak">Ppeak</label>
+    <input type="number" class="form-control" id="ppeak" name="ppeak" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="mv">MV</label>
+    <input type="number" class="form-control" id="mv" name="mv" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="spo2">SpO2</label>
+    <input type="number" class="form-control" id="spo2" name="spo2" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="cuffpressure">Cuff Pressure</label>
+    <input type="number" class="form-control" id="cuffpressure" name="cuffpressure" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="epap">EPAP</label>
+    <input type="number" class="form-control" id="epap" name="epap" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="peakinsppressure">Peak Insp Pressure</label>
+    <input type="number" class="form-control" id="peakinsppressure" name="peakinsppressure" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="plateaupressure">Plateau Pressure</label>
+    <input type="number" class="form-control" id="plateaupressure" name="plateaupressure" min="0" max="100" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <label for="ventilatormode">Ventilator Mode</label>
+    <input type="text" class="form-control" id="ventilatormode" name="ventilatormode" required>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+

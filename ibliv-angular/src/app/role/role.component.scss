@@ -1,0 +1,17 @@
+  .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .form-group label {
+    margin-right: 10px;
+    flex: 1;
+    min-width: 100px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    flex: 2;
+    min-width: 200px;
+  }
+

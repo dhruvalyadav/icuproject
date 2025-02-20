@@ -1,0 +1,18 @@
+<form>
+  <div>
+    <label for="dateofinsertion">Date of Insertion:</label>
+    <input type="datetime-local" id="dateofinsertion" name="dateofinsertion">
+  </div>
+  <div>
+    <label for="site">Site:</label>
+    <input type="text" id="site" name="site">
+  </div>
+  <div>
+    <label for="linestubes">Lines/Tubes:</label>
+    <select id="linestubes" name="linestubes">
+      <!-- Options should be populated dynamically -->
+      <option *ngFor="let linestube of linestubes" [value]="linestube.linestubesid">{{ linestube.name }}</option>
+    </select>
+  </div>
+  <button type="submit">Submit</button>
+</form>

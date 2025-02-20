@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embolism Details</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .form-group label {
+        margin-right: 10px;
+        flex: 1;
+        min-width: 120px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        flex: 2;
+        min-width: 200px;
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    "
+  >
+    <div
+      class="container mt-5"
+      style="
+        max-width: 400px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <h2 class="mb-4 text-center">Embolism Details</h2>
+      <form>
+        <div class="form-group">
+          <label for="dvtrisk">DVT Risk</label>
+          <input
+            type="text"
+            class="form-control"
+            id="dvtrisk"
+            placeholder="Enter DVT Risk"
+          />
+        </div>
+        <div class="form-group">
+          <label for="anticoagulation">Anticoagulation</label>
+          <input
+            type="text"
+            class="form-control"
+            id="anticoagulation"
+            placeholder="Enter Anticoagulation"
+          />
+        </div>
+        <div class="form-group">
+          <label for="compression">Compression</label>
+          <input
+            type="text"
+            class="form-control"
+            id="compression"
+            placeholder="Enter Compression"
+          />
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

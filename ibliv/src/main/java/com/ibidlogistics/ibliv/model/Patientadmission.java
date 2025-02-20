@@ -49,6 +49,8 @@ public class Patientadmission implements Serializable
     @Column(name = "icuadmissiondate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date icuadmissiondate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date icudischargedate;
     @Basic(optional = false)
     @Column(name = "createdby")
     private int createdby;
@@ -114,6 +116,16 @@ public class Patientadmission implements Serializable
     public void setIcuadmissiondate(Date icuadmissiondate)
     {
         this.icuadmissiondate = icuadmissiondate;
+    }
+    
+     public Date getIcudischargedate()
+    {
+        return icudischargedate;
+    }
+
+    public void setIcudischargedate(Date icudischargedate)
+    {
+        this.icudischargedate = icudischargedate;
     }
 
     public int getCreatedby()

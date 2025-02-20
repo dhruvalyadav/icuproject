@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Patientadmission } from '../entities';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admitted-patients',
@@ -9,14 +10,20 @@ import { Patientadmission } from '../entities';
   styleUrl: './admitted-patients.component.scss'
 })
 export class AdmittedPatientsComponent {
-forDashboard() {
-throw new Error('Method not implemented.');
+  constructor(private route:Router){}
+
+loadComponent(arg0: string) {
+  if (arg0 === 'basicDetails') {
+    // Logic to display the basic details page
+    this.visible = true;
+  }
+  if(arg0 === 'add-patient'){
+    this.visible = true;
+  }
+  if(arg0 === 'dashboard'){
+    this.visible = true;
+  }
 }
-onAddPatient() {
-throw new Error('Method not implemented.');
-}
-onBasicDetails() {
-throw new Error('Method not implemented.');
-}
+  visible: boolean = false;
     admittedPatient=new Patientadmission;
 }

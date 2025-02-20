@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User - Role Form</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .form-group label {
+        margin-right: 10px;
+        flex: 1;
+        min-width: 120px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        flex: 2;
+        min-width: 200px;
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    "
+  >
+    <div
+      class="container mt-5"
+      style="
+        max-width: 400px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <h2 class="mb-4 text-center">User Role Form</h2>
+      <form>
+        <div class="form-group">
+          <label for="ionicMenu">Ionic Menu</label>
+          <input
+            type="number"
+            class="form-control"
+            id="ionicMenu"
+            name="ionicMenu"
+          />
+        </div>
+        <div class="form-group">
+          <label for="menu">Menu</label>
+          <select class="form-control" id="menu">
+            <option value="menu1">Menu 1</option>
+            <option value="menu2">Menu 2</option>
+            <option value="menu3">Menu 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select class="form-control" id="role">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+            <option value="guest">Guest</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<div class="icu-container">
+  <h1>ICU Name</h1>
+  <p>{{ icuName }}</p>
+</div>
+<table class="patient-table">
+  <thead>
+    <tr>
+      <th>Patient Name</th>
+      <th>Admission Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of patients">
+      <td>{{ patient.name }}</td>
+      <td>{{ patient.admissionDate | date }}</td>
+    </tr>
+  </tbody>
+</table>
+<table class="staff-table">
+  <thead>
+    <tr>
+      <th>RMO Name</th>
+      <th>Nurse Name</th>
+      <th>Shift</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let staff of icuStaff">
+      <td>{{ staff.rmoName }}</td>
+      <td>{{ staff.nurseName }}</td>
+      <td>{{ staff.shift }}</td>
+      <td>{{ staff.date | date }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -26,6 +26,36 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { BasicPatientsDetailsComponent } from './basic-patients-details/basic-patients-details.component';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AnthropometryComponent } from './anthropometry/anthropometry.component';
+import { ConsultantPatientVisitComponent } from './consultant-patient-visit/consultant-patient-visit.component';
+import { DivisionComponent } from './division/division.component';
+import { RoleComponent } from './role/role.component';
+import { UserRoleComponent } from './user-role/user-role.component';
+import { RoleAccessComponent } from './role-access/role-access.component';
+import { MenudetailsComponent } from './menudetails/menudetails.component';
+import { EmbolismComponent } from './embolism/embolism.component';
+import { IcuComponent } from './icu/icu.component';
+import { IvfluidComponent } from './ivfluid/ivfluid.component';
+import { LinestubesComponent } from './linestubes/linestubes.component';
+import { PatientadditionalscoresComponent } from './patientadditionalscores/patientadditionalscores.component';
+import { PatientadditionaltestsComponent } from './patientadditionaltests/patientadditionaltests.component';
+import { PatientadmissionComponent } from './patientadmission/patientadmission.component';
+import { PatientdaysheetComponent } from './patientdaysheet/patientdaysheet.component';
+import { PatientinfusionComponent } from './patientinfusion/patientinfusion.component';
+import { PatientivfluidComponent } from './patientivfluid/patientivfluid.component';
+import { PatientlinestubesComponent } from './patientlinestubes/patientlinestubes.component';
+import { PatientMedicationChartComponent } from './patient-medication-chart/patient-medication-chart.component';
+import { PatientMedicationLogComponent } from './patient-medication-log/patient-medication-log.component';
+import { PatientSosMedicationComponent } from './patient-sos-medication/patient-sos-medication.component';
+import { PatientVentilatorComponent } from './patient-ventilator/patient-ventilator.component';
+import { PhysiothearpyComponent } from './physiothearpy/physiothearpy.component';
+import { ResettokenComponent } from './resettoken/resettoken.component';
+import { RmonurselogComponent } from './rmonurselog/rmonurselog.component';
+import { ShiftrmonurseComponent } from './shiftrmonurse/shiftrmonurse.component';
+import { UserComponent } from './user/user.component';
+import { UserTokenComponent } from './user-token/user-token.component';
+import { VentilatorModeComponent } from './ventilator-mode/ventilator-mode.component';
+import { VitalComponent } from './vital/vital.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +69,37 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AddPatientComponent,
     BasicPatientsDetailsComponent,
     EditPatientComponent,
-    DashboardComponent
+    DashboardComponent,
+    AnthropometryComponent,
+    ConsultantPatientVisitComponent,
+    DivisionComponent,
+    RoleComponent,
+    UserRoleComponent,
+    RoleAccessComponent,
+    MenudetailsComponent,
+    EmbolismComponent,
+    IcuComponent,
+    IvfluidComponent,
+    LinestubesComponent,
+    PatientadditionalscoresComponent,
+    PatientadditionaltestsComponent,
+    PatientadmissionComponent,
+    PatientdaysheetComponent,
+    PatientinfusionComponent,
+    PatientivfluidComponent,
+    PatientlinestubesComponent,
+    PatientMedicationChartComponent,
+    PatientMedicationLogComponent,
+    PatientSosMedicationComponent,
+    PatientVentilatorComponent,
+    PhysiothearpyComponent,
+    ResettokenComponent,
+    RmonurselogComponent,
+    ShiftrmonurseComponent,
+    UserComponent,
+    UserTokenComponent,
+    VentilatorModeComponent,
+    VitalComponent
   ],
   imports: [
     BrowserModule,
