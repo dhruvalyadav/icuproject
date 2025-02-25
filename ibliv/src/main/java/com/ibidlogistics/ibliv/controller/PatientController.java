@@ -63,4 +63,9 @@ public class PatientController
     List<Patient> getAllPatient(){
         return repository.findAll();
     }
+    
+    @GetMapping("/fetch-patient/{name}")
+    public Patient getPatientByName(@PathVariable("patientname") String patientname){
+        return repository.findByPatientName(patientname);
+    }
 }

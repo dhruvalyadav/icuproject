@@ -1,3 +1,4 @@
+import { PatientadmissionComponent } from './patientadmission/patientadmission.component';
 import { NursesComponent } from './nurses/nurses.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -24,6 +25,10 @@ const routes: Routes = [
     component:HomeComponent,
     children:
     [
+      {
+        path: "patientadmission",
+        component:PatientadmissionComponent
+      },
       {
         path: "dashboard",
         component:DashboardComponent

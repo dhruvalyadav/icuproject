@@ -1,1 +1,70 @@
-<p>all-patients works!</p>
+<p-toolbar
+  [style]="{ 'border-radius': '3rem', padding: '1rem 1rem 1rem 1.5rem' }"
+>
+  <ng-template #start>
+    <div class="flex items-center gap-2">
+      <svg
+        width="31"
+        height="33"
+        viewBox="0 0 31 33"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="width: 2rem; margin-right: 1rem"
+      >
+        <path d="..." fill="var(--p-primary-color)" />
+        <mask
+          id="mask0_1_52"
+          style="mask-type: luminance"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="31"
+          height="33"
+        ></mask>
+      </svg>
+      <!-- <p-button label="Basic Patient details" text plain [routerLink]="['/home/basic-patient-details']" />
+            <p-button label="Add Patient" text plain [routerLink]="['/home/add-patient']"/>
+            <p-button label="New Admission" text plain [routerLink]="['/home/patientadmission']"></p-button>
+            <p-button label="Dashboard" text plain [routerLink]="['dashboard']"/>-->
+      <p-button
+        label="Basic Patient details"
+        (click)="showComponent('Basic Patient details')"
+      ></p-button>
+      <p-button
+        label="Add Patient"
+        (click)="showComponent('Add Patient')"
+      ></p-button>
+      <p-button
+        label="New Admission"
+        (click)="showComponent('New Admission')"
+      ></p-button>
+      <p-button
+        label="Dashboard"
+        (click)="showComponent('Dashboard')"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-toolbar>
+<div class="button-container">
+  <!-- <p-button label="Basic Patient details" (click)="showComponent('Basic Patient details')"></p-button>
+  <p-button label="Add Patient" (click)="showComponent('Add Patient')"></p-button>
+  <p-button label="New Admission" (click)="showComponent('New Admission')"></p-button> -->
+</div>
+
+<div class="component-container">
+  <app-basic-patients-details
+    *ngIf="selectedComponent === 'Basic Patient details'"
+  ></app-basic-patients-details>
+  <app-add-patient
+    *ngIf="selectedComponent === 'Add Patient'"
+  ></app-add-patient>
+  <app-patientadmission
+    *ngIf="selectedComponent === 'New Admission'"
+  ></app-patientadmission>
+  <app-dashboard
+    *ngIf="selectedComponent === 'Dashboard'"
+  ></app-dashboard>
+</div>
+
+<!-- <app-basic-patients-details></app-basic-patients-details> -->
+<!-- <router-outlet></router-outlet> -->

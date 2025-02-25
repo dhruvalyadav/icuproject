@@ -1,3 +1,4 @@
+
 import { Component, inject, OnInit } from '@angular/core';
 import { Patient } from '../entities';
 import { ActivatedRoute, Router } from '@angular/router';

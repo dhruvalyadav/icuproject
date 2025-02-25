@@ -4,16 +4,14 @@
  */
 package com.ibidlogistics.ibliv.repository;
 
-import com.ibidlogistics.ibliv.model.Patient;
+import com.ibidlogistics.ibliv.model.Patientadmission;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Laptop
  */
-@Repository
-public interface PatientJpaRepository extends JpaRepository<Patient, Integer>
+public interface PatientAdmissionRepository extends JpaRepository<Patientadmission, Integer>
 {
-    Patient findByPatientName(String patientname);
+    
 }
