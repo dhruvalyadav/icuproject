@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Patient, Patientadmission } from '../entities';
 import { Router } from '@angular/router';
@@ -9,8 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './admitted-patients.component.html',
   styleUrl: './admitted-patients.component.scss'
 })
-export class AdmittedPatientsComponent {
+export class AdmittedPatientsComponent implements OnInit{
 
     patientAdmissions:any;
 
+    constructor(private route:Router){}
+    public ngOnInit(): void {
+
+    }
 }

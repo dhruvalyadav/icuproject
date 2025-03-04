@@ -4,6 +4,7 @@
  */
 package com.ibidlogistics.ibliv.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -53,8 +54,10 @@ public class Icu implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
     private List<Patientadmission> patientadmissionList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
     private List<Shiftrmonurse> shiftrmonurseList;
 

@@ -19,11 +19,13 @@ export class EditPatientComponent implements OnInit
 
   ngOnInit(): void
   {
+
     this.activatedRoute.paramMap.subscribe((params)=>{
       if(params.has('id'))
       {
         const id=params.get('id');
         //fetch patient details from API
+        console.log(id);
       }
     });
     this.getPatientById();
@@ -34,15 +36,10 @@ export class EditPatientComponent implements OnInit
       this.patient=res;
     })
   }
-
-  readData(){
-
-  }
   updatePatient()
   {
     this.webClient.put('/update-patient',this.patient).then((res)=>{
       alert("patient updated");
     })
   }
-
 }

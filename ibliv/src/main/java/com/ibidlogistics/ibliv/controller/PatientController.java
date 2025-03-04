@@ -4,7 +4,11 @@
  */
 package com.ibidlogistics.ibliv.controller;
 
+import com.ibidlogistics.ibliv.model.Icu;
 import com.ibidlogistics.ibliv.model.Patient;
+import com.ibidlogistics.ibliv.model.Patientadmission;
+import com.ibidlogistics.ibliv.repository.IcuJpaRepository;
+import com.ibidlogistics.ibliv.repository.PatientAdmissionRepository;
 import com.ibidlogistics.ibliv.repository.PatientJpaRepository;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +33,19 @@ public class PatientController
 {
     @Autowired
     PatientJpaRepository repository;
+
+    @Autowired
+    IcuJpaRepository icuRepo;
     
+    @Autowired
+    PatientAdmissionRepository admitrepository;
+    
+    @PostMapping("/admit-patient")
+    public void saveAdmission(@RequestBody Patientadmission p){
+        System.out.println("Patient => "+p.getPatient());
+        System.out.println("Patient to be admitted => "+p);
+        admitrepository.save(p);
+    }
     @PostMapping("/add-patient")
     public void addPatient(@RequestBody Patient p){
         repository.save(p);
@@ -37,7 +53,7 @@ public class PatientController
     
     @PutMapping("/update-patient")
     public void updatePatient(@RequestBody Patient p){
-        Optional<Patient> existingPatient = repository.findById(p.getPatientId());
+        Optional<Patient> existingPatient = repository.findById(p.getPatientid());
         
         
         if(existingPatient.isPresent()){
@@ -54,18 +70,36 @@ public class PatientController
     @GetMapping("/patient/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") Integer patientid)
     {
+        System.out.println(patientid);
         Optional<Patient> opatient=repository.findById(patientid);
-        if(opatient!=null) return ResponseEntity.ok(opatient.get());
-        return ResponseEntity.notFound().build();
+        if(opatient!=null) 
+        {
+            System.out.println(opatient.get());
+            return ResponseEntity.ok(opatient.get());
+        }
+        else
+            return ResponseEntity.notFound().build();
     }
      
     @GetMapping("/patient-list")
     List<Patient> getAllPatient(){
         return repository.findAll();
     }
-    
-    @GetMapping("/fetch-patient/{name}")
-    public Patient getPatientByName(@PathVariable("patientname") String patientname){
-        return repository.findByPatientName(patientname);
+        
+    @GetMapping("icu-list")
+    public List<Icu> getIcuType(){
+        return icuRepo.findAll();
     }
+    
+    @GetMapping("/icu/{id}")
+    public ResponseEntity<Icu> getIcuById(@PathVariable("id") Integer icuid)
+    { 
+        System.err.println("icu id : "+icuid);
+        Optional<Icu> opatient=icuRepo.findById(icuid);
+        if(opatient!=null) 
+            return ResponseEntity.ok(opatient.get());
+        else
+            return ResponseEntity.notFound().build();
+    }
+
 }

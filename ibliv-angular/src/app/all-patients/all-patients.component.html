@@ -11,7 +11,7 @@
         xmlns="http://www.w3.org/2000/svg"
         style="width: 2rem; margin-right: 1rem"
       >
-        <path d="..." fill="var(--p-primary-color)" />
+        <!-- <path d="..." fill="var(--p-primary-color)" /> -->
         <mask
           id="mask0_1_52"
           style="mask-type: luminance"
@@ -34,10 +34,10 @@
         label="Add Patient"
         (click)="showComponent('Add Patient')"
       ></p-button>
-      <p-button
+      <!-- <p-button
         label="New Admission"
         (click)="showComponent('New Admission')"
-      ></p-button>
+      ></p-button> -->
       <p-button
         label="Dashboard"
         (click)="showComponent('Dashboard')"
@@ -58,9 +58,9 @@
   <app-add-patient
     *ngIf="selectedComponent === 'Add Patient'"
   ></app-add-patient>
-  <app-patientadmission
+  <!-- <app-patientadmission
     *ngIf="selectedComponent === 'New Admission'"
-  ></app-patientadmission>
+  ></app-patientadmission> -->
   <app-dashboard
     *ngIf="selectedComponent === 'Dashboard'"
   ></app-dashboard>

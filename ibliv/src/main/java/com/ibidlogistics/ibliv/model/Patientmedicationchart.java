@@ -4,6 +4,7 @@
  */
 package com.ibidlogistics.ibliv.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -62,6 +63,7 @@ public class Patientmedicationchart implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
+    @JsonIgnore
     @JoinColumn(name = "patientadmission", referencedColumnName = "patientadmissionid")
     @ManyToOne(optional = false)
     private Patientadmission patientadmission;

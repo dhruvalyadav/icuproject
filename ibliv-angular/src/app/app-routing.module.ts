@@ -26,16 +26,10 @@ const routes: Routes = [
     children:
     [
       {
-        path: "patientadmission",
-        component:PatientadmissionComponent
+        path: "dashboard",component:DashboardComponent
       },
       {
-        path: "dashboard",
-        component:DashboardComponent
-      },
-      {
-        path: "admitted-patients",
-        component:AdmittedPatientsComponent
+        path: "admitted-patients",component:AdmittedPatientsComponent
       },
       {
         path:"all-patients",component:AllPatientsComponent
@@ -54,6 +48,9 @@ const routes: Routes = [
       },
       {
         path:"edit-patient/:id",component:AddPatientComponent
+      },
+      {
+        path:"patientadmission/:id",component:PatientadmissionComponent
       }
     ]
   }

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { WebClient } from '../web-client';
-import { Patient, Patientadmission } from '../entities';
+import { Icu, Patient, Patientadmission } from '../entities';
 
 @Component({
   selector: 'app-patientadmission',
@@ -11,24 +11,62 @@ import { Patient, Patientadmission } from '../entities';
   templateUrl: './patientadmission.component.html',
   styleUrl: './patientadmission.component.scss'
 })
-export class PatientadmissionComponent {
-    activatedRoute=inject(ActivatedRoute);
-    webClient=inject(WebClient);
-    patient = new Patient;
-    patientadmission = new Patientadmission;
+export class PatientadmissionComponent implements OnInit
+{
+  activatedRoute = inject(ActivatedRoute);
+  webClient = inject(WebClient);
 
-  onSave() {
-    this.webClient.get<Patient>(`/fetch-patient/{patientname}`).then((res)=>{
-      this.patient = res;
-      console.log(this.patient);
+  patientadmission = new Patientadmission;//{ icu: { icuid: 1 }, patient: { patientid: 1 } } as Patientadmission;
+  id:any;
+  icus: any;
+  icu=new Icu;
+  constructor(private route:Router){}
+  ngOnInit(): void
+  {
+   this.activatedRoute.paramMap.subscribe((params)=>
+    {
+      if(params.has('id'))
+      {
+        this.id = params.get('id');
+       //fetch patient details from API
+        this.webClient.get<Patient>(`/patient/${this.id}`).then
+        (
+          (res)=>
+          {
+            this.patientadmission.patient=res;
+          }
+        )
+
+      }
+    }
+   );
+
+   this.getIcuList();
+  }
+  getIcuList()
+  {
+    this.webClient.getAll<Icu[]>('/icu-list').subscribe((res)=>
+      {
+        this.icus = res;
+      }
+    )
+  }
+  onSave()
+  {
+    console.log(this.patientadmission.icu.icuid);
+    // this.webClient.get<Icu>('/icu/'+this.patientadmission.icu.icuid).
+    // then((res)=>
+    //   {
+    //     this.patientadmission.icu = res;
+    //   }
+    // );
+    console.log(this.patientadmission.patient);
+    this.webClient.post<Patientadmission,Patientadmission>('/admit-patient',
+      this.patientadmission).
+    then((res)=>{
+      console.log(res);
+      alert('Patient admitted');
+      this.route.navigate(['/home/admitted-patients']);
     });
-
-    this.patientadmission.patient=this.patient;
-
-    this.webClient.post<Patientadmission,Patientadmission>('/save-patientadmission',this.patientadmission).
-          then((res)=>{
-            alert("patient admitted");
-            console.log(this.patientadmission);
-          });
   }
 }

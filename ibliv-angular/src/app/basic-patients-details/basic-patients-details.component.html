@@ -21,8 +21,9 @@
         <td>{{ patient.address }}</td>
         <td>{{ patient.contact }}</td>
         <th class="text-center">
-          <button class="btn btn-primary" (click)="editPatient(patient.patientId)">Edit</button>&nbsp;&nbsp;
-          <button class="btn btn-danger" (click)="deletePatient(patient.patientId)">Delete</button>
+          <button class="btn btn-primary" (click)="editPatient(patient.patientid)">Edit</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="admitPatient(patient.patientid)">Admit</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="deletePatient(patient.patientid)">Delete</button>
         </th>
       </tr>
     </tbody>

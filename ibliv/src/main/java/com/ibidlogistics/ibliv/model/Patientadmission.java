@@ -4,6 +4,8 @@
  */
 package com.ibidlogistics.ibliv.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -69,6 +71,7 @@ public class Patientadmission implements Serializable
     private Icu icu;
     @JoinColumn(name = "patient", referencedColumnName = "patientid")
     @ManyToOne(optional = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Patient patient;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
     private List<Patientmedicationchart> patientmedicationchartList;
@@ -255,6 +258,7 @@ public class Patientadmission implements Serializable
     @Override
     public String toString()
     {
+        System.out.println(getPatient()+"=>"+getIcu());
         return "com.ibidlogistics.ibliv.model.Patientadmission[ patientadmissionid=" + patientadmissionid + " ]";
     }
 

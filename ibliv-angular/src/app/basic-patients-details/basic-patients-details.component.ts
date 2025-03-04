@@ -52,6 +52,11 @@ export class BasicPatientsDetailsComponent implements OnInit
   }
   editPatient(id: any)
   {
+    console.log(id);
     this.route.navigate(['/home/edit-patient',id]);
+  }
+  admitPatient(id:any)
+  {
+    this.route.navigate(['/home/patientadmission',id]);
   }
 }

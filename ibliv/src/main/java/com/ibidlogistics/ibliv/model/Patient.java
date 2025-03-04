@@ -50,7 +50,7 @@ public class Patient implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patientid")
-    private Integer patientId;
+    private Integer patientid;
 
     @Column(name = "patientname", length = 50)
     private String patientName;
@@ -74,14 +74,14 @@ public class Patient implements Serializable
     private Integer updatedBy;
 
     // Getters and Setters
-    public Integer getPatientId()
+    public Integer getPatientid()
     {
-        return patientId;
+        return patientid;
     }
 
-    public void setPatientId(Integer patientId)
+    public void setPatientid(Integer patientId)
     {
-        this.patientId = patientId;
+        this.patientid = patientId;
     }
 
     public String getPatientname()
@@ -278,4 +278,12 @@ public class Patient implements Serializable
             this.patientsosmedicationList.addAll(patientsosmedicationList);
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "Patient{" + "patientid=" + patientid + '}';
+    }
+
+    
 }
