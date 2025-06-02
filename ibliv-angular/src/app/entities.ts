@@ -523,6 +523,19 @@ export class Vital {
 
   constructor() {}
 }
+export class submenu{
+  subname : string = '';
+  link : string = '';
+  subsort : number = 0
+  subicon : string = '';
+}
 
-
+export class menu {
+   label: string = '';
+   link: string = '';
+   mainicon:string = '';
+   mainsort : number = 0;
+   subitems : submenu[] = [];
+   isOpen: boolean = false;
+}
 

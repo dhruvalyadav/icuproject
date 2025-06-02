@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               11.3.2-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             12.6.0.6765
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -14,13 +7,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Dumping database structure for ibliv
 CREATE DATABASE IF NOT EXISTS `ibliv` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `ibliv`;
 
--- Dumping structure for table ibliv.anthropometry
-DROP TABLE IF EXISTS `anthropometry`;
 CREATE TABLE IF NOT EXISTS `anthropometry` (
   `anthropometryid` int(11) NOT NULL AUTO_INCREMENT,
   `patient` int(11) NOT NULL,
@@ -37,10 +26,7 @@ CREATE TABLE IF NOT EXISTS `anthropometry` (
   CONSTRAINT `anthropometry_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.applicationversion
-DROP TABLE IF EXISTS `applicationversion`;
 CREATE TABLE IF NOT EXISTS `applicationversion` (
   `versionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `versionnumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -52,10 +38,7 @@ CREATE TABLE IF NOT EXISTS `applicationversion` (
   PRIMARY KEY (`versionid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.consultantpatientvisit
-DROP TABLE IF EXISTS `consultantpatientvisit`;
 CREATE TABLE IF NOT EXISTS `consultantpatientvisit` (
   `consultantpatientvisitid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -72,10 +55,7 @@ CREATE TABLE IF NOT EXISTS `consultantpatientvisit` (
   CONSTRAINT `consultantpatientvisit_ibfk_2` FOREIGN KEY (`doctor`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.division
-DROP TABLE IF EXISTS `division`;
 CREATE TABLE IF NOT EXISTS `division` (
   `divisionid` int(11) NOT NULL AUTO_INCREMENT,
   `divisionname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -89,10 +69,7 @@ CREATE TABLE IF NOT EXISTS `division` (
   PRIMARY KEY (`divisionid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.embolism
-DROP TABLE IF EXISTS `embolism`;
 CREATE TABLE IF NOT EXISTS `embolism` (
   `embolismid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -108,10 +85,7 @@ CREATE TABLE IF NOT EXISTS `embolism` (
   CONSTRAINT `embolism_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.hourlyobservation
-DROP TABLE IF EXISTS `hourlyobservation`;
 CREATE TABLE IF NOT EXISTS `hourlyobservation` (
   `hourlyobservationid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -129,10 +103,7 @@ CREATE TABLE IF NOT EXISTS `hourlyobservation` (
   CONSTRAINT `hourlyobservation_ibfk_2` FOREIGN KEY (`vital`) REFERENCES `vital` (`vitalid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.icu
-DROP TABLE IF EXISTS `icu`;
 CREATE TABLE IF NOT EXISTS `icu` (
   `icuid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
@@ -144,10 +115,7 @@ CREATE TABLE IF NOT EXISTS `icu` (
   PRIMARY KEY (`icuid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.ivfluid
-DROP TABLE IF EXISTS `ivfluid`;
 CREATE TABLE IF NOT EXISTS `ivfluid` (
   `ivfluidid` int(11) NOT NULL AUTO_INCREMENT,
   `ivfluidname` int(11) NOT NULL,
@@ -159,10 +127,7 @@ CREATE TABLE IF NOT EXISTS `ivfluid` (
   PRIMARY KEY (`ivfluidid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.linestubes
-DROP TABLE IF EXISTS `linestubes`;
 CREATE TABLE IF NOT EXISTS `linestubes` (
   `linestubesid` int(11) NOT NULL AUTO_INCREMENT,
   `linestubesname` int(11) NOT NULL,
@@ -174,10 +139,7 @@ CREATE TABLE IF NOT EXISTS `linestubes` (
   PRIMARY KEY (`linestubesid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.menudetails
-DROP TABLE IF EXISTS `menudetails`;
 CREATE TABLE IF NOT EXISTS `menudetails` (
   `menuid` int(11) NOT NULL AUTO_INCREMENT,
   `mainname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -196,12 +158,41 @@ CREATE TABLE IF NOT EXISTS `menudetails` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`menuid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
+INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`, `mainsort`, `subsort`, `active`, `ionicactive`, `mainicon`, `subicon`, `ionicdashboardicon`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 'Dashboard', '', '/dashboard', 'Dashboard', 1, NULL, 1, 1, 'dashboard', NULL, NULL, 1, '2025-06-01 22:33:03', 1, '2025-06-01 22:33:03'),
+	(2, 'Quick Analysis', '', '/quick analysis', 'quick-analysis', 2, NULL, 1, 1, 'monitor', NULL, NULL, 1, '2025-06-01 22:36:29', 1, '2025-06-01 22:36:29'),
+	(3, 'Hourly Record', 'vitals', '/vitals', 'hour-record', 3, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-01 22:43:20'),
+	(4, 'Hourly Record', 'CVC', '/CVC', 'hour-record', 3, 2, 1, 1, 'monitor_heart', 'favorite', NULL, 1, '2025-06-01 22:45:08', 1, '2025-06-01 22:45:08'),
+	(5, 'Hourly Record', 'CNS', '/CNS', 'hour-record', 3, 3, 1, 1, 'monitor_heart', 'psychology', NULL, 1, '2025-06-01 22:45:44', 1, '2025-06-01 22:45:44'),
+	(6, 'Hourly Record', 'Pupil', '/Pupil', 'hour-record', 3, 4, 1, 1, 'monitor_heart', 'visibility', NULL, 1, '2025-06-01 22:46:06', 1, '2025-06-02 13:11:04'),
+	(7, 'Hourly Record', 'Intake', '/Intake', 'hour-record', 3, 5, 1, 1, 'monitor_heart', 'invert_colors', NULL, 1, '2025-06-01 22:46:27', 1, '2025-06-02 13:11:47'),
+	(8, 'Hourly Record', 'Output', '/Output', 'hour-record', 3, 6, 1, 1, 'monitor_heart', 'device_thermostat', NULL, 1, '2025-06-01 22:47:03', 1, '2025-06-01 22:47:16'),
+	(9, 'Patient details', 'anthropometry', '/patient/anthropometry', 'Patient-details', 4, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-01 23:01:19'),
+	(10, 'Patient details', 'edit', '/patient/edit', 'Patient-details', 4, 2, 1, 1, 'personal_injury', 'edit_note', NULL, 1, '2025-06-01 23:06:15', 1, '2025-06-01 23:06:15'),
+	(11, 'Patient details', 'admission', '/patient/admission', 'Patient-details', 4, 3, 1, 1, 'personal_injury', 'person_add', NULL, 1, '2025-06-01 23:25:28', 1, '2025-06-01 23:25:28'),
+	(12, 'Patient details', 'daysheet', '/patient/daysheet', 'Patient-details', 4, 4, 1, 1, 'personal_injury', 'today', NULL, 1, '2025-06-01 23:27:19', 1, '2025-06-01 23:27:19'),
+	(13, 'Physiotheropy', '', '/physiotheropy', 'Physiotheropy', 5, NULL, 1, 1, 'directions_run', NULL, NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-02 00:27:36'),
+	(14, 'Dailysheet', 'Hourly Observation', '/daysheet/HourlyObservation', 'HourlyObservation', 6, 1, 1, 1, 'view_day', 'monitor_heart', NULL, 1, '2025-06-02 00:35:56', 1, '2025-06-02 00:35:56'),
+	(15, 'Dailysheet', 'Patient Score', '/daysheet/PatientScore', 'Patient Score', 6, 2, 1, 1, 'view_day', 'score', NULL, 1, '2025-06-02 00:38:12', 1, '2025-06-02 00:38:12'),
+	(16, 'Dailysheet', 'Patient Test', '/daysheet/PatientTest', 'PatientTest', 6, 3, 1, 1, 'view_day', 'science', NULL, 1, '2025-06-02 00:39:33', 1, '2025-06-02 00:39:45'),
+	(17, 'Dailysheet', 'Embolism', '/daysheet/embolism', 'Embolism', 6, 4, 1, 1, 'view_day', 'coronavirus', NULL, 1, '2025-06-02 00:40:46', 1, '2025-06-02 00:40:46'),
+	(18, 'Patient Admission Details', 'Patient Medication Chart', '/daysheet/PatientMedicationChart', 'PatientMedicationChart', 7, 1, 1, 1, 'assignment_ind', 'insert_chart', NULL, 1, '2025-06-02 00:43:01', 1, '2025-06-02 00:43:01'),
+	(19, 'Patient Admission Details', 'Patient Medication log', '/daysheet/PatientMedicationLog', 'PatientMedicationLog', 7, 2, 1, 1, 'assignment_ind', 'history', NULL, 1, '2025-06-02 00:43:50', 1, '2025-06-02 00:43:50'),
+	(20, 'Ventilator', 'Ventilator mode', '/daysheet/VentilatorMode', 'VentilatorMode', 8, 1, 1, 1, 'assignment_ind', 'settings_input_hdmi', NULL, 1, '2025-06-02 00:45:26', 1, '2025-06-02 00:47:15'),
+	(21, 'Ventilator', 'Patient Ventilator', '/daysheet/PatientVentilator', 'PatientVentilator', 8, 2, 1, 1, 'assignment_ind', 'air', NULL, 1, '2025-06-02 00:47:27', 1, '2025-06-02 00:48:12'),
+	(22, 'Patient SOS Medication', '', '/daysheet/PatientSOSMedication', 'PatientSOSMedication', 9, NULL, 1, 1, 'emergency', NULL, NULL, 1, '2025-06-02 00:50:16', 1, '2025-06-02 00:54:37'),
+	(23, 'Lines and Tubes', 'Patient Lines Tubes', '/patient/Patientlinestubes', 'Patientlinestubes', 10, 1, 1, 1, 'plumbing', 'healing', NULL, 1, '2025-06-02 00:54:43', 1, '2025-06-02 00:54:43'),
+	(24, 'IV Fulid', 'Patient IV Fulid', '/patient/PatientIVFulid', 'PatientIVFulid', 11, 1, 1, 1, 'IV', 'invert_colors', NULL, 1, '2025-06-02 00:56:46', 1, '2025-06-02 00:56:46'),
+	(25, 'ICU', 'Shiftt RMO nurse', '/patient/ShifttRMOnurse', 'ShifttRMOnurse', 12, 1, 1, 1, 'local_hospital', 'group_work', NULL, 1, '2025-06-02 00:59:53', 1, '2025-06-02 13:09:58'),
+	(26, 'Patient Infusion', '', '/patient/PatientInfusion', 'PatientInfusion', 13, NULL, 1, 1, 'IV', NULL, NULL, 1, '2025-06-02 01:01:35', 1, '2025-06-02 01:02:16'),
+	(27, 'RMO Nursely', '', '/patient/RMONursely', 'RMONursely', 14, NULL, 1, 1, 'badge', NULL, NULL, 1, '2025-06-02 01:09:47', 1, '2025-06-02 01:09:47'),
+	(28, 'Consultant Patient Visit', '', '/patient/ConsultantPatientVisit', 'ConsultantPatientVisit', 15, NULL, 1, 1, 'supervised_user_circle', NULL, NULL, 1, '2025-06-02 01:11:03', 1, '2025-06-02 01:11:03'),
+	(29, 'Lines and Tubes', 'Edit Lines Tubes', '/patient/EditLinesTubes', 'EditLinesTubes', 10, 2, 1, 1, 'plumbing', 'edit', NULL, 1, '2025-06-02 01:15:19', 1, '2025-06-02 01:15:19'),
+	(30, 'IV Fulid', 'Edit IV Fulid', '/patient/IVFluid', 'IVFluid', 11, 2, 1, 1, 'IV', 'mode_edit', NULL, 1, '2025-06-02 01:16:41', 1, '2025-06-02 01:16:41'),
+	(31, 'ICU', 'ICU', '/patient/ICU', 'ICU', 12, 2, 1, 1, 'local_hospital', 'air', NULL, 1, '2025-06-02 01:18:51', 1, '2025-06-02 13:10:01');
 
--- Dumping structure for table ibliv.patient
-DROP TABLE IF EXISTS `patient`;
 CREATE TABLE IF NOT EXISTS `patient` (
   `patientid` int(11) NOT NULL AUTO_INCREMENT,
   `patientname` varchar(50) DEFAULT NULL,
@@ -218,10 +209,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`patientid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientadditionalscores
-DROP TABLE IF EXISTS `patientadditionalscores`;
 CREATE TABLE IF NOT EXISTS `patientadditionalscores` (
   `patientadditionalscoresid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -237,10 +225,7 @@ CREATE TABLE IF NOT EXISTS `patientadditionalscores` (
   CONSTRAINT `patientadditionalscores_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientadditionaltests
-DROP TABLE IF EXISTS `patientadditionaltests`;
 CREATE TABLE IF NOT EXISTS `patientadditionaltests` (
   `patientadditionaltestsid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -261,10 +246,7 @@ CREATE TABLE IF NOT EXISTS `patientadditionaltests` (
   CONSTRAINT `patientadditionaltests_ibfk_2` FOREIGN KEY (`physiothearpy`) REFERENCES `physiothearpy` (`physiothearpyid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientadmission
-DROP TABLE IF EXISTS `patientadmission`;
 CREATE TABLE IF NOT EXISTS `patientadmission` (
   `patientadmissionid` int(11) NOT NULL AUTO_INCREMENT,
   `patient` int(11) NOT NULL,
@@ -282,10 +264,7 @@ CREATE TABLE IF NOT EXISTS `patientadmission` (
   CONSTRAINT `patientadmission_ibfk_2` FOREIGN KEY (`icu`) REFERENCES `icu` (`icuid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientdaysheet
-DROP TABLE IF EXISTS `patientdaysheet`;
 CREATE TABLE IF NOT EXISTS `patientdaysheet` (
   `patientdaysheetid` int(11) NOT NULL AUTO_INCREMENT,
   `patientadmission` int(11) NOT NULL,
@@ -311,10 +290,7 @@ CREATE TABLE IF NOT EXISTS `patientdaysheet` (
   CONSTRAINT `patientdaysheet_ibfk_5` FOREIGN KEY (`intensivist`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientinfusion
-DROP TABLE IF EXISTS `patientinfusion`;
 CREATE TABLE IF NOT EXISTS `patientinfusion` (
   `patientinfusionid` int(11) NOT NULL AUTO_INCREMENT,
   `patient` int(11) NOT NULL,
@@ -338,10 +314,7 @@ CREATE TABLE IF NOT EXISTS `patientinfusion` (
   CONSTRAINT `patientinfusion_ibfk_2` FOREIGN KEY (`preparedby`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientivfluid
-DROP TABLE IF EXISTS `patientivfluid`;
 CREATE TABLE IF NOT EXISTS `patientivfluid` (
   `patientivfluidid` int(11) NOT NULL AUTO_INCREMENT,
   `patient` int(11) NOT NULL,
@@ -359,10 +332,7 @@ CREATE TABLE IF NOT EXISTS `patientivfluid` (
   CONSTRAINT `patientivfluid_ibfk_2` FOREIGN KEY (`ivfluid`) REFERENCES `ivfluid` (`ivfluidid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientlinestubes
-DROP TABLE IF EXISTS `patientlinestubes`;
 CREATE TABLE IF NOT EXISTS `patientlinestubes` (
   `patientlinestubesid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -380,15 +350,12 @@ CREATE TABLE IF NOT EXISTS `patientlinestubes` (
   CONSTRAINT `patientlinestubes_ibfk_2` FOREIGN KEY (`linestubes`) REFERENCES `linestubes` (`linestubesid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientmedicationchart
-DROP TABLE IF EXISTS `patientmedicationchart`;
 CREATE TABLE IF NOT EXISTS `patientmedicationchart` (
   `patientmedicationchartid` int(11) NOT NULL AUTO_INCREMENT,
   `patientadmission` int(11) NOT NULL,
   `drug` varchar(50) DEFAULT NULL,
-  `date` date DEFAULT null,
+  `date` date DEFAULT NULL,
   `dose` varchar(200) DEFAULT NULL,
   `route` varchar(200) DEFAULT NULL,
   `frequency` varchar(200) DEFAULT NULL,
@@ -401,15 +368,12 @@ CREATE TABLE IF NOT EXISTS `patientmedicationchart` (
   CONSTRAINT `patientmedicationchart_ibfk_1` FOREIGN KEY (`patientadmission`) REFERENCES `patientadmission` (`patientadmissionid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientmedicationlog
-DROP TABLE IF EXISTS `patientmedicationlog`;
 CREATE TABLE IF NOT EXISTS `patientmedicationlog` (
   `patientmedicationlogid` int(11) NOT NULL AUTO_INCREMENT,
   `patientmedicationchart` int(11) NOT NULL,
   `drug` varchar(50) DEFAULT NULL,
-  `date` date DEFAULT null,
+  `date` date DEFAULT NULL,
   `dose` varchar(200) DEFAULT NULL,
   `route` varchar(200) DEFAULT NULL,
   `administeredby` int(11) NOT NULL,
@@ -425,10 +389,7 @@ CREATE TABLE IF NOT EXISTS `patientmedicationlog` (
   CONSTRAINT `patientmedicationlog_ibfk_2` FOREIGN KEY (`administeredby`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientsosmedication
-DROP TABLE IF EXISTS `patientsosmedication`;
 CREATE TABLE IF NOT EXISTS `patientsosmedication` (
   `patientsosmedicationid` int(11) NOT NULL AUTO_INCREMENT,
   `patient` int(11) NOT NULL,
@@ -453,10 +414,7 @@ CREATE TABLE IF NOT EXISTS `patientsosmedication` (
   CONSTRAINT `patientsosmedication_ibfk_3` FOREIGN KEY (`orderedbydoctor`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.patientventilator
-DROP TABLE IF EXISTS `patientventilator`;
 CREATE TABLE IF NOT EXISTS `patientventilator` (
   `patientventilatorid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -483,10 +441,7 @@ CREATE TABLE IF NOT EXISTS `patientventilator` (
   CONSTRAINT `patientventilator_ibfk_2` FOREIGN KEY (`ventilatormode`) REFERENCES `ventilatormode` (`ventilatormodeid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.physiothearpy
-DROP TABLE IF EXISTS `physiothearpy`;
 CREATE TABLE IF NOT EXISTS `physiothearpy` (
   `physiothearpyid` int(11) NOT NULL AUTO_INCREMENT,
   `physiothearpy` varchar(200) NOT NULL,
@@ -497,10 +452,7 @@ CREATE TABLE IF NOT EXISTS `physiothearpy` (
   PRIMARY KEY (`physiothearpyid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.resettoken
-DROP TABLE IF EXISTS `resettoken`;
 CREATE TABLE IF NOT EXISTS `resettoken` (
   `resettokenid` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
@@ -511,10 +463,7 @@ CREATE TABLE IF NOT EXISTS `resettoken` (
   CONSTRAINT `FK_resettoken_users` FOREIGN KEY (`user`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.rmonurselog
-DROP TABLE IF EXISTS `rmonurselog`;
 CREATE TABLE IF NOT EXISTS `rmonurselog` (
   `rmonurselogid` int(11) NOT NULL AUTO_INCREMENT,
   `patientdaysheet` int(11) NOT NULL,
@@ -531,10 +480,7 @@ CREATE TABLE IF NOT EXISTS `rmonurselog` (
   CONSTRAINT `rmonurselog_ibfk_2` FOREIGN KEY (`rmonurse`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.role
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `roleid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -551,10 +497,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   CONSTRAINT `FK_role_division` FOREIGN KEY (`division`) REFERENCES `division` (`divisionid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.roleaccess
-DROP TABLE IF EXISTS `roleaccess`;
 CREATE TABLE IF NOT EXISTS `roleaccess` (
   `roleaccessid` int(11) NOT NULL AUTO_INCREMENT,
   `role` int(11) NOT NULL,
@@ -571,10 +514,7 @@ CREATE TABLE IF NOT EXISTS `roleaccess` (
   CONSTRAINT `FK_roleaccess_role` FOREIGN KEY (`role`) REFERENCES `role` (`roleid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.shiftrmonurse
-DROP TABLE IF EXISTS `shiftrmonurse`;
 CREATE TABLE IF NOT EXISTS `shiftrmonurse` (
   `shiftrmonurseid` int(11) NOT NULL AUTO_INCREMENT,
   `icu` int(11) NOT NULL,
@@ -595,10 +535,7 @@ CREATE TABLE IF NOT EXISTS `shiftrmonurse` (
   CONSTRAINT `shiftrmonurse_ibfk_3` FOREIGN KEY (`nurse`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.user
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -616,10 +553,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `FK_users_users` (`createdby`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.userrole
-DROP TABLE IF EXISTS `userrole`;
 CREATE TABLE IF NOT EXISTS `userrole` (
   `userroleid` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) NOT NULL,
@@ -636,10 +570,7 @@ CREATE TABLE IF NOT EXISTS `userrole` (
   CONSTRAINT `FK_userrole_users` FOREIGN KEY (`user`) REFERENCES `user` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.usertoken
-DROP TABLE IF EXISTS `usertoken`;
 CREATE TABLE IF NOT EXISTS `usertoken` (
   `usertokenid` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
@@ -651,10 +582,7 @@ CREATE TABLE IF NOT EXISTS `usertoken` (
   CONSTRAINT `FK_usertoken_users` FOREIGN KEY (`user`) REFERENCES `user` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.ventilatormode
-DROP TABLE IF EXISTS `ventilatormode`;
 CREATE TABLE IF NOT EXISTS `ventilatormode` (
   `ventilatormodeid` int(11) NOT NULL AUTO_INCREMENT,
   `ventilatormode` varchar(50) DEFAULT NULL,
@@ -666,10 +594,7 @@ CREATE TABLE IF NOT EXISTS `ventilatormode` (
   PRIMARY KEY (`ventilatormodeid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
--- Dumping structure for table ibliv.vital
-DROP TABLE IF EXISTS `vital`;
 CREATE TABLE IF NOT EXISTS `vital` (
   `vitalid` int(11) NOT NULL AUTO_INCREMENT,
   `vitalname` varchar(50) DEFAULT NULL,
@@ -684,7 +609,6 @@ CREATE TABLE IF NOT EXISTS `vital` (
   PRIMARY KEY (`vitalid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data exporting was unselected.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

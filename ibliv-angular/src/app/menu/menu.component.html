@@ -1,4 +1,4 @@
-<p-drawer [(visible)]="visible" [dismissible]="true" [closeOnEscape]="true" [closable]="true">
+<!--<p-drawer [(visible)]="visible" [dismissible]="true" [closeOnEscape]="true" [closable]="true">
   <h2>Menu</h2>
   <ul>
     <li><a (click)="visible=false" [routerLink]="['/home/admitted-patients']" >Admitted Patients</a></li>
@@ -10,4 +10,51 @@
 </p-drawer>
 <p-button severity="info" *ngIf="!visible" (click)="visible=!visible" [style]="{'--p-button-primary-color':'red'}">
   <i class="pi pi-bars"></i>
-</p-button>
+</p-button>-->
+<div class="side-menu-container" [class.menu-open]="isMenuOpen">
+  <button class="menu-toggle" (click)="toggleMenu()">
+    <span class="material-icons">{{ isMenuOpen ? 'close' : 'menu' }}</span>
+  </button>
+
+  <div class="side-menu-content">
+    <div class="menu-brand" (click)="navigateToHome()">
+      <span class="brand-name" *ngIf="isMenuOpen">ICU</span>
+    </div>
+
+    <nav class="menu-items" >
+      <div *ngFor="let item of sidemenubaritems" class="menu-item" #menu
+           [class.active]="isActive(item.link)" 
+           [class.has-subitems]="item.subitems.length > 0"
+           (click)="item.subitems.length > 0 ? toggleDropdown(menu,item) : navigateTo(item.link)">
+        <span class="material-icons item-icon">{{ item.mainicon }}</span>
+        <span class="item-text" *ngIf="isMenuOpen">{{ item.label }}</span>
+        <span class="material-icons dropdown-icon" *ngIf="item.subitems.length > 0 && isMenuOpen">
+          {{ item.isOpen ? 'expand_less' : 'expand_more' }}
+        </span>
+        
+        <div class="subitems-container" *ngIf="item.isOpen && item.subitems.length > 0 && isMenuOpen">
+          <div *ngFor="let subitem of item.subitems" class="subitem" 
+               [class.active]="isActive(subitem.link)"
+               (click)="$event.stopPropagation(); navigateTo(subitem.link)">
+            <span class="material-icons subitem-icon">{{ subitem.subicon }}</span>
+            <span class="subitem-text">{{ subitem.subname }}</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="user-section" *ngIf="isMenuOpen">
+      <div class="user-info">
+        <img class="user-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+        <div class="user-details">
+          <span class="user-name">John Doe</span>
+          <span class="user-email">johnexample.com</span>
+        </div>
+      </div>
+      <button class="logout-btn" (click)="logout()">
+        <span class="material-icons">logout</span>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>

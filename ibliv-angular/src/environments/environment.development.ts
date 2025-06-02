@@ -1,3 +1,3 @@
 export const environment = {
-  BASE_URL:'http://'+window.location.hostname+':8080'
+  BASE_URL:'http://'+window.location.hostname+':5000/'
 };

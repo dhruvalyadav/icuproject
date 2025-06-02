@@ -1,4 +1,15 @@
-h1{
-  color:blue
+h5{
+  color:blue;
 }
 
+.header{
+  width: 100%;
+  background-color: #ddd;
+}
+
+.name{
+  width: auto;
+  display: flex;
+  justify-content: end;
+  padding: 0.6rem 1.5rem 0.6rem 0.6rem;
+}

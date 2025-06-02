@@ -56,6 +56,12 @@ import { UserComponent } from './user/user.component';
 import { UserTokenComponent } from './user-token/user-token.component';
 import { VentilatorModeComponent } from './ventilator-mode/ventilator-mode.component';
 import { VitalComponent } from './vital/vital.component';
+import { FooterComponent } from './footer/footer.component';
+import { CvsComponent } from './cvs/cvs.component';
+import { CnsComponent } from './cns/cns.component';
+import { PupilComponent } from './pupil/pupil.component';
+import { IntakeComponent } from './intake/intake.component';
+import { OutputComponent } from './output/output.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +105,13 @@ import { VitalComponent } from './vital/vital.component';
     UserComponent,
     UserTokenComponent,
     VentilatorModeComponent,
-    VitalComponent
+    VitalComponent,
+    FooterComponent,
+    CvsComponent,
+    CnsComponent,
+    PupilComponent,
+    IntakeComponent,
+    OutputComponent
   ],
   imports: [
     BrowserModule,
