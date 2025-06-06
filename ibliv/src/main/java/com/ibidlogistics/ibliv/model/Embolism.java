@@ -22,12 +22,20 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "embolism")
 @NamedQueries({
-    @NamedQuery(name = "Embolism.findAll", query = "SELECT e FROM Embolism e")})
+    @NamedQuery(name = "Embolism.findAll", query = "SELECT e FROM Embolism e"),
+    @NamedQuery(name = "Embolism.findByEmbolismid", query = "SELECT e FROM Embolism e WHERE e.embolismid = :embolismid"),
+    @NamedQuery(name = "Embolism.findByDvtrisk", query = "SELECT e FROM Embolism e WHERE e.dvtrisk = :dvtrisk"),
+    @NamedQuery(name = "Embolism.findByAnticoagulation", query = "SELECT e FROM Embolism e WHERE e.anticoagulation = :anticoagulation"),
+    @NamedQuery(name = "Embolism.findByCompression", query = "SELECT e FROM Embolism e WHERE e.compression = :compression"),
+    @NamedQuery(name = "Embolism.findByCreatedby", query = "SELECT e FROM Embolism e WHERE e.createdby = :createdby"),
+    @NamedQuery(name = "Embolism.findByCreateddate", query = "SELECT e FROM Embolism e WHERE e.createddate = :createddate"),
+    @NamedQuery(name = "Embolism.findByUpdatedby", query = "SELECT e FROM Embolism e WHERE e.updatedby = :updatedby"),
+    @NamedQuery(name = "Embolism.findByUpdateddate", query = "SELECT e FROM Embolism e WHERE e.updateddate = :updateddate")})
 public class Embolism implements Serializable {
 
     private static final long serialVersionUID = 1L;

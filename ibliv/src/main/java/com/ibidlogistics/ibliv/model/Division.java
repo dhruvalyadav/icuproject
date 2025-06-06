@@ -17,18 +17,26 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "division")
 @NamedQueries({
-    @NamedQuery(name = "Division.findAll", query = "SELECT d FROM Division d")})
+    @NamedQuery(name = "Division.findAll", query = "SELECT d FROM Division d"),
+    @NamedQuery(name = "Division.findByDivisionid", query = "SELECT d FROM Division d WHERE d.divisionid = :divisionid"),
+    @NamedQuery(name = "Division.findByDivisionname", query = "SELECT d FROM Division d WHERE d.divisionname = :divisionname"),
+    @NamedQuery(name = "Division.findByDivisioncode", query = "SELECT d FROM Division d WHERE d.divisioncode = :divisioncode"),
+    @NamedQuery(name = "Division.findByDate", query = "SELECT d FROM Division d WHERE d.date = :date"),
+    @NamedQuery(name = "Division.findByActive", query = "SELECT d FROM Division d WHERE d.active = :active"),
+    @NamedQuery(name = "Division.findByCreatedby", query = "SELECT d FROM Division d WHERE d.createdby = :createdby"),
+    @NamedQuery(name = "Division.findByCreateddate", query = "SELECT d FROM Division d WHERE d.createddate = :createddate"),
+    @NamedQuery(name = "Division.findByUpdatedby", query = "SELECT d FROM Division d WHERE d.updatedby = :updatedby"),
+    @NamedQuery(name = "Division.findByUpdateddate", query = "SELECT d FROM Division d WHERE d.updateddate = :updateddate")})
 public class Division implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -155,13 +163,7 @@ public class Division implements Serializable {
     }
 
     public void setRoleList(List<Role> roleList) {
-//        this.roleList = roleList;
-        if(this.roleList==null) this.roleList=new ArrayList<>();
-        if(roleList!=null)
-        {
-            this.roleList.clear();
-            this.roleList.addAll(roleList);
-        }
+        this.roleList = roleList;
     }
 
     @Override

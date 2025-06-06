@@ -18,18 +18,24 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "linestubes")
 @NamedQueries({
-    @NamedQuery(name = "Linestubes.findAll", query = "SELECT l FROM Linestubes l")})
+    @NamedQuery(name = "Linestubes.findAll", query = "SELECT l FROM Linestubes l"),
+    @NamedQuery(name = "Linestubes.findByLinestubesid", query = "SELECT l FROM Linestubes l WHERE l.linestubesid = :linestubesid"),
+    @NamedQuery(name = "Linestubes.findByLinestubesname", query = "SELECT l FROM Linestubes l WHERE l.linestubesname = :linestubesname"),
+    @NamedQuery(name = "Linestubes.findByActive", query = "SELECT l FROM Linestubes l WHERE l.active = :active"),
+    @NamedQuery(name = "Linestubes.findByCreatedby", query = "SELECT l FROM Linestubes l WHERE l.createdby = :createdby"),
+    @NamedQuery(name = "Linestubes.findByCreateddate", query = "SELECT l FROM Linestubes l WHERE l.createddate = :createddate"),
+    @NamedQuery(name = "Linestubes.findByUpdatedby", query = "SELECT l FROM Linestubes l WHERE l.updatedby = :updatedby"),
+    @NamedQuery(name = "Linestubes.findByUpdateddate", query = "SELECT l FROM Linestubes l WHERE l.updateddate = :updateddate")})
 public class Linestubes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -131,13 +137,7 @@ public class Linestubes implements Serializable {
     }
 
     public void setPatientlinestubesList(List<Patientlinestubes> patientlinestubesList) {
-//        this.patientlinestubesList = patientlinestubesList;
-        if(this.patientlinestubesList==null) this.patientlinestubesList=new ArrayList<>();
-        if(patientlinestubesList!=null)
-        {
-            this.patientlinestubesList.clear();
-            this.patientlinestubesList.addAll(patientlinestubesList);
-        }
+        this.patientlinestubesList = patientlinestubesList;
     }
 
     @Override

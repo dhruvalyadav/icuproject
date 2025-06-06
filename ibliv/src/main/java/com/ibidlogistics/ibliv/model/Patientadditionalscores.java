@@ -23,12 +23,20 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientadditionalscores")
 @NamedQueries({
-    @NamedQuery(name = "Patientadditionalscores.findAll", query = "SELECT p FROM Patientadditionalscores p")})
+    @NamedQuery(name = "Patientadditionalscores.findAll", query = "SELECT p FROM Patientadditionalscores p"),
+    @NamedQuery(name = "Patientadditionalscores.findByPatientadditionalscoresid", query = "SELECT p FROM Patientadditionalscores p WHERE p.patientadditionalscoresid = :patientadditionalscoresid"),
+    @NamedQuery(name = "Patientadditionalscores.findByQsofa", query = "SELECT p FROM Patientadditionalscores p WHERE p.qsofa = :qsofa"),
+    @NamedQuery(name = "Patientadditionalscores.findByMews", query = "SELECT p FROM Patientadditionalscores p WHERE p.mews = :mews"),
+    @NamedQuery(name = "Patientadditionalscores.findByApacheiv", query = "SELECT p FROM Patientadditionalscores p WHERE p.apacheiv = :apacheiv"),
+    @NamedQuery(name = "Patientadditionalscores.findByCreatedby", query = "SELECT p FROM Patientadditionalscores p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientadditionalscores.findByCreateddate", query = "SELECT p FROM Patientadditionalscores p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientadditionalscores.findByUpdatedby", query = "SELECT p FROM Patientadditionalscores p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientadditionalscores.findByUpdateddate", query = "SELECT p FROM Patientadditionalscores p WHERE p.updateddate = :updateddate")})
 public class Patientadditionalscores implements Serializable {
 
     private static final long serialVersionUID = 1L;

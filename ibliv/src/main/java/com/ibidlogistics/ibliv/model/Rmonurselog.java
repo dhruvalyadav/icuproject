@@ -22,12 +22,18 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "rmonurselog")
 @NamedQueries({
-    @NamedQuery(name = "Rmonurselog.findAll", query = "SELECT r FROM Rmonurselog r")})
+    @NamedQuery(name = "Rmonurselog.findAll", query = "SELECT r FROM Rmonurselog r"),
+    @NamedQuery(name = "Rmonurselog.findByRmonurselogid", query = "SELECT r FROM Rmonurselog r WHERE r.rmonurselogid = :rmonurselogid"),
+    @NamedQuery(name = "Rmonurselog.findByDatetime", query = "SELECT r FROM Rmonurselog r WHERE r.datetime = :datetime"),
+    @NamedQuery(name = "Rmonurselog.findByCreatedby", query = "SELECT r FROM Rmonurselog r WHERE r.createdby = :createdby"),
+    @NamedQuery(name = "Rmonurselog.findByCreateddate", query = "SELECT r FROM Rmonurselog r WHERE r.createddate = :createddate"),
+    @NamedQuery(name = "Rmonurselog.findByUpdatedby", query = "SELECT r FROM Rmonurselog r WHERE r.updatedby = :updatedby"),
+    @NamedQuery(name = "Rmonurselog.findByUpdateddate", query = "SELECT r FROM Rmonurselog r WHERE r.updateddate = :updateddate")})
 public class Rmonurselog implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -22,12 +22,23 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientsosmedication")
 @NamedQueries({
-    @NamedQuery(name = "Patientsosmedication.findAll", query = "SELECT p FROM Patientsosmedication p")})
+    @NamedQuery(name = "Patientsosmedication.findAll", query = "SELECT p FROM Patientsosmedication p"),
+    @NamedQuery(name = "Patientsosmedication.findByPatientsosmedicationid", query = "SELECT p FROM Patientsosmedication p WHERE p.patientsosmedicationid = :patientsosmedicationid"),
+    @NamedQuery(name = "Patientsosmedication.findByIndication", query = "SELECT p FROM Patientsosmedication p WHERE p.indication = :indication"),
+    @NamedQuery(name = "Patientsosmedication.findByDrug", query = "SELECT p FROM Patientsosmedication p WHERE p.drug = :drug"),
+    @NamedQuery(name = "Patientsosmedication.findByDose", query = "SELECT p FROM Patientsosmedication p WHERE p.dose = :dose"),
+    @NamedQuery(name = "Patientsosmedication.findByRoute", query = "SELECT p FROM Patientsosmedication p WHERE p.route = :route"),
+    @NamedQuery(name = "Patientsosmedication.findByTime", query = "SELECT p FROM Patientsosmedication p WHERE p.time = :time"),
+    @NamedQuery(name = "Patientsosmedication.findByTelephoneverbal", query = "SELECT p FROM Patientsosmedication p WHERE p.telephoneverbal = :telephoneverbal"),
+    @NamedQuery(name = "Patientsosmedication.findByCreatedby", query = "SELECT p FROM Patientsosmedication p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientsosmedication.findByCreateddate", query = "SELECT p FROM Patientsosmedication p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientsosmedication.findByUpdatedby", query = "SELECT p FROM Patientsosmedication p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientsosmedication.findByUpdateddate", query = "SELECT p FROM Patientsosmedication p WHERE p.updateddate = :updateddate")})
 public class Patientsosmedication implements Serializable {
 
     private static final long serialVersionUID = 1L;

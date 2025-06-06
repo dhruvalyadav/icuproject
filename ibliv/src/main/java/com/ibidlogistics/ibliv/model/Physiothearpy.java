@@ -18,18 +18,23 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "physiothearpy")
 @NamedQueries({
-    @NamedQuery(name = "Physiothearpy.findAll", query = "SELECT p FROM Physiothearpy p")})
+    @NamedQuery(name = "Physiothearpy.findAll", query = "SELECT p FROM Physiothearpy p"),
+    @NamedQuery(name = "Physiothearpy.findByPhysiothearpyid", query = "SELECT p FROM Physiothearpy p WHERE p.physiothearpyid = :physiothearpyid"),
+    @NamedQuery(name = "Physiothearpy.findByPhysiothearpy", query = "SELECT p FROM Physiothearpy p WHERE p.physiothearpy = :physiothearpy"),
+    @NamedQuery(name = "Physiothearpy.findByCreatedby", query = "SELECT p FROM Physiothearpy p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Physiothearpy.findByCreateddate", query = "SELECT p FROM Physiothearpy p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Physiothearpy.findByUpdatedby", query = "SELECT p FROM Physiothearpy p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Physiothearpy.findByUpdateddate", query = "SELECT p FROM Physiothearpy p WHERE p.updateddate = :updateddate")})
 public class Physiothearpy implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -121,16 +126,7 @@ public class Physiothearpy implements Serializable {
     }
 
     public void setPatientadditionaltestsList(List<Patientadditionaltests> patientadditionaltestsList) {
-//        this.patientadditionaltestsList = patientadditionaltestsList;
-        if (this.patientadditionaltestsList == null)
-        {
-            this.patientadditionaltestsList = new ArrayList<>();
-        }
-        if (patientadditionaltestsList != null)
-        {
-            this.patientadditionaltestsList.clear();
-            this.patientadditionaltestsList.addAll(patientadditionaltestsList);
-        }
+        this.patientadditionaltestsList = patientadditionaltestsList;
     }
 
     @Override

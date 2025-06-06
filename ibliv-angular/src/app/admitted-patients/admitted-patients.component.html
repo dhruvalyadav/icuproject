@@ -1,17 +1,79 @@
-<!-- <p-toolbar  [style]="{ 'border-radius': '3rem', 'padding': '1rem 1rem 1rem 1.5rem' }">
-  <ng-template #start>
-      <div class="flex items-center gap-2">
-          <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 2rem; margin-right: 1rem">
-          <path d="..." fill="var(--p-primary-color)" />
-          <mask id="mask0_1_52" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="33"></mask>
-          </svg>
-            <p-button label="Basic Patient details" (click)="loadComponent('basic-patient-details')" text plain [routerLink]="['/home/basic-patient-details']" />
-          <p-button label="Add Patient" (click)="loadComponent('add-patient')" text plain [routerLink]="['/home/add-patient']"/>
-          <p-button label="Admissions" (Click)="loadComponent('')"></p-button>
-          <p-button label="Dashboard" (click)="loadComponent('dashboard')" text plain [routerLink]="['dashboard']"/>
+<app-home></app-home>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner">
+  <form>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="patientname" class="form-label">Patient Name:</label>
+        <input
+          type="text"
+          id="patientname"
+          name="patientname"
+          class="form-control"
+          [(ngModel)]="patient.patientname"
+        />
       </div>
-  </ng-template>
-</p-toolbar>
-<app-basic-patients-details></app-basic-patients-details>
-<router-outlet></router-outlet> -->
-<p>addimitted patient works</p>
+      <div class="col-md-6">
+        <label for="dob" class="form-label">Date of Birth:</label>
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          class="form-control"
+          [(ngModel)]="dob"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="age" class="form-label">Age:</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          class="form-control"
+          [(ngModel)]="patient.age"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="sex" class="form-label">Sex:</label>
+        <select id="sex" name="sex" class="form-control" [(ngModel)]="patient.sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="address" class="form-label">Address:</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          class="form-control"
+          [(ngModel)]="patient.address"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="contact" class="form-label">Contact:</label>
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          class="form-control"
+          [(ngModel)]="patient.contact"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-primary" (click)="update()">Save</button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

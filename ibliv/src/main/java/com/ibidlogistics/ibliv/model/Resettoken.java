@@ -22,12 +22,15 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "resettoken")
 @NamedQueries({
-    @NamedQuery(name = "Resettoken.findAll", query = "SELECT r FROM Resettoken r")})
+    @NamedQuery(name = "Resettoken.findAll", query = "SELECT r FROM Resettoken r"),
+    @NamedQuery(name = "Resettoken.findByResettokenid", query = "SELECT r FROM Resettoken r WHERE r.resettokenid = :resettokenid"),
+    @NamedQuery(name = "Resettoken.findByToken", query = "SELECT r FROM Resettoken r WHERE r.token = :token"),
+    @NamedQuery(name = "Resettoken.findByDate", query = "SELECT r FROM Resettoken r WHERE r.date = :date")})
 public class Resettoken implements Serializable {
 
     private static final long serialVersionUID = 1L;

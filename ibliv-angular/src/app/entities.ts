@@ -89,9 +89,6 @@ export class Icu {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientadmissionList: Patientadmission[]=[];
-  shiftrmonurseList: Shiftrmonurse[]=[];
-
   constructor() {}
 }
 
@@ -143,25 +140,20 @@ export class Menudetails {
   constructor() {}
 }
 
+
 export class Patient {
-  dob: Date|null=null;
+  dob: Date = new Date();
+  patientname : string = ''
   createdby: number=0;
   createddate: Date|null=null;
   updateddate: Date|null=null;
-  anthropometryList: Anthropometry[]=[];
-  patientadmissionList: Patientadmission[]=[];
-  patientinfusionList: Patientinfusion[]=[];
-  patientivfluidList: Patientivfluid[]=[];
-  patientsosmedicationList: Patientsosmedication[]=[];
   patientid: number|null=null;
-  patientname: string='';
   age: number=0;
   sex: string='';
   address: string='';
   contact: string='';
   active: number=0;
   updatedby: number=0;
-
   constructor() {}
 }
 

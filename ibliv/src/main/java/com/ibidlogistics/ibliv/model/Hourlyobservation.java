@@ -22,12 +22,19 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "hourlyobservation")
 @NamedQueries({
-    @NamedQuery(name = "Hourlyobservation.findAll", query = "SELECT h FROM Hourlyobservation h")})
+    @NamedQuery(name = "Hourlyobservation.findAll", query = "SELECT h FROM Hourlyobservation h"),
+    @NamedQuery(name = "Hourlyobservation.findByHourlyobservationid", query = "SELECT h FROM Hourlyobservation h WHERE h.hourlyobservationid = :hourlyobservationid"),
+    @NamedQuery(name = "Hourlyobservation.findByTimeslot", query = "SELECT h FROM Hourlyobservation h WHERE h.timeslot = :timeslot"),
+    @NamedQuery(name = "Hourlyobservation.findByValue", query = "SELECT h FROM Hourlyobservation h WHERE h.value = :value"),
+    @NamedQuery(name = "Hourlyobservation.findByCreatedby", query = "SELECT h FROM Hourlyobservation h WHERE h.createdby = :createdby"),
+    @NamedQuery(name = "Hourlyobservation.findByCreateddate", query = "SELECT h FROM Hourlyobservation h WHERE h.createddate = :createddate"),
+    @NamedQuery(name = "Hourlyobservation.findByUpdatedby", query = "SELECT h FROM Hourlyobservation h WHERE h.updatedby = :updatedby"),
+    @NamedQuery(name = "Hourlyobservation.findByUpdateddate", query = "SELECT h FROM Hourlyobservation h WHERE h.updateddate = :updateddate")})
 public class Hourlyobservation implements Serializable {
 
     private static final long serialVersionUID = 1L;

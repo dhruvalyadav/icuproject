@@ -20,18 +20,23 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientdaysheet")
 @NamedQueries({
-    @NamedQuery(name = "Patientdaysheet.findAll", query = "SELECT p FROM Patientdaysheet p")})
+    @NamedQuery(name = "Patientdaysheet.findAll", query = "SELECT p FROM Patientdaysheet p"),
+    @NamedQuery(name = "Patientdaysheet.findByPatientdaysheetid", query = "SELECT p FROM Patientdaysheet p WHERE p.patientdaysheetid = :patientdaysheetid"),
+    @NamedQuery(name = "Patientdaysheet.findByDate", query = "SELECT p FROM Patientdaysheet p WHERE p.date = :date"),
+    @NamedQuery(name = "Patientdaysheet.findByCreatedby", query = "SELECT p FROM Patientdaysheet p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientdaysheet.findByCreateddate", query = "SELECT p FROM Patientdaysheet p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientdaysheet.findByUpdatedby", query = "SELECT p FROM Patientdaysheet p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientdaysheet.findByUpdateddate", query = "SELECT p FROM Patientdaysheet p WHERE p.updateddate = :updateddate")})
 public class Patientdaysheet implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -191,16 +196,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setPatientlinestubesList(List<Patientlinestubes> patientlinestubesList) {
-//        this.patientlinestubesList = patientlinestubesList;
-        if (this.patientlinestubesList == null)
-        {
-            this.patientlinestubesList = new ArrayList<>();
-        }
-        if (patientlinestubesList != null)
-        {
-            this.patientlinestubesList.clear();
-            this.patientlinestubesList.addAll(patientlinestubesList);
-        }
+        this.patientlinestubesList = patientlinestubesList;
     }
 
     public List<Hourlyobservation> getHourlyobservationList() {
@@ -208,16 +204,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setHourlyobservationList(List<Hourlyobservation> hourlyobservationList) {
-//        this.hourlyobservationList = hourlyobservationList;
-        if (this.hourlyobservationList == null)
-        {
-            this.hourlyobservationList = new ArrayList<>();
-        }
-        if (hourlyobservationList != null)
-        {
-            this.hourlyobservationList.clear();
-            this.hourlyobservationList.addAll(hourlyobservationList);
-        }
+        this.hourlyobservationList = hourlyobservationList;
     }
 
     public List<Rmonurselog> getRmonurselogList() {
@@ -225,16 +212,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setRmonurselogList(List<Rmonurselog> rmonurselogList) {
-//        this.rmonurselogList = rmonurselogList;
-        if (this.rmonurselogList == null)
-        {
-            this.rmonurselogList = new ArrayList<>();
-        }
-        if (rmonurselogList != null)
-        {
-            this.rmonurselogList.clear();
-            this.rmonurselogList.addAll(rmonurselogList);
-        }
+        this.rmonurselogList = rmonurselogList;
     }
 
     public List<Consultantpatientvisit> getConsultantpatientvisitList() {
@@ -242,16 +220,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setConsultantpatientvisitList(List<Consultantpatientvisit> consultantpatientvisitList) {
-//        this.consultantpatientvisitList = consultantpatientvisitList;
-        if (this.consultantpatientvisitList == null)
-        {
-            this.consultantpatientvisitList = new ArrayList<>();
-        }
-        if (consultantpatientvisitList != null)
-        {
-            this.consultantpatientvisitList.clear();
-            this.consultantpatientvisitList.addAll(consultantpatientvisitList);
-        }
+        this.consultantpatientvisitList = consultantpatientvisitList;
     }
 
     public List<Patientadditionaltests> getPatientadditionaltestsList() {
@@ -259,16 +228,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setPatientadditionaltestsList(List<Patientadditionaltests> patientadditionaltestsList) {
-//        this.patientadditionaltestsList = patientadditionaltestsList;
-        if (this.patientadditionaltestsList == null)
-        {
-            this.patientadditionaltestsList = new ArrayList<>();
-        }
-        if (patientadditionaltestsList != null)
-        {
-            this.patientadditionaltestsList.clear();
-            this.patientadditionaltestsList.addAll(patientadditionaltestsList);
-        }
+        this.patientadditionaltestsList = patientadditionaltestsList;
     }
 
     public List<Patientadditionalscores> getPatientadditionalscoresList() {
@@ -276,16 +236,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setPatientadditionalscoresList(List<Patientadditionalscores> patientadditionalscoresList) {
-//        this.patientadditionalscoresList = patientadditionalscoresList;
-        if (this.patientadditionalscoresList == null)
-        {
-            this.patientadditionalscoresList = new ArrayList<>();
-        }
-        if (patientadditionalscoresList != null)
-        {
-            this.patientadditionalscoresList.clear();
-            this.patientadditionalscoresList.addAll(patientadditionalscoresList);
-        }
+        this.patientadditionalscoresList = patientadditionalscoresList;
     }
 
     public List<Embolism> getEmbolismList() {
@@ -293,16 +244,7 @@ public class Patientdaysheet implements Serializable {
     }
 
     public void setEmbolismList(List<Embolism> embolismList) {
-//        this.embolismList = embolismList;
-        if (this.embolismList == null)
-        {
-            this.embolismList = new ArrayList<>();
-        }
-        if (embolismList != null)
-        {
-            this.embolismList.clear();
-            this.embolismList.addAll(embolismList);
-        }
+        this.embolismList = embolismList;
     }
 
     public List<Patientventilator> getPatientventilatorList() {

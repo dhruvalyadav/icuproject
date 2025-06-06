@@ -62,6 +62,11 @@ import { CnsComponent } from './cns/cns.component';
 import { PupilComponent } from './pupil/pupil.component';
 import { IntakeComponent } from './intake/intake.component';
 import { OutputComponent } from './output/output.component';
+import { QuickAnalysisComponent } from './quick-analysis/quick-analysis.component';
+import { HourlyobservationComponent } from './hourlyobservation/hourlyobservation.component';
+import { EditlinesTubesComponent } from './editlines-tubes/editlines-tubes.component';
+import { EditIVfuildComponent } from './edit-ivfuild/edit-ivfuild.component';
+import { UrlComponent } from './url/url.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +116,12 @@ import { OutputComponent } from './output/output.component';
     CnsComponent,
     PupilComponent,
     IntakeComponent,
-    OutputComponent
+    OutputComponent,
+    QuickAnalysisComponent,
+    HourlyobservationComponent,
+    EditlinesTubesComponent,
+    EditIVfuildComponent,
+    UrlComponent
   ],
   imports: [
     BrowserModule,

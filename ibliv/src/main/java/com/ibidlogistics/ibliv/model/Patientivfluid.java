@@ -22,12 +22,19 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientivfluid")
 @NamedQueries({
-    @NamedQuery(name = "Patientivfluid.findAll", query = "SELECT p FROM Patientivfluid p")})
+    @NamedQuery(name = "Patientivfluid.findAll", query = "SELECT p FROM Patientivfluid p"),
+    @NamedQuery(name = "Patientivfluid.findByPatientivfluidid", query = "SELECT p FROM Patientivfluid p WHERE p.patientivfluidid = :patientivfluidid"),
+    @NamedQuery(name = "Patientivfluid.findByRate", query = "SELECT p FROM Patientivfluid p WHERE p.rate = :rate"),
+    @NamedQuery(name = "Patientivfluid.findByAdditionaldrugs", query = "SELECT p FROM Patientivfluid p WHERE p.additionaldrugs = :additionaldrugs"),
+    @NamedQuery(name = "Patientivfluid.findByCreatedby", query = "SELECT p FROM Patientivfluid p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientivfluid.findByCreateddate", query = "SELECT p FROM Patientivfluid p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientivfluid.findByUpdatedby", query = "SELECT p FROM Patientivfluid p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientivfluid.findByUpdateddate", query = "SELECT p FROM Patientivfluid p WHERE p.updateddate = :updateddate")})
 public class Patientivfluid implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +42,7 @@ public class Patientivfluid implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "patientivfluidid")
-    private Integer patientivfluidid;   
+    private Integer patientivfluidid;
     @Column(name = "rate")
     private String rate;
     @Column(name = "additionaldrugs")

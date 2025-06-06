@@ -1,42 +1,82 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.ibidlogistics.ibliv.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author Jayraj Malge
+ */
 @Entity
 @Table(name = "patient")
-public class Patient implements Serializable
-{
+@NamedQueries({
+    @NamedQuery(name = "Patient.findAll", query = "SELECT p FROM Patient p"),
+    @NamedQuery(name = "Patient.findByPatientid", query = "SELECT p FROM Patient p WHERE p.patientid = :patientid"),
+    @NamedQuery(name = "Patient.findByPatientname", query = "SELECT p FROM Patient p WHERE p.patientname = :patientname"),
+    @NamedQuery(name = "Patient.findByDob", query = "SELECT p FROM Patient p WHERE p.dob = :dob"),
+    @NamedQuery(name = "Patient.findByAge", query = "SELECT p FROM Patient p WHERE p.age = :age"),
+    @NamedQuery(name = "Patient.findBySex", query = "SELECT p FROM Patient p WHERE p.sex = :sex"),
+    @NamedQuery(name = "Patient.findByAddress", query = "SELECT p FROM Patient p WHERE p.address = :address"),
+    @NamedQuery(name = "Patient.findByContact", query = "SELECT p FROM Patient p WHERE p.contact = :contact"),
+    @NamedQuery(name = "Patient.findByActive", query = "SELECT p FROM Patient p WHERE p.active = :active"),
+    @NamedQuery(name = "Patient.findByCreatedby", query = "SELECT p FROM Patient p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patient.findByCreateddate", query = "SELECT p FROM Patient p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patient.findByUpdatedby", query = "SELECT p FROM Patient p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name= "Patient.findByPatientsimilarName",query = "SELECT p FROM Patient p WHERE p.patientname LIKE LOWER(CONCAT('%', :patientname, '%'))"),
+    @NamedQuery(name = "Patient.findByUpdateddate", query = "SELECT p FROM Patient p WHERE p.updateddate = :updateddate")})
+public class Patient implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "patientid")
+    private Integer patientid;
+    @Column(name = "patientname")
+    private String patientname;
     @Column(name = "dob")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dob;
+    @Column(name = "age")
+    private Integer age;
+    @Column(name = "sex")
+    private String sex;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "contact")
+    private String contact;
+    @Column(name = "active")
+    private Integer active;
     @Basic(optional = false)
     @Column(name = "createdby")
     private int createdby;
     @Column(name = "createddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createddate;
+    @Column(name = "updatedby")
+    private Integer updatedby;
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @JsonManagedReference("patien-anthropometryList")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", orphanRemoval = true)
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private List<Anthropometry> anthropometryList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private List<Patientadmission> patientadmissionList;
@@ -45,245 +85,179 @@ public class Patient implements Serializable
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private List<Patientivfluid> patientivfluidList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
-    private List<Patientsosmedication> patientsosmedicationList;
+    private List<Patientsosmedication> patientsosmedicationList;*/
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "patientid")
-    private Integer patientid;
-
-    @Column(name = "patientname", length = 50)
-    private String patientName;
-
-    @Column(name = "age")
-    private Integer age;
-
-    @Column(name = "sex", length = 50)
-    private String sex;
-
-    @Column(name = "address", length = 2000)
-    private String address;
-
-    @Column(name = "contact", length = 50)
-    private String contact;
-
-    @Column(name = "active")
-    private Integer active;
-
-    @Column(name = "updatedby")
-    private Integer updatedBy;
-
-    // Getters and Setters
-    public Integer getPatientid()
-    {
-        return patientid;
+    public Patient() {
     }
 
-    public void setPatientid(Integer patientId)
-    {
-        this.patientid = patientId;
+    public Patient(Integer patientid) {
+        this.patientid = patientid;
     }
 
-    public String getPatientname()
-    {
-        return patientName;
-    }
-
-    public void setPatientname(String patientName)
-    {
-        this.patientName = patientName;
-    }
-
-    public Integer getAge()
-    {
-        return age;
-    }
-
-    public void setAge(Integer age)
-    {
-        this.age = age;
-    }
-
-    public String getSex()
-    {
-        return sex;
-    }
-
-    public void setSex(String sex)
-    {
-        this.sex = sex;
-    }
-
-    public String getAddress()
-    {
-        return address;
-    }
-
-    public void setAddress(String address)
-    {
-        this.address = address;
-    }
-
-    public String getContact()
-    {
-        return contact;
-    }
-
-    public void setContact(String contact)
-    {
-        this.contact = contact;
-    }
-
-    public Integer getActive()
-    {
-        return active;
-    }
-
-    public void setActive(Integer active)
-    {
-        this.active = active;
-    }
-
-    public Integer getUpdatedBy()
-    {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(Integer updatedBy)
-    {
-        this.updatedBy = updatedBy;
-    }
-
-    public Patient()
-    {
-    }
-
-    public Date getDob()
-    {
-        return dob;
-    }
-
-    public void setDob(Date dob)
-    {
-        this.dob = dob;
-    }
-
-    public int getCreatedby()
-    {
-        return createdby;
-    }
-
-    public void setCreatedby(int createdby)
-    {
+    public Patient(Integer patientid, int createdby) {
+        this.patientid = patientid;
         this.createdby = createdby;
     }
 
-    public Date getCreateddate()
-    {
+    public Integer getPatientid() {
+        return patientid;
+    }
+
+    public void setPatientid(Integer patientid) {
+        this.patientid = patientid;
+    }
+
+    public String getPatientname() {
+        return patientname;
+    }
+
+    public void setPatientname(String patientname) {
+        this.patientname = patientname;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public int getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(int createdby) {
+        this.createdby = createdby;
+    }
+
+    public Date getCreateddate() {
         return createddate;
     }
 
-    public void setCreateddate(Date createddate)
-    {
+    public void setCreateddate(Date createddate) {
         this.createddate = createddate;
     }
 
-    public Date getUpdateddate()
-    {
+    public Integer getUpdatedby() {
+        return updatedby;
+    }
+
+    public void setUpdatedby(Integer updatedby) {
+        this.updatedby = updatedby;
+    }
+
+    public Date getUpdateddate() {
         return updateddate;
     }
 
-    public void setUpdateddate(Date updateddate)
-    {
+    public void setUpdateddate(Date updateddate) {
         this.updateddate = updateddate;
     }
 
-    public List<Anthropometry> getAnthropometryList()
-    {
+    /*public List<Anthropometry> getAnthropometryList() {
         return anthropometryList;
     }
 
-    public void setAnthropometryList(List<Anthropometry> anthropometryList)
-    {
-//        this.anthropometryList = anthropometryList;
-        if(this.anthropometryList==null) this.anthropometryList=new ArrayList<>();
-        if(anthropometryList!=null)
-        {
-            this.anthropometryList.clear();
-            this.anthropometryList.addAll(anthropometryList);
-        }
+    public void setAnthropometryList(List<Anthropometry> anthropometryList) {
+        this.anthropometryList = anthropometryList;
     }
 
-    public List<Patientadmission> getPatientadmissionList()
-    {
+    public List<Patientadmission> getPatientadmissionList() {
         return patientadmissionList;
     }
 
-    public void setPatientadmissionList(List<Patientadmission> patientadmissionList)
-    {
-//        this.patientadmissionList = patientadmissionList;
-        if(this.patientadmissionList==null) this.patientadmissionList=new ArrayList<>();
-        if(patientadmissionList!=null)
-        {
-            this.patientadmissionList.clear();
-            this.patientadmissionList.addAll(patientadmissionList);
-        }
-
+    public void setPatientadmissionList(List<Patientadmission> patientadmissionList) {
+        this.patientadmissionList = patientadmissionList;
     }
 
-    public List<Patientinfusion> getPatientinfusionList()
-    {
+    public List<Patientinfusion> getPatientinfusionList() {
         return patientinfusionList;
     }
 
-    public void setPatientinfusionList(List<Patientinfusion> patientinfusionList)
-    {
-//        this.patientinfusionList = patientinfusionList;
-        if(this.patientinfusionList==null) this.patientinfusionList=new ArrayList<>();
-        if(patientinfusionList!=null)
-        {
-            this.patientinfusionList.clear();
-            this.patientinfusionList.addAll(patientinfusionList);
-        }
+    public void setPatientinfusionList(List<Patientinfusion> patientinfusionList) {
+        this.patientinfusionList = patientinfusionList;
     }
 
-    public List<Patientivfluid> getPatientivfluidList()
-    {
+    public List<Patientivfluid> getPatientivfluidList() {
         return patientivfluidList;
     }
 
-    public void setPatientivfluidList(List<Patientivfluid> patientivfluidList)
-    {
-//        this.patientivfluidList = patientivfluidList;
-        if(this.patientivfluidList==null) this.patientivfluidList=new ArrayList<>();
-        if(patientivfluidList!=null)
-        {
-            this.patientivfluidList.clear();
-            this.patientivfluidList.addAll(patientivfluidList);
-        }
+    public void setPatientivfluidList(List<Patientivfluid> patientivfluidList) {
+        this.patientivfluidList = patientivfluidList;
     }
 
-    public List<Patientsosmedication> getPatientsosmedicationList()
-    {
+    public List<Patientsosmedication> getPatientsosmedicationList() {
         return patientsosmedicationList;
     }
 
-    public void setPatientsosmedicationList(List<Patientsosmedication> patientsosmedicationList)
-    {
-//        this.patientsosmedicationList = patientsosmedicationList;
-        if(this.patientsosmedicationList==null) this.patientsosmedicationList=new ArrayList<>();
-        if(patientsosmedicationList!=null)
-        {
-            this.patientsosmedicationList.clear();
-            this.patientsosmedicationList.addAll(patientsosmedicationList);
-        }
+    public void setPatientsosmedicationList(List<Patientsosmedication> patientsosmedicationList) {
+        this.patientsosmedicationList = patientsosmedicationList;
+    }*/
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patientid != null ? patientid.hashCode() : 0);
+        return hash;
     }
 
     @Override
-    public String toString()
-    {
-        return "Patient{" + "patientid=" + patientid + '}';
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patient)) {
+            return false;
+        }
+        Patient other = (Patient) object;
+        if ((this.patientid == null && other.patientid != null) || (this.patientid != null && !this.patientid.equals(other.patientid))) {
+            return false;
+        }
+        return true;
     }
 
+    @Override
+    public String toString() {
+        return "com.ibidlogistics.ibliv.model.Patient[ patientid=" + patientid + " ]";
+    }
     
 }

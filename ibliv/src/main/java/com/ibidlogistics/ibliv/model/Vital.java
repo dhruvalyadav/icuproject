@@ -18,18 +18,27 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "vital")
 @NamedQueries({
-    @NamedQuery(name = "Vital.findAll", query = "SELECT v FROM Vital v")})
+    @NamedQuery(name = "Vital.findAll", query = "SELECT v FROM Vital v"),
+    @NamedQuery(name = "Vital.findByVitalid", query = "SELECT v FROM Vital v WHERE v.vitalid = :vitalid"),
+    @NamedQuery(name = "Vital.findByVitalname", query = "SELECT v FROM Vital v WHERE v.vitalname = :vitalname"),
+    @NamedQuery(name = "Vital.findByVitalcategory", query = "SELECT v FROM Vital v WHERE v.vitalcategory = :vitalcategory"),
+    @NamedQuery(name = "Vital.findByActive", query = "SELECT v FROM Vital v WHERE v.active = :active"),
+    @NamedQuery(name = "Vital.findByCategorysortorder", query = "SELECT v FROM Vital v WHERE v.categorysortorder = :categorysortorder"),
+    @NamedQuery(name = "Vital.findBySortorder", query = "SELECT v FROM Vital v WHERE v.sortorder = :sortorder"),
+    @NamedQuery(name = "Vital.findByCreatedby", query = "SELECT v FROM Vital v WHERE v.createdby = :createdby"),
+    @NamedQuery(name = "Vital.findByCreateddate", query = "SELECT v FROM Vital v WHERE v.createddate = :createddate"),
+    @NamedQuery(name = "Vital.findByUpdatedby", query = "SELECT v FROM Vital v WHERE v.updatedby = :updatedby"),
+    @NamedQuery(name = "Vital.findByUpdateddate", query = "SELECT v FROM Vital v WHERE v.updateddate = :updateddate")})
 public class Vital implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -159,16 +168,7 @@ public class Vital implements Serializable {
     }
 
     public void setHourlyobservationList(List<Hourlyobservation> hourlyobservationList) {
-//        this.hourlyobservationList = hourlyobservationList;
-        if (this.hourlyobservationList == null)
-        {
-            this.hourlyobservationList = new ArrayList<>();
-        }
-        if (hourlyobservationList != null)
-        {
-            this.hourlyobservationList.clear();
-            this.hourlyobservationList.addAll(hourlyobservationList);
-        }
+        this.hourlyobservationList = hourlyobservationList;
     }
 
     @Override

@@ -17,22 +17,34 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "menudetails")
-@NamedQueries(
-{
-    @NamedQuery(name = "Menudetails.findAll", query = "SELECT m FROM Menudetails m")
-})
-public class Menudetails implements Serializable
-{
+@NamedQueries({
+    @NamedQuery(name = "Menudetails.findAll", query = "SELECT m FROM Menudetails m"),
+    @NamedQuery(name = "Menudetails.findByMenuid", query = "SELECT m FROM Menudetails m WHERE m.menuid = :menuid"),
+    @NamedQuery(name = "Menudetails.findByMainname", query = "SELECT m FROM Menudetails m WHERE m.mainname = :mainname"),
+    @NamedQuery(name = "Menudetails.findBySubname", query = "SELECT m FROM Menudetails m WHERE m.subname = :subname"),
+    @NamedQuery(name = "Menudetails.findByLink", query = "SELECT m FROM Menudetails m WHERE m.link = :link"),
+    @NamedQuery(name = "Menudetails.findByClassname", query = "SELECT m FROM Menudetails m WHERE m.classname = :classname"),
+    @NamedQuery(name = "Menudetails.findByMainsort", query = "SELECT m FROM Menudetails m WHERE m.mainsort = :mainsort"),
+    @NamedQuery(name = "Menudetails.findBySubsort", query = "SELECT m FROM Menudetails m WHERE m.subsort = :subsort"),
+    @NamedQuery(name = "Menudetails.findByActive", query = "SELECT m FROM Menudetails m WHERE m.active = :active"),
+    @NamedQuery(name = "Menudetails.findByIonicactive", query = "SELECT m FROM Menudetails m WHERE m.ionicactive = :ionicactive"),
+    @NamedQuery(name = "Menudetails.findByMainicon", query = "SELECT m FROM Menudetails m WHERE m.mainicon = :mainicon"),
+    @NamedQuery(name = "Menudetails.findBySubicon", query = "SELECT m FROM Menudetails m WHERE m.subicon = :subicon"),
+    @NamedQuery(name = "Menudetails.findByIonicdashboardicon", query = "SELECT m FROM Menudetails m WHERE m.ionicdashboardicon = :ionicdashboardicon"),
+    @NamedQuery(name = "Menudetails.findByCreatedby", query = "SELECT m FROM Menudetails m WHERE m.createdby = :createdby"),
+    @NamedQuery(name = "Menudetails.findByCreateddate", query = "SELECT m FROM Menudetails m WHERE m.createddate = :createddate"),
+    @NamedQuery(name = "Menudetails.findByUpdatedby", query = "SELECT m FROM Menudetails m WHERE m.updatedby = :updatedby"),
+    @NamedQuery(name = "Menudetails.findByUpdateddate", query = "SELECT m FROM Menudetails m WHERE m.updateddate = :updateddate")})
+public class Menudetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -80,17 +92,14 @@ public class Menudetails implements Serializable
     @OneToMany(mappedBy = "menu")
     private List<Roleaccess> roleaccessList;
 
-    public Menudetails()
-    {
+    public Menudetails() {
     }
 
-    public Menudetails(Integer menuid)
-    {
+    public Menudetails(Integer menuid) {
         this.menuid = menuid;
     }
 
-    public Menudetails(Integer menuid, String mainname, String subname, int active, int ionicactive, int createdby)
-    {
+    public Menudetails(Integer menuid, String mainname, String subname, int active, int ionicactive, int createdby) {
         this.menuid = menuid;
         this.mainname = mainname;
         this.subname = subname;
@@ -99,211 +108,165 @@ public class Menudetails implements Serializable
         this.createdby = createdby;
     }
 
-    public Integer getMenuid()
-    {
+    public Integer getMenuid() {
         return menuid;
     }
 
-    public void setMenuid(Integer menuid)
-    {
+    public void setMenuid(Integer menuid) {
         this.menuid = menuid;
     }
 
-    public String getMainname()
-    {
+    public String getMainname() {
         return mainname;
     }
 
-    public void setMainname(String mainname)
-    {
+    public void setMainname(String mainname) {
         this.mainname = mainname;
     }
 
-    public String getSubname()
-    {
+    public String getSubname() {
         return subname;
     }
 
-    public void setSubname(String subname)
-    {
+    public void setSubname(String subname) {
         this.subname = subname;
     }
 
-    public String getLink()
-    {
+    public String getLink() {
         return link;
     }
 
-    public void setLink(String link)
-    {
+    public void setLink(String link) {
         this.link = link;
     }
 
-    public String getClassname()
-    {
+    public String getClassname() {
         return classname;
     }
 
-    public void setClassname(String classname)
-    {
+    public void setClassname(String classname) {
         this.classname = classname;
     }
 
-    public Integer getMainsort()
-    {
+    public Integer getMainsort() {
         return mainsort;
     }
 
-    public void setMainsort(Integer mainsort)
-    {
+    public void setMainsort(Integer mainsort) {
         this.mainsort = mainsort;
     }
 
-    public Integer getSubsort()
-    {
+    public Integer getSubsort() {
         return subsort;
     }
 
-    public void setSubsort(Integer subsort)
-    {
+    public void setSubsort(Integer subsort) {
         this.subsort = subsort;
     }
 
-    public int getActive()
-    {
+    public int getActive() {
         return active;
     }
 
-    public void setActive(int active)
-    {
+    public void setActive(int active) {
         this.active = active;
     }
 
-    public int getIonicactive()
-    {
+    public int getIonicactive() {
         return ionicactive;
     }
 
-    public void setIonicactive(int ionicactive)
-    {
+    public void setIonicactive(int ionicactive) {
         this.ionicactive = ionicactive;
     }
 
-    public String getMainicon()
-    {
+    public String getMainicon() {
         return mainicon;
     }
 
-    public void setMainicon(String mainicon)
-    {
+    public void setMainicon(String mainicon) {
         this.mainicon = mainicon;
     }
 
-    public String getSubicon()
-    {
+    public String getSubicon() {
         return subicon;
     }
 
-    public void setSubicon(String subicon)
-    {
+    public void setSubicon(String subicon) {
         this.subicon = subicon;
     }
 
-    public String getIonicdashboardicon()
-    {
+    public String getIonicdashboardicon() {
         return ionicdashboardicon;
     }
 
-    public void setIonicdashboardicon(String ionicdashboardicon)
-    {
+    public void setIonicdashboardicon(String ionicdashboardicon) {
         this.ionicdashboardicon = ionicdashboardicon;
     }
 
-    public int getCreatedby()
-    {
+    public int getCreatedby() {
         return createdby;
     }
 
-    public void setCreatedby(int createdby)
-    {
+    public void setCreatedby(int createdby) {
         this.createdby = createdby;
     }
 
-    public Date getCreateddate()
-    {
+    public Date getCreateddate() {
         return createddate;
     }
 
-    public void setCreateddate(Date createddate)
-    {
+    public void setCreateddate(Date createddate) {
         this.createddate = createddate;
     }
 
-    public Integer getUpdatedby()
-    {
+    public Integer getUpdatedby() {
         return updatedby;
     }
 
-    public void setUpdatedby(Integer updatedby)
-    {
+    public void setUpdatedby(Integer updatedby) {
         this.updatedby = updatedby;
     }
 
-    public Date getUpdateddate()
-    {
+    public Date getUpdateddate() {
         return updateddate;
     }
 
-    public void setUpdateddate(Date updateddate)
-    {
+    public void setUpdateddate(Date updateddate) {
         this.updateddate = updateddate;
     }
 
-    public List<Roleaccess> getRoleaccessList()
-    {
+    public List<Roleaccess> getRoleaccessList() {
         return roleaccessList;
     }
 
-    public void setRoleaccessList(List<Roleaccess> roleaccessList)
-    {
-//        this.roleaccessList = roleaccessList;
-        if(this.roleaccessList==null) this.roleaccessList=new ArrayList<>();
-        if(roleaccessList!=null)
-        {
-            this.roleaccessList.clear();
-            this.roleaccessList.addAll(roleaccessList);
-        }
-        
+    public void setRoleaccessList(List<Roleaccess> roleaccessList) {
+        this.roleaccessList = roleaccessList;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (menuid != null ? menuid.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Menudetails))
-        {
+        if (!(object instanceof Menudetails)) {
             return false;
         }
         Menudetails other = (Menudetails) object;
-        if ((this.menuid == null && other.menuid != null) || (this.menuid != null && !this.menuid.equals(other.menuid)))
-        {
+        if ((this.menuid == null && other.menuid != null) || (this.menuid != null && !this.menuid.equals(other.menuid))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "com.ibidlogistics.ibliv.model.Menudetails[ menuid=" + menuid + " ]";
     }
-
+    
 }

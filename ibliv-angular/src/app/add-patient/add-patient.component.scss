@@ -1,0 +1,77 @@
+.edit {
+  background-color: #2196F3; /* Material Blue 500 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+  /* Hover Effect */
+  &:hover {
+    background-color: #1976D2; /* Darker blue */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+  }
+  
+  /* Active State */
+  &:active {
+    background-color: #0D47A1;
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  }
+  
+  /* Disabled State */
+  &:disabled {
+    background-color: #BBDEFB;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+.del ,.buttons button{
+  background-color: #ddd; /* Material Blue 500 */
+  color: #2196F3;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-top: 0.7rem;
+  font-size: 14px;
+  margin-left: 0;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+  /* Hover Effect */
+  &:hover {
+    background-color: #1976D2; /* Darker blue */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+    color: #ddd;
+  }
+  
+  /* Active State */
+  &:active {
+    background-color: #0D47A1;
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  }
+  
+  /* Disabled State */
+  &:disabled {
+    background-color: #BBDEFB;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+}

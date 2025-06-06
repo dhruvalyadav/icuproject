@@ -5,7 +5,10 @@
 package com.ibidlogistics.ibliv.repository;
 
 import com.ibidlogistics.ibliv.model.Patient;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatientJpaRepository extends JpaRepository<Patient, Integer>
 {
-    Patient findByPatientName(String patientname);
+    @Query("SELECT p FROM Patient p WHERE p.patientname LIKE LOWER(CONCAT('%', :patientname, '%'))")
+    List<Patient> findByPatientsimilarName(@Param("patientname") String patientname);
 }

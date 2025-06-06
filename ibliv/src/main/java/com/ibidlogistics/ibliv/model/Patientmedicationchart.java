@@ -4,7 +4,6 @@
  */
 package com.ibidlogistics.ibliv.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -21,18 +20,27 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientmedicationchart")
 @NamedQueries({
-    @NamedQuery(name = "Patientmedicationchart.findAll", query = "SELECT p FROM Patientmedicationchart p")})
+    @NamedQuery(name = "Patientmedicationchart.findAll", query = "SELECT p FROM Patientmedicationchart p"),
+    @NamedQuery(name = "Patientmedicationchart.findByPatientmedicationchartid", query = "SELECT p FROM Patientmedicationchart p WHERE p.patientmedicationchartid = :patientmedicationchartid"),
+    @NamedQuery(name = "Patientmedicationchart.findByDrug", query = "SELECT p FROM Patientmedicationchart p WHERE p.drug = :drug"),
+    @NamedQuery(name = "Patientmedicationchart.findByDate", query = "SELECT p FROM Patientmedicationchart p WHERE p.date = :date"),
+    @NamedQuery(name = "Patientmedicationchart.findByDose", query = "SELECT p FROM Patientmedicationchart p WHERE p.dose = :dose"),
+    @NamedQuery(name = "Patientmedicationchart.findByRoute", query = "SELECT p FROM Patientmedicationchart p WHERE p.route = :route"),
+    @NamedQuery(name = "Patientmedicationchart.findByFrequency", query = "SELECT p FROM Patientmedicationchart p WHERE p.frequency = :frequency"),
+    @NamedQuery(name = "Patientmedicationchart.findByCreatedby", query = "SELECT p FROM Patientmedicationchart p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientmedicationchart.findByCreateddate", query = "SELECT p FROM Patientmedicationchart p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientmedicationchart.findByUpdatedby", query = "SELECT p FROM Patientmedicationchart p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientmedicationchart.findByUpdateddate", query = "SELECT p FROM Patientmedicationchart p WHERE p.updateddate = :updateddate")})
 public class Patientmedicationchart implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,7 +71,6 @@ public class Patientmedicationchart implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @JsonIgnore
     @JoinColumn(name = "patientadmission", referencedColumnName = "patientadmissionid")
     @ManyToOne(optional = false)
     private Patientadmission patientadmission;
@@ -175,16 +182,7 @@ public class Patientmedicationchart implements Serializable {
     }
 
     public void setPatientmedicationlogList(List<Patientmedicationlog> patientmedicationlogList) {
-//        this.patientmedicationlogList = patientmedicationlogList;
-        if (this.patientmedicationlogList == null)
-        {
-            this.patientmedicationlogList = new ArrayList<>();
-        }
-        if (patientmedicationlogList != null)
-        {
-            this.patientmedicationlogList.clear();
-            this.patientmedicationlogList.addAll(patientmedicationlogList);
-        }
+        this.patientmedicationlogList = patientmedicationlogList;
     }
 
     @Override

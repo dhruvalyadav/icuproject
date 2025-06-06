@@ -4,7 +4,6 @@
  */
 package com.ibidlogistics.ibliv.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,18 +18,24 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "icu")
 @NamedQueries({
-    @NamedQuery(name = "Icu.findAll", query = "SELECT i FROM Icu i")})
+    @NamedQuery(name = "Icu.findAll", query = "SELECT i FROM Icu i"),
+    @NamedQuery(name = "Icu.findByIcuid", query = "SELECT i FROM Icu i WHERE i.icuid = :icuid"),
+    @NamedQuery(name = "Icu.findByName", query = "SELECT i FROM Icu i WHERE i.name = :name"),
+    @NamedQuery(name = "Icu.findByActive", query = "SELECT i FROM Icu i WHERE i.active = :active"),
+    @NamedQuery(name = "Icu.findByCreatedby", query = "SELECT i FROM Icu i WHERE i.createdby = :createdby"),
+    @NamedQuery(name = "Icu.findByCreateddate", query = "SELECT i FROM Icu i WHERE i.createddate = :createddate"),
+    @NamedQuery(name = "Icu.findByUpdatedby", query = "SELECT i FROM Icu i WHERE i.updatedby = :updatedby"),
+    @NamedQuery(name = "Icu.findByUpdateddate", query = "SELECT i FROM Icu i WHERE i.updateddate = :updateddate")})
 public class Icu implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,12 +59,10 @@ public class Icu implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
     private List<Patientadmission> patientadmissionList;
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "icu")
-    private List<Shiftrmonurse> shiftrmonurseList;
+    private List<Shiftrmonurse> shiftrmonurseList;*/
 
     public Icu() {
     }
@@ -129,18 +132,12 @@ public class Icu implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientadmission> getPatientadmissionList() {
+    /*public List<Patientadmission> getPatientadmissionList() {
         return patientadmissionList;
     }
 
     public void setPatientadmissionList(List<Patientadmission> patientadmissionList) {
-//        this.patientadmissionList = patientadmissionList;
-        if(this.patientadmissionList==null) this.patientadmissionList=new ArrayList<>();
-        if(patientadmissionList!=null)
-        {
-            this.patientadmissionList.clear();
-            this.patientadmissionList.addAll(patientadmissionList);
-        }
+        this.patientadmissionList = patientadmissionList;
     }
 
     public List<Shiftrmonurse> getShiftrmonurseList() {
@@ -148,14 +145,8 @@ public class Icu implements Serializable {
     }
 
     public void setShiftrmonurseList(List<Shiftrmonurse> shiftrmonurseList) {
-//        this.shiftrmonurseList = shiftrmonurseList;
-        if(this.shiftrmonurseList==null) this.shiftrmonurseList=new ArrayList<>();
-        if(shiftrmonurseList!=null)
-        {
-            this.shiftrmonurseList.clear();
-            this.shiftrmonurseList.addAll(shiftrmonurseList);
-        }
-    }
+        this.shiftrmonurseList = shiftrmonurseList;
+    }*/
 
     @Override
     public int hashCode() {

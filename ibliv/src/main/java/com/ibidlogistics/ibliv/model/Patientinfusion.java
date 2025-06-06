@@ -22,12 +22,25 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientinfusion")
 @NamedQueries({
-    @NamedQuery(name = "Patientinfusion.findAll", query = "SELECT p FROM Patientinfusion p")})
+    @NamedQuery(name = "Patientinfusion.findAll", query = "SELECT p FROM Patientinfusion p"),
+    @NamedQuery(name = "Patientinfusion.findByPatientinfusionid", query = "SELECT p FROM Patientinfusion p WHERE p.patientinfusionid = :patientinfusionid"),
+    @NamedQuery(name = "Patientinfusion.findByTime", query = "SELECT p FROM Patientinfusion p WHERE p.time = :time"),
+    @NamedQuery(name = "Patientinfusion.findByFluidname", query = "SELECT p FROM Patientinfusion p WHERE p.fluidname = :fluidname"),
+    @NamedQuery(name = "Patientinfusion.findByFluidvolume", query = "SELECT p FROM Patientinfusion p WHERE p.fluidvolume = :fluidvolume"),
+    @NamedQuery(name = "Patientinfusion.findByIvmedication", query = "SELECT p FROM Patientinfusion p WHERE p.ivmedication = :ivmedication"),
+    @NamedQuery(name = "Patientinfusion.findByDose", query = "SELECT p FROM Patientinfusion p WHERE p.dose = :dose"),
+    @NamedQuery(name = "Patientinfusion.findByRate", query = "SELECT p FROM Patientinfusion p WHERE p.rate = :rate"),
+    @NamedQuery(name = "Patientinfusion.findByStarttime", query = "SELECT p FROM Patientinfusion p WHERE p.starttime = :starttime"),
+    @NamedQuery(name = "Patientinfusion.findByEndtime", query = "SELECT p FROM Patientinfusion p WHERE p.endtime = :endtime"),
+    @NamedQuery(name = "Patientinfusion.findByCreatedby", query = "SELECT p FROM Patientinfusion p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientinfusion.findByCreateddate", query = "SELECT p FROM Patientinfusion p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientinfusion.findByUpdatedby", query = "SELECT p FROM Patientinfusion p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientinfusion.findByUpdateddate", query = "SELECT p FROM Patientinfusion p WHERE p.updateddate = :updateddate")})
 public class Patientinfusion implements Serializable {
 
     private static final long serialVersionUID = 1L;

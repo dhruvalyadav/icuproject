@@ -32,6 +32,9 @@
     <class>com.ibidlogistics.ibliv.model.Icu</class>
     <class>com.ibidlogistics.ibliv.model.Patientinfusion</class>
     <class>com.ibidlogistics.ibliv.model.Embolism</class>
+    <class>com.ibidlogistics.ibliv.model.Anthropometry</class>
+    <class>com.ibidlogistics.ibliv.model.Patient</class>
+    <class>com.ibidlogistics.ibliv.model.Applicationversion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ibliv?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

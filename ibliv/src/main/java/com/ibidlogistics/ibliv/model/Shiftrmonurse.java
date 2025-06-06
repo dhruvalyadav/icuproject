@@ -22,12 +22,19 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "shiftrmonurse")
 @NamedQueries({
-    @NamedQuery(name = "Shiftrmonurse.findAll", query = "SELECT s FROM Shiftrmonurse s")})
+    @NamedQuery(name = "Shiftrmonurse.findAll", query = "SELECT s FROM Shiftrmonurse s"),
+    @NamedQuery(name = "Shiftrmonurse.findByShiftrmonurseid", query = "SELECT s FROM Shiftrmonurse s WHERE s.shiftrmonurseid = :shiftrmonurseid"),
+    @NamedQuery(name = "Shiftrmonurse.findByDate", query = "SELECT s FROM Shiftrmonurse s WHERE s.date = :date"),
+    @NamedQuery(name = "Shiftrmonurse.findByShift", query = "SELECT s FROM Shiftrmonurse s WHERE s.shift = :shift"),
+    @NamedQuery(name = "Shiftrmonurse.findByCreatedby", query = "SELECT s FROM Shiftrmonurse s WHERE s.createdby = :createdby"),
+    @NamedQuery(name = "Shiftrmonurse.findByCreateddate", query = "SELECT s FROM Shiftrmonurse s WHERE s.createddate = :createddate"),
+    @NamedQuery(name = "Shiftrmonurse.findByUpdatedby", query = "SELECT s FROM Shiftrmonurse s WHERE s.updatedby = :updatedby"),
+    @NamedQuery(name = "Shiftrmonurse.findByUpdateddate", query = "SELECT s FROM Shiftrmonurse s WHERE s.updateddate = :updateddate")})
 public class Shiftrmonurse implements Serializable {
 
     private static final long serialVersionUID = 1L;

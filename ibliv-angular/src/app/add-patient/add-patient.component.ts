@@ -1,7 +1,7 @@
 
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter,OnInit } from '@angular/core';
 import { Patient } from '../entities';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { WebClient } from '../web-client';
 
 @Component({
@@ -12,36 +12,53 @@ import { WebClient } from '../web-client';
   styleUrl: './add-patient.component.scss'
 })
 export class AddPatientComponent implements OnInit {
+  constructor(private router : Router,private webclient : WebClient){}
+  patients : any[] = [
+  ]
 
-  activatedRoute=inject(ActivatedRoute);
-  webClient=inject(WebClient);
-
-  patient : Patient=new Patient();
-  patients:any;
-
-  constructor(private route:Router){}
-
+  mainspinner : boolean = false
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params)=>{
-      if(params.has('id'))
-      {
-        const id=params.get('id');
-        console.log(id);
-        //fetch patient details from API
-        this.webClient.get<Patient>('/patient/'+id).then((res)=>{
-          this.patient=res;
-          console.log(this.patient);
-        })
-      }
-    });
+    this.mainspinner = true
+    this.webclient.getAll<Patient[]>("patient-list").subscribe(
+      (response)=>{this.patients=response;this.mainspinner = false},(error)=>{this.mainspinner = false}
+    )
+  }
+  onEdit(patient: Patient) {
+    this.router.navigate(["patientedits/"+patient.patientid])
   }
 
-  onSave()
-  {
-    this.webClient.post<Patient,Patient>('/add-patient',this.patient).
-    then((res)=>{
-      alert('Patient added');
-      this.route.navigate(['/home/basic-patient-details']);
-    });
+  onDelete(patient: Patient) {
+     this.webclient.delete<Patient>("deletepatient/"+patient.patientid)
+     .then((res)=>{alert("Patient Deleted Sucessfully");window.location.reload()})
+     .catch((error)=>{console.log(error)})
   }
+  calculateAge(dob: string | Date): number {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    
+    return age;
+  }
+
+  addpatient(){
+    this.router.navigate(["addpatient"])
+  }
+
+  spinner : boolean = true
+  filterpatients(event : any){
+    console.log("jssj")
+    if (event.target.value!=''){
+      this.spinner = false
+      this.webclient.getAll<Patient[]>("filterpatient/"+event.target.value).subscribe(
+        (response)=>{this.patients = response},(error)=>{this.spinner = false})
+    } else {
+      this.spinner = true
+    }
+  }
+
 }

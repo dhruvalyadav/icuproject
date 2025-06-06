@@ -22,12 +22,16 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "usertoken")
 @NamedQueries({
-    @NamedQuery(name = "Usertoken.findAll", query = "SELECT u FROM Usertoken u")})
+    @NamedQuery(name = "Usertoken.findAll", query = "SELECT u FROM Usertoken u"),
+    @NamedQuery(name = "Usertoken.findByUsertokenid", query = "SELECT u FROM Usertoken u WHERE u.usertokenid = :usertokenid"),
+    @NamedQuery(name = "Usertoken.findByToken", query = "SELECT u FROM Usertoken u WHERE u.token = :token"),
+    @NamedQuery(name = "Usertoken.findByFcmtoken", query = "SELECT u FROM Usertoken u WHERE u.fcmtoken = :fcmtoken"),
+    @NamedQuery(name = "Usertoken.findByDatetime", query = "SELECT u FROM Usertoken u WHERE u.datetime = :datetime")})
 public class Usertoken implements Serializable {
 
     private static final long serialVersionUID = 1L;

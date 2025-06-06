@@ -22,12 +22,18 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "consultantpatientvisit")
 @NamedQueries({
-    @NamedQuery(name = "Consultantpatientvisit.findAll", query = "SELECT c FROM Consultantpatientvisit c")})
+    @NamedQuery(name = "Consultantpatientvisit.findAll", query = "SELECT c FROM Consultantpatientvisit c"),
+    @NamedQuery(name = "Consultantpatientvisit.findByConsultantpatientvisitid", query = "SELECT c FROM Consultantpatientvisit c WHERE c.consultantpatientvisitid = :consultantpatientvisitid"),
+    @NamedQuery(name = "Consultantpatientvisit.findByDatetime", query = "SELECT c FROM Consultantpatientvisit c WHERE c.datetime = :datetime"),
+    @NamedQuery(name = "Consultantpatientvisit.findByCreatedby", query = "SELECT c FROM Consultantpatientvisit c WHERE c.createdby = :createdby"),
+    @NamedQuery(name = "Consultantpatientvisit.findByCreateddate", query = "SELECT c FROM Consultantpatientvisit c WHERE c.createddate = :createddate"),
+    @NamedQuery(name = "Consultantpatientvisit.findByUpdatedby", query = "SELECT c FROM Consultantpatientvisit c WHERE c.updatedby = :updatedby"),
+    @NamedQuery(name = "Consultantpatientvisit.findByUpdateddate", query = "SELECT c FROM Consultantpatientvisit c WHERE c.updateddate = :updateddate")})
 public class Consultantpatientvisit implements Serializable {
 
     private static final long serialVersionUID = 1L;

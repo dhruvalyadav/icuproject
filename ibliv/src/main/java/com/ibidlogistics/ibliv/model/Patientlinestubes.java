@@ -22,12 +22,19 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientlinestubes")
 @NamedQueries({
-    @NamedQuery(name = "Patientlinestubes.findAll", query = "SELECT p FROM Patientlinestubes p")})
+    @NamedQuery(name = "Patientlinestubes.findAll", query = "SELECT p FROM Patientlinestubes p"),
+    @NamedQuery(name = "Patientlinestubes.findByPatientlinestubesid", query = "SELECT p FROM Patientlinestubes p WHERE p.patientlinestubesid = :patientlinestubesid"),
+    @NamedQuery(name = "Patientlinestubes.findByDateofinsertion", query = "SELECT p FROM Patientlinestubes p WHERE p.dateofinsertion = :dateofinsertion"),
+    @NamedQuery(name = "Patientlinestubes.findBySite", query = "SELECT p FROM Patientlinestubes p WHERE p.site = :site"),
+    @NamedQuery(name = "Patientlinestubes.findByCreatedby", query = "SELECT p FROM Patientlinestubes p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientlinestubes.findByCreateddate", query = "SELECT p FROM Patientlinestubes p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientlinestubes.findByUpdatedby", query = "SELECT p FROM Patientlinestubes p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientlinestubes.findByUpdateddate", query = "SELECT p FROM Patientlinestubes p WHERE p.updateddate = :updateddate")})
 public class Patientlinestubes implements Serializable {
 
     private static final long serialVersionUID = 1L;

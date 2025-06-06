@@ -6,10 +6,9 @@ package com.ibidlogistics.ibliv.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.ibidlogistics.ibliv.model.Icu;
-/**
- *
- * @author Laptop
- */
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface IcuJpaRepository extends JpaRepository<Icu,Integer>
 {
     

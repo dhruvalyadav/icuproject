@@ -23,12 +23,28 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientventilator")
 @NamedQueries({
-    @NamedQuery(name = "Patientventilator.findAll", query = "SELECT p FROM Patientventilator p")})
+    @NamedQuery(name = "Patientventilator.findAll", query = "SELECT p FROM Patientventilator p"),
+    @NamedQuery(name = "Patientventilator.findByPatientventilatorid", query = "SELECT p FROM Patientventilator p WHERE p.patientventilatorid = :patientventilatorid"),
+    @NamedQuery(name = "Patientventilator.findByFio2", query = "SELECT p FROM Patientventilator p WHERE p.fio2 = :fio2"),
+    @NamedQuery(name = "Patientventilator.findByPeepcpap", query = "SELECT p FROM Patientventilator p WHERE p.peepcpap = :peepcpap"),
+    @NamedQuery(name = "Patientventilator.findByRate", query = "SELECT p FROM Patientventilator p WHERE p.rate = :rate"),
+    @NamedQuery(name = "Patientventilator.findByTv", query = "SELECT p FROM Patientventilator p WHERE p.tv = :tv"),
+    @NamedQuery(name = "Patientventilator.findByPpeak", query = "SELECT p FROM Patientventilator p WHERE p.ppeak = :ppeak"),
+    @NamedQuery(name = "Patientventilator.findByMv", query = "SELECT p FROM Patientventilator p WHERE p.mv = :mv"),
+    @NamedQuery(name = "Patientventilator.findBySpo2", query = "SELECT p FROM Patientventilator p WHERE p.spo2 = :spo2"),
+    @NamedQuery(name = "Patientventilator.findByCuffpressure", query = "SELECT p FROM Patientventilator p WHERE p.cuffpressure = :cuffpressure"),
+    @NamedQuery(name = "Patientventilator.findByEpap", query = "SELECT p FROM Patientventilator p WHERE p.epap = :epap"),
+    @NamedQuery(name = "Patientventilator.findByPeakinsppressure", query = "SELECT p FROM Patientventilator p WHERE p.peakinsppressure = :peakinsppressure"),
+    @NamedQuery(name = "Patientventilator.findByPlateaupressure", query = "SELECT p FROM Patientventilator p WHERE p.plateaupressure = :plateaupressure"),
+    @NamedQuery(name = "Patientventilator.findByCreatedby", query = "SELECT p FROM Patientventilator p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientventilator.findByCreateddate", query = "SELECT p FROM Patientventilator p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientventilator.findByUpdatedby", query = "SELECT p FROM Patientventilator p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientventilator.findByUpdateddate", query = "SELECT p FROM Patientventilator p WHERE p.updateddate = :updateddate")})
 public class Patientventilator implements Serializable {
 
     private static final long serialVersionUID = 1L;

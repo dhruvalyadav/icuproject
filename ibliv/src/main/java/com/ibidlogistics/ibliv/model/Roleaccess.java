@@ -22,12 +22,18 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "roleaccess")
 @NamedQueries({
-    @NamedQuery(name = "Roleaccess.findAll", query = "SELECT r FROM Roleaccess r")})
+    @NamedQuery(name = "Roleaccess.findAll", query = "SELECT r FROM Roleaccess r"),
+    @NamedQuery(name = "Roleaccess.findByRoleaccessid", query = "SELECT r FROM Roleaccess r WHERE r.roleaccessid = :roleaccessid"),
+    @NamedQuery(name = "Roleaccess.findByIonicmenu", query = "SELECT r FROM Roleaccess r WHERE r.ionicmenu = :ionicmenu"),
+    @NamedQuery(name = "Roleaccess.findByCreatedby", query = "SELECT r FROM Roleaccess r WHERE r.createdby = :createdby"),
+    @NamedQuery(name = "Roleaccess.findByCreateddate", query = "SELECT r FROM Roleaccess r WHERE r.createddate = :createddate"),
+    @NamedQuery(name = "Roleaccess.findByUpdatedby", query = "SELECT r FROM Roleaccess r WHERE r.updatedby = :updatedby"),
+    @NamedQuery(name = "Roleaccess.findByUpdateddate", query = "SELECT r FROM Roleaccess r WHERE r.updateddate = :updateddate")})
 public class Roleaccess implements Serializable {
 
     private static final long serialVersionUID = 1L;

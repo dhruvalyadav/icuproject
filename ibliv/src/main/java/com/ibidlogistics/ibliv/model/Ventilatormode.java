@@ -18,18 +18,24 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "ventilatormode")
 @NamedQueries({
-    @NamedQuery(name = "Ventilatormode.findAll", query = "SELECT v FROM Ventilatormode v")})
+    @NamedQuery(name = "Ventilatormode.findAll", query = "SELECT v FROM Ventilatormode v"),
+    @NamedQuery(name = "Ventilatormode.findByVentilatormodeid", query = "SELECT v FROM Ventilatormode v WHERE v.ventilatormodeid = :ventilatormodeid"),
+    @NamedQuery(name = "Ventilatormode.findByVentilatormode", query = "SELECT v FROM Ventilatormode v WHERE v.ventilatormode = :ventilatormode"),
+    @NamedQuery(name = "Ventilatormode.findByActive", query = "SELECT v FROM Ventilatormode v WHERE v.active = :active"),
+    @NamedQuery(name = "Ventilatormode.findByCreatedby", query = "SELECT v FROM Ventilatormode v WHERE v.createdby = :createdby"),
+    @NamedQuery(name = "Ventilatormode.findByCreateddate", query = "SELECT v FROM Ventilatormode v WHERE v.createddate = :createddate"),
+    @NamedQuery(name = "Ventilatormode.findByUpdatedby", query = "SELECT v FROM Ventilatormode v WHERE v.updatedby = :updatedby"),
+    @NamedQuery(name = "Ventilatormode.findByUpdateddate", query = "SELECT v FROM Ventilatormode v WHERE v.updateddate = :updateddate")})
 public class Ventilatormode implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -129,16 +135,7 @@ public class Ventilatormode implements Serializable {
     }
 
     public void setPatientventilatorList(List<Patientventilator> patientventilatorList) {
-//        this.patientventilatorList = patientventilatorList;
-        if (this.patientventilatorList == null)
-        {
-            this.patientventilatorList = new ArrayList<>();
-        }
-        if (patientventilatorList != null)
-        {
-            this.patientventilatorList.clear();
-            this.patientventilatorList.addAll(patientventilatorList);
-        }
+        this.patientventilatorList = patientventilatorList;
     }
 
     @Override

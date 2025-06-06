@@ -22,12 +22,18 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "userrole")
 @NamedQueries({
-    @NamedQuery(name = "Userrole.findAll", query = "SELECT u FROM Userrole u")})
+    @NamedQuery(name = "Userrole.findAll", query = "SELECT u FROM Userrole u"),
+    @NamedQuery(name = "Userrole.findByUserroleid", query = "SELECT u FROM Userrole u WHERE u.userroleid = :userroleid"),
+    @NamedQuery(name = "Userrole.findByActive", query = "SELECT u FROM Userrole u WHERE u.active = :active"),
+    @NamedQuery(name = "Userrole.findByCreatedby", query = "SELECT u FROM Userrole u WHERE u.createdby = :createdby"),
+    @NamedQuery(name = "Userrole.findByCreateddate", query = "SELECT u FROM Userrole u WHERE u.createddate = :createddate"),
+    @NamedQuery(name = "Userrole.findByUpdatedby", query = "SELECT u FROM Userrole u WHERE u.updatedby = :updatedby"),
+    @NamedQuery(name = "Userrole.findByUpdateddate", query = "SELECT u FROM Userrole u WHERE u.updateddate = :updateddate")})
 public class Userrole implements Serializable {
 
     private static final long serialVersionUID = 1L;

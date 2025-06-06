@@ -11,7 +11,7 @@ import { Menudetails, menu, submenu } from '../entities';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent implements OnInit{
-  isMenuOpen = true;
+  isMenuOpen = false;
   constructor(private router: Router,private webclient : WebClient) {}
 
   toggleMenu(): void {
@@ -50,7 +50,6 @@ export class MenuComponent implements OnInit{
 
   navigateTo(link: string): void {
     this.router.navigate([link]);
-    // Auto-close on mobile if needed
     if (window.innerWidth < 768) {
       this.isMenuOpen = false;
     }

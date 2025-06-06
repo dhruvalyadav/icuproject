@@ -22,12 +22,22 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientadditionaltests")
 @NamedQueries({
-    @NamedQuery(name = "Patientadditionaltests.findAll", query = "SELECT p FROM Patientadditionaltests p")})
+    @NamedQuery(name = "Patientadditionaltests.findAll", query = "SELECT p FROM Patientadditionaltests p"),
+    @NamedQuery(name = "Patientadditionaltests.findByPatientadditionaltestsid", query = "SELECT p FROM Patientadditionaltests p WHERE p.patientadditionaltestsid = :patientadditionaltestsid"),
+    @NamedQuery(name = "Patientadditionaltests.findByAmbulation", query = "SELECT p FROM Patientadditionaltests p WHERE p.ambulation = :ambulation"),
+    @NamedQuery(name = "Patientadditionaltests.findByIncentivespirometry", query = "SELECT p FROM Patientadditionaltests p WHERE p.incentivespirometry = :incentivespirometry"),
+    @NamedQuery(name = "Patientadditionaltests.findByBelt", query = "SELECT p FROM Patientadditionaltests p WHERE p.belt = :belt"),
+    @NamedQuery(name = "Patientadditionaltests.findByDressing", query = "SELECT p FROM Patientadditionaltests p WHERE p.dressing = :dressing"),
+    @NamedQuery(name = "Patientadditionaltests.findByTrachettsectretion", query = "SELECT p FROM Patientadditionaltests p WHERE p.trachettsectretion = :trachettsectretion"),
+    @NamedQuery(name = "Patientadditionaltests.findByCreatedby", query = "SELECT p FROM Patientadditionaltests p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientadditionaltests.findByCreateddate", query = "SELECT p FROM Patientadditionaltests p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientadditionaltests.findByUpdatedby", query = "SELECT p FROM Patientadditionaltests p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientadditionaltests.findByUpdateddate", query = "SELECT p FROM Patientadditionaltests p WHERE p.updateddate = :updateddate")})
 public class Patientadditionaltests implements Serializable {
 
     private static final long serialVersionUID = 1L;

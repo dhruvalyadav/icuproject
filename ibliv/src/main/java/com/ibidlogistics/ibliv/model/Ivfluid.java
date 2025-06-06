@@ -18,18 +18,24 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "ivfluid")
 @NamedQueries({
-    @NamedQuery(name = "Ivfluid.findAll", query = "SELECT i FROM Ivfluid i")})
+    @NamedQuery(name = "Ivfluid.findAll", query = "SELECT i FROM Ivfluid i"),
+    @NamedQuery(name = "Ivfluid.findByIvfluidid", query = "SELECT i FROM Ivfluid i WHERE i.ivfluidid = :ivfluidid"),
+    @NamedQuery(name = "Ivfluid.findByIvfluidname", query = "SELECT i FROM Ivfluid i WHERE i.ivfluidname = :ivfluidname"),
+    @NamedQuery(name = "Ivfluid.findByActive", query = "SELECT i FROM Ivfluid i WHERE i.active = :active"),
+    @NamedQuery(name = "Ivfluid.findByCreatedby", query = "SELECT i FROM Ivfluid i WHERE i.createdby = :createdby"),
+    @NamedQuery(name = "Ivfluid.findByCreateddate", query = "SELECT i FROM Ivfluid i WHERE i.createddate = :createddate"),
+    @NamedQuery(name = "Ivfluid.findByUpdatedby", query = "SELECT i FROM Ivfluid i WHERE i.updatedby = :updatedby"),
+    @NamedQuery(name = "Ivfluid.findByUpdateddate", query = "SELECT i FROM Ivfluid i WHERE i.updateddate = :updateddate")})
 public class Ivfluid implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -131,13 +137,7 @@ public class Ivfluid implements Serializable {
     }
 
     public void setPatientivfluidList(List<Patientivfluid> patientivfluidList) {
-//        this.patientivfluidList = patientivfluidList;
-        if(this.patientivfluidList==null) this.patientivfluidList=new ArrayList<>();
-        if(patientivfluidList!=null)
-        {
-            this.patientivfluidList.clear();
-            this.patientivfluidList.addAll(patientivfluidList);
-        }
+        this.patientivfluidList = patientivfluidList;
     }
 
     @Override

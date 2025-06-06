@@ -22,12 +22,22 @@ import java.util.Date;
 
 /**
  *
- * @author Laptop
+ * @author Jayraj Malge
  */
 @Entity
 @Table(name = "patientmedicationlog")
 @NamedQueries({
-    @NamedQuery(name = "Patientmedicationlog.findAll", query = "SELECT p FROM Patientmedicationlog p")})
+    @NamedQuery(name = "Patientmedicationlog.findAll", query = "SELECT p FROM Patientmedicationlog p"),
+    @NamedQuery(name = "Patientmedicationlog.findByPatientmedicationlogid", query = "SELECT p FROM Patientmedicationlog p WHERE p.patientmedicationlogid = :patientmedicationlogid"),
+    @NamedQuery(name = "Patientmedicationlog.findByDrug", query = "SELECT p FROM Patientmedicationlog p WHERE p.drug = :drug"),
+    @NamedQuery(name = "Patientmedicationlog.findByDate", query = "SELECT p FROM Patientmedicationlog p WHERE p.date = :date"),
+    @NamedQuery(name = "Patientmedicationlog.findByDose", query = "SELECT p FROM Patientmedicationlog p WHERE p.dose = :dose"),
+    @NamedQuery(name = "Patientmedicationlog.findByRoute", query = "SELECT p FROM Patientmedicationlog p WHERE p.route = :route"),
+    @NamedQuery(name = "Patientmedicationlog.findByAdministrationtime", query = "SELECT p FROM Patientmedicationlog p WHERE p.administrationtime = :administrationtime"),
+    @NamedQuery(name = "Patientmedicationlog.findByCreatedby", query = "SELECT p FROM Patientmedicationlog p WHERE p.createdby = :createdby"),
+    @NamedQuery(name = "Patientmedicationlog.findByCreateddate", query = "SELECT p FROM Patientmedicationlog p WHERE p.createddate = :createddate"),
+    @NamedQuery(name = "Patientmedicationlog.findByUpdatedby", query = "SELECT p FROM Patientmedicationlog p WHERE p.updatedby = :updatedby"),
+    @NamedQuery(name = "Patientmedicationlog.findByUpdateddate", query = "SELECT p FROM Patientmedicationlog p WHERE p.updateddate = :updateddate")})
 public class Patientmedicationlog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +49,7 @@ public class Patientmedicationlog implements Serializable {
     @Column(name = "drug")
     private String drug;
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
     @Column(name = "dose")
     private String dose;

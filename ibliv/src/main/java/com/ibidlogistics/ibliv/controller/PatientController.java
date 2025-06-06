@@ -4,9 +4,11 @@
  */
 package com.ibidlogistics.ibliv.controller;
 
+import com.ibidlogistics.ibliv.model.Anthropometry;
 import com.ibidlogistics.ibliv.model.Icu;
 import com.ibidlogistics.ibliv.model.Patient;
 import com.ibidlogistics.ibliv.model.Patientadmission;
+import com.ibidlogistics.ibliv.repository.AnthropometryRepository;
 import com.ibidlogistics.ibliv.repository.IcuJpaRepository;
 import com.ibidlogistics.ibliv.repository.PatientAdmissionRepository;
 import com.ibidlogistics.ibliv.repository.PatientJpaRepository;
@@ -40,41 +42,40 @@ public class PatientController
     @Autowired
     PatientAdmissionRepository admitrepository;
     
+    @Autowired 
+    AnthropometryRepository anthropometryRepository;
+    
     @PostMapping("/admit-patient")
     public void saveAdmission(@RequestBody Patientadmission p){
-        System.out.println("Patient => "+p.getPatient());
-        System.out.println("Patient to be admitted => "+p);
         admitrepository.save(p);
     }
     @PostMapping("/add-patient")
     public void addPatient(@RequestBody Patient p){
-        repository.save(p);
+       Patient savedpatient = repository.save(p);
+       Anthropometry ant = new Anthropometry();
+       ant.setPatient(savedpatient);
+       anthropometryRepository.save(ant);
     }
     
     @PutMapping("/update-patient")
     public void updatePatient(@RequestBody Patient p){
         Optional<Patient> existingPatient = repository.findById(p.getPatientid());
-        
-        
         if(existingPatient.isPresent()){
             repository.save(p);
         }        
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deletepatient/{id}")
     public void deletePatient(@PathVariable int id){
-        System.out.println(id);
         repository.deleteById(id);
     }
     
     @GetMapping("/patient/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") Integer patientid)
     {
-        System.out.println(patientid);
         Optional<Patient> opatient=repository.findById(patientid);
         if(opatient!=null) 
         {
-            System.out.println(opatient.get());
             return ResponseEntity.ok(opatient.get());
         }
         else
@@ -82,11 +83,11 @@ public class PatientController
     }
      
     @GetMapping("/patient-list")
-    List<Patient> getAllPatient(){
+    public List<Patient> getAllPatient(){
         return repository.findAll();
     }
         
-    @GetMapping("icu-list")
+    @GetMapping("/icu-list")
     public List<Icu> getIcuType(){
         return icuRepo.findAll();
     }
@@ -101,5 +102,9 @@ public class PatientController
         else
             return ResponseEntity.notFound().build();
     }
-
+    
+    @GetMapping("/filterpatient/{name}")
+    public List<Patient> filterpatient(@PathVariable("name") String name){
+       return this.repository.findByPatientsimilarName(name);
+    }
 }
