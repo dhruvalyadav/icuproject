@@ -23,9 +23,14 @@ CREATE TABLE IF NOT EXISTS `anthropometry` (
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`anthropometryid`) USING BTREE,
   KEY `patient` (`patient`),
-  CONSTRAINT `anthropometry_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `anthropometry_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `anthropometry` (`anthropometryid`, `patient`, `weight`, `height`, `bmi`, `bsaboyd`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 7, 70.000000, 0.017800, 220931.700543, 2.330000, 1, '2025-06-06 14:59:37', 1, '2025-06-06 14:59:37'),
+	(2, 8, 89.000000, 210.000000, 0.002018, 1.200000, 1, '2025-06-06 12:25:14', 1, '2025-06-06 12:25:14'),
+	(3, 9, 50.000000, 1.750000, 16.326531, 1.320000, 1, '2025-06-06 15:00:04', 1, '2025-06-06 15:00:04'),
+	(14, 20, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 
 CREATE TABLE IF NOT EXISTS `applicationversion` (
   `versionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -113,8 +118,12 @@ CREATE TABLE IF NOT EXISTS `icu` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`icuid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `icu` (`icuid`, `name`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 'jdhd sjjs', 1, 1, '2025-06-06 20:15:02', 0, '2025-06-06 22:16:39'),
+	(2, 'wjsj sbsbbsbsbs ddd', 1, 1, '2025-06-06 22:01:04', 0, '2025-06-06 22:16:27'),
+	(3, 'hdhhdhdhd', 1, 1, '2025-06-06 22:02:01', 1, '2025-06-06 22:11:29');
 
 CREATE TABLE IF NOT EXISTS `ivfluid` (
   `ivfluidid` int(11) NOT NULL AUTO_INCREMENT,
@@ -161,37 +170,32 @@ CREATE TABLE IF NOT EXISTS `menudetails` (
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`, `mainsort`, `subsort`, `active`, `ionicactive`, `mainicon`, `subicon`, `ionicdashboardicon`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(1, 'Dashboard', '', '/dashboard', 'Dashboard', 1, NULL, 1, 1, 'dashboard', NULL, NULL, 1, '2025-06-01 22:33:03', 1, '2025-06-01 22:33:03'),
-	(2, 'Quick Analysis', '', '/quick analysis', 'quick-analysis', 2, NULL, 1, 1, 'monitor', NULL, NULL, 1, '2025-06-01 22:36:29', 1, '2025-06-01 22:36:29'),
-	(3, 'Hourly Record', 'vitals', '/vitals', 'hour-record', 3, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-01 22:43:20'),
-	(4, 'Hourly Record', 'CVC', '/CVC', 'hour-record', 3, 2, 1, 1, 'monitor_heart', 'favorite', NULL, 1, '2025-06-01 22:45:08', 1, '2025-06-01 22:45:08'),
-	(5, 'Hourly Record', 'CNS', '/CNS', 'hour-record', 3, 3, 1, 1, 'monitor_heart', 'psychology', NULL, 1, '2025-06-01 22:45:44', 1, '2025-06-01 22:45:44'),
-	(6, 'Hourly Record', 'Pupil', '/Pupil', 'hour-record', 3, 4, 1, 1, 'monitor_heart', 'visibility', NULL, 1, '2025-06-01 22:46:06', 1, '2025-06-02 13:11:04'),
-	(7, 'Hourly Record', 'Intake', '/Intake', 'hour-record', 3, 5, 1, 1, 'monitor_heart', 'invert_colors', NULL, 1, '2025-06-01 22:46:27', 1, '2025-06-02 13:11:47'),
-	(8, 'Hourly Record', 'Output', '/Output', 'hour-record', 3, 6, 1, 1, 'monitor_heart', 'device_thermostat', NULL, 1, '2025-06-01 22:47:03', 1, '2025-06-01 22:47:16'),
-	(9, 'Patient details', 'anthropometry', '/patient/anthropometry', 'Patient-details', 4, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-01 23:01:19'),
-	(10, 'Patient details', 'edit', '/patient/edit', 'Patient-details', 4, 2, 1, 1, 'personal_injury', 'edit_note', NULL, 1, '2025-06-01 23:06:15', 1, '2025-06-01 23:06:15'),
-	(11, 'Patient details', 'admission', '/patient/admission', 'Patient-details', 4, 3, 1, 1, 'personal_injury', 'person_add', NULL, 1, '2025-06-01 23:25:28', 1, '2025-06-01 23:25:28'),
-	(12, 'Patient details', 'daysheet', '/patient/daysheet', 'Patient-details', 4, 4, 1, 1, 'personal_injury', 'today', NULL, 1, '2025-06-01 23:27:19', 1, '2025-06-01 23:27:19'),
-	(13, 'Physiotheropy', '', '/physiotheropy', 'Physiotheropy', 5, NULL, 1, 1, 'directions_run', NULL, NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-02 00:27:36'),
-	(14, 'Dailysheet', 'Hourly Observation', '/daysheet/HourlyObservation', 'HourlyObservation', 6, 1, 1, 1, 'view_day', 'monitor_heart', NULL, 1, '2025-06-02 00:35:56', 1, '2025-06-02 00:35:56'),
-	(15, 'Dailysheet', 'Patient Score', '/daysheet/PatientScore', 'Patient Score', 6, 2, 1, 1, 'view_day', 'score', NULL, 1, '2025-06-02 00:38:12', 1, '2025-06-02 00:38:12'),
-	(16, 'Dailysheet', 'Patient Test', '/daysheet/PatientTest', 'PatientTest', 6, 3, 1, 1, 'view_day', 'science', NULL, 1, '2025-06-02 00:39:33', 1, '2025-06-02 00:39:45'),
-	(17, 'Dailysheet', 'Embolism', '/daysheet/embolism', 'Embolism', 6, 4, 1, 1, 'view_day', 'coronavirus', NULL, 1, '2025-06-02 00:40:46', 1, '2025-06-02 00:40:46'),
-	(18, 'Patient Admission Details', 'Patient Medication Chart', '/daysheet/PatientMedicationChart', 'PatientMedicationChart', 7, 1, 1, 1, 'assignment_ind', 'insert_chart', NULL, 1, '2025-06-02 00:43:01', 1, '2025-06-02 00:43:01'),
-	(19, 'Patient Admission Details', 'Patient Medication log', '/daysheet/PatientMedicationLog', 'PatientMedicationLog', 7, 2, 1, 1, 'assignment_ind', 'history', NULL, 1, '2025-06-02 00:43:50', 1, '2025-06-02 00:43:50'),
-	(20, 'Ventilator', 'Ventilator mode', '/daysheet/VentilatorMode', 'VentilatorMode', 8, 1, 1, 1, 'assignment_ind', 'settings_input_hdmi', NULL, 1, '2025-06-02 00:45:26', 1, '2025-06-02 00:47:15'),
-	(21, 'Ventilator', 'Patient Ventilator', '/daysheet/PatientVentilator', 'PatientVentilator', 8, 2, 1, 1, 'assignment_ind', 'air', NULL, 1, '2025-06-02 00:47:27', 1, '2025-06-02 00:48:12'),
-	(22, 'Patient SOS Medication', '', '/daysheet/PatientSOSMedication', 'PatientSOSMedication', 9, NULL, 1, 1, 'emergency', NULL, NULL, 1, '2025-06-02 00:50:16', 1, '2025-06-02 00:54:37'),
-	(23, 'Lines and Tubes', 'Patient Lines Tubes', '/patient/Patientlinestubes', 'Patientlinestubes', 10, 1, 1, 1, 'plumbing', 'healing', NULL, 1, '2025-06-02 00:54:43', 1, '2025-06-02 00:54:43'),
-	(24, 'IV Fulid', 'Patient IV Fulid', '/patient/PatientIVFulid', 'PatientIVFulid', 11, 1, 1, 1, 'IV', 'invert_colors', NULL, 1, '2025-06-02 00:56:46', 1, '2025-06-02 00:56:46'),
-	(25, 'ICU', 'Shiftt RMO nurse', '/patient/ShifttRMOnurse', 'ShifttRMOnurse', 12, 1, 1, 1, 'local_hospital', 'group_work', NULL, 1, '2025-06-02 00:59:53', 1, '2025-06-02 13:09:58'),
-	(26, 'Patient Infusion', '', '/patient/PatientInfusion', 'PatientInfusion', 13, NULL, 1, 1, 'IV', NULL, NULL, 1, '2025-06-02 01:01:35', 1, '2025-06-02 01:02:16'),
-	(27, 'RMO Nursely', '', '/patient/RMONursely', 'RMONursely', 14, NULL, 1, 1, 'badge', NULL, NULL, 1, '2025-06-02 01:09:47', 1, '2025-06-02 01:09:47'),
-	(28, 'Consultant Patient Visit', '', '/patient/ConsultantPatientVisit', 'ConsultantPatientVisit', 15, NULL, 1, 1, 'supervised_user_circle', NULL, NULL, 1, '2025-06-02 01:11:03', 1, '2025-06-02 01:11:03'),
-	(29, 'Lines and Tubes', 'Edit Lines Tubes', '/patient/EditLinesTubes', 'EditLinesTubes', 10, 2, 1, 1, 'plumbing', 'edit', NULL, 1, '2025-06-02 01:15:19', 1, '2025-06-02 01:15:19'),
-	(30, 'IV Fulid', 'Edit IV Fulid', '/patient/IVFluid', 'IVFluid', 11, 2, 1, 1, 'IV', 'mode_edit', NULL, 1, '2025-06-02 01:16:41', 1, '2025-06-02 01:16:41'),
-	(31, 'ICU', 'ICU', '/patient/ICU', 'ICU', 12, 2, 1, 1, 'local_hospital', 'air', NULL, 1, '2025-06-02 01:18:51', 1, '2025-06-02 13:10:01');
+	(1, 'Dashboard', '', 'dashboard', 'DashboardComponent', 1, NULL, 1, 1, 'dashboard', NULL, NULL, 1, '2025-06-01 22:33:03', 1, '2025-06-02 22:40:22'),
+	(2, 'Quick Analysis', '', 'quickAnalysis', 'QuickAnalysisComponent', 2, NULL, 1, 1, 'monitor', NULL, NULL, 1, '2025-06-01 22:36:29', 1, '2025-06-02 22:40:27'),
+	(3, 'Dailysheet', 'vitals', 'vitals', 'VitalComponent', 6, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-07 11:09:38'),
+	(9, 'Patient details', 'anthropometry', 'patient/anthropometry', 'AnthropometryComponent', 4, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-02 22:41:13'),
+	(10, 'Patient details', 'edit', 'patient/edit', 'AddPatientComponent', 4, 2, 1, 1, 'personal_injury', 'edit_note', NULL, 1, '2025-06-01 23:06:15', 1, '2025-06-02 22:41:17'),
+	(11, 'Patient details', 'admission', 'patient/admission', 'PatientadmissionComponent', 4, 3, 1, 1, 'personal_injury', 'person_add', NULL, 1, '2025-06-01 23:25:28', 1, '2025-06-02 22:41:21'),
+	(12, 'Patient details', 'daysheet', 'patient/daysheet', 'PatientdaysheetComponent', 4, 4, 1, 1, 'personal_injury', 'today', NULL, 1, '2025-06-01 23:27:19', 1, '2025-06-02 22:41:29'),
+	(13, 'Physiotheropy', '', 'physiotheropy', 'PhysiothearpyComponent', 5, NULL, 1, 1, 'directions_run', NULL, NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-02 22:41:33'),
+	(14, 'Dailysheet', 'Hourly Observation', 'daysheet/HourlyObservation', 'HourlyobservationComponent', 6, 2, 1, 1, 'view_day', 'monitor_heart', NULL, 1, '2025-06-02 00:35:56', 1, '2025-06-07 11:09:44'),
+	(15, 'Dailysheet', 'Patient Score', 'daysheet/PatientScore', 'PatientadditionalscoresComponent', 6, 3, 1, 1, 'view_day', 'score', NULL, 1, '2025-06-02 00:38:12', 1, '2025-06-07 11:09:47'),
+	(16, 'Dailysheet', 'Patient Test', 'daysheet/PatientTest', 'PatientadditionaltestsComponent', 6, 4, 1, 1, 'view_day', 'science', NULL, 1, '2025-06-02 00:39:33', 1, '2025-06-07 11:09:50'),
+	(17, 'Dailysheet', 'Embolism', 'daysheet/embolism', 'EmbolismComponent', 6, 5, 1, 1, 'view_day', 'coronavirus', NULL, 1, '2025-06-02 00:40:46', 1, '2025-06-07 11:09:53'),
+	(18, 'Patient Admission Details', 'Patient Medication Chart', 'daysheet/PatientMedicationChart', 'PatientMedicationChartComponent', 7, 1, 1, 1, 'assignment_ind', 'insert_chart', NULL, 1, '2025-06-02 00:43:01', 1, '2025-06-02 22:41:55'),
+	(19, 'Patient Admission Details', 'Patient Medication log', 'daysheet/PatientMedicationLog', 'PatientMedicationLogComponent', 7, 2, 1, 1, 'assignment_ind', 'history', NULL, 1, '2025-06-02 00:43:50', 1, '2025-06-02 22:42:00'),
+	(20, 'Ventilator', 'Ventilator mode', 'daysheet/VentilatorMode', 'VentilatorModeComponent', 8, 1, 1, 1, 'assignment_ind', 'settings_input_hdmi', NULL, 1, '2025-06-02 00:45:26', 1, '2025-06-02 22:42:07'),
+	(21, 'Ventilator', 'Patient Ventilator', 'daysheet/PatientVentilator', 'PatientVentilatorComponent', 8, 2, 1, 1, 'assignment_ind', 'air', NULL, 1, '2025-06-02 00:47:27', 1, '2025-06-02 22:42:12'),
+	(22, 'Patient SOS Medication', '', 'daysheet/PatientSOSMedication', 'PatientSosMedicationComponent', 9, NULL, 1, 1, 'emergency', NULL, NULL, 1, '2025-06-02 00:50:16', 1, '2025-06-02 22:42:15'),
+	(23, 'Lines and Tubes', 'Patient Lines Tubes', 'patient/Patientlinestubes', 'PatientlinestubesComponent', 10, 1, 1, 1, 'plumbing', 'healing', NULL, 1, '2025-06-02 00:54:43', 1, '2025-06-02 22:42:19'),
+	(24, 'IV Fulid', 'Patient IV Fulid', 'patient/PatientIVFulid', 'PatientivfluidComponent', 11, 1, 1, 1, 'IV', 'invert_colors', NULL, 1, '2025-06-02 00:56:46', 1, '2025-06-02 22:42:25'),
+	(25, 'ICU', 'Shiftt RMO nurse', 'patient/ShifttRMOnurse', 'ShiftrmonurseComponent', 12, 1, 1, 1, 'local_hospital', 'group_work', NULL, 1, '2025-06-02 00:59:53', 1, '2025-06-02 22:42:28'),
+	(26, 'Patient Infusion', '', 'patient/PatientInfusion', 'PatientinfusionComponent', 13, NULL, 1, 1, 'IV', NULL, NULL, 1, '2025-06-02 01:01:35', 1, '2025-06-02 22:42:33'),
+	(27, 'RMO Nursely', '', 'patient/RMONursely', 'RmonurselogComponent', 14, NULL, 1, 1, 'badge', NULL, NULL, 1, '2025-06-02 01:09:47', 1, '2025-06-02 22:42:38'),
+	(28, 'Consultant Patient Visit', '', 'patient/ConsultantPatientVisit', 'ConsultantPatientVisitComponent', 15, NULL, 1, 1, 'supervised_user_circle', NULL, NULL, 1, '2025-06-02 01:11:03', 1, '2025-06-02 22:42:45'),
+	(29, 'Lines and Tubes', 'Edit Lines Tubes', 'patient/EditLinesTubes', 'EditlinesTubesComponent', 10, 2, 1, 1, 'plumbing', 'edit', NULL, 1, '2025-06-02 01:15:19', 1, '2025-06-02 22:42:50'),
+	(30, 'IV Fulid', 'Edit IV Fulid', 'patient/IVFluid', 'EditIVfuildComponent', 11, 2, 1, 1, 'IV', 'mode_edit', NULL, 1, '2025-06-02 01:16:41', 1, '2025-06-02 22:42:55'),
+	(31, 'ICU', 'ICU', 'patient/ICU', 'IcuComponent', 12, 2, 1, 1, 'local_hospital', 'air', NULL, 1, '2025-06-02 01:18:51', 1, '2025-06-02 22:43:08');
 
 CREATE TABLE IF NOT EXISTS `patient` (
   `patientid` int(11) NOT NULL AUTO_INCREMENT,
@@ -207,8 +211,13 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`patientid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patient` (`patientid`, `patientname`, `dob`, `age`, `sex`, `address`, `contact`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(7, 'jdjd eaeaes asassa', '2222-02-12 05:30:00', 98, 'Female', 'ffhhr rruruur owwowow zm zmzmz ncn', '1234567889', 1, 1, NULL, NULL, NULL),
+	(8, 'jdjd sosos nns', '3333-02-12 05:30:00', 98, 'Female', 'snsnns ssjsj sisiis sisiiiiiia ababss ', '1234567890', 1, 1, NULL, 0, NULL),
+	(9, 'dnnd mkkkaraea manahaaag', '1222-03-12 05:30:00', 97, 'Female', 'ss sbs sisiisisis asassaas nmkmkmk', '1234567890', 1, 1, NULL, 0, NULL),
+	(20, 'djdj sksksis aklall', '0445-03-12 05:30:00', 97, 'Female', 'snns shsh sytrwoohohn caxasa', '123456789', 1, 1, NULL, 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientadditionalscores` (
   `patientadditionalscoresid` int(11) NOT NULL AUTO_INCREMENT,
@@ -262,8 +271,12 @@ CREATE TABLE IF NOT EXISTS `patientadmission` (
   KEY `icu` (`icu`),
   CONSTRAINT `patientadmission_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON UPDATE CASCADE,
   CONSTRAINT `patientadmission_ibfk_2` FOREIGN KEY (`icu`) REFERENCES `icu` (`icuid`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientadmission` (`patientadmissionid`, `patient`, `admissiondate`, `icu`, `icuadmissiondate`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 8, '4558-03-12 05:30:00', 3, '7888-06-05 05:30:00', 1, '2025-06-07 20:22:40', 1, '2025-06-07 20:22:40'),
+	(2, 9, '4568-03-12 05:30:00', 2, '0566-04-23 05:30:00', 1, '2025-06-07 22:16:45', 1, '2025-06-07 22:16:45'),
+	(3, 8, '3445-03-12 05:30:00', 1, '0555-05-31 05:30:00', 1, '2025-06-07 22:45:22', 1, '2025-06-07 22:45:22');
 
 CREATE TABLE IF NOT EXISTS `patientdaysheet` (
   `patientdaysheetid` int(11) NOT NULL AUTO_INCREMENT,
