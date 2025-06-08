@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit{
   sidemenubaritems : menu[] = []
 
   ngOnInit(): void {
-    this.webclient.getAll<Menudetails[]>("getallmenuitems").subscribe(
+    this.webclient.getAll<Menudetails[]>("getallmenuitemsbymenuoreder").subscribe(
       (response)=>{
         response.map((res)=>{
           if(res.subname!='' && this.findsidemenubar(res.mainsort)){

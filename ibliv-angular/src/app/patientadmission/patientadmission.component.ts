@@ -13,60 +13,54 @@ import { Icu, Patient, Patientadmission } from '../entities';
 })
 export class PatientadmissionComponent implements OnInit
 {
-  activatedRoute = inject(ActivatedRoute);
-  webClient = inject(WebClient);
+  
+  patients : Patient[] = []
+  admittedpatients : Patientadmission[] = []
+  icu : Icu[] = []
+  mainspinner : boolean = false
+  spinner : boolean = true
+  viewadmittedpatient : boolean = false
+  icupatients : any[] = []
 
-  patientadmission = new Patientadmission;//{ icu: { icuid: 1 }, patient: { patientid: 1 } } as Patientadmission;
-  id:any;
-  icus: any;
-  icu=new Icu;
-  constructor(private route:Router){}
+  constructor(private route:Router,private webclient : WebClient){}
   ngOnInit(): void
   {
-   this.activatedRoute.paramMap.subscribe((params)=>
-    {
-      if(params.has('id'))
-      {
-        this.id = params.get('id');
-       //fetch patient details from API
-        this.webClient.get<Patient>(`/patient/${this.id}`).then
-        (
-          (res)=>
-          {
-            this.patientadmission.patient=res;
-          }
+    this.mainspinner = true
+    this.webclient.getAll<Patient[]>("patient-list").subscribe(
+      (response)=>{
+        this.patients=response
+        this.webclient.getAll<Patientadmission[]>("getalladmittedpatient").subscribe(
+          (response)=>{
+            this.admittedpatients = response
+            this.mainspinner = false
+            this.patients.map((pat)=>{
+              let admit = this.admittedpatients.filter((ad)=>{return ad.patient == pat})
+              this.icupatients.push({patient : pat,admit : admit[0]});
+            })
+          },(error)=>{}
         )
-
-      }
-    }
-   );
-
-   this.getIcuList();
-  }
-  getIcuList()
-  {
-    this.webClient.getAll<Icu[]>('/icu-list').subscribe((res)=>
-      {
-        this.icus = res;
-      }
+      },(error)=>{this.mainspinner = false}
     )
+  }
+
+  viewadmitted(){
+    this.viewadmittedpatient = !this.viewadmittedpatient
+  }
+  routeadmitpatient(id : Number|null)
+  {
+    this.route.navigate(['patient/admit/'+id])
   }
   onSave()
   {
-    console.log(this.patientadmission.icu.icuid);
-    // this.webClient.get<Icu>('/icu/'+this.patientadmission.icu.icuid).
-    // then((res)=>
-    //   {
-    //     this.patientadmission.icu = res;
-    //   }
-    // );
-    console.log(this.patientadmission.patient);
-    this.webClient.post<Patientadmission,Patientadmission>('/admit-patient',
-      this.patientadmission).
-    then((res)=>{
-      console.log(res);
-      alert('Patient admitted');
-      this.route.navigate(['/home/admitted-patients']);
-    });
+   
+  }
+  filterpatients(event : any){
+    if (event.target.value!=''){
+      this.spinner = false
+      this.webclient.getAll<Patient[]>("filterpatient/"+event.target.value).subscribe(
+        (response)=>{this.patients = response},(error)=>{this.spinner = false})
+    } else {
+      this.spinner = true
+    }
   }
 }

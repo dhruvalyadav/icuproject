@@ -84,7 +84,8 @@ const routes: Routes = [
   { path: "patient/ICU", component: IcuComponent },
 
   { path : "patientedits/:id",component : AdmittedPatientsComponent},
-  { path : "addpatient",component : AllPatientsComponent}
+  { path : "addpatient",component : AllPatientsComponent},
+  { path : "patient/admit/:id",component : EditPatientComponent}
 ];
 
 @NgModule({

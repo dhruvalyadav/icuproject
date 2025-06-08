@@ -13,7 +13,7 @@ import { WebClient } from '../web-client';
 })
 export class AddPatientComponent implements OnInit {
   constructor(private router : Router,private webclient : WebClient){}
-  patients : any[] = [
+  patients : Patient[] = [
   ]
 
   mainspinner : boolean = false
@@ -51,7 +51,6 @@ export class AddPatientComponent implements OnInit {
 
   spinner : boolean = true
   filterpatients(event : any){
-    console.log("jssj")
     if (event.target.value!=''){
       this.spinner = false
       this.webclient.getAll<Patient[]>("filterpatient/"+event.target.value).subscribe(

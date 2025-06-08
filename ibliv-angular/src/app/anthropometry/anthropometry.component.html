@@ -1,4 +1,5 @@
 <app-home></app-home>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
@@ -74,12 +75,14 @@
   
   <div class="anthropometry-form">
      <h3>Anthropometry Data</h3>
+     <form #anthropometryform="ngForm">
      <div class="input-group">
-       <input type="number" placeholder="Weight (kg)" name="weight" [(ngModel)]="anthropometry.weight">
-       <input type="number" placeholder="Height (cm)" name="height" [(ngModel)]="anthropometry.height">
-       <input type="number" placeholder="Body Fat" name="BodyFat" [(ngModel)]="anthropometry.bsaboyd">
+       <input type="number" required placeholder="Weight (kg)" name="weight" [(ngModel)]="anthropometry.weight">
+       <input type="number" required placeholder="Height (cm)" name="height" [(ngModel)]="anthropometry.height">
+       <input type="number" required placeholder="Body Fat" name="BodyFat" [(ngModel)]="anthropometry.bsaboyd">
      </div>
-     <button class="update-btn" (click)="updateant()">Update Measurements</button>
+     <button type="submit" class="update-btn" (click)="updateant(anthropometryform)">Update Measurements</button>
+    </form>
    </div>
 </div>
 <app-footer></app-footer>

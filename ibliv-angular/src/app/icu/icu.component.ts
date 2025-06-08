@@ -23,15 +23,25 @@ export class IcuComponent implements OnInit{
     )
   }
 
+  onEdit(ic : Icu){
+   this.icuadd = true
+   this.icu = ic
+  }
+  onDelete(icu : Icu){
+
+  }
+
   addicu(){
     this.icuadd = true
   }
   createicu(){
-    this.icu.createddate = new Date()
+    if(this.icu.createddate==null){
+      this.icu.createddate = new Date()
+    }
     this.icu.updateddate = new Date()
     this.icu.createdby = 1
     this.webclient.post<Icu,typeof Icu>("addicu",this.icu)
-    .then((res)=>{alert("Icu is created")})
+    .then((res)=>{alert("Icu is created");window.location.reload()})
     .catch((res)=>{})
   }
 }

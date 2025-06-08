@@ -192,15 +192,12 @@ export class Patientadmission {
   patientadmissionid: number|null=null;
   admissiondate: Date|null=null;
   icuadmissiondate: Date|null=null;
-  icudischargedate: Date|null=null;
   createdby: number=0;
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheetList: Patientdaysheet[]=[];
   icu: Icu=new Icu;
   patient: Patient=new Patient;
-  patientmedicationchartList: Patientmedicationchart[]=[];
 
   constructor() {}
 }

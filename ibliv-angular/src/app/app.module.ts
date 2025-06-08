@@ -67,6 +67,7 @@ import { HourlyobservationComponent } from './hourlyobservation/hourlyobservatio
 import { EditlinesTubesComponent } from './editlines-tubes/editlines-tubes.component';
 import { EditIVfuildComponent } from './edit-ivfuild/edit-ivfuild.component';
 import { UrlComponent } from './url/url.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { UrlComponent } from './url/url.component';
     HourlyobservationComponent,
     EditlinesTubesComponent,
     EditIVfuildComponent,
-    UrlComponent
+    UrlComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

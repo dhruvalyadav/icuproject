@@ -20,4 +20,10 @@ public class MenuController {
     {
         return this.menurepository.findAll();
     }
+    
+    @GetMapping("/getallmenuitemsbymenuoreder")
+    public List<Menudetails> getallmenuitemsbymenuoreder()
+    {
+        return this.menurepository.findAllByOrder();
+    }
 }

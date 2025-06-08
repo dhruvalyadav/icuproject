@@ -2,21 +2,28 @@
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
-<div class="patient-table" *ngIf="!mainspinner && !icu">
+<div class="patient-table" *ngIf="!mainspinner && !icuadd">
   <input type="text" placeholder="search" class="search">
   <button class="edit" (click)="addicu()">Add ICU</button>
   <div class="dot-spinner" [hidden]="spinner"></div>
-  <table class="patient-table">
+  <table >
     <thead>
       <tr>
         <th>ICU Name</th>
+        <th>Active</th>
         <th>Create Date</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let ic of Icu">
         <td>{{ic.name}}</td>
+        <td>{{ic.active==1 ? "yes" : "No"}}</td>
         <td>{{ic.createddate}}</td>
+        <td class="actions">
+          <button (click)="onEdit(ic)" class="edit">Edit</button>
+          <button (click)="onDelete(ic)" class="del">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -47,3 +54,4 @@
     </div>
   </form>
 </div>
+<app-footer></app-footer>

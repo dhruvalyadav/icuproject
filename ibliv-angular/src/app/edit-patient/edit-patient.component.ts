@@ -1,7 +1,8 @@
 import { WebClient } from './../web-client';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { Patient } from '../entities';
+import { Icu, Patient, Patientadmission } from '../entities';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-patient',
@@ -12,34 +13,54 @@ import { Patient } from '../entities';
 })
 export class EditPatientComponent implements OnInit
 {
-  activatedRoute=inject(ActivatedRoute);
-  webClient=inject(WebClient);
+  patient : Patient = new Patient()
+  mainspinner : boolean = false
+  dotspinner : boolean = true
+  updatepatient : boolean = false
+  icus : Icu[] = []
+  alertmode : boolean = false
 
-  patient=new Patient;
+  constructor(private route:Router,private router : ActivatedRoute,private webclient : WebClient){}
 
-  ngOnInit(): void
-  {
-
-    this.activatedRoute.paramMap.subscribe((params)=>{
-      if(params.has('id'))
-      {
-        const id=params.get('id');
-        //fetch patient details from API
-        console.log(id);
-      }
-    });
-    this.getPatientById();
+  Patadmission : Patientadmission = new Patientadmission()
+  ngOnInit(): void {
+     this.mainspinner = true
+     const patientid = Number(this.router.snapshot.paramMap.get("id"))     
+     this.webclient.getAll<Icu[]>("getallicu").subscribe(
+      (response)=>{
+        this.icus = response
+        this.webclient.get<Patient>("patient/"+patientid)
+        .then((res)=>{this.Patadmission.patient = res;this.mainspinner = false})
+        .catch((error)=>{})
+      },(error)=>{}
+     )
   }
-  getPatientById()
-  {
-    this.webClient.get<Patient>('/patient/{id}').then((res)=>{
-      this.patient=res;
-    })
-  }
-  updatePatient()
-  {
-    this.webClient.put('/update-patient',this.patient).then((res)=>{
-      alert("patient updated");
-    })
+
+  icuid : Number = 0
+  message : string = 'Admission done sucessfully'
+  alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
+
+  updateadmission(form : NgForm){
+    if(form.invalid){
+      this.alertmode = true
+      this.alerttype = 'error'
+      this.message = 'Fill all * fields'
+    } else {
+      this.dotspinner = false
+      this.Patadmission.createddate = new Date()
+      this.Patadmission.createdby = 1
+      this.Patadmission.updatedby = 1
+      this.Patadmission.updateddate = new Date()
+      this.Patadmission.icu = this.icus.filter((ic)=>{return ic.icuid==this.icuid})[0]
+      console.log(this.Patadmission)
+      this.webclient.post<Patientadmission,typeof Patientadmission>("saveadmittedpatient",this.Patadmission)
+      .then((res)=>{
+        this.message = 'Admission done sucessfully';
+        this.alerttype = 'success'
+        this.alertmode = true
+        this.dotspinner = true;this.route.navigate(['patient/admission'])
+      })
+      .catch((error)=>{console.log(error)})
+    }
   }
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Patient, Patientadmission } from '../entities';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebClient } from '../web-client';
-import { DatePipe } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admitted-patients',
@@ -20,6 +20,11 @@ export class AdmittedPatientsComponent implements OnInit{
     patientid : number = 0
     patient : Patient = new Patient()
     dob : string = ''
+    alertmode : boolean = false
+  message : string = 'Admission done sucessfully'
+  alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
+
+    create : boolean = true
     ngOnInit(): void {
       this.mainspinner = true
       this.patientid = Number(this.router.snapshot.paramMap.get("id"))     
@@ -39,13 +44,23 @@ export class AdmittedPatientsComponent implements OnInit{
       return `${day}-${month}-${year}`;
     }
 
-    update(){
-      this.patient.dob = new Date(this.dob)
-      this.webclient.put<Patient,typeof Patient>("update-patient",this.patient)
-      .then((res)=>{
-        alert("patient edit sucessfully")
-        this.route.navigate(["patient/edit"])
-      })
-      .catch((error)=>{})
+    update(patientform : NgForm){
+      if(patientform.invalid){
+          this.alertmode = true
+          this.message = "fill all * mark fields"
+          this.alerttype = 'error'
+      }else {
+        this.create = false
+        this.patient.dob = new Date(this.dob)
+        this.webclient.put<Patient,typeof Patient>("update-patient",this.patient)
+        .then((res)=>{
+         this.create = true
+         this.alertmode = true
+         this.message = "Sucessfully Created Patient"
+         this.alerttype = 'success'
+         this.route.navigate(["patient/edit"])
+        })
+        .catch((error)=>{})
+      }
     }
 }

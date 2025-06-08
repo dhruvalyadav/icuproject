@@ -1,0 +1,7 @@
+<div class="alert" [class]="type" *ngIf="show">
+    <div class="content">
+      <span class="icon">{{ icon }}</span>
+      <span class="message">{{ message }}</span>
+    </div>
+    <button class="close" (click)="close()">×</button>
+  </div>

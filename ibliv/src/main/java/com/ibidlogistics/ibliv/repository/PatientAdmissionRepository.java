@@ -6,11 +6,9 @@ package com.ibidlogistics.ibliv.repository;
 
 import com.ibidlogistics.ibliv.model.Patientadmission;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Laptop
- */
+@Repository
 public interface PatientAdmissionRepository extends JpaRepository<Patientadmission, Integer>
 {
     
