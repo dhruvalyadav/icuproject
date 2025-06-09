@@ -41,10 +41,14 @@ import { PatientinfusionComponent } from './patientinfusion/patientinfusion.comp
 import { RmonurselogComponent } from './rmonurselog/rmonurselog.component';
 import { WebClient } from './web-client';
 import { menu , submenu , Menudetails } from './entities';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   /*{
     path: "", pathMatch:'full', redirectTo:'/login'
+  },
+  {
+    path : "login" ,component : LoginComponent
   },*/
   {
     path: "",

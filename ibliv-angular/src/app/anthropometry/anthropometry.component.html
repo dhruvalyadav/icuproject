@@ -30,10 +30,10 @@
         <td>{{ant.patient.sex}}</td>
         <td>{{ant.patient.address}}</td>
         <td>{{ant.patient.contact}}</td>
-        <td>{{ant.weight}}</td>
-        <td>{{ant.height}}</td>
-        <td>{{ant.bmi.toExponential(1)}}</td>
-        <td>{{ant.bsaboyd}}</td>
+        <td>{{ant.weight!=null ? ant.weight : '-'}}</td>
+        <td>{{ant.height!=null ? ant.height : '-'}}</td>
+        <td>{{ant.bmi!=null ? ant.bmi.toExponential(1) : '-'}}</td>
+        <td>{{ant.bsaboyd!=null ? ant.bsaboyd : '-'}}</td>
         <td class="actions">
           <button (click)="onanthropometryedit(ant,i)" class="edit">Update</button>
         </td>

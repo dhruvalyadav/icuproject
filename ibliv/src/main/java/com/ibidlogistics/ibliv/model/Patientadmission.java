@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.ibidlogistics.ibliv.model;
 
 import jakarta.persistence.Basic;
@@ -63,16 +60,16 @@ public class Patientadmission implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
-    private List<Patientdaysheet> patientdaysheetList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
+    private List<Patientdaysheet> patientdaysheetList;*/
     @JoinColumn(name = "icu", referencedColumnName = "icuid")
     @ManyToOne(optional = false)
     private Icu icu;
     @JoinColumn(name = "patient", referencedColumnName = "patientid")
     @ManyToOne(optional = false)
     private Patient patient;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
-    private List<Patientmedicationchart> patientmedicationchartList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "patientadmission")
+    private List<Patientmedicationchart> patientmedicationchartList;*/
 
     public Patientadmission() {
     }
@@ -142,13 +139,13 @@ public class Patientadmission implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientdaysheet> getPatientdaysheetList() {
+    /*public List<Patientdaysheet> getPatientdaysheetList() {
         return patientdaysheetList;
     }
 
     public void setPatientdaysheetList(List<Patientdaysheet> patientdaysheetList) {
         this.patientdaysheetList = patientdaysheetList;
-    }
+    }*/
 
     public Icu getIcu() {
         return icu;
@@ -166,13 +163,13 @@ public class Patientadmission implements Serializable {
         this.patient = patient;
     }
 
-    public List<Patientmedicationchart> getPatientmedicationchartList() {
+    /*public List<Patientmedicationchart> getPatientmedicationchartList() {
         return patientmedicationchartList;
     }
 
     public void setPatientmedicationchartList(List<Patientmedicationchart> patientmedicationchartList) {
         this.patientmedicationchartList = patientmedicationchartList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

@@ -68,6 +68,7 @@ import { EditlinesTubesComponent } from './editlines-tubes/editlines-tubes.compo
 import { EditIVfuildComponent } from './edit-ivfuild/edit-ivfuild.component';
 import { UrlComponent } from './url/url.component';
 import { AlertComponent } from './alert/alert.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { AlertComponent } from './alert/alert.component';
     EditIVfuildComponent,
     UrlComponent,
     AlertComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

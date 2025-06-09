@@ -74,7 +74,7 @@ public class Patientdaysheet implements Serializable {
     @JoinColumn(name = "intensivist", referencedColumnName = "userid")
     @ManyToOne(optional = false)
     private User intensivist;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
     private List<Patientlinestubes> patientlinestubesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
     private List<Hourlyobservation> hourlyobservationList;
@@ -89,7 +89,7 @@ public class Patientdaysheet implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
     private List<Embolism> embolismList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientdaysheet")
-    private List<Patientventilator> patientventilatorList;
+    private List<Patientventilator> patientventilatorList;*/
 
     public Patientdaysheet() {
     }
@@ -191,7 +191,7 @@ public class Patientdaysheet implements Serializable {
         this.intensivist = intensivist;
     }
 
-    public List<Patientlinestubes> getPatientlinestubesList() {
+    /*public List<Patientlinestubes> getPatientlinestubesList() {
         return patientlinestubesList;
     }
 
@@ -253,7 +253,7 @@ public class Patientdaysheet implements Serializable {
 
     public void setPatientventilatorList(List<Patientventilator> patientventilatorList) {
         this.patientventilatorList = patientventilatorList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

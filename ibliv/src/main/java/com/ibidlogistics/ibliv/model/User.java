@@ -77,7 +77,7 @@ public class User implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(mappedBy = "consultant1")
+    /*@OneToMany(mappedBy = "consultant1")
     private List<Patientdaysheet> patientdaysheetList;
     @OneToMany(mappedBy = "consultant2")
     private List<Patientdaysheet> patientdaysheetList1;
@@ -106,7 +106,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "administeredby")
     private List<Patientsosmedication> patientsosmedicationList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderedbydoctor")
-    private List<Patientsosmedication> patientsosmedicationList1;
+    private List<Patientsosmedication> patientsosmedicationList1;*/
 
     public User() {
     }
@@ -219,7 +219,7 @@ public class User implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientdaysheet> getPatientdaysheetList() {
+    /*public List<Patientdaysheet> getPatientdaysheetList() {
         return patientdaysheetList;
     }
 
@@ -337,7 +337,7 @@ public class User implements Serializable {
 
     public void setPatientsosmedicationList1(List<Patientsosmedication> patientsosmedicationList1) {
         this.patientsosmedicationList1 = patientsosmedicationList1;
-    }
+    }*/
 
     @Override
     public int hashCode() {

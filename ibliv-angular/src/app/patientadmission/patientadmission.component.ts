@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { inject } from '@angular/core';
+import {  Router } from '@angular/router';
 import { WebClient } from '../web-client';
-import { Icu, Patient, Patientadmission } from '../entities';
+import { Icu, Patient, Patientadmission ,Admissionstatus} from '../entities';
+
 
 @Component({
   selector: 'app-patientadmission',
@@ -21,7 +21,8 @@ export class PatientadmissionComponent implements OnInit
   spinner : boolean = true
   viewadmittedpatient : boolean = false
   icupatients : any[] = []
-
+  admits : Patient[] = []
+  
   constructor(private route:Router,private webclient : WebClient){}
   ngOnInit(): void
   {
@@ -33,9 +34,8 @@ export class PatientadmissionComponent implements OnInit
           (response)=>{
             this.admittedpatients = response
             this.mainspinner = false
-            this.patients.map((pat)=>{
-              let admit = this.admittedpatients.filter((ad)=>{return ad.patient == pat})
-              this.icupatients.push({patient : pat,admit : admit[0]});
+            this.admits = this.admittedpatients.map((adpat)=>{
+              return adpat.patient
             })
           },(error)=>{}
         )
@@ -54,11 +54,25 @@ export class PatientadmissionComponent implements OnInit
   {
    
   }
-  filterpatients(event : any){
+  filterpatient(event : any){
     if (event.target.value!=''){
       this.spinner = false
-      this.webclient.getAll<Patient[]>("filterpatient/"+event.target.value).subscribe(
-        (response)=>{this.patients = response},(error)=>{this.spinner = false})
+      this.patients = this.patients.filter((pat)=>{
+        return pat.patientname.includes(event.target.value)
+      })
+      this.spinner = true
+    } else {
+      this.spinner = true
+    }
+  }
+
+  filteradmittedpatients(event : any){
+    if (event.target.value!=''){
+      this.spinner = false
+      this.admittedpatients = this.admittedpatients.filter((pat)=>{
+        return pat.patient.patientname.includes(event.target.value)
+      })
+      this.spinner = true
     } else {
       this.spinner = true
     }

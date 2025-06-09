@@ -1,1 +1,33 @@
 <app-home></app-home>
+<div class="patient-table" *ngIf="!mainspinner && !adddaysheet">
+    <input type="text" placeholder="search patient" class="search" (change)="filterdaysheet($event)">
+    <div class="dot-spinner" [hidden]="spinner"></div>
+    <button class="edit">Add Day Sheet</button>
+    <table>
+      <thead>
+        <tr>
+        <th>Patient Name</th>
+        <th>Date</th>
+        <th>Admit Date</th>
+        <th>ICU Admit Date</th>
+        <th>consultant 1</th>
+        <th>consultant 2</th>
+        <th>consultant 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patientsdaysheet">
+        <td>{{patient.patientadmission.patient.patientname}}</td>
+         <td >{{patient.date}}</td>
+         <td>{{patient.patientadmission.patientadmissionid}}</td>
+         <td>{{patient.patientadmission.icuadmissiondate}}</td>
+         <td>{{patient.consultant1.name}}</td>
+         <td>{{patient.consultant2.name}}</td>
+         <td>{{patient.consultant3.name}}</td>
+        </tr>
+        <tr *ngIf="patientsdaysheet.length === 0">
+          <td colspan="7" class="no-patients">No Patients found</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

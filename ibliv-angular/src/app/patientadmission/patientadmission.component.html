@@ -3,17 +3,17 @@
     <div class="spinner-gradient"></div>
   </div>
   <div class="patient-table" *ngIf="!mainspinner && !viewadmittedpatient">
-    <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
+    <input type="text" placeholder="search patient" class="search" (change)="filterpatient($event)">
     <div class="dot-spinner" [hidden]="spinner"></div>
     <button  class="del" (click)="viewadmitted()">View Admitted Patients</button>
     <table>
       <thead>
         <tr>
-          <th>Name</th>
+        <th>Patient Name</th>
         <th>DOB</th>
         <th>Age</th>
         <th>Sex</th>
-        <th>Address</th>
+        <th>Patient Address</th>
         <th>Contact</th>
         <th>Actions</th>
         </tr>
@@ -37,30 +37,26 @@
     </table>
   </div>
   <div class="patient-table" *ngIf="!mainspinner && viewadmittedpatient">
-    <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
+    <input type="text" placeholder="search patient" class="search" (change)="filteradmittedpatients($event)">
     <div class="dot-spinner" [hidden]="spinner"></div>
     <button  class="del" (click)="viewadmitted()">View Patients</button>
     <table>
       <thead>
         <tr>
-        <th>Name</th>
-        <th>Adress</th>
-        <th>Admission Date</th>
-        <th>ICU Admission Date</th>
-        <th>ICU</th>
-        <th>Actions</th>
+        <th>Patient Name</th>
+        <th>Patient Address</th>
+        <th>Admit Date</th>
+        <th>ICU Admit Date</th>
+        <th>ICU Details(Name)</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let patient of admittedpatients">
         <td>{{patient.patient.patientname}}</td>
          <td >{{patient.patient.address}}</td>
-         <td>{{patient.admissiondate}}</td>
-         <td>{{patient.icuadmissiondate}}</td>
+         <td>{{patient.admissiondate | date:'shortDate'}}</td>
+         <td>{{patient.icuadmissiondate | date:'shortDate'}}</td>
          <td>{{patient.icu.name}}</td>
-          <td class="actions">
-            <button class="edit">Edit</button>
-          </td>
         </tr>
         <tr *ngIf="admittedpatients.length === 0">
           <td colspan="7" class="no-patients">No Admitted Patients found</td>

@@ -214,15 +214,6 @@ export class Patientdaysheet {
   consultant2: User=new User;
   consultant3: User=new User;
   intensivist: User=new User;
-  patientlinestubesList: Patientlinestubes[]=[];
-  hourlyobservationList: Hourlyobservation[]=[];
-  rmonurselogList: Rmonurselog[]=[];
-  consultantpatientvisitList: Consultantpatientvisit[]=[];
-  patientadditionaltestsList: Patientadditionaltests[]=[];
-  patientadditionalscoresList: Patientadditionalscores[]=[];
-  embolismList: Embolism[]=[];
-  patientventilatorList: Patientventilator[]=[];
-
   constructor() {}
 }
 
@@ -442,21 +433,6 @@ export class User {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheetList: Patientdaysheet[]=[];
-  patientdaysheetList1: Patientdaysheet[]=[];
-  patientdaysheetList2: Patientdaysheet[]=[];
-  patientdaysheetList3: Patientdaysheet[]=[];
-  patientmedicationlogList: Patientmedicationlog[]=[];
-  rmonurselogList: Rmonurselog[]=[];
-  consultantpatientvisitList: Consultantpatientvisit[]=[];
-  shiftrmonurseList: Shiftrmonurse[]=[];
-  shiftrmonurseList1: Shiftrmonurse[]=[];
-  patientinfusionList: Patientinfusion[]=[];
-  userroleList: Userrole[]=[];
-  usertokenList: Usertoken[]=[];
-  resettokenList: Resettoken[]=[];
-  patientsosmedicationList: Patientsosmedication[]=[];
-  patientsosmedicationList1: Patientsosmedication[]=[];
 
   constructor() {}
 }
@@ -528,3 +504,7 @@ export class menu {
    isOpen: boolean = false;
 }
 
+export class Admissionstatus{
+  patientadmission : Patientadmission|null=null
+  addedstatus : boolean|null=null
+}
