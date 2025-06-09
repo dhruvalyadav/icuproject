@@ -1,4 +1,4 @@
-<app-home></app-home>
+<app-menu></app-menu>
 <div class="spinner-box" *ngIf="mainspinner">
     <div class="spinner-gradient"></div>
   </div>
@@ -21,7 +21,7 @@
       <tbody>
         <tr *ngFor="let patient of patients">
         <td>{{patient.patientname}}</td>
-         <td>{{patient.dob | date:'shortDate'}}</td>
+         <td>{{patient.dob }}</td>
          <td>{{patient.age}}</td>
          <td>{{patient.sex}}</td>
          <td>{{patient.address}}</td>
@@ -54,8 +54,8 @@
         <tr *ngFor="let patient of admittedpatients">
         <td>{{patient.patient.patientname}}</td>
          <td >{{patient.patient.address}}</td>
-         <td>{{patient.admissiondate | date:'shortDate'}}</td>
-         <td>{{patient.icuadmissiondate | date:'shortDate'}}</td>
+         <td>{{patient.admissiondate }}</td>
+         <td>{{patient.icuadmissiondate}}</td>
          <td>{{patient.icu.name}}</td>
         </tr>
         <tr *ngIf="admittedpatients.length === 0">
@@ -64,4 +64,4 @@
       </tbody>
     </table>
   </div>
-  <app-footer></app-footer>
+<app-footer></app-footer>

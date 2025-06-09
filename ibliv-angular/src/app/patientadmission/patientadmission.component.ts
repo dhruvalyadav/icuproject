@@ -7,7 +7,6 @@ import { Icu, Patient, Patientadmission ,Admissionstatus} from '../entities';
 @Component({
   selector: 'app-patientadmission',
   standalone: false,
-
   templateUrl: './patientadmission.component.html',
   styleUrl: './patientadmission.component.scss'
 })
