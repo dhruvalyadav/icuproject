@@ -11,7 +11,8 @@
 <p-button severity="info" *ngIf="!visible" (click)="visible=!visible" [style]="{'--p-button-primary-color':'red'}">
   <i class="pi pi-bars"></i>
 </p-button>-->
-<div class="side-menu-container" [class.menu-open]="isMenuOpen">
+
+<!--<div class="side-menu-container" [class.menu-open]="isMenuOpen">
   <button class="menu-toggle" (click)="toggleMenu()">
     <span class="material-icons">{{ isMenuOpen ? 'close' : 'menu' }}</span>
   </button>
@@ -57,4 +58,49 @@
       </button>
     </div>
   </div>
+</div>-->
+
+<div id="sidebar" [class.hide]="isMenuOpen">
+  <div class="brand" (click)="toggleMenu()" style="cursor: pointer;" >
+    <div class="bx">
+      <span class="material-icons">home</span>
+    </div>
+    <span class="brand-name" *ngIf="!isMenuOpen">ICU</span>
+  </div>
+
+  <ul class="side-menu top">
+    <li *ngFor="let item of sidemenubaritems"  
+        [class.active]="isActive(item.link)" 
+        (click)="navigateTo(item.link)">
+      <a>
+        <i class="bx material-icons">{{ item.mainicon }}</i>
+        <span *ngIf="!isMenuOpen">{{ item.label }}</span>
+      </a>
+      
+      <!--<div class="submenu" *ngIf="item.isOpen && item.subitems.length > 0 && isMenuOpen">
+        <div *ngFor="let subitem of item.subitems" 
+             [class.active-submenu]="isActive(subitem.link)"
+             (click)="$event.stopPropagation(); navigateTo(subitem.link)">
+          <a>
+            <i class="bx material-icons">{{ subitem.subicon }}</i>
+            <span>{{ subitem.subname }}</span>
+          </a>
+        </div>
+      </div>-->
+    </li>
+  </ul>
+
+  <!--<div class="user-section" *ngIf="isMenuOpen">
+    <div class="profile">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+      <div class="user-details">
+        <span class="user-name">John Doe</span>
+        <span class="user-email">johnexample.com</span>
+      </div>
+    </div>
+    <button class="logout-btn" (click)="logout()">
+      <i class="bx material-icons">logout</i>
+      <span>Logout</span>
+    </button>
+  </div>-->
 </div>

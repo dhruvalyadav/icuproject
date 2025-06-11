@@ -18,7 +18,7 @@
 .menu li a:hover {
   color: #007ad9;
 }*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :host {
@@ -219,7 +219,6 @@
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .side-menu-container {
     width: 0;
@@ -250,7 +249,7 @@
   }
 
   .menu-items {
-    max-height: calc(100vh - 200px); /* Adjusted for mobile */
+    max-height: calc(100vh - 200px); 
   }
 }
 
@@ -304,4 +303,4 @@
 
 .menu-item.has-subitems {
   position: relative;
-}
+}*/

@@ -42,6 +42,7 @@ import { RmonurselogComponent } from './rmonurselog/rmonurselog.component';
 import { WebClient } from './web-client';
 import { menu , submenu , Menudetails } from './entities';
 import { LoginComponent } from './login/login.component';
+import { UrlComponent } from './url/url.component';
 
 const routes: Routes = [
   /*{
@@ -89,7 +90,8 @@ const routes: Routes = [
 
   { path : "patientedits/:id",component : AdmittedPatientsComponent},
   { path : "addpatient",component : AllPatientsComponent},
-  { path : "patient/admit/:id",component : EditPatientComponent}
+  { path : "patient/admit/:id",component : EditPatientComponent},
+  {path : "reports",component : UrlComponent}
 ];
 
 @NgModule({
