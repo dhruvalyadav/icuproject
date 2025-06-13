@@ -7,6 +7,7 @@ import com.ibidlogistics.ibliv.repository.MenudeatailsRepository;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,5 +26,11 @@ public class MenuController {
     public List<Menudetails> getallmenuitemsbymenuoreder()
     {
         return this.menurepository.findAllByOrder();
+    }
+    
+    @GetMapping("/getallmenuitemsmenunamebymenuoreder/{mainname}")
+    public List<Menudetails> getallmenuitemsmenunamebymenuoreder(@PathVariable("mainname") String mainname)
+    {
+        return this.menurepository.findByMainnameWithOrder(mainname);
     }
 }

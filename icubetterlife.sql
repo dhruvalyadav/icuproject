@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `anthropometry` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `anthropometry` (`anthropometryid`, `patient`, `weight`, `height`, `bmi`, `bsaboyd`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(1, 7, 70.000000, 0.017800, 220931.700543, 2.330000, 1, '2025-06-06 14:59:37', 1, '2025-06-06 14:59:37'),
 	(2, 8, 89.000000, 210.000000, 0.002018, 1.200000, 1, '2025-06-06 12:25:14', 1, '2025-06-06 12:25:14'),
 	(3, 9, 50.000000, 1.750000, 16.326531, 1.320000, 1, '2025-06-06 15:00:04', 1, '2025-06-06 15:00:04'),
 	(14, 20, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
@@ -187,9 +186,8 @@ CREATE TABLE IF NOT EXISTS `menudetails` (
 
 INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`, `mainsort`, `subsort`, `active`, `ionicactive`, `mainicon`, `subicon`, `ionicdashboardicon`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 'Dashboard', '', 'dashboard', 'DashboardComponent', 1, NULL, 1, 1, 'dashboard', NULL, NULL, 1, '2025-06-01 22:33:03', 1, '2025-06-02 22:40:22'),
-	(2, 'Quick Analysis', '', 'quickAnalysis', 'QuickAnalysisComponent', 2, NULL, 1, 1, 'monitor', NULL, NULL, 1, '2025-06-01 22:36:29', 1, '2025-06-02 22:40:27'),
 	(3, 'Admin', 'vitals', 'vitals', 'VitalComponent', 4, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-09 22:38:22'),
-	(9, 'Patient', 'anthropometry', 'patient/anthropometry', 'AnthropometryComponent', 3, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-09 22:38:09'),
+	(9, 'Patient', 'anthropometry', 'patient', 'AnthropometryComponent', 3, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-12 18:29:49'),
 	(12, 'Patient', 'daysheet', 'patient/daysheet', 'PatientdaysheetComponent', 3, 2, 1, 1, 'personal_injury', 'today', NULL, 1, '2025-06-01 23:27:19', 1, '2025-06-09 22:39:13'),
 	(13, 'Patient', 'physiotheropy', 'physiotheropy', 'PhysiothearpyComponent', 3, 3, 1, 1, 'directions_run', 'person_add', NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-09 22:39:16'),
 	(14, 'Patient', 'Hourly Observation', 'daysheet/HourlyObservation', 'HourlyobservationComponent', 3, 4, 1, 1, 'view_day', 'monitor_heart', NULL, 1, '2025-06-02 00:35:56', 1, '2025-06-09 22:39:19'),
@@ -229,7 +227,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `patient` (`patientid`, `patientname`, `dob`, `age`, `sex`, `address`, `contact`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(7, 'jdjd eaeaes asassa', '2222-02-12 05:30:00', 98, 'Female', 'ffhhr rruruur owwowow zm zmzmz ncn', '1234567889', 1, 1, NULL, NULL, NULL),
 	(8, 'jdjd sosos nns', '3333-02-12 05:30:00', 98, 'Female', 'snsnns ssjsj sisiis sisiiiiiia ababss ', '1234567890', 1, 1, NULL, 0, NULL),
 	(9, 'dnnd mkkkaraea manahaaag', '1222-03-12 05:30:00', 97, 'Female', 'ss sbs sisiisisis asassaas nmkmkmk', '1234567890', 1, 1, NULL, 0, NULL),
 	(20, 'djdj sksksis aklall', '0445-03-12 05:30:00', 97, 'Female', 'snns shsh sytrwoohohn caxasa', '123456789', 1, 1, NULL, 0, NULL);

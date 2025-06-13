@@ -2,39 +2,37 @@
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
-<div class="patient-table" *ngIf="!mainspinner">
+<div id="content">
   <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
-  <div class="dot-spinner" [hidden]="spinner"></div>
-  <button (click)="addpatient()" class="del">Add New Patient</button>
-  <table>
-    <thead>
-      <tr>
-        <th>Patient Name</th>
-        <th>DOB</th>
-        <th>Age</th>
-        <th>Sex</th>
-        <th>Patient Address</th>
-        <th>Contact</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let patient of patients">
-        <td>{{patient.patientname}}</td>
-        <td>{{patient.dob | date:'shortDate'}}</td>
-        <td>{{patient.age}}</td>
-        <td>{{patient.sex}}</td>
-        <td>{{patient.address}}</td>
-        <td>{{patient.contact}}</td>
-        <td class="actions">
-          <button (click)="onEdit(patient)" class="edit">Edit</button>
-          <button (click)="onDelete(patient)" class="del">Delete</button>
-        </td>
-      </tr>
-      <tr *ngIf="patients.length === 0">
-        <td colspan="7" class="no-patients">No patients found</td>
-      </tr> 
-    </tbody>
-  </table>
+  <div class="cards">
+    <div *ngFor="let patient of patients" class="patient-card"  (click)="takinginput(patient.patientid)">
+      <div class="card-header">
+        <div class="patient-name">{{patient.patientname}}</div>
+        <div class="card-actions">
+          <button class="icon-btn" (click)="onEdit(patient)">
+            <i class="pi pi-pencil"></i>
+          </button>
+          <button class="icon-btn delete" (click)="onDelete(patient)">
+            <i class="pi pi-trash"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="card-content">
+        <div class="detail-row">
+          <i class="pi pi-map-marker"></i>
+          <span class="detail-text">{{patient.address}}</span>
+        </div>
+        
+        <div class="detail-row">
+          <i class="pi" [ngClass]="{
+            'pi-mars': patient.sex === 'Male',
+            'pi-venus': patient.sex === 'Female',
+            'pi-user': !['Male','Female'].includes(patient.sex)
+          }"></i>
+          <span class="detail-text">{{patient.sex}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<app-footer></app-footer>

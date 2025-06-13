@@ -60,4 +60,7 @@ export class AddPatientComponent implements OnInit {
     }
   }
 
+  takinginput(patientid : number){
+    this.router.navigate(['patient/details/'+patientid])
+  }
 }

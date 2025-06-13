@@ -1,1 +1,14 @@
 <app-home></app-home>
+<div id="content">
+    <div class="tab-container">
+        <div class="tab-scroller">
+          <div *ngFor="let tab of tabs" 
+               class="tab-item"
+               [class.active]="activeTab === tab.id"
+               (click)="selectTab(tab.id)">
+            <i class="bx" [class]="tab.icon"></i>
+            <span>{{ tab.label }}</span>
+          </div>
+        </div>
+      </div>
+</div>

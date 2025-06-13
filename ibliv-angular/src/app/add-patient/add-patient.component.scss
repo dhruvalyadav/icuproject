@@ -1,77 +1,105 @@
-.edit {
-  background-color: #2196F3; /* Material Blue 500 */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-right: 0.7rem;
-  font-weight: 500;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+.patient-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  width: 280px;
+  margin: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  
-  /* Hover Effect */
+  cursor: pointer;
   &:hover {
-    background-color: #1976D2; /* Darker blue */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transform: translateY(-1px);
-  }
-  
-  /* Active State */
-  &:active {
-    background-color: #0D47A1;
-    transform: translateY(0);
-    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
-  }
-  
-  /* Disabled State */
-  &:disabled {
-    background-color: #BBDEFB;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
 }
 
-.del ,.buttons button{
-  background-color: #ddd; /* Material Blue 500 */
-  color: #2196F3;
+.card-header {
+  background: var(--orange);
+  color: white;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .patient-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: rgba(255,255,255,0.2);
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin-top: 0.7rem;
-  font-size: 14px;
-  margin-left: 0;
-  font-weight: 500;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
   
-  /* Hover Effect */
   &:hover {
-    background-color: #1976D2; /* Darker blue */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transform: translateY(-1px);
-    color: #ddd;
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
   }
   
-  /* Active State */
-  &:active {
-    background-color: #0D47A1;
-    transform: translateY(0);
-    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  &.delete:hover {
+    background: var(--red);
+  }
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--dark);
+  
+  &:last-child {
+    margin-bottom: 0;
   }
   
-  /* Disabled State */
-  &:disabled {
-    background-color: #BBDEFB;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
+  i {
+    margin-right: 10px;
+    color: var(--orange);
+    font-size: 1.1rem;
+    
+    &.pi-mars {
+      color: #3c91e6; // Blue for male
+    }
+    
+    &.pi-venus {
+      color: #db504a; // Red for female
+    }
   }
+  
+  .detail-text {
+    font-size: 0.9rem;
+  }
+}
+
+.cards{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.search{
+  width: 50%;
 }

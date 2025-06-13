@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: "Intake", component: IntakeComponent },
   { path: "Output", component: OutputComponent },
   { path: "patient/anthropometry", component: AnthropometryComponent },
-  { path: "patient/edit", component: AddPatientComponent },
+  { path: "patient", component: AddPatientComponent },
   { path: "patient/admission", component: PatientadmissionComponent },
   { path: "patient/daysheet", component: PatientdaysheetComponent },
   { path: "physiotheropy", component: PhysiothearpyComponent },
@@ -91,7 +91,8 @@ const routes: Routes = [
   { path : "patientedits/:id",component : AdmittedPatientsComponent},
   { path : "addpatient",component : AllPatientsComponent},
   { path : "patient/admit/:id",component : EditPatientComponent},
-  {path : "reports",component : UrlComponent}
+  {path : "reports",component : UrlComponent},
+  {path : "patient/details/:id",component : BasicPatientsDetailsComponent}
 ];
 
 @NgModule({

@@ -11,7 +11,7 @@ import { Menudetails, menu, submenu } from '../entities';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent implements OnInit{
-  isMenuOpen = false;
+  isMenuOpen = true;
   constructor(private router: Router,private webclient : WebClient) {}
 
   toggleMenu(): void {

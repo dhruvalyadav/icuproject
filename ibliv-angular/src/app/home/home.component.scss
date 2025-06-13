@@ -1,15 +1,50 @@
 h5{
-  color:blue;
+  color:white;
+  margin-right: 1rem;
 }
 
 .header{
   width: 100%;
-  background-color: #ddd;
+  background-color: white;
 }
 
-.name{
-  width: auto;
+nav{
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: end;
-  padding: 0.6rem 1.5rem 0.6rem 0.6rem;
+  height: 56px;
+  padding: 0;
+}
+
+nav::before{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: calc(25px - 4px);
+  background: var(--orange);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+
+.nav{
+  position: relative;
+  width: 40px;
+  left: 58px;  
+  height: 40px;
+  background: var(--orange);
+  border: none;
+  box-shadow: none;
+}
+
+.boder{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: none;
+  border-top-left-radius: 50%;
+  background-color: white;
 }
