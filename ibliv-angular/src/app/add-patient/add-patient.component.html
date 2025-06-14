@@ -3,7 +3,13 @@
   <div class="spinner-gradient"></div>
 </div>
 <div id="content">
-  <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
+  <div class="actions">
+    <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
+    <button class="add-patient-btn" (click)="addpatient()">
+      <i class="bx bx-plus-medical"></i>
+      Add New Patient
+    </button>
+  </div>
   <div class="cards">
     <div *ngFor="let patient of patients" class="patient-card"  (click)="takinginput(patient.patientid)">
       <div class="card-header">
@@ -36,3 +42,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

@@ -57,7 +57,6 @@ const routes: Routes = [
   },
   {path : "home",component : DashboardComponent},
   { path: "dashboard", component: DashboardComponent },
-  { path: "quickAnalysis", component: QuickAnalysisComponent },
   { path: "vitals", component: VitalComponent },
   { path: "CVC", component: CvsComponent },
   { path: "CNS", component: CnsComponent },

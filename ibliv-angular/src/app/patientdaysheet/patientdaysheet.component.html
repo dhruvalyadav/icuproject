@@ -1,4 +1,3 @@
-<app-home></app-home>
 <div class="patient-table" *ngIf="!mainspinner && !adddaysheet">
     <input type="text" placeholder="search patient" class="search" (change)="filterdaysheet($event)">
     <div class="dot-spinner" [hidden]="spinner"></div>

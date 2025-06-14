@@ -29,7 +29,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Menudetails.findAll", query = "SELECT m FROM Menudetails m"),
     @NamedQuery(name = "Menudetails.findByMainnameWithOrder",query = "SELECT m FROM Menudetails m WHERE m.mainname = :mainname ORDER BY m.subsort ASC "),
-    @NamedQuery(name = "Menudetails.findAllByOrder", query = "SELECT m FROM Menudetails m ORDER BY m.mainsort ASC"),
+    @NamedQuery(name = "Menudetails.findAllByOrder", query = "SELECT m FROM Menudetails m GROUP BY m.mainname ORDER BY m.mainsort ASC"),
     @NamedQuery(name = "Menudetails.findByMenuid", query = "SELECT m FROM Menudetails m WHERE m.menuid = :menuid"),
     @NamedQuery(name = "Menudetails.findByMainname", query = "SELECT m FROM Menudetails m WHERE m.mainname = :mainname"),
     @NamedQuery(name = "Menudetails.findBySubname", query = "SELECT m FROM Menudetails m WHERE m.subname = :subname"),

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MenudeatailsRepository extends JpaRepository<Menudetails,Integer>{
-        @Query("SELECT m FROM Menudetails m ORDER BY m.mainsort ASC")
+        @Query("SELECT m FROM Menudetails m GROUP BY m.mainname ORDER BY m.mainsort ASC")
         List<Menudetails> findAllByOrder();
         
         @Query("SELECT m FROM Menudetails m WHERE m.mainname = :mainname ORDER BY m.subsort ASC")

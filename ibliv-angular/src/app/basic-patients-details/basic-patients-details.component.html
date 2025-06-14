@@ -5,10 +5,30 @@
         <div *ngFor="let tab of menudetails" 
              class="tab-item"
              [class.active]="activeTab === tab.menuid"
-             (click)="selectTab(tab.menuid)">
+             (click)="selectTab(tab)">
              <span class="material-icons subitem-icon">{{ tab.subicon }}</span>
              <span>{{ tab.subname }}</span>
         </div>
       </div>
     </div>
+   <div class="component" *ngIf="activeTab!=0">
+     <app-anthropometry *ngIf="tabname === 'AnthropometryComponent'"></app-anthropometry>
+     <app-physiothearpy *ngIf="tabname === 'PhysiothearpyComponent'"></app-physiothearpy>
+     <app-patientdaysheet *ngIf="tabname === 'PatientdaysheetComponent'"></app-patientdaysheet>
+     <app-hourlyobservation *ngIf="tabname === 'HourlyobservationComponent'"></app-hourlyobservation>
+     <app-patientadditionalscores *ngIf="tabname === 'PatientadditionalscoresComponent'"></app-patientadditionalscores>
+     <app-patientadditionaltests *ngIf="tabname === 'PatientadditionaltestsComponent'"></app-patientadditionaltests>
+     <app-embolism *ngIf="tabname === 'EmbolismComponent'"></app-embolism>
+     <app-patient-medication-chart *ngIf="tabname === 'PatientMedicationChartComponent'"></app-patient-medication-chart>
+     <app-patient-medication-log *ngIf="tabname === 'PatientMedicationLogComponent'"></app-patient-medication-log>
+     <app-patient-ventilator *ngIf="tabname === 'PatientVentilatorComponent'"></app-patient-ventilator>
+     <app-patient-sos-medication *ngIf="tabname === 'PatientSosMedicationComponent'"></app-patient-sos-medication>
+     <app-patientlinestubes *ngIf="tabname === 'PatientlinestubesComponent'"></app-patientlinestubes>
+     <app-patientivfluid *ngIf="tabname === 'PatientivfluidComponent'"></app-patientivfluid>
+     <app-shiftrmonurse *ngIf="tabname === 'ShiftrmonurseComponent'"></app-shiftrmonurse>
+     <app-patientinfusion *ngIf="tabname=='PatientinfusionComponent'"></app-patientinfusion>
+     <app-rmonurselog *ngIf="tabname === 'RmonurselogComponent'"></app-rmonurselog>
+     <app-consultant-patient-visit *ngIf="tabname=='ConsultantPatientVisitComponent'"></app-consultant-patient-visit>
+   </div>
 </div>
+<app-footer></app-footer>

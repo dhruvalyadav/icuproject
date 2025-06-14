@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import {  Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { Menudetails } from '../entities';
@@ -24,18 +24,15 @@ export class BasicPatientsDetailsComponent implements OnInit
       (response)=>{this.menudetails=response;this.mainspinner = false},(error)=>{this.mainspinner = false}
     )
   }
-  tabs = [
-    { id: 1, label: 'Dashboard', icon: 'bx-home' },
-    { id: 2, label: 'Patients', icon: 'bx-user' },
-    { id: 3, label: 'Appointments', icon: 'bx-calendar' },
-    { id: 4, label: 'Medications', icon: 'bx-capsule' },
-    { id: 5, label: 'Reports', icon: 'bx-file' },
-    { id: 6, label: 'Settings', icon: 'bx-cog' }
-  ];
-  
-  activeTab : Number = 1;
-  
-  selectTab(tabId: any) {
-    this.activeTab = tabId;
+  activeTab : number = 0;
+  tabname : string = ''
+  selectTab(tab : Menudetails) {
+    this.activeTab = tab.menuid;
+    this.tabname = tab.classname
+  }
+
+  get activeComponent() : Type<any>{
+    let classnames : any = this.menudetails.filter((menu)=>{return menu.menuid==this.activeTab})[0]
+    return classnames.classname
   }
 }

@@ -13,29 +13,18 @@ import { Menudetails, menu, submenu } from '../entities';
 export class MenuComponent implements OnInit{
   isMenuOpen = true;
   constructor(private router: Router,private webclient : WebClient) {}
+  
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  sidemenubaritems : menu[] = []
+  sidemenubaritems : Menudetails[] = []
 
   ngOnInit(): void {
     this.webclient.getAll<Menudetails[]>("getallmenuitemsbymenuoreder").subscribe(
       (response)=>{
-        response.map((res)=>{
-          if(res.subname!='' && this.findsidemenubar(res.mainsort)){
-            const singleitem : menu = { label: res.mainname, link: res.link, mainicon: res.mainicon,mainsort : res.mainsort, subitems : [],isOpen: false}
-            response.filter((item)=>{return item.mainsort==res.mainsort}).map((subitem)=>{
-              const subsingleitem : submenu = {subname : subitem.subname,link : subitem.link,subicon : subitem.subicon,subsort : subitem.subsort}
-              singleitem.subitems.push(subsingleitem)
-            })
-            this.sidemenubaritems.push(singleitem)
-          } else if(res.subname==''){
-            const singleitem : menu = { label: res.mainname, link: res.link, mainicon: res.mainicon,mainsort : res.mainsort, subitems : [],isOpen: false}
-            this.sidemenubaritems.push(singleitem)
-          }
-        })
+        this.sidemenubaritems = response
       },(error)=>{}
     )
   }

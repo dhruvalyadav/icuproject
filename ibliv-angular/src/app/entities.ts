@@ -119,7 +119,7 @@ export class Linestubes {
 }
 
 export class Menudetails {
-  menuid: number|null=null;
+  menuid: number = 0;
   mainname: string='';
   subname: string='';
   link: string='';
