@@ -1,5 +1,5 @@
 .alert {
-    width: 93.5%;
+    width: calc(100% - 80px);
     position: fixed;
     display: flex;
     justify-content: space-between;
@@ -9,7 +9,7 @@
     margin: 8px 0;
     font-family: Arial, sans-serif;
     animation: fadeIn 0.3s ease-out;
-    margin-left: 4.5%;
+    margin-left: 70px;
     margin-right: 2%;
   }
   
@@ -32,7 +32,6 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    padding: 0 0 0 16px;
     line-height: 1;
     color: #074285;
   }

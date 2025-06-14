@@ -50,13 +50,10 @@ public class PatientController
         admitrepository.save(p);
     }
     @PostMapping("/add-patient")
-    public void addPatient(@RequestBody Patient p){
-       Patient savedpatient = repository.save(p);
-       Anthropometry ant = new Anthropometry();
-       ant.setPatient(savedpatient);
-       anthropometryRepository.save(ant);
+    public Patient addPatient(@RequestBody Patient p){
+       return repository.save(p);
     }
-    
+     
     @PutMapping("/update-patient")
     public void updatePatient(@RequestBody Patient p){
         Optional<Patient> existingPatient = repository.findById(p.getPatientid());

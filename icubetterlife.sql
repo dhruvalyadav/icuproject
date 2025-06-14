@@ -26,10 +26,6 @@ CREATE TABLE IF NOT EXISTS `anthropometry` (
   CONSTRAINT `anthropometry_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `anthropometry` (`anthropometryid`, `patient`, `weight`, `height`, `bmi`, `bsaboyd`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(2, 8, 89.000000, 210.000000, 0.002018, 1.200000, 1, '2025-06-06 12:25:14', 1, '2025-06-06 12:25:14'),
-	(3, 9, 50.000000, 1.750000, 16.326531, 1.320000, 1, '2025-06-06 15:00:04', 1, '2025-06-06 15:00:04'),
-	(14, 20, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 
 CREATE TABLE IF NOT EXISTS `applicationversion` (
   `versionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -186,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `menudetails` (
 
 INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`, `mainsort`, `subsort`, `active`, `ionicactive`, `mainicon`, `subicon`, `ionicdashboardicon`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 'Dashboard', '', 'dashboard', 'DashboardComponent', 1, NULL, 1, 1, 'dashboard', NULL, NULL, 1, '2025-06-01 22:33:03', 1, '2025-06-02 22:40:22'),
-	(3, 'Admin', 'vitals', 'vitals', 'VitalComponent', 4, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-09 22:38:22'),
+	(3, 'Admin', 'vitals', 'admin', 'VitalComponent', 4, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-14 14:06:59'),
 	(9, 'Patient', 'anthropometry', 'patient', 'AnthropometryComponent', 3, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-12 18:29:49'),
 	(12, 'Patient', 'daysheet', 'patient/daysheet', 'PatientdaysheetComponent', 3, 2, 1, 1, 'personal_injury', 'today', NULL, 1, '2025-06-01 23:27:19', 1, '2025-06-09 22:39:13'),
 	(13, 'Patient', 'physiotheropy', 'physiotheropy', 'PhysiothearpyComponent', 3, 3, 1, 1, 'directions_run', 'person_add', NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-09 22:39:16'),
@@ -196,7 +192,7 @@ INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`,
 	(17, 'Patient', 'Embolism', 'daysheet/embolism', 'EmbolismComponent', 3, 7, 1, 1, 'view_day', 'coronavirus', NULL, 1, '2025-06-02 00:40:46', 1, '2025-06-09 22:39:28'),
 	(18, 'Patient', 'Patient Medication Chart', 'daysheet/PatientMedicationChart', 'PatientMedicationChartComponent', 3, 8, 1, 1, 'assignment_ind', 'insert_chart', NULL, 1, '2025-06-02 00:43:01', 1, '2025-06-09 22:39:31'),
 	(19, 'Patient', 'Patient Medication log', 'daysheet/PatientMedicationLog', 'PatientMedicationLogComponent', 3, 9, 1, 1, 'assignment_ind', 'history', NULL, 1, '2025-06-02 00:43:50', 1, '2025-06-09 22:39:36'),
-	(20, 'Patient', 'Ventilator mode', 'daysheet/VentilatorMode', 'VentilatorModeComponent', 3, 10, 1, 1, 'assignment_ind', 'settings_input_hdmi', NULL, 1, '2025-06-02 00:45:26', 1, '2025-06-09 22:39:42'),
+	(20, 'Admin', 'Ventilator mode', 'daysheet/VentilatorMode', 'VentilatorModeComponent', 4, 5, 1, 1, 'assignment_ind', 'settings_input_hdmi', NULL, 1, '2025-06-02 00:45:26', 1, '2025-06-14 12:43:30'),
 	(21, 'Patient', 'Patient Ventilator', 'daysheet/PatientVentilator', 'PatientVentilatorComponent', 3, 11, 1, 1, 'assignment_ind', 'air', NULL, 1, '2025-06-02 00:47:27', 1, '2025-06-09 22:39:45'),
 	(22, 'Patient', 'Patient SOS Medication', 'daysheet/PatientSOSMedication', 'PatientSosMedicationComponent', 3, 12, 1, 1, 'emergency', 'personal_injury', NULL, 1, '2025-06-02 00:50:16', 1, '2025-06-09 22:39:47'),
 	(23, 'Patient', 'Patient Lines Tubes', 'patient/Patientlinestubes', 'PatientlinestubesComponent', 3, 13, 1, 1, 'plumbing', 'healing', NULL, 1, '2025-06-02 00:54:43', 1, '2025-06-09 22:39:50'),
@@ -208,7 +204,7 @@ INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`,
 	(29, 'Admin', 'Edit Lines Tubes', 'patient/EditLinesTubes', 'EditlinesTubesComponent', 4, 2, 1, 1, 'plumbing', 'edit', NULL, 1, '2025-06-02 01:15:19', 1, '2025-06-09 22:38:22'),
 	(30, 'Admin', 'Edit IV Fulid', 'patient/IVFluid', 'EditIVfuildComponent', 4, 3, 1, 1, 'IV', 'mode_edit', NULL, 1, '2025-06-02 01:16:41', 1, '2025-06-09 22:40:24'),
 	(31, 'Admin', 'ICU', 'patient/ICU', 'IcuComponent', 4, 4, 1, 1, 'local_hospital', 'air', NULL, 1, '2025-06-02 01:18:51', 1, '2025-06-09 22:40:27'),
-	(32, 'Reports', '', 'reports', 'Report', 4, NULL, 1, 1, 'report', NULL, NULL, 1, '2025-06-09 22:33:49', 1, '2025-06-09 22:33:49');
+	(32, 'Reports', '', 'reports', 'Report', 5, NULL, 1, 1, 'report', NULL, NULL, 1, '2025-06-09 22:33:49', 1, '2025-06-14 14:00:25');
 
 CREATE TABLE IF NOT EXISTS `patient` (
   `patientid` int(11) NOT NULL AUTO_INCREMENT,
@@ -224,12 +220,11 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`patientid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `patient` (`patientid`, `patientname`, `dob`, `age`, `sex`, `address`, `contact`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(8, 'jdjd sosos nns', '3333-02-12 05:30:00', 98, 'Female', 'snsnns ssjsj sisiis sisiiiiiia ababss ', '1234567890', 1, 1, NULL, 0, NULL),
-	(9, 'dnnd mkkkaraea manahaaag', '1222-03-12 05:30:00', 97, 'Female', 'ss sbs sisiisisis asassaas nmkmkmk', '1234567890', 1, 1, NULL, 0, NULL),
-	(20, 'djdj sksksis aklall', '0445-03-12 05:30:00', 97, 'Female', 'snns shsh sytrwoohohn caxasa', '123456789', 1, 1, NULL, 0, NULL);
+	(31, 'hsgsg shsh sjsusu ', '0444-03-12 05:30:00', 60, 'Male', 'ffhhr rruruur owwowow zm zmzmz ncn', '1234567888', 1, 1, NULL, 0, NULL),
+	(32, 'hsgsg shsh sjsusu ', '0444-03-12 05:30:00', 60, 'Male', 'ffhhr rruruur owwowow zm zmzmz ncn', '1234567888', 1, 1, NULL, 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientadditionalscores` (
   `patientadditionalscoresid` int(11) NOT NULL AUTO_INCREMENT,
@@ -281,14 +276,10 @@ CREATE TABLE IF NOT EXISTS `patientadmission` (
   PRIMARY KEY (`patientadmissionid`) USING BTREE,
   KEY `patient` (`patient`),
   KEY `icu` (`icu`),
-  CONSTRAINT `patientadmission_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON UPDATE CASCADE,
-  CONSTRAINT `patientadmission_ibfk_2` FOREIGN KEY (`icu`) REFERENCES `icu` (`icuid`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `patientadmission_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `patientadmission_ibfk_2` FOREIGN KEY (`icu`) REFERENCES `icu` (`icuid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `patientadmission` (`patientadmissionid`, `patient`, `admissiondate`, `icu`, `icuadmissiondate`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(1, 8, '4558-03-12 05:30:00', 3, '7888-06-05 05:30:00', 1, '2025-06-07 20:22:40', 1, '2025-06-07 20:22:40'),
-	(2, 9, '4568-03-12 05:30:00', 2, '0566-04-23 05:30:00', 1, '2025-06-07 22:16:45', 1, '2025-06-07 22:16:45'),
-	(3, 8, '3445-03-12 05:30:00', 1, '0555-05-31 05:30:00', 1, '2025-06-07 22:45:22', 1, '2025-06-07 22:45:22');
 
 CREATE TABLE IF NOT EXISTS `patientdaysheet` (
   `patientdaysheetid` int(11) NOT NULL AUTO_INCREMENT,

@@ -1,0 +1,21 @@
+<app-home></app-home>
+<div id="content">
+    <div class="tab-container">
+        <div class="tab-scroller">
+          <div *ngFor="let tab of menudetails" 
+               class="tab-item"
+               [class.active]="activeTab === tab.menuid"
+               (click)="selectTab(tab)">
+               <span class="material-icons subitem-icon">{{ tab.subicon }}</span>
+               <span>{{ tab.subname }}</span>
+          </div>
+        </div>
+      </div>
+     <div class="component" *ngIf="activeTab!=0">
+       <app-vital *ngIf="tabname === 'VitalComponent'"></app-vital>
+       <app-linestubes *ngIf="tabname === 'EditlinesTubesComponent'"></app-linestubes>
+       <app-ivfluid *ngIf="tabname === 'EditIVfuildComponent'"></app-ivfluid>
+       <app-icu *ngIf="tabname === 'IcuComponent'"></app-icu>
+       <app-ventilator-mode *ngIf="tabname === 'VentilatorModeComponent'"></app-ventilator-mode>
+     </div>
+  </div>

@@ -29,7 +29,7 @@ export class AddPatientComponent implements OnInit {
 
   onDelete(patient: Patient) {
      this.webclient.delete<Patient>("deletepatient/"+patient.patientid)
-     .then((res)=>{alert("Patient Deleted Sucessfully");window.location.reload()})
+     .then((res)=>{alert("Patient Deleted Sucessfully");this.router.navigate(['patient'])})
      .catch((error)=>{console.log(error)})
   }
   calculateAge(dob: string | Date): number {
@@ -60,7 +60,7 @@ export class AddPatientComponent implements OnInit {
     }
   }
 
-  takinginput(patientid : number){
+  takinginput(patientid : number|null){
     this.router.navigate(['patient/details/'+patientid])
   }
 }

@@ -43,6 +43,7 @@ import { WebClient } from './web-client';
 import { menu , submenu , Menudetails } from './entities';
 import { LoginComponent } from './login/login.component';
 import { UrlComponent } from './url/url.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   /*{
@@ -91,7 +92,8 @@ const routes: Routes = [
   { path : "addpatient",component : AllPatientsComponent},
   { path : "patient/admit/:id",component : EditPatientComponent},
   {path : "reports",component : UrlComponent},
-  {path : "patient/details/:id",component : BasicPatientsDetailsComponent}
+  {path : "patient/details/:id",component : BasicPatientsDetailsComponent},
+  {path : "admin",component : AdminComponent}
 ];
 
 @NgModule({

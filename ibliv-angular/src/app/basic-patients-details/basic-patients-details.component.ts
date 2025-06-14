@@ -30,9 +30,4 @@ export class BasicPatientsDetailsComponent implements OnInit
     this.activeTab = tab.menuid;
     this.tabname = tab.classname
   }
-
-  get activeComponent() : Type<any>{
-    let classnames : any = this.menudetails.filter((menu)=>{return menu.menuid==this.activeTab})[0]
-    return classnames.classname
-  }
 }

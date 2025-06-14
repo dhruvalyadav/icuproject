@@ -69,6 +69,7 @@ import { EditIVfuildComponent } from './edit-ivfuild/edit-ivfuild.component';
 import { UrlComponent } from './url/url.component';
 import { AlertComponent } from './alert/alert.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { LoginComponent } from './login/login.component';
     UrlComponent,
     AlertComponent,
     LoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,68 @@
+/* Add to your existing styles */
+.tab-container {
+    background: var(--light);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-orange);
+    margin-bottom: 20px;
+  }
+  
+  .tab-scroller {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--orange) var(--light-orange);
+    padding: 0 15px;
+    gap: 10px;
+  }
+  
+  .tab-item {
+    flex: 0 0 auto;
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: var(--grey);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-item:hover {
+    background: var(--light-orange);
+  }
+  
+  .tab-item.active {
+    background: var(--orange);
+    color: white;
+  }
+  
+  .tab-item .bx {
+    font-size: 18px;
+  }
+  
+  .tab-scroller::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .tab-scroller::-webkit-scrollbar-track {
+    background: var(--light-orange);
+  }
+  
+  .tab-scroller::-webkit-scrollbar-thumb {
+    background: var(--orange);
+  }
+
+  .subitem-icon {
+    font-size: 18px !important;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .component {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }

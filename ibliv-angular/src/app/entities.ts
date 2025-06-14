@@ -147,7 +147,7 @@ export class Patient {
   createdby: number=0;
   createddate: Date|null=null;
   updateddate: Date|null=null;
-  patientid: number = 0;
+  patientid: number|null=null;
   age: number=0;
   sex: string='';
   address: string='';
