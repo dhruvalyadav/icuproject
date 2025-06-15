@@ -63,20 +63,14 @@ public class PatientController
     }
     
     @DeleteMapping("/deletepatient/{id}")
-    public void deletePatient(@PathVariable int id){
-        repository.deleteById(id);
+    public void deletePatient(@PathVariable("id") Integer id){
+         repository.DeleteByPatientid(id);
     }
     
     @GetMapping("/patient/{id}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable("id") Integer patientid)
+    public Patient getPatientById(@PathVariable("id") Integer patientid)
     {
-        Optional<Patient> opatient=repository.findById(patientid);
-        if(opatient!=null) 
-        {
-            return ResponseEntity.ok(opatient.get());
-        }
-        else
-            return ResponseEntity.notFound().build();
+        return this.repository.findByPatientid(patientid);
     }
      
     @GetMapping("/patient-list")

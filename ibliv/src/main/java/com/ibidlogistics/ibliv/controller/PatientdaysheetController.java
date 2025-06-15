@@ -5,9 +5,10 @@ import com.ibidlogistics.ibliv.repository.PatientdaysheetRepository;
 import java.util.List;
 import com.ibidlogistics.ibliv.model.Patientdaysheet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,4 +22,10 @@ public class PatientdaysheetController {
     {
         return this.patientdaysheetrepository.findAll();
     }
-}
+    
+    @PostMapping("/savepatientdaysheet")
+    public Patientdaysheet savepatientdaysheet(@RequestBody Patientdaysheet patientday)
+    {
+        return this.patientdaysheetrepository.save(patientday);
+    }
+} 

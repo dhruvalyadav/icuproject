@@ -1,0 +1,10 @@
+<div class="tab-container">
+    <div class="tab-scroller">
+      <div *ngFor="let tab of vitals" 
+           class="tab-item"
+           [class.active]="activeTab === tab.vitalid"
+           (click)="selectTab(tab)">
+           <span>{{ tab.vitalname }}</span>
+      </div>
+    </div>
+  </div>

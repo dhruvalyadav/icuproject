@@ -41,7 +41,10 @@ import java.util.List;
     @NamedQuery(name = "Patient.findByCreateddate", query = "SELECT p FROM Patient p WHERE p.createddate = :createddate"),
     @NamedQuery(name = "Patient.findByUpdatedby", query = "SELECT p FROM Patient p WHERE p.updatedby = :updatedby"),
     @NamedQuery(name= "Patient.findByPatientsimilarName",query = "SELECT p FROM Patient p WHERE p.patientname LIKE LOWER(CONCAT('%', :patientname, '%'))"),
-    @NamedQuery(name = "Patient.findByUpdateddate", query = "SELECT p FROM Patient p WHERE p.updateddate = :updateddate")})
+    @NamedQuery(name = "Patient.findByUpdateddate", query = "SELECT p FROM Patient p WHERE p.updateddate = :updateddate"),
+    @NamedQuery(name= "Patient.DeleteByPatientid",query = "DELETE FROM Patient p WHERE p.patientid = :patientid"),
+
+})
 public class Patient implements Serializable {
 
     private static final long serialVersionUID = 1L;

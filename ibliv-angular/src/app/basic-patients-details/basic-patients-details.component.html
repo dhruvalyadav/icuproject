@@ -12,9 +12,9 @@
       </div>
     </div>
    <div class="component" *ngIf="activeTab!=0">
-     <app-anthropometry *ngIf="tabname === 'AnthropometryComponent'"></app-anthropometry>
+     <app-anthropometry *ngIf="tabname === 'AnthropometryComponent'" [patient]="patient"></app-anthropometry>
      <app-physiothearpy *ngIf="tabname === 'PhysiothearpyComponent'"></app-physiothearpy>
-     <app-patientdaysheet *ngIf="tabname === 'PatientdaysheetComponent'"></app-patientdaysheet>
+     <app-patientdaysheet *ngIf="tabname === 'PatientdaysheetComponent'" [patient]="patient"></app-patientdaysheet>
      <app-hourlyobservation *ngIf="tabname === 'HourlyobservationComponent'"></app-hourlyobservation>
      <app-patientadditionalscores *ngIf="tabname === 'PatientadditionalscoresComponent'"></app-patientadditionalscores>
      <app-patientadditionaltests *ngIf="tabname === 'PatientadditionaltestsComponent'"></app-patientadditionaltests>

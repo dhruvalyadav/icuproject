@@ -1,32 +1,49 @@
-<div class="patient-table" *ngIf="!mainspinner && !adddaysheet">
-    <input type="text" placeholder="search patient" class="search" (change)="filterdaysheet($event)">
-    <div class="dot-spinner" [hidden]="spinner"></div>
-    <button class="edit">Add Day Sheet</button>
-    <table>
-      <thead>
-        <tr>
-        <th>Patient Name</th>
-        <th>Date</th>
-        <th>Admit Date</th>
-        <th>ICU Admit Date</th>
-        <th>consultant 1</th>
-        <th>consultant 2</th>
-        <th>consultant 3</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let patient of patientsdaysheet">
-        <td>{{patient.patientadmission.patient.patientname}}</td>
-         <td >{{patient.date}}</td>
-         <td>{{patient.patientadmission.patientadmissionid}}</td>
-         <td>{{patient.patientadmission.icuadmissiondate}}</td>
-         <td>{{patient.consultant1.name}}</td>
-         <td>{{patient.consultant2.name}}</td>
-         <td>{{patient.consultant3.name}}</td>
-        </tr>
-        <tr *ngIf="patientsdaysheet.length === 0">
-          <td colspan="7" class="no-patients">No Patients found</td>
-        </tr>
-      </tbody>
-    </table>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
 </div>
+<div class="container mt-4" >
+    <h3 class="form-label">Patient Day Sheet</h3>
+    <form #patientdaysheet="ngForm" (submit)="submitpatientdaysheet(patientdaysheet)">
+        <div class="row mb-3">
+            <div class="col-md-6">
+               <label for="date" class="form-label">Date* </label>
+               <input type="date" name="date" id="dob" [(ngModel)]="patidaysheet.date">
+            </div>
+         </div>
+      <div class="row mb-3">
+         <div class="col-md-6">
+            <label for="consultant1" class="form-label">Consultan 1* </label>
+            <select id="sex" name="consultant1" class="form-control" [(ngModel)]="consultant1" required>
+              <option *ngFor="let use of user" value="{{use.userid}}">{{use.name}}</option>
+            </select>
+         </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="consultant2" class="form-label">Consultan 2* </label>
+            <select id="sex" name="consultant2" class="form-control" [(ngModel)]="consultant2" required>
+              <option *ngFor="let use of user" value="{{use.userid}}">{{use.name}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="consultant3" class="form-label">Consultan 3*</label>
+            <select id="sex" name="consultant3" class="form-control" [(ngModel)]="consultant3" required>
+              <option *ngFor="let use of user" value="{{use.userid}}">{{use.name}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="intenvisit" class="form-label">intenvisit*</label>
+            <select id="sex" name="intenvisit" class="form-control" [(ngModel)]="intenvisit" required>
+              <option *ngFor="let use of user" value="{{use.userid}}">{{use.name}}</option>
+            </select>
+        </div>
+      </div>
+    <button type="submit" class="add-patient-btn" >Update Measurements</button>
+    <div class="spinner-gradient" [hidden]="spinner"></div>
+   </form>
+  </div>

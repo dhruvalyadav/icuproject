@@ -2,85 +2,26 @@
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
-<div class="anthropometry-table" *ngIf="!updatepatient && !mainspinner">
-  <input type="text" placeholder="search patient" class="search"  (change)="filterpatients($event)">
-  <div class="dot-spinner" [hidden]="spinner"></div>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>DOB</th>
-        <th>Age</th>
-        <th>Sex</th>
-        <th>Address</th>
-        <th>Contact</th>
-        <th>Weight</th>
-        <th>Height</th>
-        <th>BMI</th>
-        <th>Body Fat</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ant of anthropometries; let i = index">
-        <td>{{ant.patient.patientname}}</td>
-        <td>{{ant.patient.dob | date:'shortDate'}}</td>
-        <td>{{ant.patient.age}}</td>
-        <td>{{ant.patient.sex}}</td>
-        <td>{{ant.patient.address}}</td>
-        <td>{{ant.patient.contact}}</td>
-        <td>{{ant.weight!=null ? ant.weight : '-'}}</td>
-        <td>{{ant.height!=null ? ant.height : '-'}}</td>
-        <td>{{ant.bmi!=null ? ant.bmi.toExponential(1) : '-'}}</td>
-        <td>{{ant.bsaboyd!=null ? ant.bsaboyd : '-'}}</td>
-        <td class="actions">
-          <button (click)="onanthropometryedit(ant,i)" class="edit">Update</button>
-        </td>
-      </tr>
-      <tr *ngIf="anthropometries.length === 0">
-        <td colspan="7" class="no-patients">No patients found</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="form-container" *ngIf="updatepatient">
-  <div class="patient-details">
-     <h3>Patient Information</h3>
-     <table class="table">
-       <tbody>
-          <tr>
-            <td class="label">Name</td>
-            <td class="value">{{anthropometry.patient.patientname}}</td>
-          </tr>
-          <tr>
-           <td class="label">Age</td>
-           <td class="value">{{anthropometry.patient.age}}</td>
-         </tr>
-         <tr>
-           <td class="label">DOB</td>
-           <td class="value">{{anthropometry.patient.dob}}</td>
-         </tr>
-         <tr>
-           <td class="label">Address</td>
-           <td class="value">{{anthropometry.patient.address}}</td>
-         </tr>
-         <tr>
-           <td class="label">Contact</td>
-           <td class="value">{{anthropometry.patient.contact}}</td>
-         </tr>
-       </tbody>
-     </table>
-  </div>
-  
-  <div class="anthropometry-form">
-     <h3>Anthropometry Data</h3>
-     <form #anthropometryform="ngForm">
-     <div class="input-group">
-       <input type="number" required placeholder="Weight (kg)" name="weight" [(ngModel)]="anthropometry.weight">
-       <input type="number" required placeholder="Height (cm)" name="height" [(ngModel)]="anthropometry.height">
-       <input type="number" required placeholder="Body Fat" name="BodyFat" [(ngModel)]="anthropometry.bsaboyd">
-     </div>
-     <button type="submit" class="update-btn" (click)="updateant(anthropometryform)">Update Measurements</button>
-    </form>
-   </div>
+<div class="container mt-4" >
+  <h3 class="form-label">Anthropometry Data</h3>
+  <form #anthropometryform="ngForm">
+    <div class="row mb-3">
+       <div class="col-md-6">
+         <label for="weight" class="form-label">Weight* </label>
+         <input type="number" required placeholder="Weight (kg)" class="form-control" name="weight" [(ngModel)]="anthropometry.weight">
+       </div>
+       <div class="col-md-6">
+         <label for="height" class="form-label">Height* </label>
+         <input type="number" required placeholder="Height (cm)" class="form-control" name="height" [(ngModel)]="anthropometry.height">
+       </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="BodyFat" class="form-label">Body Fat* </label>
+          <input type="number" required placeholder="Body Fat" class="form-control" name="BodyFat" [(ngModel)]="anthropometry.bsaboyd">
+        </div>
+    </div>
+  <button type="submit" class="add-patient-btn" (click)="updateant(anthropometryform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
 </div>

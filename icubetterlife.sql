@@ -24,8 +24,11 @@ CREATE TABLE IF NOT EXISTS `anthropometry` (
   PRIMARY KEY (`anthropometryid`) USING BTREE,
   KEY `patient` (`patient`),
   CONSTRAINT `anthropometry_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `anthropometry` (`anthropometryid`, `patient`, `weight`, `height`, `bmi`, `bsaboyd`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(16, 41, 40.000000, 0.230000, 756.143667, 20.000000, 1, '2025-06-14 22:13:57', 1, '2025-06-14 22:13:57'),
+	(17, 41, 50.000000, 0.340000, 432.525952, 21.000000, 1, '2025-06-14 22:14:56', 1, '2025-06-14 22:14:56');
 
 CREATE TABLE IF NOT EXISTS `applicationversion` (
   `versionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -185,7 +188,7 @@ INSERT INTO `menudetails` (`menuid`, `mainname`, `subname`, `link`, `classname`,
 	(3, 'Admin', 'vitals', 'admin', 'VitalComponent', 4, 1, 1, 1, 'monitor_heart', 'monitor_heart', NULL, 1, '2025-06-01 22:43:20', 1, '2025-06-14 14:06:59'),
 	(9, 'Patient', 'anthropometry', 'patient', 'AnthropometryComponent', 3, 1, 1, 1, 'personal_injury', 'straighten', NULL, 1, '2025-06-01 23:01:19', 1, '2025-06-12 18:29:49'),
 	(12, 'Patient', 'daysheet', 'patient/daysheet', 'PatientdaysheetComponent', 3, 2, 1, 1, 'personal_injury', 'today', NULL, 1, '2025-06-01 23:27:19', 1, '2025-06-09 22:39:13'),
-	(13, 'Patient', 'physiotheropy', 'physiotheropy', 'PhysiothearpyComponent', 3, 3, 1, 1, 'directions_run', 'person_add', NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-09 22:39:16'),
+	(13, 'Admin', 'physiotheropy', 'physiotheropy', 'PhysiothearpyComponent', 4, 6, 1, 1, 'directions_run', 'person_add', NULL, 1, '2025-06-02 00:27:36', 1, '2025-06-14 23:28:55'),
 	(14, 'Patient', 'Hourly Observation', 'daysheet/HourlyObservation', 'HourlyobservationComponent', 3, 4, 1, 1, 'view_day', 'monitor_heart', NULL, 1, '2025-06-02 00:35:56', 1, '2025-06-09 22:39:19'),
 	(15, 'Patient', 'Patient Score', 'daysheet/PatientScore', 'PatientadditionalscoresComponent', 3, 5, 1, 1, 'view_day', 'score', NULL, 1, '2025-06-02 00:38:12', 1, '2025-06-09 22:39:22'),
 	(16, 'Patient', 'Patient Test', 'daysheet/PatientTest', 'PatientadditionaltestsComponent', 3, 6, 1, 1, 'view_day', 'science', NULL, 1, '2025-06-02 00:39:33', 1, '2025-06-09 22:39:25'),
@@ -220,11 +223,11 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`patientid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `patient` (`patientid`, `patientname`, `dob`, `age`, `sex`, `address`, `contact`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(31, 'hsgsg shsh sjsusu ', '0444-03-12 05:30:00', 60, 'Male', 'ffhhr rruruur owwowow zm zmzmz ncn', '1234567888', 1, 1, NULL, 0, NULL),
-	(32, 'hsgsg shsh sjsusu ', '0444-03-12 05:30:00', 60, 'Male', 'ffhhr rruruur owwowow zm zmzmz ncn', '1234567888', 1, 1, NULL, 0, NULL);
+	(41, 'jdjd sosos nns', '6789-05-31 05:30:00', 91, 'Male', 'snns shsh sytrwoohohn caxasa', '1234567889', 1, 1, '2025-06-14 21:00:50', 0, '2025-06-14 21:00:50'),
+	(43, 'qwqwwqw oosoos ataatra', '4667-03-12 05:30:00', 97, 'Male', 'ffhhr rruruur owwowow zm zmzmz ncn', '9175772990', 1, 1, '2025-06-14 23:47:13', 0, '2025-06-14 23:47:13');
 
 CREATE TABLE IF NOT EXISTS `patientadditionalscores` (
   `patientadditionalscoresid` int(11) NOT NULL AUTO_INCREMENT,
@@ -278,8 +281,11 @@ CREATE TABLE IF NOT EXISTS `patientadmission` (
   KEY `icu` (`icu`),
   CONSTRAINT `patientadmission_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `patientadmission_ibfk_2` FOREIGN KEY (`icu`) REFERENCES `icu` (`icuid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientadmission` (`patientadmissionid`, `patient`, `admissiondate`, `icu`, `icuadmissiondate`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(11, 41, '6773-05-12 05:30:00', 1, '0754-05-08 05:30:00', 1, '2025-06-14 21:00:50', 1, '2025-06-14 21:00:50'),
+	(12, 43, '5613-05-23 05:30:00', 3, '4568-04-23 05:30:00', 1, '2025-06-14 23:47:13', 1, '2025-06-14 23:47:13');
 
 CREATE TABLE IF NOT EXISTS `patientdaysheet` (
   `patientdaysheetid` int(11) NOT NULL AUTO_INCREMENT,
@@ -304,8 +310,10 @@ CREATE TABLE IF NOT EXISTS `patientdaysheet` (
   CONSTRAINT `patientdaysheet_ibfk_3` FOREIGN KEY (`consultant2`) REFERENCES `user` (`userid`) ON UPDATE CASCADE,
   CONSTRAINT `patientdaysheet_ibfk_4` FOREIGN KEY (`consultant3`) REFERENCES `user` (`userid`) ON UPDATE CASCADE,
   CONSTRAINT `patientdaysheet_ibfk_5` FOREIGN KEY (`intensivist`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientdaysheet` (`patientdaysheetid`, `patientadmission`, `date`, `consultant1`, `consultant2`, `consultant3`, `intensivist`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 11, '4566-03-12', 2, 1, 3, 2, 0, '2025-06-14 23:00:12', 0, '2025-06-14 23:00:12');
 
 CREATE TABLE IF NOT EXISTS `patientinfusion` (
   `patientinfusionid` int(11) NOT NULL AUTO_INCREMENT,

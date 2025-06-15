@@ -5,7 +5,7 @@
     <form #patientform="ngForm" (submit)="onSave(patientform)">
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="patientname" class="form-label">Patient Name:</label>
+          <label for="patientname" class="form-label">Patient Name* :</label>
           <input
             type="text"
             id="patientname"
@@ -16,7 +16,7 @@
           />
         </div>
         <div class="col-md-6">
-          <label for="dob" class="form-label">Date of Birth:</label>
+          <label for="dob" class="form-label">Date of Birth* :</label>
           <input
             type="date"
             id="dob"
@@ -30,7 +30,7 @@
   
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="age" class="form-label">Age:</label>
+          <label for="age" class="form-label">Age* :</label>
           <input
             type="number"
             id="age"
@@ -41,7 +41,7 @@
           />
         </div>
         <div class="col-md-6">
-          <label for="sex" class="form-label">Sex:</label>
+          <label for="sex" class="form-label">Sex* :</label>
           <select id="sex" name="sex" class="form-control" [(ngModel)]="patient.sex" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -52,7 +52,7 @@
   
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="address" class="form-label">Address:</label>
+          <label for="address" class="form-label">Address* :</label>
           <input
             type="text"
             required
@@ -63,7 +63,7 @@
           />
         </div>
         <div class="col-md-6">
-          <label for="contact" class="form-label">Contact:</label>
+          <label for="contact" class="form-label">Contact* :</label>
           <input
             type="text"
             id="contact"
@@ -78,7 +78,7 @@
   
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="contact" class="form-label">Admitted Date:</label>
+          <label for="contact" class="form-label">Admitted Date* :</label>
           <input
             type="date"
             id="contact"
@@ -90,7 +90,7 @@
           />
         </div>
         <div class="col-md-6">
-          <label for="contact" class="form-label">ICU Admitted Date:</label>
+          <label for="contact" class="form-label">ICU Admitted Date* :</label>
           <input
             type="date"
             id="dob"
@@ -105,7 +105,7 @@
   
       <div class="row mb-3">
         <div class="col-md-6">
-          <label for="icu" class="form-label">ICU:</label>
+          <label for="icu" class="form-label">ICU* :</label>
           <select id="sex" name="icu" class="form-control" [(ngModel)]="icuid" required>
             <option *ngFor="let ic of icu" value="{{ic.icuid}}">{{ic.name}}</option>
           </select>
@@ -114,7 +114,7 @@
   
       <div class="spinner-gradient" [hidden]="create"></div>
       <div class="d-flex justify-content-between">
-        <button type="submit" class="add-patient-btn" *ngIf="create" (click)="onSave(patientform)">save</button>
+        <button type="submit" class="add-patient-btn" *ngIf="create">save</button>
       </div>
     </form>
   </div>
