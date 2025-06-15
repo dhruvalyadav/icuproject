@@ -32,6 +32,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Patientdaysheet.findAll", query = "SELECT p FROM Patientdaysheet p"),
     @NamedQuery(name = "Patientdaysheet.findByPatientdaysheetid", query = "SELECT p FROM Patientdaysheet p WHERE p.patientdaysheetid = :patientdaysheetid"),
+    @NamedQuery(name = "Patientdaysheet.findByPatient", query = "SELECT p FROM Patientdaysheet p WHERE p.patientadmission.patient.patientid = :patientid"),
     @NamedQuery(name = "Patientdaysheet.findByDate", query = "SELECT p FROM Patientdaysheet p WHERE p.date = :date"),
     @NamedQuery(name = "Patientdaysheet.findByCreatedby", query = "SELECT p FROM Patientdaysheet p WHERE p.createdby = :createdby"),
     @NamedQuery(name = "Patientdaysheet.findByCreateddate", query = "SELECT p FROM Patientdaysheet p WHERE p.createddate = :createddate"),

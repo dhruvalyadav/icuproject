@@ -29,6 +29,7 @@ import java.util.List;
 @Table(name = "patient")
 @NamedQueries({
     @NamedQuery(name = "Patient.findAll", query = "SELECT p FROM Patient p"),
+    @NamedQuery(name = "Patient.findAllOrderBy", query = "SELECT p FROM Patient p ORDER BY p.patientname ASC"),
     @NamedQuery(name = "Patient.findByPatientid", query = "SELECT p FROM Patient p WHERE p.patientid = :patientid"),
     @NamedQuery(name = "Patient.findByPatientname", query = "SELECT p FROM Patient p WHERE p.patientname = :patientname"),
     @NamedQuery(name = "Patient.findByDob", query = "SELECT p FROM Patient p WHERE p.dob = :dob"),

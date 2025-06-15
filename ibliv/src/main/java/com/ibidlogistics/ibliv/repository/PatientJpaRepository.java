@@ -30,5 +30,7 @@ public interface PatientJpaRepository extends JpaRepository<Patient, Integer>
     
     @Query("SELECT p FROM Patient p WHERE p.patientid = :patientid")
     Patient findByPatientid(@Param("patientid") Integer patientid);
-
+    
+    @Query("SELECT p FROM Patient p ORDER BY p.patientname ASC")
+    List<Patient> findAllOrderBy(); 
 }

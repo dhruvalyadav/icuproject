@@ -1,10 +1,16 @@
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
 <div class="tab-container">
     <div class="tab-scroller">
       <div *ngFor="let tab of vitals" 
            class="tab-item"
            [class.active]="activeTab === tab.vitalid"
            (click)="selectTab(tab)">
-           <span>{{ tab.vitalname }}</span>
+           <span>{{ tab.vitalcategory }}</span>
       </div>
     </div>
-  </div>
+</div>
+<div class="component" *ngIf="activeTab!=null">
+  <app-cvs [patient]="patient" [vital]="selectedvital"></app-cvs>
+</div>

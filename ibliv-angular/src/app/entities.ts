@@ -107,13 +107,12 @@ export class Ivfluid {
 
 export class Linestubes {
   linestubesid: number|null=null;
-  linestubesname: number=0;
+  linestubesname: number|null=null;
   active: number=0;
   createdby: number=0;
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientlinestubesList: Patientlinestubes[]=[];
 
   constructor() {}
 }
@@ -484,8 +483,6 @@ export class Vital {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  hourlyobservationList: Hourlyobservation[]=[];
-
   constructor() {}
 }
 export class submenu{

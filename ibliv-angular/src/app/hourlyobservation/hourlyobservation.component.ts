@@ -1,4 +1,4 @@
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, Input, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { Patient, Vital } from '../entities';
@@ -14,12 +14,12 @@ export class HourlyobservationComponent implements OnInit{
   constructor(private route:Router,private webclient : WebClient,private rou : ActivatedRoute){}
   mainspinner : boolean = false
   vitals : Vital[] = []
-  patient : Patient = new Patient()
+  @Input() patient : Patient = new Patient()
 
   ngOnInit(): void
   {
     this.mainspinner = true
-    this.webclient.getAll<Vital[]>("vitals").subscribe(
+    this.webclient.getAll<Vital[]>("vitalsbygroup").subscribe(
       (response)=>{
         this.vitals=response;
         this.mainspinner = false
@@ -29,8 +29,10 @@ export class HourlyobservationComponent implements OnInit{
 
   activeTab : number|null=null;
   tabname : string = ''
+  selectedvital : Vital = new Vital()
   selectTab(tab : Vital) {
     this.activeTab = tab.vitalid
     this.tabname = tab.vitalname
+    this.selectedvital = tab
   }
 }

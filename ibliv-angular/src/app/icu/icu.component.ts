@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Icu } from '../entities';
 import { WebClient } from '../web-client';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-icu',
@@ -10,11 +11,15 @@ import { WebClient } from '../web-client';
   styleUrl: './icu.component.scss'
 })
 export class IcuComponent implements OnInit{
-  spinner : boolean = true
+  spinner : boolean = false
   mainspinner : boolean = false
   Icu : Icu[] = []
   icuadd : boolean = false;
   icu : Icu = new Icu()
+  message : string = 'Admission done sucessfully'
+  alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
+  alertmode : boolean = false
+
   constructor(private webclient : WebClient){}
   ngOnInit(): void {
     this.mainspinner = true
@@ -34,14 +39,19 @@ export class IcuComponent implements OnInit{
   addicu(){
     this.icuadd = true
   }
-  createicu(){
-    if(this.icu.createddate==null){
+  createicu(form : NgForm){
+    if(form.invalid){
+      this.message = "fill all * marks"
+      this.alerttype = 'error'
+      this.alertmode = true
+    } else {
+      this.spinner = true
+      this.icu.updateddate = new Date()
       this.icu.createddate = new Date()
+      this.icu.createdby = 1
+      this.webclient.post<Icu,typeof Icu>("addicu",this.icu)
+      .then((res)=>{alert("Icu is created");this.spinner=false;window.location.reload()})
+      .catch((res)=>{})
     }
-    this.icu.updateddate = new Date()
-    this.icu.createdby = 1
-    this.webclient.post<Icu,typeof Icu>("addicu",this.icu)
-    .then((res)=>{alert("Icu is created");window.location.reload()})
-    .catch((res)=>{})
   }
 }

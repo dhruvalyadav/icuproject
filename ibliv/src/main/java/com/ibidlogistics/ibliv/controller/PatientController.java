@@ -75,7 +75,7 @@ public class PatientController
      
     @GetMapping("/patient-list")
     public List<Patient> getAllPatient(){
-        return repository.findAll();
+        return repository.findAllOrderBy();
     }
         
     @GetMapping("/icu-list")

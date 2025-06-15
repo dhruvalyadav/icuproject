@@ -1,7 +1,7 @@
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
-<div class="patient-table" *ngIf="!mainspinner && !icuadd">
+<!--<div class="patient-table" *ngIf="!mainspinner && !icuadd">
   <input type="text" placeholder="search" class="search">
   <button class="edit" (click)="addicu()">Add ICU</button>
   <div class="dot-spinner" [hidden]="spinner"></div>
@@ -26,9 +26,9 @@
       </tr>
     </tbody>
   </table>
-</div>
-<div class="container mt-4" *ngIf="!mainspinner && icuadd">
-  <form>
+</div>-->
+<div class="container mt-4" >
+  <form #icuform="ngForm">
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="icuname" class="form-label">ICU Name:</label>
@@ -40,6 +40,8 @@
           [(ngModel)]="icu.name"
         />
       </div>
+    </div>
+    <div class="row mb-3">
       <div class="col-md-6">
         <label for="active" class="form-label">Active:</label>
         <select id="active" name="active" class="form-control" [(ngModel)]="icu.active">
@@ -49,7 +51,8 @@
       </div>
     </div>
     <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-primary" (click)="createicu()">Save</button>
+      <button type="button" class="add-patient-btn" (click)="createicu(icuform)">Save</button>
+      <div class="spinner-gradient" *ngIf="spinner"></div>
     </div>
   </form>
 </div>

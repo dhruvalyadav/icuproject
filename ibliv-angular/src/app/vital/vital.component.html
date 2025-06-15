@@ -1,13 +1,20 @@
-<form>
-  <div>
-    <label for="vitalname">Vital Name:</label>
-    <input type="text" id="vitalname" name="vitalname">
-  </div>
-  <div>
-    <label for="vitalcategory">Vital Category:</label>
-    <input type="text" id="vitalcategory" name="vitalcategory">
-  </div>
-  <div>
-    <button type="submit">Submit</button>
-  </div>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode=false"></app-alert>
+<div class="container mt-4" >
+  <h3 class="form-label">Vital</h3>
+  <form #vitalform="ngForm">
+    <div class="row mb-3">
+       <div class="col-md-6">
+         <label for="vitalname" class="form-label">Vital Name* </label>
+         <input type="text" required placeholder="vital name" class="form-control" name="vitalname" [(ngModel)]="vital.vitalname">
+       </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="vitalcategory" class="form-label">Vital Category* </label>
+        <input type="text" required placeholder="Vital Category" class="form-control" name="height" [(ngModel)]="vital.vitalcategory">
+      </div>
+    </div>
+  <button type="submit" class="add-patient-btn" (click)="onsave(vitalform)">Create Vital</button>
+  <div class="spinner-gradient" [hidden]="mainspinner"></div>
+ </form>
+</div>

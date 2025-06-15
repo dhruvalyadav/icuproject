@@ -29,6 +29,7 @@ import java.util.List;
 @Table(name = "vital")
 @NamedQueries({
     @NamedQuery(name = "Vital.findAll", query = "SELECT v FROM Vital v"),
+    @NamedQuery(name = "Vital.findAllByGroup", query = "SELECT v FROM Vital v GROUP BY v.vitalcategory"),
     @NamedQuery(name = "Vital.findByVitalid", query = "SELECT v FROM Vital v WHERE v.vitalid = :vitalid"),
     @NamedQuery(name = "Vital.findByVitalname", query = "SELECT v FROM Vital v WHERE v.vitalname = :vitalname"),
     @NamedQuery(name = "Vital.findByVitalcategory", query = "SELECT v FROM Vital v WHERE v.vitalcategory = :vitalcategory"),
@@ -68,8 +69,8 @@ public class Vital implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vital")
-    private List<Hourlyobservation> hourlyobservationList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "vital")
+    private List<Hourlyobservation> hourlyobservationList;*/
 
     public Vital() {
     }
@@ -163,13 +164,13 @@ public class Vital implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Hourlyobservation> getHourlyobservationList() {
+    /*public List<Hourlyobservation> getHourlyobservationList() {
         return hourlyobservationList;
     }
 
     public void setHourlyobservationList(List<Hourlyobservation> hourlyobservationList) {
         this.hourlyobservationList = hourlyobservationList;
-    }
+    }*/ 
 
     @Override
     public int hashCode() {

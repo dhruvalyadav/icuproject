@@ -4,15 +4,14 @@
  */
 package com.ibidlogistics.ibliv.repository;
 
-import com.ibidlogistics.ibliv.model.Patientdaysheet;
+import com.ibidlogistics.ibliv.model.Linestubes;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository 
-public interface PatientdaysheetRepository  extends JpaRepository<Patientdaysheet,Integer>{
-        @Query("SELECT p FROM Patientdaysheet p WHERE p.patientadmission.patient.patientid = :patientid")
-        List<Patientdaysheet> findByPatient(@Param("patientid") Integer patientid);
+@Repository
+public interface Linestubesrepository extends JpaRepository<Linestubes, Integer>{
+        @Query("SELECT l FROM Linestubes l ORDER BY l.linestubesname ASC")
+        List<Linestubes> findAllByOrder();
 }

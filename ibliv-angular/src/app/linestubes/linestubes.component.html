@@ -1,7 +1,17 @@
-<form>
-  <div class="form-group">
-    <label for="linestubesName">Lines/Tubes Name</label>
-    <input type="text" class="form-control" id="linestubesName" placeholder="Enter name">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <form #line="ngForm" (submit)="createlinetube(line)">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="linestubesName" class="form-label">Lines/Tubes Name* :</label>
+        <input type="number" class="form-control" name="linestubesName" [(ngModel)]="linestube.linestubesname" id="linestubesName" placeholder="Enter name">
+      </div>
+    </div>
+    <div class="d-flex justify-content-between" >
+      <button type="submit" class="add-patient-btn" *ngIf="spinner">Submit</button>
+      <div class="spinner-gradient" [hidden]="spinner"></div>
+    </div>
+  </form>
+</div>

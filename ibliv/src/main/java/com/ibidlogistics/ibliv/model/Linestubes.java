@@ -29,6 +29,7 @@ import java.util.List;
 @Table(name = "linestubes")
 @NamedQueries({
     @NamedQuery(name = "Linestubes.findAll", query = "SELECT l FROM Linestubes l"),
+    @NamedQuery(name = "Linestubes.findAllByOrder", query = "SELECT l FROM Linestubes l ORDER BY l.linestubesname ASC"),
     @NamedQuery(name = "Linestubes.findByLinestubesid", query = "SELECT l FROM Linestubes l WHERE l.linestubesid = :linestubesid"),
     @NamedQuery(name = "Linestubes.findByLinestubesname", query = "SELECT l FROM Linestubes l WHERE l.linestubesname = :linestubesname"),
     @NamedQuery(name = "Linestubes.findByActive", query = "SELECT l FROM Linestubes l WHERE l.active = :active"),

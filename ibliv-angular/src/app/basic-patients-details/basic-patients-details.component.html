@@ -15,7 +15,7 @@
      <app-anthropometry *ngIf="tabname === 'AnthropometryComponent'" [patient]="patient"></app-anthropometry>
      <app-physiothearpy *ngIf="tabname === 'PhysiothearpyComponent'"></app-physiothearpy>
      <app-patientdaysheet *ngIf="tabname === 'PatientdaysheetComponent'" [patient]="patient"></app-patientdaysheet>
-     <app-hourlyobservation *ngIf="tabname === 'HourlyobservationComponent'"></app-hourlyobservation>
+     <app-hourlyobservation *ngIf="tabname === 'HourlyobservationComponent'" [patient]="patient" ></app-hourlyobservation>
      <app-patientadditionalscores *ngIf="tabname === 'PatientadditionalscoresComponent'"></app-patientadditionalscores>
      <app-patientadditionaltests *ngIf="tabname === 'PatientadditionaltestsComponent'"></app-patientadditionaltests>
      <app-embolism *ngIf="tabname === 'EmbolismComponent'"></app-embolism>
