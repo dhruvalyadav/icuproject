@@ -14,6 +14,7 @@ export class HourlyobservationComponent implements OnInit{
   constructor(private route:Router,private webclient : WebClient,private rou : ActivatedRoute){}
   mainspinner : boolean = false
   vitals : Vital[] = []
+  innervitals : Vital[] = []
   @Input() patient : Patient = new Patient()
 
   ngOnInit(): void
@@ -34,5 +35,8 @@ export class HourlyobservationComponent implements OnInit{
     this.activeTab = tab.vitalid
     this.tabname = tab.vitalname
     this.selectedvital = tab
+    this.webclient.getAll<Vital[]>("vitalbycategory/"+tab.vitalcategory).subscribe(
+      (response)=>{this.innervitals = response},(error)=>{}
+    )
   }
 }

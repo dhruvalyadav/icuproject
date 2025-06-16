@@ -4,7 +4,7 @@
     <div class="row mb-3">
         <div class="col-md-6">
             <label for="vitalname" class="form-label">Vital Name*:</label>
-            <select id="active" name="vitalname" class="form-control" [(ngModel)]="vitalid">
+            <select id="active" name="vitalname" class="form-control" [(ngModel)]="vitalid" required>
                 <option *ngFor="let vit of vitals" value="{{vit.vitalid}}">{{vit.vitalname}}</option>
             </select>
         </div>
@@ -12,7 +12,7 @@
       <div class="row mb-3">
         <div class="col-md-6">
             <label for="patientdaysheet" class="form-label">Date:</label>
-            <select id="active" name="patientdaysheet" class="form-control" [(ngModel)]="patientdaysheetid">
+            <select id="active" name="patientdaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
               <option *ngFor="let day of patientdaysheet" value="{{day.patientdaysheetid}}">{{day.date?.toString()?.split("T")}}</option>
             </select>
         </div>
@@ -23,6 +23,7 @@
             <input
             type="time"
             id="patientname"
+            required
             name="timeslot"
             class="form-control"
             [(ngModel)]="timeslot"
@@ -37,6 +38,7 @@
             id="patientname"
             name="value"
             class="form-control"
+            required
             [(ngModel)]="hourlyobservation.value"
             maxlength="11"
             />
@@ -48,4 +50,3 @@
       </div>
     </form>
   </div>
-  

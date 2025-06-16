@@ -24,8 +24,6 @@ export class AnthropometryComponent {
     this.mainspinner = false
   }
   
-  updatepatient : boolean = false
-  
   message : string = 'Admission done sucessfully'
   alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
   alertmode : boolean = false
@@ -39,10 +37,6 @@ export class AnthropometryComponent {
     } else {
       this.anthropometry.height = this.anthropometry.height / 100
       this.anthropometry.bmi = this.anthropometry.weight / (this.anthropometry.height * this.anthropometry.height)
-      this.anthropometry.createddate = new Date()
-      this.anthropometry.updateddate = new Date()
-      this.anthropometry.createdby = 1
-      this.anthropometry.updatedby = 1
       this.anthropometry.patient = this.patient
       this.webclient.put<Anthropometry,typeof Anthropometry>("updateanthropometry",this.anthropometry)
       .then((res)=>{

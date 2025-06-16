@@ -13,7 +13,7 @@ import { Time } from '@angular/common';
 })
 export class CvsComponent implements OnInit{
    @Input() patient : Patient = new Patient()
-   @Input() vital : Vital = new Vital()
+   @Input() vitals : Vital[] = []
    spinner : boolean = false
    hourlyobservation : Hourlyobservation = new Hourlyobservation()
    patientdaysheet : Patientdaysheet[] = []
@@ -23,7 +23,6 @@ export class CvsComponent implements OnInit{
    alertmode : boolean = false
    patientdaysheetid : number|null=null
    timeslot : string = ''
-   vitals : Vital[] = []
    vitalid : number = 0
   
    constructor(private webclient : WebClient){}
@@ -33,9 +32,6 @@ export class CvsComponent implements OnInit{
       (response)=>{
         this.patientdaysheet = response
         this.mainspinner = false
-        this.webclient.getAll<Vital[]>("vitalbycategory/"+this.vital.vitalcategory).subscribe(
-          (response)=>{this.vitals = response},(error)=>{}
-        )
       },(error)=>{}
      )
    }
@@ -48,12 +44,12 @@ export class CvsComponent implements OnInit{
     this.spinner = true
     this.hourlyobservation.patientdaysheet = this.patientdaysheet.filter((patday)=>{return patday.patientdaysheetid==this.patientdaysheetid})[0]
     this.hourlyobservation.vital = this.vitals.filter((vit)=>{return vit.vitalid==this.vitalid})[0]
-    this.hourlyobservation.vital = this.vital
     this.hourlyobservation.createddate = new Date()
     this.hourlyobservation.timeslot = parseInt(this.timeslot?.split(":")[0],10)
     this.webclient.post<Hourlyobservation,Hourlyobservation>("addhourlyobservation",this.hourlyobservation)
      .then((res)=>{
         this.spinner = false
+        window.location.reload()
      })
      .catch((err)=>{})
     }

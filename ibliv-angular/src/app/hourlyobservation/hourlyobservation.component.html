@@ -2,6 +2,7 @@
   <div class="spinner-gradient"></div>
 </div>
 <div class="tab-container">
+   <h3 class="form-label" style="margin-bottom: 3rem;">Hourly Observation</h3>
     <div class="tab-scroller">
       <div *ngFor="let tab of vitals" 
            class="tab-item"
@@ -12,5 +13,5 @@
     </div>
 </div>
 <div class="component" *ngIf="activeTab!=null">
-  <app-cvs [patient]="patient" [vital]="selectedvital"></app-cvs>
+  <app-cvs [patient]="patient" [vitals]="innervitals"></app-cvs>
 </div>

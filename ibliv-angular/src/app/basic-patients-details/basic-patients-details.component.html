@@ -16,10 +16,10 @@
      <app-physiothearpy *ngIf="tabname === 'PhysiothearpyComponent'"></app-physiothearpy>
      <app-patientdaysheet *ngIf="tabname === 'PatientdaysheetComponent'" [patient]="patient"></app-patientdaysheet>
      <app-hourlyobservation *ngIf="tabname === 'HourlyobservationComponent'" [patient]="patient" ></app-hourlyobservation>
-     <app-patientadditionalscores *ngIf="tabname === 'PatientadditionalscoresComponent'"></app-patientadditionalscores>
+     <app-patientadditionalscores *ngIf="tabname === 'PatientadditionalscoresComponent'" [patient]="patient"></app-patientadditionalscores>
      <app-patientadditionaltests *ngIf="tabname === 'PatientadditionaltestsComponent'"></app-patientadditionaltests>
-     <app-embolism *ngIf="tabname === 'EmbolismComponent'"></app-embolism>
-     <app-patient-medication-chart *ngIf="tabname === 'PatientMedicationChartComponent'"></app-patient-medication-chart>
+     <app-embolism *ngIf="tabname === 'EmbolismComponent'" [patient]="patient"></app-embolism>
+     <app-patient-medication-chart *ngIf="tabname === 'PatientMedicationChartComponent'" [patient]="patient"></app-patient-medication-chart>
      <app-patient-medication-log *ngIf="tabname === 'PatientMedicationLogComponent'"></app-patient-medication-log>
      <app-patient-ventilator *ngIf="tabname === 'PatientVentilatorComponent'"></app-patient-ventilator>
      <app-patient-sos-medication *ngIf="tabname === 'PatientSosMedicationComponent'"></app-patient-sos-medication>

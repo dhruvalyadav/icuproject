@@ -276,7 +276,6 @@ export class Patientmedicationchart {
   updatedby: number=0;
   updateddate: Date|null=null;
   patientadmission: Patientadmission=new Patientadmission;
-  patientmedicationlogList: Patientmedicationlog[]=[];
 
   constructor() {}
 }

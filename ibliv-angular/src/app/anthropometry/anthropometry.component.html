@@ -20,6 +20,10 @@
           <label for="BodyFat" class="form-label">Body Fat* </label>
           <input type="number" required placeholder="Body Fat" class="form-control" name="BodyFat" [(ngModel)]="anthropometry.bsaboyd">
         </div>
+        <div class="col-md-6">
+          <label for="Date" class="form-label">Date* </label>
+          <input type="Date" required  class="form-control" name="height" [(ngModel)]="anthropometry.createddate">
+        </div>
     </div>
   <button type="submit" class="add-patient-btn" (click)="updateant(anthropometryform)">Update Measurements</button>
   <div class="spinner-gradient" [hidden]="spinner"></div>

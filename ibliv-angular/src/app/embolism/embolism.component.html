@@ -1,0 +1,37 @@
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <h3 class="form-label">Patient Additional Scores Data</h3>
+  <form #patientadditionalform="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Date*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+       <div class="col-md-6">
+         <label for="dvtrisk" class="form-label">dvtrisk* </label>
+         <textarea name="dvtrisk" rows="5" class="form-control" placeholder="dvtrisk" required [(ngModel)]="embolism.dvtrisk"></textarea>
+       </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="anticoagulation" class="form-label">anticoagulation* </label>
+          <textarea required placeholder="anticoagulation" class="form-control" rows="5" name="anticoagulation" [(ngModel)]="embolism.anticoagulation"></textarea>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="compression" class="form-label">compression* </label>
+          <textarea required placeholder="compression" rows="5" class="form-control" name="compression" [(ngModel)]="embolism.compression"></textarea>
+        </div>
+     </div>
+  <button type="submit" class="add-patient-btn" (click)="addpatientscore(patientadditionalform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
+</div>

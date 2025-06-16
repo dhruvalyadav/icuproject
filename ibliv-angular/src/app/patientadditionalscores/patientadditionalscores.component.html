@@ -1,0 +1,37 @@
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <h3 class="form-label">Patient Additional Scores Data</h3>
+  <form #patientadditionalform="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Date*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+       <div class="col-md-6">
+         <label for="qsofa" class="form-label">qsofa* </label>
+         <input type="number" required placeholder="qsofa" class="form-control" name="qsofa" [(ngModel)]="patientadditionalscore.qsofa">
+       </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="mews" class="form-label">mews* </label>
+          <input type="number" required placeholder="mews" class="form-control" name="mews" [(ngModel)]="patientadditionalscore.mews">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="apacheiv" class="form-label">apacheiv* </label>
+          <input type="number" required placeholder="apacheiv" class="form-control" name="weight" [(ngModel)]="patientadditionalscore.apacheiv">
+        </div>
+     </div>
+  <button type="submit" class="add-patient-btn" (click)="addpatientscore(patientadditionalform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
+</div>

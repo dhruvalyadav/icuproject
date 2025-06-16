@@ -1,23 +1,42 @@
-<form>
-  <div class="form-group">
-    <label for="drug">Drug</label>
-    <input type="text" class="form-control" id="drug" placeholder="Enter drug name">
-  </div>
-  <div class="form-group">
-    <label for="date">Date</label>
-    <input type="date" class="form-control" id="date">
-  </div>
-  <div class="form-group">
-    <label for="dose">Dose</label>
-    <input type="text" class="form-control" id="dose" placeholder="Enter dose">
-  </div>
-  <div class="form-group">
-    <label for="route">Route</label>
-    <input type="text" class="form-control" id="route" placeholder="Enter route">
-  </div>
-  <div class="form-group">
-    <label for="frequency">Frequency</label>
-    <input type="text" class="form-control" id="frequency" placeholder="Enter frequency">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <h3 class="form-label">Patient Medication Chart</h3>
+  <form #patmedicationchart="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">      
+        <label for="drug">Drug</label>
+        <input type="text" required class="form-control" id="drug" placeholder="Enter drug name" [(ngModel)]="patientmedicationchart.drug">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="patientdaysheet" class="form-label">Date*</label>
+          <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+            <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+          </select>
+      </div>
+    </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="dose">Dose</label>
+          <input type="text" class="form-control" required id="dose" placeholder="Enter dose" [(ngModel)]="patientmedicationchart.dose">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="route">Route</label>
+           <input type="text" class="form-control" required id="route" placeholder="Enter route" [(ngModel)]="patientmedicationchart.route">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+             <label for="frequency">Frequency</label>
+            <input type="text" class="form-control" required id="frequency" placeholder="Enter frequency" [(ngModel)]="patientmedicationchart.frequency">
+      </div>
+      </div>
+    <button type="submit" class="add-patient-btn" (click)="addpatientmedication(patmedicationchart)">Update Measurements</button>
+  </form>
+</div>
