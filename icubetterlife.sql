@@ -24,11 +24,12 @@ CREATE TABLE IF NOT EXISTS `anthropometry` (
   PRIMARY KEY (`anthropometryid`) USING BTREE,
   KEY `patient` (`patient`),
   CONSTRAINT `anthropometry_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `anthropometry` (`anthropometryid`, `patient`, `weight`, `height`, `bmi`, `bsaboyd`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(16, 41, 40.000000, 0.230000, 756.143667, 20.000000, 1, '2025-06-14 22:13:57', 1, '2025-06-14 22:13:57'),
-	(17, 41, 50.000000, 0.340000, 432.525952, 21.000000, 1, '2025-06-14 22:14:56', 1, '2025-06-14 22:14:56');
+	(17, 41, 50.000000, 0.340000, 432.525952, 21.000000, 1, '2025-06-14 22:14:56', 1, '2025-06-14 22:14:56'),
+	(18, 41, 40.000000, 0.670000, 89.106705, 22.300000, 0, '0034-03-12 05:30:00', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `applicationversion` (
   `versionid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -102,8 +103,10 @@ CREATE TABLE IF NOT EXISTS `embolism` (
   PRIMARY KEY (`embolismid`) USING BTREE,
   KEY `patientdaysheet` (`patientdaysheet`),
   CONSTRAINT `embolism_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `embolism` (`embolismid`, `patientdaysheet`, `dvtrisk`, `anticoagulation`, `compression`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, 'jnsd', 'nsns', 'ajjaaj', 0, '2025-06-15 23:27:07', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `hourlyobservation` (
   `hourlyobservationid` int(11) NOT NULL AUTO_INCREMENT,
@@ -120,8 +123,15 @@ CREATE TABLE IF NOT EXISTS `hourlyobservation` (
   KEY `vital` (`vital`),
   CONSTRAINT `hourlyobservation_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON UPDATE CASCADE,
   CONSTRAINT `hourlyobservation_ibfk_2` FOREIGN KEY (`vital`) REFERENCES `vital` (`vitalid`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `hourlyobservation` (`hourlyobservationid`, `patientdaysheet`, `timeslot`, `vital`, `value`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, 12, 1, 40, 0, '2025-06-15 18:20:37', 0, NULL),
+	(2, 1, 13, 1, 50, 0, '2025-06-15 18:22:44', 0, NULL),
+	(3, 1, 16, 1, 40, 0, '2025-06-15 18:25:48', 0, NULL),
+	(4, 1, 12, 1, 30, 0, '2025-06-15 19:58:59', 0, NULL),
+	(5, 1, 23, 1, 50, 0, '2025-06-15 20:01:33', 0, NULL),
+	(6, 1, 23, 6, 67, 0, '2025-06-15 21:54:19', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `icu` (
   `icuid` int(11) NOT NULL AUTO_INCREMENT,
@@ -132,12 +142,13 @@ CREATE TABLE IF NOT EXISTS `icu` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`icuid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `icu` (`icuid`, `name`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 'jdhd sjjs', 1, 1, '2025-06-06 20:15:02', 0, '2025-06-06 22:16:39'),
 	(2, 'wjsj sbsbbsbsbs ddd', 1, 1, '2025-06-06 22:01:04', 0, '2025-06-06 22:16:27'),
-	(3, 'hdhhdhdhd', 1, 1, '2025-06-06 22:02:01', 1, '2025-06-06 22:11:29');
+	(3, 'hdhhdhdhd', 1, 1, '2025-06-06 22:02:01', 1, '2025-06-06 22:11:29'),
+	(4, 'wjsj sbsbbsbsbs ddd', 1, 1, '2025-06-15 14:12:27', 0, '2025-06-15 14:12:27');
 
 CREATE TABLE IF NOT EXISTS `ivfluid` (
   `ivfluidid` int(11) NOT NULL AUTO_INCREMENT,
@@ -160,8 +171,10 @@ CREATE TABLE IF NOT EXISTS `linestubes` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`linestubesid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `linestubes` (`linestubesid`, `linestubesname`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(2, 12, 1, 0, '2025-06-15 14:36:27', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `menudetails` (
   `menuid` int(11) NOT NULL AUTO_INCREMENT,
@@ -242,8 +255,10 @@ CREATE TABLE IF NOT EXISTS `patientadditionalscores` (
   PRIMARY KEY (`patientadditionalscoresid`) USING BTREE,
   KEY `patientdaysheet` (`patientdaysheet`),
   CONSTRAINT `patientadditionalscores_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientadditionalscores` (`patientadditionalscoresid`, `patientdaysheet`, `qsofa`, `mews`, `apacheiv`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, 34.000000, 55.000000, 22.000000, 0, '2025-06-15 22:34:02', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientadditionaltests` (
   `patientadditionaltestsid` int(11) NOT NULL AUTO_INCREMENT,
@@ -390,8 +405,10 @@ CREATE TABLE IF NOT EXISTS `patientmedicationchart` (
   PRIMARY KEY (`patientmedicationchartid`) USING BTREE,
   KEY `patientadmission` (`patientadmission`),
   CONSTRAINT `patientmedicationchart_ibfk_1` FOREIGN KEY (`patientadmission`) REFERENCES `patientadmission` (`patientadmissionid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientmedicationchart` (`patientmedicationchartid`, `patientadmission`, `drug`, `date`, `dose`, `route`, `frequency`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 11, '', '4566-03-12', '', '', '', 0, '2025-06-16 00:03:40', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientmedicationlog` (
   `patientmedicationlogid` int(11) NOT NULL AUTO_INCREMENT,
@@ -653,8 +670,15 @@ CREATE TABLE IF NOT EXISTS `vital` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`vitalid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `vital` (`vitalid`, `vitalname`, `vitalcategory`, `active`, `categorysortorder`, `sortorder`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 'Temperture', 'vital', 0, 100, 100, 0, '2025-06-15 14:07:30', 0, NULL),
+	(2, 'Pulse', 'vital', 0, 100, 100, 0, '2025-06-15 20:00:43', 0, NULL),
+	(3, 'Pulse Volume', 'vital', 0, 100, 100, 0, '2025-06-15 20:01:01', 0, NULL),
+	(4, 'Heart Rate', 'CVC', 0, 100, 100, 0, '2025-06-15 20:01:58', 0, NULL),
+	(5, 'MAP', 'CVC', 0, 100, 100, 0, '2025-06-15 20:02:17', 0, NULL),
+	(6, 'Systolic BP (mmHg)', 'vital', 0, 100, 100, 0, '2025-06-15 21:53:56', 0, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
