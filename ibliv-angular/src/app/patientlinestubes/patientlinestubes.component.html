@@ -1,18 +1,39 @@
-<form>
-  <div>
-    <label for="dateofinsertion">Date of Insertion:</label>
-    <input type="datetime-local" id="dateofinsertion" name="dateofinsertion">
-  </div>
-  <div>
-    <label for="site">Site:</label>
-    <input type="text" id="site" name="site">
-  </div>
-  <div>
-    <label for="linestubes">Lines/Tubes:</label>
-    <select id="linestubes" name="linestubes">
-      <!-- Options should be populated dynamically -->
-      <option *ngFor="let linestube of linestubes" [value]="linestube.linestubesid">{{ linestube.name }}</option>
-    </select>
-  </div>
-  <button type="submit">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner">
+  <h3 class="form-label">Patient Additional Scores Data</h3>
+  <form #patientlinestubesform="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Day*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="linestubes" class="form-label">Line Tube*</label>
+          <select id="sex" name="linestubes" class="form-control" [(ngModel)]="linestubeid" required>
+            <option *ngFor="let linetube of linestubes" value="{{linetube.linestubesid}}">{{linetube.linestubesname}}</option>
+          </select>
+      </div>
+   </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="dateofinsertion" class="form-label">date of insertion* </label>
+          <input type="date" required placeholder="dateofinsertion" class="form-control" name="dateofinsertion" [(ngModel)]="patlinestubes.dateofinsertion">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="stie" class="form-label">stie* </label>
+          <input type="text" required placeholder="stie" class="form-control" name="stie" [(ngModel)]="patlinestubes.site">
+        </div>
+     </div>
+  <button type="submit" class="add-patient-btn" (click)="addpatientlinesandtubes(patientlinestubesform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
+</div>

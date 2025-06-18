@@ -31,7 +31,7 @@
           <textarea required placeholder="compression" rows="5" class="form-control" name="compression" [(ngModel)]="embolism.compression"></textarea>
         </div>
      </div>
-  <button type="submit" class="add-patient-btn" (click)="addpatientscore(patientadditionalform)">Update Measurements</button>
+  <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addpatientscore(patientadditionalform)">Update Measurements</button>
   <div class="spinner-gradient" [hidden]="spinner"></div>
  </form>
 </div>

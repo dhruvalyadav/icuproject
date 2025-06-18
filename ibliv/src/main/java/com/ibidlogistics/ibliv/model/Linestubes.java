@@ -61,8 +61,8 @@ public class Linestubes implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "linestubes")
-    private List<Patientlinestubes> patientlinestubesList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "linestubes")
+    private List<Patientlinestubes> patientlinestubesList;*/
 
     public Linestubes() {
     }
@@ -133,13 +133,13 @@ public class Linestubes implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientlinestubes> getPatientlinestubesList() {
+    /*public List<Patientlinestubes> getPatientlinestubesList() {
         return patientlinestubesList;
     }
 
     public void setPatientlinestubesList(List<Patientlinestubes> patientlinestubesList) {
         this.patientlinestubesList = patientlinestubesList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

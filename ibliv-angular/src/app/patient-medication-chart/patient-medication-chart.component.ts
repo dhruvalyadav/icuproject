@@ -1,7 +1,7 @@
-import { Patientadditionalscores, Patientdaysheet, Patientmedicationchart } from './../entities';
+import { Patientdaysheet, Patientmedicationchart } from './../entities';
 import { Component, Input, OnInit } from '@angular/core';
 import { Patient } from './../entities';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
 
@@ -14,22 +14,14 @@ import { NgForm } from '@angular/forms';
 })
 export class PatientMedicationChartComponent implements OnInit{
   @Input() patient : Patient = new Patient()
-  patientdaysheets : Patientdaysheet[] = [] 
+  @Input() patientdaysheets : Patientdaysheet[] = [] 
   patientmedicationchart : Patientmedicationchart =new Patientmedicationchart();
   patientdaysheetid : number|null = null
   constructor(private router : Router,private webclient : WebClient){}
   
   mainspinner : boolean = false
-  spin : boolean = true
-  ngOnInit(): void {
-    this.mainspinner = true
-     this.webclient.getAll<Patientdaysheet[]>("getallpatientdaysheetbypatient/"+this.patient.patientid).subscribe(
-      (response)=>{
-        this.patientdaysheets = response
-        this.mainspinner = false
-      },(error)=>{}
-     )
-  }
+  spin : boolean = false
+  ngOnInit(): void {}
     
   message : string = 'Admission done sucessfully'
   alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
@@ -40,13 +32,13 @@ export class PatientMedicationChartComponent implements OnInit{
        this.message = "Fill all start(*) marked fields"
        this.alerttype = 'error'
     } else {
-      this.spin = false
+      this.spin = true
       this.patientmedicationchart.createddate = new Date()
       this.patientmedicationchart.patientadmission = this.patientdaysheets[0].patientadmission
       this.patientmedicationchart.date = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date
       this.webclient.post<Patientmedicationchart,typeof Patientmedicationchart>("savepatientmedicationchart",this.patientmedicationchart)
       .then((res)=>{
-        this.spin = true
+        this.spin = false
         window.location.reload()
       })
       .catch((error)=>{})

@@ -68,8 +68,8 @@ public class Division implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(mappedBy = "division")
-    private List<Role> roleList;
+    /*@OneToMany(mappedBy = "division")
+    private List<Role> roleList;*/
 
     public Division() {
     }
@@ -158,13 +158,13 @@ public class Division implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Role> getRoleList() {
+    /*public List<Role> getRoleList() {
         return roleList;
     }
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

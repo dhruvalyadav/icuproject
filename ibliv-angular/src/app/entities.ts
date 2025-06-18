@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export class Anthropometry {
   createdby: number=0;
   createddate: Date|null=null;

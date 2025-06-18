@@ -387,8 +387,10 @@ CREATE TABLE IF NOT EXISTS `patientlinestubes` (
   KEY `linestubes` (`linestubes`),
   CONSTRAINT `patientlinestubes_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patientlinestubes_ibfk_2` FOREIGN KEY (`linestubes`) REFERENCES `linestubes` (`linestubesid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientlinestubes` (`patientlinestubesid`, `patientdaysheet`, `linestubes`, `dateofinsertion`, `site`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, 2, '3478-03-12 05:30:00', 'sddjd', 0, '2025-06-18 14:54:51', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientmedicationchart` (
   `patientmedicationchartid` int(11) NOT NULL AUTO_INCREMENT,
@@ -405,10 +407,11 @@ CREATE TABLE IF NOT EXISTS `patientmedicationchart` (
   PRIMARY KEY (`patientmedicationchartid`) USING BTREE,
   KEY `patientadmission` (`patientadmission`),
   CONSTRAINT `patientmedicationchart_ibfk_1` FOREIGN KEY (`patientadmission`) REFERENCES `patientadmission` (`patientadmissionid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `patientmedicationchart` (`patientmedicationchartid`, `patientadmission`, `drug`, `date`, `dose`, `route`, `frequency`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
-	(1, 11, '', '4566-03-12', '', '', '', 0, '2025-06-16 00:03:40', 0, NULL);
+	(1, 11, '', '4566-03-12', '', '', '', 0, '2025-06-16 00:03:40', 0, NULL),
+	(2, 11, '', '4566-03-12', '', '', '', 0, '2025-06-17 19:41:23', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientmedicationlog` (
   `patientmedicationlogid` int(11) NOT NULL AUTO_INCREMENT,
@@ -428,8 +431,15 @@ CREATE TABLE IF NOT EXISTS `patientmedicationlog` (
   KEY `administeredby` (`administeredby`),
   CONSTRAINT `patientmedicationlog_ibfk_1` FOREIGN KEY (`patientmedicationchart`) REFERENCES `patientmedicationchart` (`patientmedicationchartid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patientmedicationlog_ibfk_2` FOREIGN KEY (`administeredby`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientmedicationlog` (`patientmedicationlogid`, `patientmedicationchart`, `drug`, `date`, `dose`, `route`, `administeredby`, `Administrationtime`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 2, 'jjdj', '4566-03-12', 'jaak', 'aj', 1, NULL, 1, '2025-06-18 13:27:56', 0, NULL),
+	(2, 1, 'hdhd', '4566-03-12', 'ss', 'sjs', 1, NULL, 1, '2025-06-18 13:33:24', 0, NULL),
+	(3, 1, 'djdj', '4566-03-12', 'jaa', 'jaja', 1, NULL, 1, '2025-06-18 13:34:05', 0, NULL),
+	(4, 2, 'jsjs', '4566-03-12', 'ajaj', 'akk', 1, NULL, 1, '2025-06-18 13:39:55', 0, NULL),
+	(5, 2, 'djd', '4566-03-12', 'ajak', 'akao', 1, NULL, 1, '2025-06-18 13:41:55', 0, NULL),
+	(6, 1, ' ddnn', '4566-03-12', 'amam', 'ssj', 1, '2025-06-18 23:00:00', 1, '2025-06-18 13:43:30', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientsosmedication` (
   `patientsosmedicationid` int(11) NOT NULL AUTO_INCREMENT,
@@ -536,11 +546,11 @@ CREATE TABLE IF NOT EXISTS `role` (
   PRIMARY KEY (`roleid`) USING BTREE,
   KEY `FK_role_division` (`division`) USING BTREE,
   CONSTRAINT `FK_role_division` FOREIGN KEY (`division`) REFERENCES `division` (`divisionid`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 INSERT INTO `role` (`roleid`, `name`, `rolecode`, `description`, `division`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 'ICU Director', 'ICU_DIR', 'Head of ICU department', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
-	(2, 'Consultant', 'ICU_ATT', 'Consultant of ICU', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:36:10'),
+	(2, 'Consultant', 'ICU_ATT', 'Consultant of ICU', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-17 22:19:57'),
 	(3, 'ICU Resident', 'ICU_RES', 'Junior doctor in ICU', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
 	(4, 'ICU Nurse Manager', 'ICU_NM', 'Head ICU nurse', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
 	(5, 'ICU Staff Nurse', 'ICU_SN', 'Regular ICU nurse', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
@@ -550,7 +560,8 @@ INSERT INTO `role` (`roleid`, `name`, `rolecode`, `description`, `division`, `ac
 	(9, 'ECMO Specialist', 'ECMO_SP', 'Specialist for ECMO machines', 3, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
 	(10, 'Neonatologist', 'NICU_DR', 'Specialist for newborn care', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
 	(11, 'NICU Nurse', 'NICU_NUR', 'Nurse specialized in neonatal care', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
-	(12, 'Developmental Specialist', 'NICU_DEV', 'Specialist for infant development', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02');
+	(12, 'Developmental Specialist', 'NICU_DEV', 'Specialist for infant development', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
+	(16, 'Adminstrative', 'ICU_ADM', 'admin', 3, 1, 1, '2025-06-17 19:48:42', NULL, '2025-06-17 19:48:42');
 
 CREATE TABLE IF NOT EXISTS `roleaccess` (
   `roleaccessid` int(11) NOT NULL AUTO_INCREMENT,
@@ -626,13 +637,14 @@ CREATE TABLE IF NOT EXISTS `userrole` (
   KEY `FK_userrole_users` (`user`) USING BTREE,
   CONSTRAINT `FK_userrole_role` FOREIGN KEY (`role`) REFERENCES `role` (`roleid`) ON UPDATE CASCADE,
   CONSTRAINT `FK_userrole_users` FOREIGN KEY (`user`) REFERENCES `user` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 INSERT INTO `userrole` (`userroleid`, `user`, `role`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 1, 2, 1, 1, '2025-06-08 17:40:33', 1, '2025-06-08 17:40:33'),
 	(2, 1, 3, 1, 1, '2025-06-08 17:40:43', 1, '2025-06-08 17:40:43'),
 	(3, 2, 2, 1, 1, '2025-06-08 19:59:14', 1, '2025-06-08 19:59:14'),
-	(4, 3, 2, 1, 1, '2025-06-08 19:59:24', 1, '2025-06-08 19:59:24');
+	(4, 3, 2, 1, 1, '2025-06-08 19:59:24', 1, '2025-06-08 19:59:24'),
+	(5, 1, 16, 1, 1, '2025-06-18 10:24:06', NULL, '2025-06-18 10:24:06');
 
 CREATE TABLE IF NOT EXISTS `usertoken` (
   `usertokenid` int(11) NOT NULL AUTO_INCREMENT,

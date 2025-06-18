@@ -14,22 +14,14 @@ import { NgForm } from '@angular/forms';
 })
 export class PatientadditionalscoresComponent {
   @Input() patient : Patient = new Patient()
-  patientdaysheets : Patientdaysheet[] = [] 
+  @Input() patientdaysheets : Patientdaysheet[] = [] 
   patientadditionalscore : Patientadditionalscores =new Patientadditionalscores();
   patientdaysheetid : number|null = null
   constructor(private router : Router,private webclient : WebClient){}
   
   spinner : boolean = true
-  mainspinner : boolean = true
-  ngOnInit(): void {
-    this.mainspinner = false
-     this.webclient.getAll<Patientdaysheet[]>("getallpatientdaysheetbypatient/"+this.patient.patientid).subscribe(
-      (response)=>{
-        this.patientdaysheets = response
-        this.mainspinner = false
-      },(error)=>{}
-     )
-  }
+  mainspinner : boolean = false
+  ngOnInit(): void {}
     
   message : string = 'Admission done sucessfully'
   alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'

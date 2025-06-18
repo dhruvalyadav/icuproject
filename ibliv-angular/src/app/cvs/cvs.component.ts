@@ -14,9 +14,9 @@ import { Time } from '@angular/common';
 export class CvsComponent implements OnInit{
    @Input() patient : Patient = new Patient()
    @Input() vitals : Vital[] = []
+   @Input() patientdaysheet : Patientdaysheet[] = []
    spinner : boolean = false
    hourlyobservation : Hourlyobservation = new Hourlyobservation()
-   patientdaysheet : Patientdaysheet[] = []
    mainspinner : boolean = false
    message : string = 'Admission done sucessfully'
    alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
@@ -26,15 +26,7 @@ export class CvsComponent implements OnInit{
    vitalid : number = 0
   
    constructor(private webclient : WebClient){}
-   ngOnInit(): void {
-     this.mainspinner = true
-     this.webclient.getAll<Patientdaysheet[]>("getallpatientdaysheetbypatient/"+this.patient.patientid).subscribe(
-      (response)=>{
-        this.patientdaysheet = response
-        this.mainspinner = false
-      },(error)=>{}
-     )
-   }
+   ngOnInit(): void {}
    onsave(form : NgForm){
     if(form.invalid){
       this.message = "fill all * marks"

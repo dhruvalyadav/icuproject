@@ -37,6 +37,7 @@
             <input type="text" class="form-control" required id="frequency" placeholder="Enter frequency" [(ngModel)]="patientmedicationchart.frequency">
       </div>
       </div>
+      <div class="spinner-gradient" *ngIf="spin"></div>
     <button type="submit" class="add-patient-btn" (click)="addpatientmedication(patmedicationchart)">Update Measurements</button>
   </form>
 </div>

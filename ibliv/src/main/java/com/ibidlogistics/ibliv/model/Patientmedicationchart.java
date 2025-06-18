@@ -32,6 +32,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Patientmedicationchart.findAll", query = "SELECT p FROM Patientmedicationchart p"),
     @NamedQuery(name = "Patientmedicationchart.findByPatientmedicationchartid", query = "SELECT p FROM Patientmedicationchart p WHERE p.patientmedicationchartid = :patientmedicationchartid"),
+    @NamedQuery(name = "Patientmedicationchart.findByPatient", query = "SELECT p FROM Patientmedicationchart p WHERE p.patientadmission.patient.patientid = :patientid"),
     @NamedQuery(name = "Patientmedicationchart.findByDrug", query = "SELECT p FROM Patientmedicationchart p WHERE p.drug = :drug"),
     @NamedQuery(name = "Patientmedicationchart.findByDate", query = "SELECT p FROM Patientmedicationchart p WHERE p.date = :date"),
     @NamedQuery(name = "Patientmedicationchart.findByDose", query = "SELECT p FROM Patientmedicationchart p WHERE p.dose = :dose"),
@@ -74,8 +75,8 @@ public class Patientmedicationchart implements Serializable {
     @JoinColumn(name = "patientadmission", referencedColumnName = "patientadmissionid")
     @ManyToOne(optional = false)
     private Patientadmission patientadmission;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientmedicationchart")
-    private List<Patientmedicationlog> patientmedicationlogList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "patientmedicationchart")
+    private List<Patientmedicationlog> patientmedicationlogList;*/
 
     public Patientmedicationchart() {
     }
@@ -177,13 +178,13 @@ public class Patientmedicationchart implements Serializable {
         this.patientadmission = patientadmission;
     }
 
-    public List<Patientmedicationlog> getPatientmedicationlogList() {
+    /*public List<Patientmedicationlog> getPatientmedicationlogList() {
         return patientmedicationlogList;
     }
 
     public void setPatientmedicationlogList(List<Patientmedicationlog> patientmedicationlogList) {
         this.patientmedicationlogList = patientmedicationlogList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

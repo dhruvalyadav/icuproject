@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebClient } from '../web-client';
-import { Patient, Vital } from '../entities';
+import { Patient, Patientdaysheet, Vital } from '../entities';
 
 @Component({
   selector: 'app-hourlyobservation',
@@ -16,6 +16,7 @@ export class HourlyobservationComponent implements OnInit{
   vitals : Vital[] = []
   innervitals : Vital[] = []
   @Input() patient : Patient = new Patient()
+  @Input() patientdaysheets : Patientdaysheet[] = []
 
   ngOnInit(): void
   {

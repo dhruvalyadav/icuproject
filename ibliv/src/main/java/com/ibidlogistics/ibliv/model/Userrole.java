@@ -29,6 +29,7 @@ import java.util.Date;
 @NamedQueries({
     @NamedQuery(name = "Userrole.findAll", query = "SELECT u FROM Userrole u"),
     @NamedQuery(name = "Userrole.findByUserroleid", query = "SELECT u FROM Userrole u WHERE u.userroleid = :userroleid"),
+    @NamedQuery(name = "Userrole.findByRolename", query = "SELECT u FROM Userrole u WHERE u.role.name = :name"),
     @NamedQuery(name = "Userrole.findByActive", query = "SELECT u FROM Userrole u WHERE u.active = :active"),
     @NamedQuery(name = "Userrole.findByCreatedby", query = "SELECT u FROM Userrole u WHERE u.createdby = :createdby"),
     @NamedQuery(name = "Userrole.findByCreateddate", query = "SELECT u FROM Userrole u WHERE u.createddate = :createddate"),

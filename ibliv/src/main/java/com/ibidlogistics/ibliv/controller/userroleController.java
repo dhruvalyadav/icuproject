@@ -4,9 +4,9 @@
  */
 package com.ibidlogistics.ibliv.controller;
 
-import com.ibidlogistics.ibliv.model.Patient;
 import com.ibidlogistics.ibliv.model.User;
-import com.ibidlogistics.ibliv.repository.UserRepository;
+import com.ibidlogistics.ibliv.model.Userrole;
+import com.ibidlogistics.ibliv.repository.UserroleRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
 @RestController
-public class usercontroller {
-    @Autowired 
-    UserRepository userrepository;
+public class userroleController {
+    @Autowired
+    UserroleRepository userrolerespoitory;
     
-     @GetMapping("/users")
-    public List<User> users()
+     @GetMapping("/userrolebyrole/{name}")
+    public List<Userrole> userrolebyrole(@PathVariable("name") String nam)
     {
-        return this.userrepository.findAll();
+        return this.userrolerespoitory.findByRolename(nam);
     }
 }

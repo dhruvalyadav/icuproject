@@ -70,10 +70,10 @@ public class Role implements Serializable {
     @JoinColumn(name = "division", referencedColumnName = "divisionid")
     @ManyToOne
     private Division division;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
     private List<Roleaccess> roleaccessList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
-    private List<Userrole> userroleList;
+    private List<Userrole> userroleList;*/
 
     public Role() {
     }
@@ -167,7 +167,7 @@ public class Role implements Serializable {
         this.division = division;
     }
 
-    public List<Roleaccess> getRoleaccessList() {
+    /*public List<Roleaccess> getRoleaccessList() {
         return roleaccessList;
     }
 
@@ -181,7 +181,7 @@ public class Role implements Serializable {
 
     public void setUserroleList(List<Userrole> userroleList) {
         this.userroleList = userroleList;
-    }
+    }*/
 
     @Override
     public int hashCode() {
