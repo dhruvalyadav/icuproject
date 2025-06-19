@@ -16,19 +16,19 @@
     <div class="row mb-3">
        <div class="col-md-6">
          <label for="dvtrisk" class="form-label">dvtrisk* </label>
-         <textarea name="dvtrisk" rows="5" class="form-control" placeholder="dvtrisk" required [(ngModel)]="embolism.dvtrisk"></textarea>
+         <textarea name="dvtrisk" rows="5" maxlength="49" class="form-control" placeholder="dvtrisk" required [(ngModel)]="embolism.dvtrisk"></textarea>
        </div>
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
           <label for="anticoagulation" class="form-label">anticoagulation* </label>
-          <textarea required placeholder="anticoagulation" class="form-control" rows="5" name="anticoagulation" [(ngModel)]="embolism.anticoagulation"></textarea>
+          <textarea required placeholder="anticoagulation" maxlength="49" class="form-control" rows="5" name="anticoagulation" [(ngModel)]="embolism.anticoagulation"></textarea>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md-6">
           <label for="compression" class="form-label">compression* </label>
-          <textarea required placeholder="compression" rows="5" class="form-control" name="compression" [(ngModel)]="embolism.compression"></textarea>
+          <textarea required placeholder="compression" maxlength="199" rows="9" class="form-control" name="compression" [(ngModel)]="embolism.compression"></textarea>
         </div>
      </div>
   <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addpatientscore(patientadditionalform)">Update Measurements</button>

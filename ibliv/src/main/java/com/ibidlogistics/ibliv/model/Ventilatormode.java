@@ -29,6 +29,7 @@ import java.util.List;
 @Table(name = "ventilatormode")
 @NamedQueries({
     @NamedQuery(name = "Ventilatormode.findAll", query = "SELECT v FROM Ventilatormode v"),
+    @NamedQuery(name = "Ventilatormode.findAllOrderBy", query = "SELECT v FROM Ventilatormode v ORDER BY v.ventilatormode ASC"),
     @NamedQuery(name = "Ventilatormode.findByVentilatormodeid", query = "SELECT v FROM Ventilatormode v WHERE v.ventilatormodeid = :ventilatormodeid"),
     @NamedQuery(name = "Ventilatormode.findByVentilatormode", query = "SELECT v FROM Ventilatormode v WHERE v.ventilatormode = :ventilatormode"),
     @NamedQuery(name = "Ventilatormode.findByActive", query = "SELECT v FROM Ventilatormode v WHERE v.active = :active"),

@@ -13,15 +13,14 @@
     </div>
    <div class="component" *ngIf="activeTab!=0">
      <app-anthropometry *ngIf="tabname === 'AnthropometryComponent'" [patient]="patient"></app-anthropometry>
-     <app-physiothearpy *ngIf="tabname === 'PhysiothearpyComponent'"></app-physiothearpy>
      <app-patientdaysheet *ngIf="tabname === 'PatientdaysheetComponent'" [patient]="patient"></app-patientdaysheet>
      <app-hourlyobservation *ngIf="tabname === 'HourlyobservationComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-hourlyobservation>
      <app-patientadditionalscores *ngIf="tabname === 'PatientadditionalscoresComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-patientadditionalscores>
-     <app-patientadditionaltests *ngIf="tabname === 'PatientadditionaltestsComponent'"></app-patientadditionaltests>
+     <app-patientadditionaltests *ngIf="tabname === 'PatientadditionaltestsComponent'" [Patientdaysheets]="patientdaysheets"></app-patientadditionaltests>
      <app-embolism *ngIf="tabname === 'EmbolismComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-embolism>
      <app-patient-medication-chart *ngIf="tabname === 'PatientMedicationChartComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-patient-medication-chart>
      <app-patient-medication-log *ngIf="tabname === 'PatientMedicationLogComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-patient-medication-log>
-     <app-patient-ventilator *ngIf="tabname === 'PatientVentilatorComponent'"></app-patient-ventilator>
+     <app-patient-ventilator *ngIf="tabname === 'PatientVentilatorComponent'" [patientdaysheets]="patientdaysheets"></app-patient-ventilator>
      <app-patient-sos-medication *ngIf="tabname === 'PatientSosMedicationComponent'"></app-patient-sos-medication>
      <app-patientlinestubes *ngIf="tabname === 'PatientlinestubesComponent'" [Patient]="patient" [patientdaysheets]="patientdaysheets"></app-patientlinestubes>
      <app-patientivfluid *ngIf="tabname === 'PatientivfluidComponent'"></app-patientivfluid>

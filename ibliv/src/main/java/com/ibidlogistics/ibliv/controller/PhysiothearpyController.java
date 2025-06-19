@@ -4,8 +4,8 @@
  */
 package com.ibidlogistics.ibliv.controller;
 
-import com.ibidlogistics.ibliv.model.Patientventilator;
-import com.ibidlogistics.ibliv.repository.PatientventilatorRepository;
+import com.ibidlogistics.ibliv.model.Physiothearpy;
+import com.ibidlogistics.ibliv.repository.PhysiotherapyRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
 @RestController
-public class PatientventilatorController {
-    @Autowired
-    PatientventilatorRepository repository;
+public class PhysiothearpyController {
+    @Autowired 
+    PhysiotherapyRepository repository;
     
-    @PostMapping("/addventilator")
-    public Patientventilator addventilator(@RequestBody Patientventilator patvent){
-       return repository.save(patvent);
+     @GetMapping("/getphysiotheripes")
+    public List<Physiothearpy> getphysiotheripes()
+    {
+        return this.repository.findAllByOrder();
     }
     
-    @GetMapping("/getventilatorlist")
-    public List<Patientventilator> getventilatorlist(){
-        return repository.findAll();
+    @PostMapping("/savephysiothearpy")
+    public Physiothearpy savephysiothearpy(@RequestBody Physiothearpy physio){
+       return this.repository.save(physio);
     }
 }

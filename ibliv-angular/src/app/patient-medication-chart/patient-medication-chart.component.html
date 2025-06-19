@@ -7,35 +7,35 @@
   <form #patmedicationchart="ngForm">
     <div class="row mb-3">
       <div class="col-md-6">      
-        <label for="drug">Drug</label>
-        <input type="text" required class="form-control" id="drug" placeholder="Enter drug name" [(ngModel)]="patientmedicationchart.drug">
+        <label for="drug" class="form-label">Drug</label>
+        <textarea type="text" maxlength="50" rows="8" required class="form-control" name="drug" placeholder="Enter drug name" [(ngModel)]="patientmedicationchart.drug"></textarea>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
           <label for="patientdaysheet" class="form-label">Date*</label>
-          <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+          <select name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
             <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
           </select>
       </div>
     </div>
       <div class="row mb-3">
         <div class="col-md-6">      
-          <label for="dose">Dose</label>
-          <input type="text" class="form-control" required id="dose" placeholder="Enter dose" [(ngModel)]="patientmedicationchart.dose">
+          <label for="dose" class="form-label">Dose</label>
+          <textarea type="text" maxlength="200" rows="11" class="form-control" name="dose" required id="dose" placeholder="Enter dose" [(ngModel)]="patientmedicationchart.dose"></textarea>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">      
-          <label for="route">Route</label>
-           <input type="text" class="form-control" required id="route" placeholder="Enter route" [(ngModel)]="patientmedicationchart.route">
+          <label for="route" class="form-label">Route</label>
+           <textarea type="text" maxlength="200" rows="11" class="form-control" name="route" required id="route" placeholder="Enter route" [(ngModel)]="patientmedicationchart.route"></textarea>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
-             <label for="frequency">Frequency</label>
-            <input type="text" class="form-control" required id="frequency" placeholder="Enter frequency" [(ngModel)]="patientmedicationchart.frequency">
-      </div>
+             <label for="frequency" class="form-label">Frequency</label>
+            <textarea type="text" maxlength="200" rows="11" class="form-control" name="frequency" required id="frequency" placeholder="Enter frequency" [(ngModel)]="patientmedicationchart.frequency"></textarea>
+        </div>
       </div>
       <div class="spinner-gradient" *ngIf="spin"></div>
     <button type="submit" class="add-patient-btn" (click)="addpatientmedication(patmedicationchart)">Update Measurements</button>

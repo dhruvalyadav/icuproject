@@ -30,7 +30,7 @@
     <div class="row mb-3">
         <div class="col-md-6">
           <label for="stie" class="form-label">stie* </label>
-          <input type="text" required placeholder="stie" class="form-control" name="stie" [(ngModel)]="patlinestubes.site">
+          <input type="text" required placeholder="stie" maxlength="50" class="form-control" name="stie" [(ngModel)]="patlinestubes.site">
         </div>
      </div>
   <button type="submit" class="add-patient-btn" (click)="addpatientlinesandtubes(patientlinestubesform)">Update Measurements</button>

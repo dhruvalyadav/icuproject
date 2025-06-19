@@ -492,7 +492,8 @@ body {
   margin-top: 3rem;
   left: 90px;
   transition: 0.3s ease;
-  height: 100vh;
+  min-height: 100vh;
+  height: max-content;
   overflow: auto;
 }
 

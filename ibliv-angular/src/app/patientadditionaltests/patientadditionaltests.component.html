@@ -1,0 +1,57 @@
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner" >
+  <h3 class="form-label">Patient Medication Chart</h3>
+  <form #patientadditionaltests="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="patientdaysheet" class="form-label">Date*</label>
+          <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="daysheetid" required>
+            <option *ngFor="let patientsheet of Patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+          </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="physiothearpy" class="form-label">Physiothearpy*</label>
+            <select name="physiothearpy" class="form-control" [(ngModel)]="physiotheropyid" required>
+              <option *ngFor="let physio of physiotherpies" value="{{physio.physiothearpyid}}">{{physio.physiothearpy}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="ambulation">Ambulation*</label>
+          <textarea type="text" maxlength="49" rows="10" class="form-control" required id="dose" name="ambulation" placeholder="Enter dose" [(ngModel)]="Patientadditionaltests.ambulation"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="belt">belt*</label>
+          <textarea type="text" rows="10" maxlength="49" required class="form-control" id="drug" name="drug" placeholder="Enter belt" [(ngModel)]="Patientadditionaltests.belt"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="incentivespirometry">incentivespirometry*</label>
+           <textarea type="text" rows="10"  maxlength="49" class="form-control" required id="route" name="incentivespirometry" placeholder="Enter incentivespirometry" [(ngModel)]="Patientadditionaltests.incentivespirometry"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+             <label for="dressing">dressing*</label>
+            <textarea type="text" rows="10" maxlength="49" class="form-control" name="dressing" required id="frequency" [(ngModel)]="Patientadditionaltests.dressing"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+             <label for="trachettsectretion">trachettsectretion*</label>
+            <textarea type="text" rows="10" maxlength="49" class="form-control" name="trachettsectretion" required id="frequency" placeholder="Enter trachettsectretion" [(ngModel)]="Patientadditionaltests.trachettsectretion"></textarea>
+        </div>
+      </div>
+      <div class="spinner-gradient" *ngIf="spin"></div>
+    <button type="submit" *ngIf="!spin" class="add-patient-btn" (click)="addpatientadditionaltests(patientadditionaltests)">Update Measurements</button>
+  </form>
+</div>

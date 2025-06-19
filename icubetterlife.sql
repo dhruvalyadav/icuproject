@@ -278,8 +278,10 @@ CREATE TABLE IF NOT EXISTS `patientadditionaltests` (
   KEY `physiothearpy` (`physiothearpy`),
   CONSTRAINT `patientadditionaltests_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patientadditionaltests_ibfk_2` FOREIGN KEY (`physiothearpy`) REFERENCES `physiothearpy` (`physiothearpyid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientadditionaltests` (`patientadditionaltestsid`, `patientdaysheet`, `physiothearpy`, `ambulation`, `incentivespirometry`, `belt`, `dressing`, `trachettsectretion`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, 2, 'ksskjs siis', 'jsjjs', 'shsh sus', 'snsn', 'sbs', 0, '2025-06-18 20:08:33', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientadmission` (
   `patientadmissionid` int(11) NOT NULL AUTO_INCREMENT,
@@ -490,8 +492,10 @@ CREATE TABLE IF NOT EXISTS `patientventilator` (
   KEY `ventilatormode` (`ventilatormode`),
   CONSTRAINT `patientventilator_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patientventilator_ibfk_2` FOREIGN KEY (`ventilatormode`) REFERENCES `ventilatormode` (`ventilatormodeid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientventilator` (`patientventilatorid`, `patientdaysheet`, `ventilatormode`, `fio2`, `peepcpap`, `rate`, `tv`, `ppeak`, `mv`, `spo2`, `cuffpressure`, `epap`, `peakinsppressure`, `plateaupressure`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, 1, 22.000000, 22.000000, 44.000000, 44.000000, 44.000000, 55.000000, 33.000000, 22.000000, 33.000000, 44.000000, 55.000000, 0, '2025-06-18 23:29:20', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `physiothearpy` (
   `physiothearpyid` int(11) NOT NULL AUTO_INCREMENT,
@@ -501,8 +505,11 @@ CREATE TABLE IF NOT EXISTS `physiothearpy` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`physiothearpyid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `physiothearpy` (`physiothearpyid`, `physiothearpy`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 'dhdjdjd', 0, '2025-06-18 19:01:00', 0, NULL),
+	(2, 'kdkd', 0, '2025-06-18 19:01:24', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `resettoken` (
   `resettokenid` int(11) NOT NULL AUTO_INCREMENT,
@@ -667,8 +674,10 @@ CREATE TABLE IF NOT EXISTS `ventilatormode` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ventilatormodeid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `ventilatormode` (`ventilatormodeid`, `ventilatormode`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 'dhdhdj', 1, 0, '2025-06-18 23:01:59', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `vital` (
   `vitalid` int(11) NOT NULL AUTO_INCREMENT,

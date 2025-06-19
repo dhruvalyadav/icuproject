@@ -8,7 +8,7 @@
     <div class="row mb-3">
       <div class="col-md-6">      
         <label for="drug">Drug</label>
-        <input type="text" required class="form-control" id="drug" name="drug" placeholder="Enter drug name" [(ngModel)]="patientlogmedication.drug">
+        <input type="text" required class="form-control" maxlength="49" name="drug" placeholder="Enter drug name" [(ngModel)]="patientlogmedication.drug">
       </div>
     </div>
     <div class="row mb-3">
@@ -22,19 +22,19 @@
       <div class="row mb-3">
         <div class="col-md-6">      
           <label for="dose">Dose</label>
-          <input type="text" class="form-control" required id="dose" name="dose" placeholder="Enter dose" [(ngModel)]="patientlogmedication.dose">
+          <input type="text" class="form-control" required maxlength="200" name="dose" placeholder="Enter dose" [(ngModel)]="patientlogmedication.dose">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">      
           <label for="route">Route</label>
-           <input type="text" class="form-control" required id="route" name="route" placeholder="Enter route" [(ngModel)]="patientlogmedication.route">
+           <input type="text" class="form-control" required maxlength="200" name="route" placeholder="Enter route" [(ngModel)]="patientlogmedication.route">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
              <label for="adminstrativetime">adminstrative time</label>
-            <input type="time" class="form-control" name="administrationtime" required id="frequency" [(ngModel)]="admintime">
+            <input type="time" class="form-control" name="administrationtime" required  [(ngModel)]="admintime">
         </div>
       </div>
       <div class="row mb-3">

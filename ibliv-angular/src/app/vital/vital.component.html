@@ -5,13 +5,13 @@
     <div class="row mb-3">
        <div class="col-md-6">
          <label for="vitalname" class="form-label">Vital Name* </label>
-         <input type="text" required placeholder="vital name" class="form-control" name="vitalname" [(ngModel)]="vital.vitalname">
+         <input type="text" required placeholder="vital name" class="form-control" name="vitalname" maxlength="50" [(ngModel)]="vital.vitalname">
        </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="vitalcategory" class="form-label">Vital Category* </label>
-        <input type="text" required placeholder="Vital Category" class="form-control" name="height" [(ngModel)]="vital.vitalcategory">
+        <input type="text" required placeholder="Vital Category" class="form-control" name="height" maxlength="50" [(ngModel)]="vital.vitalcategory">
       </div>
     </div>
   <button type="submit" class="add-patient-btn" (click)="onsave(vitalform)">Create Vital</button>

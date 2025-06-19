@@ -28,7 +28,7 @@ import java.util.List;
 @Entity
 @Table(name = "physiothearpy")
 @NamedQueries({
-    @NamedQuery(name = "Physiothearpy.findAll", query = "SELECT p FROM Physiothearpy p"),
+    @NamedQuery(name = "Physiothearpy.findAll", query = "SELECT p FROM Physiothearpy p ORDER BY p.physiothearpy ASC"),
     @NamedQuery(name = "Physiothearpy.findByPhysiothearpyid", query = "SELECT p FROM Physiothearpy p WHERE p.physiothearpyid = :physiothearpyid"),
     @NamedQuery(name = "Physiothearpy.findByPhysiothearpy", query = "SELECT p FROM Physiothearpy p WHERE p.physiothearpy = :physiothearpy"),
     @NamedQuery(name = "Physiothearpy.findByCreatedby", query = "SELECT p FROM Physiothearpy p WHERE p.createdby = :createdby"),
@@ -57,8 +57,8 @@ public class Physiothearpy implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "physiothearpy")
-    private List<Patientadditionaltests> patientadditionaltestsList;
+   /* @OneToMany(cascade = CascadeType.ALL, mappedBy = "physiothearpy")
+    private List<Patientadditionaltests> patientadditionaltestsList;*/
 
     public Physiothearpy() {
     }
@@ -121,13 +121,13 @@ public class Physiothearpy implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientadditionaltests> getPatientadditionaltestsList() {
+    /*public List<Patientadditionaltests> getPatientadditionaltestsList() {
         return patientadditionaltestsList;
     }
 
     public void setPatientadditionaltestsList(List<Patientadditionaltests> patientadditionaltestsList) {
         this.patientadditionaltestsList = patientadditionaltestsList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

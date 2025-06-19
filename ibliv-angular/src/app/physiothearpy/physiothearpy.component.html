@@ -1,7 +1,14 @@
-<form>
-  <div>
-    <label for="physiothearpy">Physiotherapy:</label>
-    <input type="text" id="physiothearpy" name="physiothearpy" required>
-  </div>
-  <button type="submit">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="container mt-4" >
+  <h3 class="form-label">Physiothearpy form</h3>
+  <form #physiotherapyform="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">      
+        <label for="Physiotherapyname" class="form-label">Physiothearpy Name</label>
+        <input type="text" required class="form-control" name="Physiotherapyname" placeholder="Enter Physiothearpy name" maxlength="200" [(ngModel)]="physiotherapy.physiothearpy">
+      </div>
+    </div>
+    <div class="spinner-gradient" [hidden]="spin"></div>
+    <button type="submit" *ngIf="spin" class="add-patient-btn" (click)="addphysiotherapy(physiotherapyform)">Update Measurements</button>
+   </form>
+</div>

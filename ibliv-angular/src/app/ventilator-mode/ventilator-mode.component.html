@@ -1,5 +1,14 @@
-<form>
-  <label for="ventilatormode">Ventilator Mode:</label>
-  <input type="text" id="ventilatormode" name="ventilatormode">
-  <button type="submit">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="container mt-4" >
+  <h3 class="form-label">Ventilator Form</h3>
+  <form #physiotherapyform="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">      
+        <label for="Ventilatormodename" class="form-label">Ventilator mode Name*</label>
+        <input type="text" required class="form-control" name="Ventilatormodename" placeholder="Enter Ventilator mode name" maxlength="50" [(ngModel)]="ventilator.ventilatormode">
+      </div>
+    </div>
+    <div class="spinner-gradient" [hidden]="spin"></div>
+    <button type="submit" *ngIf="spin" class="add-patient-btn" (click)="addventilator(physiotherapyform)">Update Measurements</button>
+   </form>
+</div>
