@@ -1,4 +1,7 @@
 <app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
 <div class="container mt-4" >
   <h3 class="form-label">Physiothearpy form</h3>
   <form #physiotherapyform="ngForm">

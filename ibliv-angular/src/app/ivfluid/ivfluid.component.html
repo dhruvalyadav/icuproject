@@ -1,7 +1,17 @@
-<form>
-  <div class="form-group">
-    <label for="ivFluidName">IV Fluid Name</label>
-    <input type="text" class="form-control" id="ivFluidName" placeholder="Enter IV Fluid Name">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <h3 class="form-label">Physiothearpy form</h3>
+  <form #physiotherapyform="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">      
+        <label for="Physiotherapyname" class="form-label">Physiothearpy Name</label>
+        <input type="number" required class="form-control" name="Physiotherapyname" placeholder="Enter Physiothearpy name" maxlength="200" [(ngModel)]="ivfluid.ivfluidname">
+      </div>
+    </div>
+    <div class="spinner-gradient" [hidden]="spin"></div>
+    <button type="submit" *ngIf="spin" class="add-patient-btn" (click)="addphysiotherapy(physiotherapyform)">Update Measurements</button>
+   </form>
+</div>

@@ -102,7 +102,6 @@ export class Ivfluid {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientivfluidList: Patientivfluid[]=[];
 
   constructor() {}
 }

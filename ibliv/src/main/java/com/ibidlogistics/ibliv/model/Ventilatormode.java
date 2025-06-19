@@ -60,8 +60,8 @@ public class Ventilatormode implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ventilatormode")
-    private List<Patientventilator> patientventilatorList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "ventilatormode")
+    private List<Patientventilator> patientventilatorList;*/
 
     public Ventilatormode() {
     }
@@ -131,13 +131,13 @@ public class Ventilatormode implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientventilator> getPatientventilatorList() {
+    /*public List<Patientventilator> getPatientventilatorList() {
         return patientventilatorList;
     }
 
     public void setPatientventilatorList(List<Patientventilator> patientventilatorList) {
         this.patientventilatorList = patientventilatorList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

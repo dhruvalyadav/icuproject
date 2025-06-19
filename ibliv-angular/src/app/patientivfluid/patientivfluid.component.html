@@ -1,18 +1,31 @@
-<form>
-  <div>
-    <label for="rate">Rate:</label>
-    <input type="text" id="rate" name="rate">
-  </div>
-  <div>
-    <label for="additionaldrugs">Additional Drugs:</label>
-    <input type="text" id="additionaldrugs" name="additionaldrugs">
-  </div>
-  <div>
-    <label for="ivfluid">IV Fluid:</label>
-    <select id="ivfluid" name="ivfluid">
-      <option value="" disabled selected>Select IV Fluid</option>
-      <!-- Add options dynamically here -->
-    </select>
-  </div>
-  <button type="submit">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner" >
+  <h3 class="form-label">Patient Medication Chart</h3>
+  <form #patmedicationchart="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="ivfluid" class="form-label">ivfluid*</label>
+          <select name="ivfluid" class="form-control" [(ngModel)]="ivfluidid" required>
+            <option *ngFor="let iv of ivfluids" value="{{iv.ivfluidid}}">{{iv.ivfluidname}}</option>
+          </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="rate" class="form-label">rate*</label>
+          <input type="text" maxlength="50" required class="form-control"  name="rate" placeholder="Enter rate" [(ngModel)]="patientivfluid.rate">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="additionaldrugs" class="form-label">Additionaldrugs*</label>
+           <textarea type="text" maxlength="2000" rows="11" class="form-control" required  name="additionaldrugs" placeholder="Enter additionaldrugs" [(ngModel)]="patientivfluid.additionaldrugs"></textarea>
+        </div>
+      </div>
+      <div class="spinner-gradient" *ngIf="spin"></div>
+    <button type="submit" *ngIf="!spin" class="add-patient-btn" (click)="addventilator(patmedicationchart)">Update Measurements</button>
+  </form>
+</div>

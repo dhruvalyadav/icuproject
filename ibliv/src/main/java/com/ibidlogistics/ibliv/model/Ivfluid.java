@@ -29,6 +29,7 @@ import java.util.List;
 @Table(name = "ivfluid")
 @NamedQueries({
     @NamedQuery(name = "Ivfluid.findAll", query = "SELECT i FROM Ivfluid i"),
+    @NamedQuery(name = "Ivfluid.findAllOrderBy", query = "SELECT i FROM Ivfluid i ORDER BY i.ivfluidname ASC"),
     @NamedQuery(name = "Ivfluid.findByIvfluidid", query = "SELECT i FROM Ivfluid i WHERE i.ivfluidid = :ivfluidid"),
     @NamedQuery(name = "Ivfluid.findByIvfluidname", query = "SELECT i FROM Ivfluid i WHERE i.ivfluidname = :ivfluidname"),
     @NamedQuery(name = "Ivfluid.findByActive", query = "SELECT i FROM Ivfluid i WHERE i.active = :active"),
@@ -60,8 +61,8 @@ public class Ivfluid implements Serializable {
     @Column(name = "updateddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateddate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ivfluid")
-    private List<Patientivfluid> patientivfluidList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "ivfluid")
+    private List<Patientivfluid> patientivfluidList;*/
 
     public Ivfluid() {
     }
@@ -132,13 +133,13 @@ public class Ivfluid implements Serializable {
         this.updateddate = updateddate;
     }
 
-    public List<Patientivfluid> getPatientivfluidList() {
+    /*public List<Patientivfluid> getPatientivfluidList() {
         return patientivfluidList;
     }
 
     public void setPatientivfluidList(List<Patientivfluid> patientivfluidList) {
         this.patientivfluidList = patientivfluidList;
-    }
+    }*/
 
     @Override
     public int hashCode() {

@@ -18,7 +18,7 @@ export class PhysiothearpyComponent{
    alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
    alertmode : boolean = false
    spin : boolean = true
-
+   mainspinner : boolean = false
 
    addphysiotherapy(form : NgForm){
     if(form.invalid){

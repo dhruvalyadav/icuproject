@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './patient-sos-medication.component.scss'
 })
 export class PatientSosMedicationComponent {
-
+        
 }
