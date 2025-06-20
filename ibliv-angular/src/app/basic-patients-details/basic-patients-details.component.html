@@ -27,7 +27,7 @@
      <app-shiftrmonurse *ngIf="tabname === 'ShiftrmonurseComponent'"></app-shiftrmonurse>
      <app-patientinfusion *ngIf="tabname=='PatientinfusionComponent'"></app-patientinfusion>
      <app-rmonurselog *ngIf="tabname === 'RmonurselogComponent'"></app-rmonurselog>
-     <app-consultant-patient-visit *ngIf="tabname=='ConsultantPatientVisitComponent'"></app-consultant-patient-visit>
+     <app-consultant-patient-visit *ngIf="tabname=='ConsultantPatientVisitComponent'" [patientdaysheets]="patientdaysheets"></app-consultant-patient-visit>
    </div>
 </div>
 <app-footer></app-footer>

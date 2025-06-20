@@ -57,8 +57,10 @@ CREATE TABLE IF NOT EXISTS `consultantpatientvisit` (
   KEY `doctor` (`doctor`),
   CONSTRAINT `consultantpatientvisit_ibfk_1` FOREIGN KEY (`patientdaysheet`) REFERENCES `patientdaysheet` (`patientdaysheetid`) ON UPDATE CASCADE,
   CONSTRAINT `consultantpatientvisit_ibfk_2` FOREIGN KEY (`doctor`) REFERENCES `user` (`userid`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `consultantpatientvisit` (`consultantpatientvisitid`, `patientdaysheet`, `datetime`, `doctor`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 1, '2025-06-20 13:51:13', 4, 0, '2025-06-20 13:51:13', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `division` (
   `divisionid` int(11) NOT NULL AUTO_INCREMENT,
@@ -159,8 +161,10 @@ CREATE TABLE IF NOT EXISTS `ivfluid` (
   `updatedby` int(11) DEFAULT NULL,
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ivfluidid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `ivfluid` (`ivfluidid`, `ivfluidname`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 3838, 0, 0, '2025-06-19 13:33:11', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `linestubes` (
   `linestubesid` int(11) NOT NULL AUTO_INCREMENT,
@@ -371,8 +375,10 @@ CREATE TABLE IF NOT EXISTS `patientivfluid` (
   KEY `ivfluid` (`ivfluid`),
   CONSTRAINT `patientivfluid_ibfk_1` FOREIGN KEY (`patient`) REFERENCES `patient` (`patientid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patientivfluid_ibfk_2` FOREIGN KEY (`ivfluid`) REFERENCES `ivfluid` (`ivfluidid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `patientivfluid` (`patientivfluidid`, `patient`, `ivfluid`, `rate`, `additionaldrugs`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
+	(1, 41, 1, 'dhdh', 'hsh', 0, '2025-06-19 13:53:10', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `patientlinestubes` (
   `patientlinestubesid` int(11) NOT NULL AUTO_INCREMENT,
@@ -553,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   PRIMARY KEY (`roleid`) USING BTREE,
   KEY `FK_role_division` (`division`) USING BTREE,
   CONSTRAINT `FK_role_division` FOREIGN KEY (`division`) REFERENCES `division` (`divisionid`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 INSERT INTO `role` (`roleid`, `name`, `rolecode`, `description`, `division`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 'ICU Director', 'ICU_DIR', 'Head of ICU department', 1, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
@@ -568,7 +574,8 @@ INSERT INTO `role` (`roleid`, `name`, `rolecode`, `description`, `division`, `ac
 	(10, 'Neonatologist', 'NICU_DR', 'Specialist for newborn care', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
 	(11, 'NICU Nurse', 'NICU_NUR', 'Nurse specialized in neonatal care', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
 	(12, 'Developmental Specialist', 'NICU_DEV', 'Specialist for infant development', 4, 1, 1, '2025-06-08 17:34:02', 1, '2025-06-08 17:34:02'),
-	(16, 'Adminstrative', 'ICU_ADM', 'admin', 3, 1, 1, '2025-06-17 19:48:42', NULL, '2025-06-17 19:48:42');
+	(16, 'Adminstrative', 'ICU_ADM', 'admin', 3, 1, 1, '2025-06-17 19:48:42', NULL, '2025-06-17 19:48:42'),
+	(17, 'doctor', 'ICU_DOC', 'Doctor of ICU department', 1, 1, 1, '2025-06-20 13:50:17', 1, '2025-06-20 13:50:17');
 
 CREATE TABLE IF NOT EXISTS `roleaccess` (
   `roleaccessid` int(11) NOT NULL AUTO_INCREMENT,
@@ -623,12 +630,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updateddate` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`userid`) USING BTREE,
   KEY `FK_users_users` (`createdby`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 INSERT INTO `user` (`userid`, `name`, `id`, `mobileno`, `email`, `active`, `username`, `password`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 'Jayraj Kiran Malge', '1', '9175772990', 'jayrajmalge@gmail.com', 1, 'jayrajmalge', '#', 1, '2025-06-08 17:24:21', 1, '2025-06-08 17:24:21'),
 	(2, 'Alice Carter', '2', '2340987654', 'alice@gmail.com', 1, 'alice', '#', 1, '2025-06-08 19:54:33', 1, '2025-06-08 19:54:33'),
-	(3, 'John Wingerson', '3', '2334987654', 'johnwingerson@gmail.com', 1, 'johnwing', '#', 1, '2025-06-08 19:56:48', 1, '2025-06-08 19:56:48');
+	(3, 'John Wingerson', '3', '2334987654', 'johnwingerson@gmail.com', 1, 'johnwing', '#', 1, '2025-06-08 19:56:48', 1, '2025-06-08 19:56:48'),
+	(4, 'rehen domstekchin', '1', '9175772990', 'rehendomstekchi@gmail.com', 1, 'rehendomstekchi', '#', 1, '2025-06-08 17:24:21', 1, '2025-06-08 17:24:21');
 
 CREATE TABLE IF NOT EXISTS `userrole` (
   `userroleid` int(11) NOT NULL AUTO_INCREMENT,
@@ -644,14 +652,15 @@ CREATE TABLE IF NOT EXISTS `userrole` (
   KEY `FK_userrole_users` (`user`) USING BTREE,
   CONSTRAINT `FK_userrole_role` FOREIGN KEY (`role`) REFERENCES `role` (`roleid`) ON UPDATE CASCADE,
   CONSTRAINT `FK_userrole_users` FOREIGN KEY (`user`) REFERENCES `user` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 INSERT INTO `userrole` (`userroleid`, `user`, `role`, `active`, `createdby`, `createddate`, `updatedby`, `updateddate`) VALUES
 	(1, 1, 2, 1, 1, '2025-06-08 17:40:33', 1, '2025-06-08 17:40:33'),
 	(2, 1, 3, 1, 1, '2025-06-08 17:40:43', 1, '2025-06-08 17:40:43'),
 	(3, 2, 2, 1, 1, '2025-06-08 19:59:14', 1, '2025-06-08 19:59:14'),
 	(4, 3, 2, 1, 1, '2025-06-08 19:59:24', 1, '2025-06-08 19:59:24'),
-	(5, 1, 16, 1, 1, '2025-06-18 10:24:06', NULL, '2025-06-18 10:24:06');
+	(5, 1, 16, 1, 1, '2025-06-18 10:24:06', NULL, '2025-06-18 10:24:06'),
+	(6, 4, 17, 1, 1, '2025-06-20 13:47:00', NULL, '2025-06-20 13:50:46');
 
 CREATE TABLE IF NOT EXISTS `usertoken` (
   `usertokenid` int(11) NOT NULL AUTO_INCREMENT,

@@ -26,7 +26,7 @@ export class ConsultantPatientVisitComponent {
    userid : number = 0
    datetime : string = ''
    @Input() patientdaysheets : Patientdaysheet[] = []
-   spin : boolean = false
+   spin : boolean = true
    userroles : Userrole[] = []
    constructor(private router : Router,private webclient : WebClient){}
    ngOnInit(): void {
@@ -48,7 +48,7 @@ export class ConsultantPatientVisitComponent {
     return date;
    }
 
-   addpatientmedication(form : NgForm){
+   addconsultantpatient(form : NgForm){
     if(form.invalid){
        this.alertmode = true
        this.message = "Fill all start(*) marked fields"
@@ -59,7 +59,7 @@ export class ConsultantPatientVisitComponent {
       this.consultantpatient.datetime = this.convertTimeToDate(this.datetime)
       this.consultantpatient.doctor = this.userroles.filter((use)=>{return use.userroleid==this.userid})[0].user
       this.consultantpatient.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]
-      this.webclient.post<Consultantpatientvisit,typeof Consultantpatientvisit>("savepatientmedicationlog",this.consultantpatient)
+      this.webclient.post<Consultantpatientvisit,typeof Consultantpatientvisit>("addconsultantpatientvisit",this.consultantpatient)
       .then((res)=>{
         this.spin = true
         window.location.reload()

@@ -1,0 +1,33 @@
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <h3 class="form-label">Embolism Data</h3>
+  <form #patientadditionalform="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Date*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="datetime" class="form-label">Date & TIme* </label>
+          <input type="datetime-local" class="form-control"  name="datetime" required [(ngModel)]="consultantpatient.datetime" >
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="doctor" class="form-label">doctor*</label>
+            <select  name="doctor" class="form-control" [(ngModel)]="userid" required>
+              <option *ngFor="let user of userroles" value="{{user.userroleid}}">{{user.user.name}}</option>
+            </select>
+        </div>
+     </div>
+  <button type="submit" class="add-patient-btn" *ngIf="spin" (click)="addconsultantpatient(patientadditionalform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spin"></div>
+ </form>
+</div>
