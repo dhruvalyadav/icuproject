@@ -21,12 +21,12 @@
      <app-patient-medication-chart *ngIf="tabname === 'PatientMedicationChartComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-patient-medication-chart>
      <app-patient-medication-log *ngIf="tabname === 'PatientMedicationLogComponent'" [patient]="patient" [patientdaysheets]="patientdaysheets"></app-patient-medication-log>
      <app-patient-ventilator *ngIf="tabname === 'PatientVentilatorComponent'" [patientdaysheets]="patientdaysheets"></app-patient-ventilator>
-     <app-patient-sos-medication *ngIf="tabname === 'PatientSosMedicationComponent'"></app-patient-sos-medication>
+     <app-patient-sos-medication *ngIf="tabname === 'PatientSosMedicationComponent'" [patient]="patient"></app-patient-sos-medication>
      <app-patientlinestubes *ngIf="tabname === 'PatientlinestubesComponent'" [Patient]="patient" [patientdaysheets]="patientdaysheets"></app-patientlinestubes>
      <app-patientivfluid *ngIf="tabname === 'PatientivfluidComponent'" [pat]="patient"></app-patientivfluid>
-     <app-shiftrmonurse *ngIf="tabname === 'ShiftrmonurseComponent'"></app-shiftrmonurse>
-     <app-patientinfusion *ngIf="tabname=='PatientinfusionComponent'"></app-patientinfusion>
-     <app-rmonurselog *ngIf="tabname === 'RmonurselogComponent'"></app-rmonurselog>
+     <app-shiftrmonurse *ngIf="tabname === 'ShiftrmonurseComponent'" [patientdaysheets]="patientdaysheets"></app-shiftrmonurse>
+     <app-patientinfusion *ngIf="tabname=='PatientinfusionComponent'" [patientdaysheets]="patientdaysheets" [patient]="patient" ></app-patientinfusion>
+     <app-rmonurselog *ngIf="tabname === 'RmonurselogComponent'" [patientdaysheets]="patientdaysheets"></app-rmonurselog>
      <app-consultant-patient-visit *ngIf="tabname=='ConsultantPatientVisitComponent'" [patientdaysheets]="patientdaysheets"></app-consultant-patient-visit>
    </div>
 </div>

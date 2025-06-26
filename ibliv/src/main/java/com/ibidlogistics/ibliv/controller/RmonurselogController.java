@@ -4,8 +4,8 @@
  */
 package com.ibidlogistics.ibliv.controller;
 
-import com.ibidlogistics.ibliv.model.Patientsosmedication;
-import com.ibidlogistics.ibliv.repository.PatientsosmedicationRepository;
+import com.ibidlogistics.ibliv.model.Rmonurselog;
+import com.ibidlogistics.ibliv.repository.RmonurselogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
 @RestController
-public class PatientsosmedicationController {
+public class RmonurselogController {
     @Autowired
-    PatientsosmedicationRepository repository;
+    RmonurselogRepository repository;
     
-    @PostMapping("/savesosmedication")
-    public Patientsosmedication savepatientmedicationchart(@RequestBody Patientsosmedication patientsosmedication){
-       return this.repository.save(patientsosmedication);
-    } 
+    @PostMapping("/addrmonurselog")
+    public Rmonurselog addrmonurselog(@RequestBody Rmonurselog rmo){
+       return repository.save(rmo);
+    }
 }

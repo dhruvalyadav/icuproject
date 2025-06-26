@@ -1,27 +1,57 @@
-<form>
-  <div class="form-group">
-    <label for="indication">Indication</label>
-    <input type="text" class="form-control" id="indication" placeholder="Enter indication">
-  </div>
-  <div class="form-group">
-    <label for="drug">Drug</label>
-    <input type="text" class="form-control" id="drug" placeholder="Enter drug">
-  </div>
-  <div class="form-group">
-    <label for="dose">Dose</label>
-    <input type="text" class="form-control" id="dose" placeholder="Enter dose">
-  </div>
-  <div class="form-group">
-    <label for="route">Route</label>
-    <input type="text" class="form-control" id="route" placeholder="Enter route">
-  </div>
-  <div class="form-group">
-    <label for="time">Time</label>
-    <input type="datetime-local" class="form-control" id="time">
-  </div>
-  <div class="form-group">
-    <label for="telephoneverbal">Telephone Verbal</label>
-    <input type="text" class="form-control" id="telephoneverbal" placeholder="Enter telephone verbal">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" >
+  <h3 class="form-label">Patient SOS Medication</h3>
+  <form #patsosmedication="ngForm">
+    <div class="row mb-3">
+      <div class="col-md-6">      
+        <label for="indication" class="form-label">Indication*</label>
+        <textarea type="text" maxlength="200" rows="8" required class="form-control" name="indication" placeholder="Enter indication" [(ngModel)]="patientsosmedication.indication"></textarea>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">      
+        <label for="drug" class="form-label">Drug</label>
+        <textarea type="text" maxlength="50" rows="8" required class="form-control" name="drug" placeholder="Enter Drug" [(ngModel)]="patientsosmedication.drug"></textarea>
+      </div>
+    </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="dose" class="form-label">Dose</label>
+          <textarea type="text" maxlength="2000" rows="11" class="form-control" name="dose" required id="dose" placeholder="Enter dose" [(ngModel)]="patientsosmedication.dose"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="route" class="form-label">Route</label>
+           <textarea type="text" maxlength="2000" rows="11" class="form-control" name="route" required id="route" placeholder="Enter route" [(ngModel)]="patientsosmedication.route"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="route" class="form-label">Route</label>
+           <input type="datetime-local" class="form-control" name="route" required [(ngModel)]="patientsosmedication.time">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="administeredby" class="form-label">Administered By*</label>
+            <select name="administeredby" class="form-control" [(ngModel)]="administeredby" required>
+              <option *ngFor="let use of user" value="{{use.userid}}">{{use.name}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="orderedbydoctor" class="form-label">Ordered By Doctor*</label>
+            <select name="orderedbydoctor" class="form-control" [(ngModel)]="orderedbydoctor" required>
+              <option *ngFor="let use of user" value="{{use.userid}}">{{use.name}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="spinner-gradient" *ngIf="spin"></div>
+    <button type="submit" class="add-patient-btn" (click)="addpatientsosmedication(patsosmedication)">Update Measurements</button>
+  </form>
+</div>

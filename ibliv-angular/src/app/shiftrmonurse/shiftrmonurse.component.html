@@ -1,11 +1,54 @@
-<form>
-  <div>
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
-  </div>
-  <div>
-    <label for="shift">Shift:</label>
-    <input type="number" id="shift" name="shift" required>
-  </div>
-  <button type="submit">Submit</button>
-</form>
+
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner">
+  <h3 class="form-label">Shift RMO nurse</h3>
+  <form #shiftform="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Day*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="icu" class="form-label">ICU*</label>
+          <select name="icu" class="form-control" [(ngModel)]="icuid" required>
+            <option *ngFor="let ic of icus" value="{{ic.icuid}}">{{ic.name}}</option>
+          </select>
+      </div>
+   </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="Shift" class="form-label">Shift*</label>
+        <select name="Shift" class="form-control" [(ngModel)]="shiftrmonurse.shift" required>
+          <option value=0 >Day Shift</option>
+          <option value=1 >Afternoon Shift</option>
+          <option value=2 >Night Shift</option>
+        </select>       
+      </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="rmo" class="form-label">RMO* </label>
+          <select name="rmo" class="form-control" [(ngModel)]="rmo" required>
+            <option *ngFor="let us of users" value="{{us.userid}}">{{us.name}}</option>
+          </select>        
+        </div>
+     </div>
+     <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="nurse" class="form-label">Nurse* </label>
+        <select name="nurse" class="form-control" [(ngModel)]="nurse" required>
+          <option *ngFor="let us of users" value="{{us.userid}}">{{us.name}}</option>
+        </select>   
+      </div>
+   </div>
+  <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addshiftrmonursely(shiftform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
+</div>

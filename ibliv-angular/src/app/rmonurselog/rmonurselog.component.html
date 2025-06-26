@@ -1,0 +1,34 @@
+
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner">
+  <h3 class="form-label">Shift RMO nurse</h3>
+  <form #rmonurseform="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Day*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="datetime" class="form-label">datetime</label>
+           <input type="datetime-local" class="form-control" name="datetime" required [(ngModel)]="rmonurselog.datetime">
+        </div>
+      </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="rmo" class="form-label">rmonurse* </label>
+          <select name="rmo" class="form-control" [(ngModel)]="rmonurse" required>
+            <option *ngFor="let us of users" value="{{us.userid}}">{{us.name}}</option>
+          </select>        
+        </div>
+     </div>
+  <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addrmonurselog(rmonurseform)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
+</div>

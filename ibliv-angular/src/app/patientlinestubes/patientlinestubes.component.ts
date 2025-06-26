@@ -43,7 +43,7 @@ export class PatientlinestubesComponent implements OnInit{
           this.patlinestubes.linestubes = this.linestubes.filter((lt)=>{return lt.linestubesid==this.linestubeid})[0]
           this.patlinestubes.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]    
           this.webclient.post<Patientlinestubes,typeof Patientlinestubes>("savepatientlinestubes",this.patlinestubes)
-          .then((res)=>{this.spinner = true})
+          .then((res)=>{this.spinner = true;window.location.reload()})
           .catch((err)=>{})
        }
    }

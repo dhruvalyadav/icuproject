@@ -1,35 +1,70 @@
-<form>
-  <div class="form-group mb-3">
-    <label for="time">Time</label>
-    <input type="datetime-local" class="form-control" id="time" name="time">
-  </div>
-  <div class="form-group mb-3">
-    <label for="fluidname">Fluid Name</label>
-    <input type="text" class="form-control" id="fluidname" name="fluidname">
-  </div>
-  <div class="form-group mb-3">
-    <label for="fluidvolume">Fluid Volume</label>
-    <input type="text" class="form-control" id="fluidvolume" name="fluidvolume">
-  </div>
-  <div class="form-group mb-3">
-    <label for="ivmedication">IV Medication</label>
-    <input type="text" class="form-control" id="ivmedication" name="ivmedication">
-  </div>
-  <div class="form-group mb-3">
-    <label for="dose">Dose</label>
-    <input type="text" class="form-control" id="dose" name="dose">
-  </div>
-  <div class="form-group mb-3">
-    <label for="rate">Rate</label>
-    <input type="text" class="form-control" id="rate" name="rate">
-  </div>
-  <div class="form-group mb-3">
-    <label for="starttime">Start Time</label>
-    <input type="datetime-local" class="form-control" id="starttime" name="starttime">
-  </div>
-  <div class="form-group mb-3">
-    <label for="endtime">End Time</label>
-    <input type="datetime-local" class="form-control" id="endtime" name="endtime">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+<div class="container mt-4" *ngIf="!mainspinner">
+  <h3 class="form-label">Patient Infusion</h3>
+  <form #patinfusion="ngForm">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="patientdaysheet" class="form-label">Day*</label>
+            <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+              <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="preparedby" class="form-label">Prepared By*</label>
+          <select name="preparedby" class="form-control" [(ngModel)]="preparedby" required>
+            <option *ngFor="let use of users" value="{{use.userid}}">{{use.name}}</option>
+          </select>
+      </div>
+   </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="Shift" class="form-label">Fluidname*</label>    
+        <input type="text" class="form-control" name="fluidname" maxlength="200" required placeholder="Enter Fluidname" [(ngModel)]="patientinfusion.fluidname">   
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="fluidvolume" class="form-label">fluidvolume*</label>    
+        <input type="text" class="form-control" name="fluidvolume" maxlength="200" required placeholder="Enter fluidvolume" [(ngModel)]="patientinfusion.fluidvolume">   
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="Ivmedication" class="form-label">Ivmedication*</label>    
+        <input type="text" class="form-control" name="Ivmedication" maxlength="200" required placeholder="Enter Ivmedication" [(ngModel)]="patientinfusion.ivmedication">   
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="dose" class="form-label">dose*</label>    
+        <input type="text" class="form-control" name="dose" maxlength="200" required placeholder="Enter dose" [(ngModel)]="patientinfusion.dose">   
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="rate" class="form-label">rate*</label>    
+        <input type="text" class="form-control" name="rate" maxlength="200" required placeholder="Enter rate" [(ngModel)]="patientinfusion.rate">   
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="starttime" class="form-label">Starttime*</label>    
+        <input type="datetime-local" class="form-control" name="starttime" [(ngModel)]="patientinfusion.starttime">   
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="endtime" class="form-label">Endtime*</label>    
+        <input type="datetime-local" class="form-control" name="fluidname" [(ngModel)]="patientinfusion.endtime">   
+      </div>
+    </div>
+  <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addpatientinfusion(patinfusion)">Update Measurements</button>
+  <div class="spinner-gradient" [hidden]="spinner"></div>
+ </form>
+</div>
