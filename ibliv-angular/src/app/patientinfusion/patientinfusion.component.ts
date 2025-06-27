@@ -48,7 +48,13 @@ export class PatientinfusionComponent {
          this.patientinfusion.preparedby = this.users.filter((us)=>{return us.userid=this.preparedby})[0]
          this.patientinfusion.time = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date 
          this.webclient.post<Patientinfusion,typeof Patientinfusion>("addpatientinfusion",this.patientinfusion)
-         .then((res)=>{this.spinner = true;window.location.reload()})
+         .then((res)=>{
+          this.spinner = true;
+          this.message = "Sucessfully Updated Patient Infusion details"
+          this.alerttype = 'success'     
+          this.alertmode = true  
+          this.patientinfusion = new Patientinfusion()
+        })
          .catch((err)=>{console.log(err)})
       }
   }

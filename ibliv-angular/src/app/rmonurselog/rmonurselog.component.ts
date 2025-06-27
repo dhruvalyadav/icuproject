@@ -45,7 +45,13 @@ export class RmonurselogComponent {
          this.rmonurselog.rmonurse = this.users.filter((shift)=>{return shift.userid==this.rmonurse})[0]
          this.rmonurselog.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]    
          this.webclient.post<Rmonurselog,typeof Rmonurselog>("addrmonurselog",this.rmonurselog)
-         .then((res)=>{this.spinner = true;window.location.reload()})
+         .then((res)=>{
+          this.spinner = true;
+          this.message = "Sucessfully Updated RMO nurselog details"
+          this.alerttype = 'success'     
+          this.alertmode = true  
+          this.rmonurselog = new Rmonurselog()
+        })
          .catch((err)=>{console.log(err)})
       }
   }

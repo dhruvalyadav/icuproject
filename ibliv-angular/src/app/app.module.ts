@@ -70,6 +70,7 @@ import { UrlComponent } from './url/url.component';
 import { AlertComponent } from './alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { AdminComponent } from './admin/admin.component';
     AlertComponent,
     LoginComponent,
     AdminComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,

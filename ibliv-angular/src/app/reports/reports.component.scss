@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+.patient-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  width: 280px;
+  margin: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+}
+
+.card-header {
+  background: var(--orange);
+  color: white;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .patient-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+  }
+  
+  &.delete:hover {
+    background: var(--red);
+  }
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--dark);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  i {
+    margin-right: 10px;
+    color: var(--orange);
+    font-size: 1.1rem;
+    
+    &.pi-mars {
+      color: #3c91e6; // Blue for male
+    }
+    
+    &.pi-venus {
+      color: #db504a; // Red for female
+    }
+  }
+  
+  .detail-text {
+    font-size: 0.9rem;
+  }
+}
+
+.cards{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.search{
+  width: 50%;
+  height: 4rem;
+}
+
+/* Add to your existing styles */
+.add-patient-btn {
+  background: var(--orange);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-family: var(--poppins);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(235, 167, 65, 0.3);
+}
+
+.add-patient-btn:hover {
+  background: #e89c30; /* Slightly darker orange */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(235, 167, 65, 0.4);
+}
+
+.add-patient-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(235, 167, 65, 0.3);
+}
+
+.add-patient-btn i {
+  font-size: 1.1rem;
+}
+
+.actions{
+  width: 70%;
+  height: auto;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}

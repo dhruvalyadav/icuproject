@@ -36,7 +36,10 @@ export class PatientadditionalscoresComponent {
       this.patientadditionalscore.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]
       this.webclient.post<Patientadditionalscores,typeof Patientadditionalscores>("saveadditionalpatientscore",this.patientadditionalscore)
       .then((res)=>{
-        window.location.reload()
+        this.message = "Sucessfully Updated Patient Score details for Date "+this.patientadditionalscore.patientdaysheet.date
+        this.alerttype = 'success'   
+        this.alertmode = true  
+        this.patientadditionalscore = new Patientadditionalscores()     
       })
       .catch((error)=>{console.log(error)})
     }

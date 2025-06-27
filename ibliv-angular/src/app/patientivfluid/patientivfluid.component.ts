@@ -31,7 +31,7 @@ export class PatientivfluidComponent {
     )
   }
 
-  addventilator(form : NgForm){
+  addpatietnivfluid(form : NgForm){
    if(form.invalid){
      this.alertmode = true
      this.message = "Fill all start(*) marked fields"
@@ -42,7 +42,13 @@ export class PatientivfluidComponent {
      this.patientivfluid.patient = this.pat
      this.patientivfluid.ivfluid = this.ivfluids.filter((iv)=>{return iv.ivfluidid==this.ivfluidid})[0]
      this.webclient.post<Patientivfluid,typeof Patientivfluid>("addpatientivfluid",this.patientivfluid)
-     .then((res)=>{this.spin = false;window.location.reload()})
+     .then((res)=>{
+      this.spin = false;
+      this.message = "Sucessfully Updated Patient IV Fluid details"
+        this.alerttype = 'success'     
+        this.alertmode = true  
+        this.patientivfluid = new Patientivfluid()
+    })
      .catch((err)=>{})
    }
   }

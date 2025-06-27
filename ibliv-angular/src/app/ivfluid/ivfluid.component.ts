@@ -31,7 +31,13 @@ export class IvfluidComponent {
       this.spin = false
       this.ivfluid.createddate = new Date()
       this.webclient.post<Ivfluid,typeof Ivfluid>("saveivfluid",this.ivfluid)
-      .then((res)=>{this.spin = true;window.location.reload()})
+      .then((res)=>{
+        this.spin = true;
+        this.alertmode = true
+        this.message = "Sucessfully Updated Ivfluid"+this.ivfluid.ivfluidname
+        this.alerttype = 'success'     
+        this.ivfluid = new Ivfluid()
+      })
       .catch((err)=>{})
     }
    }

@@ -30,7 +30,13 @@ export class VentilatorModeComponent {
       this.ventilator.createddate = new Date()
       this.ventilator.active = 1
       this.webclient.post<Ventilatormode,typeof Ventilatormode>("saveventilator",this.ventilator)
-      .then((res)=>{this.spin = true;window.location.reload()})
+      .then((res)=>{
+        this.spin = true
+        this.message = "Sucessfully Updated Ventilator details"
+        this.alerttype = 'success'     
+        this.alertmode = true  
+        this.ventilator = new Ventilatormode()
+      })
       .catch((err)=>{})
     }
    }

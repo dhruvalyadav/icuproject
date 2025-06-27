@@ -39,7 +39,10 @@ export class PatientMedicationChartComponent implements OnInit{
       this.webclient.post<Patientmedicationchart,typeof Patientmedicationchart>("savepatientmedicationchart",this.patientmedicationchart)
       .then((res)=>{
         this.spin = false
-        window.location.reload()
+        this.message = "Sucessfully Updated Patient Medication details for date "+this.patientmedicationchart.date
+        this.alerttype = 'success'  
+        this.alertmode = true     
+        this.patientmedicationchart = new Patientmedicationchart()      
       })
       .catch((error)=>{})
     }

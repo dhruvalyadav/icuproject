@@ -42,7 +42,13 @@ export class PatientVentilatorComponent implements OnInit{
       this.patientventilator.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.sheetid})[0]
       this.patientventilator.ventilatormode = this.ventilators.filter((ven)=>{return ven.ventilatormodeid==this.ventilatorid})[0]
       this.webclient.post<Patientventilator,typeof Patientventilator>("addventilator",this.patientventilator)
-      .then((res)=>{this.spin = false;window.location.reload()})
+      .then((res)=>{
+        this.spin = false;
+        this.message = "Sucessfully Updated Patient Ventilator details for Date "+this.patientventilator.patientdaysheet.date
+        this.alerttype = 'success'    
+        this.alertmode = true   
+        this.patientventilator = new Patientventilator()     
+      })
       .catch((err)=>{})
     }
    }

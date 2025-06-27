@@ -48,7 +48,10 @@ export class PatientSosMedicationComponent implements OnInit{
       this.webclient.post<Patientsosmedication,typeof Patientsosmedication>("savesosmedication",this.patientsosmedication)
       .then((res)=>{
         this.spin = false
-        window.location.reload()
+        this.message = "Sucessfully Updated Patient SOS Medication details for Time "+this.patientsosmedication.time+" By "+this.patientsosmedication.administeredby
+        this.alerttype = 'success'  
+        this.alertmode = true  
+        this.patientsosmedication = new Patientsosmedication()     
       })
       .catch((error)=>{})
     }

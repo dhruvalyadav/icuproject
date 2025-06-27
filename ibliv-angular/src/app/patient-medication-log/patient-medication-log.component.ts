@@ -68,7 +68,10 @@ export class PatientMedicationLogComponent implements OnInit{
       this.webclient.post<Patientmedicationlog,typeof Patientmedicationlog>("savepatientmedicationlog",this.patientlogmedication)
       .then((res)=>{
         this.spin = true
-        window.location.reload()
+        this.message = "Sucessfully Updated Patient Medication logs details for date "+this.patientlogmedication.date+" By "+this.patientlogmedication.administeredby
+        this.alerttype = 'success'     
+        this.alertmode = true  
+        this.patientlogmedication = new Patientmedicationlog()       
       })
       .catch((error)=>{})
     }

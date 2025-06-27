@@ -61,6 +61,7 @@ export class PatientdaysheetComponent implements OnInit{
           this.alertmode = true
           this.message = "Sucessfully Updated Patientdaysheet"
           this.alerttype = 'success'
+          this.patidaysheet = new Patientdaysheet()
        })
        .catch((err)=>{
 

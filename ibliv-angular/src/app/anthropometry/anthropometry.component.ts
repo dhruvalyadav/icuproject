@@ -40,7 +40,10 @@ export class AnthropometryComponent {
       this.anthropometry.patient = this.patient
       this.webclient.put<Anthropometry,typeof Anthropometry>("updateanthropometry",this.anthropometry)
       .then((res)=>{
-        window.location.reload()
+        this.anthropometry = new Anthropometry()
+        this.alertmode = true
+        this.message = "Sucessfully Updated Anthoropometry"
+        this.alerttype = 'success'
       })
       .catch((error)=>{console.log(error)})
     }

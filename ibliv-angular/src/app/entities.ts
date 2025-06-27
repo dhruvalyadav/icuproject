@@ -34,7 +34,7 @@ export class Consultantpatientvisit {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
   doctor: User=new User;
 
   constructor() {}
@@ -64,7 +64,7 @@ export class Embolism {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
 
   constructor() {}
 }
@@ -77,8 +77,8 @@ export class Hourlyobservation {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
-  vital: Vital=new Vital;
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
+  vital: Vital=new Vital();
 
   constructor() {}
 }
@@ -166,7 +166,7 @@ export class Patientadditionalscores {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
 
   constructor() {}
 }
@@ -182,8 +182,8 @@ export class Patientadditionaltests {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
-  physiothearpy: Physiothearpy=new Physiothearpy;
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
+  physiothearpy: Physiothearpy=new Physiothearpy();
 
   constructor() {}
 }
@@ -196,8 +196,8 @@ export class Patientadmission {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  icu: Icu=new Icu;
-  patient: Patient=new Patient;
+  icu: Icu=new Icu();
+  patient: Patient=new Patient();
 
   constructor() {}
 }
@@ -209,11 +209,11 @@ export class Patientdaysheet {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientadmission: Patientadmission=new Patientadmission;
-  consultant1: User=new User;
-  consultant2: User=new User;
-  consultant3: User=new User;
-  intensivist: User=new User;
+  patientadmission: Patientadmission=new Patientadmission();
+  consultant1: User=new User();
+  consultant2: User=new User();
+  consultant3: User=new User();
+  intensivist: User=new User();
   constructor() {}
 }
 
@@ -231,8 +231,8 @@ export class Patientinfusion {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patient: Patient=new Patient;
-  preparedby: User=new User;
+  patient: Patient=new Patient();
+  preparedby: User=new User();
 
   constructor() {}
 }
@@ -245,8 +245,8 @@ export class Patientivfluid {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  ivfluid: Ivfluid=new Ivfluid;
-  patient: Patient=new Patient;
+  ivfluid: Ivfluid=new Ivfluid();
+  patient: Patient=new Patient();
 
   constructor() {}
 }
@@ -259,8 +259,8 @@ export class Patientlinestubes {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  linestubes: Linestubes=new Linestubes;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
+  linestubes: Linestubes=new Linestubes();
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
 
   constructor() {}
 }
@@ -276,7 +276,7 @@ export class Patientmedicationchart {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientadmission: Patientadmission=new Patientadmission;
+  patientadmission: Patientadmission=new Patientadmission();
 
   constructor() {}
 }
@@ -292,7 +292,7 @@ export class Patientmedicationlog {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientmedicationchart: Patientmedicationchart=new Patientmedicationchart;
+  patientmedicationchart: Patientmedicationchart=new Patientmedicationchart();
   administeredby: User=new User;
 
   constructor() {}
@@ -310,9 +310,9 @@ export class Patientsosmedication {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patient: Patient=new Patient;
-  administeredby: User=new User;
-  orderedbydoctor: User=new User;
+  patient: Patient=new Patient();
+  administeredby: User=new User();
+  orderedbydoctor: User=new User();
 
   constructor() {}
 }
@@ -334,9 +334,8 @@ export class Patientventilator {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
-  ventilatormode: Ventilatormode=new Ventilatormode;
-
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
+  ventilatormode: Ventilatormode=new Ventilatormode();
   constructor() {}
 }
 
@@ -347,8 +346,6 @@ export class Physiothearpy {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientadditionaltestsList: Patientadditionaltests[]=[];
-
   constructor() {}
 }
 
@@ -368,8 +365,8 @@ export class Rmonurselog {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientdaysheet: Patientdaysheet=new Patientdaysheet;
-  rmonurse: User=new User;
+  patientdaysheet: Patientdaysheet=new Patientdaysheet();
+  rmonurse: User=new User();
 
   constructor() {}
 }
@@ -384,10 +381,7 @@ export class Role {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  division: Division=new Division;
-  roleaccessList: Roleaccess[]=[];
-  userroleList: Userrole[]=[];
-
+  division: Division=new Division();
   constructor() {}
 }
 
@@ -398,8 +392,8 @@ export class Roleaccess {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  menu: Menudetails=new Menudetails;
-  role: Role=new Role;
+  menu: Menudetails=new Menudetails();
+  role: Role=new Role();
 
   constructor() {}
 }
@@ -412,9 +406,9 @@ export class Shiftrmonurse {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  icu: Icu=new Icu;
-  rmo: User=new User;
-  nurse: User=new User;
+  icu: Icu=new Icu();
+  rmo: User=new User();
+  nurse: User=new User();
 
   constructor() {}
 }
@@ -443,8 +437,8 @@ export class Userrole {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  role: Role=new Role;
-  user: User=new User;
+  role: Role=new Role();
+  user: User=new User();
 
   constructor() {}
 }
@@ -454,7 +448,7 @@ export class Usertoken {
   token: string='';
   fcmtoken: string='';
   datetime: Date|null=null;
-  user: User=new User;
+  user: User=new User();
 
   constructor() {}
 }
@@ -467,8 +461,6 @@ export class Ventilatormode {
   createddate: Date|null=null;
   updatedby: number=0;
   updateddate: Date|null=null;
-  patientventilatorList: Patientventilator[]=[];
-
   constructor() {}
 }
 

@@ -50,7 +50,13 @@ export class IcuComponent implements OnInit{
       this.icu.createddate = new Date()
       this.icu.createdby = 1
       this.webclient.post<Icu,typeof Icu>("addicu",this.icu)
-      .then((res)=>{alert("Icu is created");this.spinner=false;window.location.reload()})
+      .then((res)=>{
+        this.spinner=false;
+        this.alertmode = true
+        this.message = "Sucessfully Updated Icu"+this.icu.name
+        this.alerttype = 'success'     
+        this.icu = new Icu()
+      })
       .catch((res)=>{})
     }
   }

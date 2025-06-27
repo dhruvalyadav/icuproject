@@ -29,7 +29,13 @@ export class PhysiothearpyComponent{
       this.spin = false
       this.physiotherapy.createddate = new Date()
       this.webclient.post<Physiothearpy,typeof Physiothearpy>("savephysiothearpy",this.physiotherapy)
-      .then((res)=>{this.spin = true;window.location.reload()})
+      .then((res)=>{
+        this.spin = true;
+        this.message = "Sucessfully Updated Physiotherapy details"
+        this.alerttype = 'success' 
+        this.alertmode = true      
+        this.physiotherapy = new Physiothearpy()
+      })
       .catch((err)=>{})
     }
    }

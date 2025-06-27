@@ -36,7 +36,10 @@ export class EmbolismComponent implements OnInit{
       this.embolism.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]
       this.webclient.post<Embolism,typeof Embolism>("saveembolism",this.embolism)
       .then((res)=>{
-        window.location.reload()
+        this.alertmode = true
+        this.message = "Sucessfully Updated Embolism for day "+this.embolism.patientdaysheet.date
+        this.alerttype = 'success'     
+        this.embolism = new Embolism()
       })
       .catch((error)=>{console.log(error)})
     }

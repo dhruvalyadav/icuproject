@@ -42,7 +42,13 @@ export class PatientadditionaltestsComponent implements OnInit{
        this.Patientadditionaltests.createddate = new Date() 
        this.Patientadditionaltests.patientdaysheet = this.Patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.daysheetid})[0]
        this.webclient.post<Patientadditionaltests,typeof Patientadditionaltests>("saveadditionalpatienttest",this.Patientadditionaltests)
-       .then((res)=>{this.spin = false;window.location.reload()})
+       .then((res)=>{
+        this.spin = false;
+        this.message = "Sucessfully Updated Patient Tests details for Date "+this.Patientadditionaltests.patientdaysheet.date
+        this.alerttype = 'success'     
+        this.alertmode = true  
+        this.Patientadditionaltests = new Patientadditionaltests()        
+      })
        .catch((err)=>{})
     }
   }

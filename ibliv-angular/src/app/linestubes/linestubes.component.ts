@@ -28,7 +28,12 @@ export class LinestubesComponent{
       this.linestube.createddate = new Date()
       this.linestube.active = 1
       this.webclient.post<Linestubes,typeof Linestubes>("savelinetube",this.linestube)
-      .then((res)=>{alert("Lines/tube is added");window.location.reload()})
+      .then((res)=>{
+        this.alertmode = true
+        this.message = "Sucessfully Updated Linestubes "+this.linestube.linestubesname
+        this.alerttype = 'success'     
+        this.linestube = new Linestubes()
+      })
       .catch((res)=>{})
     }
   }

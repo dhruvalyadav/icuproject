@@ -1,0 +1,35 @@
+<app-home></app-home>
+<div class="spinner-box" *ngIf="mainspinner">
+    <div class="spinner-gradient"></div>
+  </div>
+  <div id="content">
+    <div class="actions">
+      <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
+    </div>
+    <div class="cards">
+      <div *ngFor="let patient of patients" class="patient-card"  (click)="showinginput(patient.patientid)">
+        <div class="card-header">
+          <div class="patient-name">{{patient.patientname}}</div>
+          <div class="card-actions">
+          </div>
+        </div>
+        
+        <div class="card-content">
+          <div class="detail-row">
+            <i class="pi pi-map-marker"></i>
+            <span class="detail-text">{{patient.address}}</span>
+          </div>
+          
+          <div class="detail-row">
+            <i class="pi" [ngClass]="{
+              'pi-mars': patient.sex === 'Male',
+              'pi-venus': patient.sex === 'Female',
+              'pi-user': !['Male','Female'].includes(patient.sex)
+            }"></i>
+            <span class="detail-text">{{patient.sex}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

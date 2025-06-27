@@ -1,7 +1,7 @@
 
-import { Component, Input, Output, EventEmitter,OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Patient } from '../entities';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 
 @Component({

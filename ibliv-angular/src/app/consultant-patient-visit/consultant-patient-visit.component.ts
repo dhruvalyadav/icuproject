@@ -62,7 +62,10 @@ export class ConsultantPatientVisitComponent {
       this.webclient.post<Consultantpatientvisit,typeof Consultantpatientvisit>("addconsultantpatientvisit",this.consultantpatient)
       .then((res)=>{
         this.spin = true
-        window.location.reload()
+        this.consultantpatient = new Consultantpatientvisit()
+        this.alertmode = true
+        this.message = "Sucessfully Updated Consultantpatientvisit"
+        this.alerttype = 'success'
       })
       .catch((error)=>{})
     }

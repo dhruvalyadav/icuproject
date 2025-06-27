@@ -41,8 +41,11 @@ export class CvsComponent implements OnInit{
     this.webclient.post<Hourlyobservation,Hourlyobservation>("addhourlyobservation",this.hourlyobservation)
      .then((res)=>{
         this.spinner = false
-        window.location.reload()
-     })
+        this.alertmode = true
+        this.message = "Sucessfully Updated Hourly Observation "+this.hourlyobservation.vital.vitalname
+        this.alerttype = 'success'     
+        this.hourlyobservation = new Hourlyobservation()
+      })
      .catch((err)=>{})
     }
    }

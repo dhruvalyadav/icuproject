@@ -31,7 +31,12 @@ export class VitalComponent {
         this.vital.categorysortorder = 100
         this.vital.sortorder = 100
         this.webclient.post<Vital,Vital>("savevitals",this.vital)
-        .then((res)=>{this.vital = res;this.mainspinner = true;window.location.reload()})
+        .then((res)=>{this.vital = res;this.mainspinner = true;
+          this.message = "Sucessfully Updated Vital"
+          this.alerttype = 'success'     
+          this.alertmode = true  
+          this.vital = new Vital()
+        })
         .catch((err)=>{})
       }
    }

@@ -56,7 +56,13 @@ export class ShiftrmonurseComponent {
          this.shiftrmonurse.createdby = 1
          this.shiftrmonurse.date = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date    
          this.webclient.post<Shiftrmonurse,typeof Shiftrmonurse>("addshiftrmo",this.shiftrmonurse)
-         .then((res)=>{this.spinner = true;window.location.reload()})
+         .then((res)=>{
+          this.spinner = true;
+          this.message = "Sucessfully Updated Shift RMO Nurse details"
+          this.alerttype = 'success'    
+          this.alertmode = true  
+          this.shiftrmonurse = new Shiftrmonurse()
+        })
          .catch((err)=>{console.log(err)})
       }
   }
