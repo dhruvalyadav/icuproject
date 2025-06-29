@@ -18,6 +18,8 @@ export class PatientinfusionComponent {
   @Input() patient : Patient = new Patient()
   patientdaysheetid : number = 0
   users : User[] = []
+  infusionList: Patientinfusion[] = []
+  infusionTableColumns: { key: string; label: string }[] = [];
   preparedby : number = 0
   spinner : boolean = true
   rmonurse : number = 0
@@ -26,7 +28,13 @@ export class PatientinfusionComponent {
   alerttype  : 'success' | 'error' | 'warning' | 'info' = 'info'
   alertmode : boolean = false
   constructor(private router : Router,private webclient : WebClient){}
-
+  formatLabel(key: string): string {
+  return key
+    .replace(/([a-z])([A-Z])/g, '$1 $2')      
+    .replace(/_/g, ' ')                       
+    .replace(/\b\w/g, l => l.toUpperCase());  
+}
+  
   ngOnInit(): void {
     this.mainspinner = true
     this.webclient.getAll<User[]>("users").subscribe(
@@ -35,6 +43,24 @@ export class PatientinfusionComponent {
       this.mainspinner = false
     },(error)=>{}
     )
+    if (this.patient?.patientid) {
+    this.webclient.getAll<Patientinfusion[]>(`patientinfusion?patientid=${this.patient.patientid}`).subscribe(
+      (data) => {
+        this.infusionList = data;
+        if (data.length > 0) {
+      this.infusionTableColumns = Object.keys(data[0])
+        .filter(key => !['patient', 'preparedby'].includes(key))
+        .map(key => ({
+          key,
+          label: this.formatLabel(key)
+        }));
+    }
+      },
+      (error) => {
+        console.error("Failed to fetch infusion data", error);
+      }
+    );}
+    
   }
   addpatientinfusion(form : NgForm){
       if(form.invalid){

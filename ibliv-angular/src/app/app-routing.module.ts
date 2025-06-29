@@ -39,6 +39,7 @@ import { ShiftrmonurseComponent } from './shiftrmonurse/shiftrmonurse.component'
 import { IcuComponent } from './icu/icu.component';
 import { PatientinfusionComponent } from './patientinfusion/patientinfusion.component';
 import { RmonurselogComponent } from './rmonurselog/rmonurselog.component';
+
 import { WebClient } from './web-client';
 import { menu , submenu , Menudetails } from './entities';
 import { LoginComponent } from './login/login.component';
@@ -88,14 +89,15 @@ const routes: Routes = [
   { path: "patient/EditLinesTubes", component: EditlinesTubesComponent },
   { path: "patient/IVFluid", component: EditIVfuildComponent },
   { path: "patient/ICU", component: IcuComponent },
-
+  
   { path : "patientedits/:id",component : AdmittedPatientsComponent},
   { path : "addpatient",component : AllPatientsComponent},
   { path : "patient/admit/:id",component : EditPatientComponent},
   {path : "reports",component : ReportsComponent},
   {path : "patient/details/:id",component : BasicPatientsDetailsComponent},
   {path : "admin",component : AdminComponent},
-  {path : "report/patient/:id",component : UrlComponent}
+  // {path : "report/patient/:id",component : UrlComponent}
+  {path : "url", component : UrlComponent}
 ];
 
 @NgModule({
