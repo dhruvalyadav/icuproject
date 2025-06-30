@@ -67,9 +67,5 @@
   <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addpatientinfusion(patinfusion)">Update Measurements</button>
   <div class="spinner-gradient" [hidden]="spinner"></div>
  </form>
- <app-url
-    [tableData]="infusionList"
-    [columns]="infusionTableColumns"
-    tableTitle="Patient Infusion Records">
-  </app-url>
+ 
 </div>

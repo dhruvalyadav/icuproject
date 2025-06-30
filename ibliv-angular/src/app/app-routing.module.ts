@@ -96,8 +96,7 @@ const routes: Routes = [
   {path : "reports",component : ReportsComponent},
   {path : "patient/details/:id",component : BasicPatientsDetailsComponent},
   {path : "admin",component : AdminComponent},
-  // {path : "report/patient/:id",component : UrlComponent}
-  {path : "url", component : UrlComponent}
+  {path : "report/patient/:id",component : UrlComponent}
 ];
 
 @NgModule({

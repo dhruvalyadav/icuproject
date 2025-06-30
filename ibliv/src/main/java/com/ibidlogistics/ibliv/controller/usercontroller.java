@@ -25,4 +25,5 @@ public class usercontroller {
     {
         return this.userrepository.findAll();
     }
+    
 }

@@ -1,16 +1,16 @@
-<div *ngIf="tableData && tableData.length > 0" class="table-wrapper mt-4">
-  <h5 *ngIf="tableTitle">{{ tableTitle }}</h5>
-
+<!-- patient infusion -->
+<div *ngIf="isValid(infusionData)" class="table-wrapper mt-4">
+  <h5>Patient Infusion</h5>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
-          <th *ngFor="let col of columns">{{ col.label }}</th>
+          <th *ngFor="let col of infusionColumns">{{ col.label }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of tableData">
-          <td *ngFor="let col of columns">
+        <tr *ngFor="let row of infusionData">
+          <td *ngFor="let col of infusionColumns">
             {{ getValue(row, col.key) }}
           </td>
         </tr>
@@ -19,6 +19,22 @@
   </div>
 </div>
 
-<div *ngIf="tableData && tableData.length === 0" class="text-muted mt-2">
-  No data available.
-</div>
+
+<!-- Additional test scores table -->
+ <div *ngIf="isValid(scoreData)" class="table-wrapper mt-4">
+  <h5>Additional Test Scores</h5>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let col of scoreColumns">{{ col.label}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of scoreData">
+          <td *ngFor="let col of scoreColumns">{{ getValue(row, col.key) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ </div>

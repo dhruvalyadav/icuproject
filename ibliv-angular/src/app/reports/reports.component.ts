@@ -14,8 +14,7 @@ import { WebClient } from '../web-client';
 })
 export class ReportsComponent {
   constructor(private router : Router,private webclient : WebClient){}
-  patients : Patient[] = [
-  ]
+  patients : Patient[] = []
 
   mainspinner : boolean = false
   ngOnInit(): void {
@@ -34,9 +33,5 @@ export class ReportsComponent {
     } else {
       this.spinner = true
     }
-  }
-
-  showinginput(patientid : number|null){
-    this.router.navigate(['report/patient/'+patientid])
   }
 }

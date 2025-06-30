@@ -7,13 +7,13 @@
       <input type="text" placeholder="search patient" class="search" (change)="filterpatients($event)">
     </div>
     <div class="cards">
-      <div *ngFor="let patient of patients" class="patient-card"  (click)="showinginput(patient.patientid)">
+      <div *ngFor="let patient of patients" class="patient-card"  [routerLink]="['/report/patient', patient.patientid]">
         <div class="card-header">
           <div class="patient-name">{{patient.patientname}}</div>
           <div class="card-actions">
           </div>
         </div>
-        
+
         <div class="card-content">
           <div class="detail-row">
             <i class="pi pi-map-marker"></i>
