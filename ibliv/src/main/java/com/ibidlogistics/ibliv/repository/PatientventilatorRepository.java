@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.ibidlogistics.ibliv.repository;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.ibidlogistics.ibliv.model.Patientventilator;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +13,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientventilatorRepository extends JpaRepository<Patientventilator,Integer>{
-    
+    List<Patientventilator> findByPatientdaysheet_Patientadmission_Patient_Patientid(Integer patientid);
+
 }

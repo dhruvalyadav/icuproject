@@ -1,4 +1,127 @@
-<!-- patient infusion -->
+<div class="icu-chart-container">
+  <h2 class="text-center section-title">ICU Patient Report</h2>
+
+  <!-- Patient Info + Anthropometry side by side -->
+  <div class="dual-table-section-for-2">
+    <div class="table-wrapper">
+      <h3 class="section-title">Patient Information</h3>
+      <table class="table table-bordered table-sm">
+        <tr><th>Name</th><td>{{ patient.patientname }}</td></tr>
+        <tr><th>DOB</th><td>{{ patient.dob | date:'mediumDate' }}</td></tr>
+        <tr><th>Age</th><td>{{ patient.age }} years</td></tr>
+        <tr><th>Sex</th><td>{{ patient.sex }}</td></tr>
+        <tr><th>Contact</th><td>{{ patient.contact }}</td></tr>
+      </table>
+    </div>
+    <div class="table-wrapper" *ngIf="anthropometry">
+      <h3 class="section-title">Anthropometry</h3>
+      <table class="table table-bordered table-sm">
+        <tr><th>Weight (KG)</th><td>{{ anthropometry.weight }}</td></tr>
+        <tr><th>Height (CM)</th><td>{{ anthropometry.height }}</td></tr>
+        <tr><th>BMI</th><td>{{ anthropometry.bmi }}</td></tr>
+        <tr><th>BSA Boyd</th><td>{{ anthropometry.bsaboyd }}</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ICU Hourly Chart -->
+<!-- Hourly chart table -->
+<div *ngIf="hourlyVitalsGrouped && groupedCategories.length > 0" class="mt-4">
+     <div class="table-wrapper">
+  <h3 class="section-title">ICU Hourly Chart</h3>
+  
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Vital Name</th>
+          <th *ngFor="let hour of hours">{{ hour }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let category of groupedCategories">
+          <tr class="table-active">
+            <td [attr.colspan]="hours.length + 1"><strong>{{ category }}</strong></td>
+          </tr>
+          <tr *ngFor="let vital of hourlyVitalsGrouped[category]">
+            <td>{{ vital.vitalname }}</td>
+            <td *ngFor="let hour of hours">{{ vital.data[hour] || '-' }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+  <!-- Shift Incharges + Consultant side by side -->
+  <div class="dual-table-section-for-2">
+    <div *ngIf="shiftrmo && shiftrmo.length > 0" class="table-wrapper">
+      <h3 class="section-title">Shift Incharges</h3>
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr><th>Shift</th><th>Shift 1</th><th>Shift 2</th><th>Shift 3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nurse</td><td>{{ shiftMap[1]?.nurse?.name || '-' }}</td><td>{{ shiftMap[2]?.nurse?.name || '-' }}</td><td>{{ shiftMap[3]?.nurse?.name || '-' }}</td></tr>
+          <tr><td>RMO</td><td>{{ shiftMap[1]?.rmo?.name || '-' }}</td><td>{{ shiftMap[2]?.rmo?.name || '-' }}</td><td>{{ shiftMap[3]?.rmo?.name || '-' }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-wrapper">
+      <h3 class="section-title">Consultant</h3>
+      <p>{{ patient?.consultant || '-' }}</p>
+    </div>
+  </div>
+
+  <!-- Ventilator + ICU Stay Details side by side -->
+  <div class="dual-table-section-for-2">
+    <div *ngIf="ventilators.length > 0" class="table-wrapper">
+      <h3 class="section-title">Ventilator Records</h3>
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Date</th><th>Mode</th><th>FIO2</th><th>PEEP/CPAP</th><th>Rate</th>
+            <th>TV</th><th>Ppeak</th><th>MV</th><th>SPO2</th><th>Cuff Pressure</th>
+            <th>EPAP</th><th>Peak Insp Pressure</th><th>Plateau Pressure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of ventilators">
+            <td>{{ v.patientdaysheet?.date?.split('T')[0] }}</td>
+            <td>{{ v.ventilatormode?.ventilatormode }}</td>
+            <td>{{ v.fio2 }}</td>
+            <td>{{ v.peepcpap }}</td>
+            <td>{{ v.rate }}</td>
+            <td>{{ v.tv }}</td>
+            <td>{{ v.ppeak }}</td>
+            <td>{{ v.mv }}</td>
+            <td>{{ v.spo2 }}</td>
+            <td>{{ v.cuffpressure }}</td>
+            <td>{{ v.epap }}</td>
+            <td>{{ v.peakinsppressure }}</td>
+            <td>{{ v.plateaupressure }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="patientAdmissionData" class="table-wrapper">
+      <h3 class="section-title">ICU Stay Details</h3>
+      <table class="table table-bordered table-sm">
+        <tr><th>Date</th><td>{{ patientAdmissionData.createddate | date:'dd-MM-yyyy' }}</td></tr>
+        <tr><th>DOA</th><td>{{ patientAdmissionData.admissiondate | date:'dd-MM-yyyy' }}</td></tr>
+        <tr><th>Hospital Stay Day</th><td>{{ patientAdmissionData.admissiondate ? calculateDaysBetween(patientAdmissionData.admissiondate, currentDate) : '-' }}</td></tr>
+        <tr><th>ICU Admission Day</th><td>{{ patientAdmissionData.icuadmissiondate | date:'dd-MM-yyyy' }}</td></tr>
+        <tr><th>ICU Stay Day</th><td>{{ patientAdmissionData.icuadmissiondate ? calculateDaysBetween(patientAdmissionData.icuadmissiondate, currentDate) : '-' }}</td></tr>
+      </table>
+    </div>
+  </div>
+
+ 
+
+
+
+<!-- patient infusion 
 <div *ngIf="isValid(infusionData)" class="table-wrapper mt-4">
   <h5>Patient Infusion</h5>
   <div class="table-responsive">
@@ -20,7 +143,7 @@
 </div>
 
 
-<!-- Additional test scores table -->
+ Additional test scores table 
  <div *ngIf="isValid(scoreData)" class="table-wrapper mt-4">
   <h5>Additional Test Scores</h5>
   <div class="table-responsive">
@@ -38,3 +161,5 @@
     </table>
   </div>
  </div>
+
+-->

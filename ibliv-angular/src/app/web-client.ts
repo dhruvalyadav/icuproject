@@ -47,4 +47,12 @@ export class WebClient
     if (this.TOKEN) headers['token'] = this.TOKEN;
     return firstValueFrom(this.http.patch<U>(environment.BASE_URL + url, data, { headers: headers }));
   }
+   
+public getObservable <T> (url: string): Observable<T> {
+  const headers: any = {};
+  if (this.TOKEN) headers['token'] = this.TOKEN;
+  return this.http.get<T>(environment.BASE_URL + url, { headers });
 }
+
+}
+

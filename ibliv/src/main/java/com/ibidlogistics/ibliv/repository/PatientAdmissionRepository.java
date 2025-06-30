@@ -15,4 +15,5 @@ public interface PatientAdmissionRepository extends JpaRepository<Patientadmissi
 {
     @Query("SELECT p FROM Patientadmission p WHERE p.patient.patientid = :patientid")
     Patientadmission findByPatient(@Param("patientid") Integer patientid);  
+     Patientadmission findByPatient_Patientid(Integer patientId);
 }

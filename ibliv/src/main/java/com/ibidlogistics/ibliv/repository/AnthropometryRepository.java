@@ -15,4 +15,9 @@ import org.springframework.stereotype.Repository;
 public interface AnthropometryRepository extends JpaRepository<Anthropometry,Integer> {
      @Query("SELECT a FROM Anthropometry a WHERE a.patient.patientname LIKE LOWER(CONCAT('%', :patientname, '%'))")
     List<Anthropometry> findByPatientname(@Param("patientname") String patientname);
+    @Query("SELECT a FROM Anthropometry a WHERE a.patient.patientid = :patientId")
+List<Anthropometry> findByPatientId(@Param("patientId") Integer patientId);
+
+    
+
 }

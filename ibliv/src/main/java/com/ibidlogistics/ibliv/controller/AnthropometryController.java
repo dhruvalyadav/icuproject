@@ -42,4 +42,11 @@ public class AnthropometryController {
     public List<Anthropometry> filteranthropometry(@PathVariable("patientname") String patientname){
         return this.anthropometryRepository.findByPatientname(patientname);
     }
+ @GetMapping("/getanthropometrybypatient/{patientId}")
+public List<Anthropometry> getAnthropometryByPatientId(@PathVariable("patientId") Integer patientId) {
+    return this.anthropometryRepository.findByPatientId(patientId);
+}
+
+
+
 }
