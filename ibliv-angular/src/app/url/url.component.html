@@ -1,58 +1,84 @@
 <app-home></app-home>
- <div id="content">
+<div class="spinner-box" *ngIf="mainspinner">
+  <div class="spinner-gradient"></div>
+</div>
+ <div id="content" *ngIf="!mainspinner">
+  <div class="row mb-3">
+    <div class="col-md-6">
+        <label for="patientdaysheet" class="form-label">Date*</label>
+        <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" (change)="changesheet()">
+          <option *ngFor="let patientsheet of completesheet.patientdaysheet" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+        </select>
+    </div>
+  </div>
     <div class="icu-chart-container">
         <div class="patient-header">
           <div class="patient-info">
             <h2>ICU Patient Report</h2>
             <div class="info-grid">
-              <div><strong>Patient Name:</strong> Kadam</div>
-              <div><strong>DOB:</strong> 20-02-1998 (26 years)</div>
-              <div><strong>Sex:</strong> Male</div>
-              <div><strong>ICU Admission:</strong> 14-12-2024</div>
+              <div><strong>Patient Name:</strong>  {{patient.patientname}}</div>
+              <div><strong>DOB:</strong> {{patient.dob.toString().split("T")[0]}}</div>
+              <div><strong>Sex:</strong> {{patient.sex}}</div>
+              <div><strong>ICU Admission:</strong> {{patientadmission.icuadmissiondate.toString().split("T")[0]}}</div>
             </div>
           </div>
-          <div class="staff-info">
+          <!--<div class="staff-info">
             <div><strong>RMO Incharge:</strong> [Name]</div>
             <div><strong>Staff Nurse:</strong> [Name]</div>
             <div><strong>Consultant:</strong> [Name]</div>
-          </div>
+          </div>-->
         </div>
-
-        <div class="io-section">
-          <div class="io-column">
-          <h3 class="section-title">Incharges</h3>
-          <div class="timeline-container">
-            <div class="timeline-hours">
-              <div class="time-name">Shifts</div>
+           
+          <div class="dual-table-section-for-2">
+          <div class="table-wrapper two-column-400">
+            <h3 class="section-title">Incharges</h3>
+            <table class="data-table">
+              <!--<div class="time-name">Shifts</div>
               <div class="incharge-names">shift 1</div>
               <div class="incharge-names">shift 2</div>
-              <div class="incharge-names">shift 3</div>
-            </div>
-            <div class="timeline-metric">
+              <div class="incharge-names">shift 3</div>-->
+               <thead>
+                 <tr>
+                   <th>Shifts</th>
+                   <th>shift 1</th>
+                   <th>shift 2</th>
+                   <th>shift 3</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>Staff Nurse</td>
+                   <td *ngFor="let name of completesheet.shiftnurses" >{{name.nurse.name==''&&name.nurse.name==null ? 'undefinded yet' : name.nurse.name}}</td>
+                 </tr>
+                 <tr>
+                   <td>RMO Incharge</td>
+                   <td *ngFor="let name of completesheet.rmonurselog"> {{name.rmonurse.name==''&&name.rmonurse.name==null  ? 'undefinded yet' : name.rmonurse.name}}</td>
+                 </tr>
+               </tbody>
+            </table>
+            <!--<div class="timeline-metric">
               <div class="metric-name">Staff Nurse</div>
               <div class="metric-values">
-                <div  class="names">hello</div>
-                <div  class="names">hello</div>
-                <div  class="names">hello</div>
-
+                <div  class="names" *ngFor="let name of completesheet.shiftnurses" >{{name.nurse.name==''&&name.nurse.name==null ? 'undefinded yet' : name.nurse.name}}</div>
+                <div class="names" *ngIf="completesheet.shiftnurses.length==0">undefinded Yet</div>
+                <div class="names" *ngIf="completesheet.shiftnurses.length==0">undefinded Yet</div>
+                <div class="names" *ngIf="completesheet.shiftnurses.length==0">undefinded Yet</div>
               </div>
             </div>
             <div class="timeline-metric">
               <div class="metric-name">RMO Incharge</div>
               <div class="metric-values">
-                <div  class="names">hello</div>
-                <div  class="names">hello</div>
-                <div  class="names">hello</div>
-
+                <div  class="names" *ngFor="let name of completesheet.rmonurselog"> {{name.rmonurse.name==''&&name.rmonurse.name==null  ? 'undefinded yet' : name.rmonurse.name}}</div>
+                <div class="names" *ngIf="completesheet.rmonurselog.length==0">undefinded Yet</div>
+                <div class="names" *ngIf="completesheet.rmonurselog.length==0">undefinded Yet</div>
+                <div class="names" *ngIf="completesheet.rmonurselog.length==0">undefinded Yet</div>
               </div>
-            </div>
+            </div>-->
             <!-- Repeat for other vitals -->
           </div>
-        </div>
-        <div class="io-column">
-          <h3 class="section-title">Patient Consultants</h3>
-          <div class="timeline-container">
-            <div class="timeline-hours">
+          <div class="table-wrapper two-column-400">
+            <h3 class="section-title">Patient Consultants</h3>
+            <!--<div class="timeline-hours">
               <div class="time-name">Consultants</div>
               <div class="incharge-names">Consultant 1</div>
               <div class="incharge-names">Consultant 2</div>
@@ -61,58 +87,98 @@
             <div class="timeline-metric">
               <div class="metric-name">Name</div>
               <div class="metric-values">
-                <div  class="names">hello</div>
-                <div  class="names">hello</div>
-                <div  class="names">hello</div>
+                <div  class="names">{{currentdaysheet.consultant1.name==null ? 'undefinded yet' : currentdaysheet.consultant1.name}}</div>
+                <div  class="names">{{currentdaysheet.consultant2.name==null ? 'undefinded yet' : currentdaysheet.consultant2.name}}</div>
+                <div  class="names">{{currentdaysheet.consultant3.name==null ? 'undefinded yet' : currentdaysheet.consultant3.name}}</div>
               </div>
-            </div>
-            <!-- Repeat for other vitals -->
+            </div>-->
+            <table class="data-table">
+               <thead>
+                 <tr>
+                    <th>Consultant 1</th>
+                    <th>Consultant 2</th>
+                    <th>Consultant 3</th>
+                 </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td *ngIf="currentdaysheet.consultant1" >{{currentdaysheet.consultant1.name==null ? 'undefinded yet' : currentdaysheet.consultant1.name}}</td>
+                     <td *ngIf="currentdaysheet.consultant2" >{{currentdaysheet.consultant1.name==null ? 'undefinded yet' : currentdaysheet.consultant2.name}}</td>
+                     <td *ngIf="currentdaysheet.consultant3" >{{currentdaysheet.consultant1.name==null ? 'undefinded yet' : currentdaysheet.consultant3.name}}</td>
+                  </tr>
+               </tbody>
+            </table>
           </div>
         </div>
-        </div>
-      
+        
+
         <!-- Anthropometry Section -->
         <div class="chart-section">
           <h3 class="section-title">Anthropometry</h3>
           <div class="metrics-grid">
             <div class="metric-card">
-              <div class="metric-value">12.5</div>
+              <div class="metric-value" *ngIf="completesheet?.anthropometry?.weight !== null && completesheet?.anthropometry?.weight !== undefined">
+                {{ completesheet.anthropometry.weight }}
+              </div>
+              <div *ngIf="completesheet?.anthropometry?.weight === null || completesheet?.anthropometry?.weight === undefined">
+                Not defined
+              </div>
               <div class="metric-label">Weight (KG)</div>
             </div>
             <div class="metric-card">
-              <div class="metric-value">78</div>
+              <div class="metric-value" *ngIf="completesheet?.anthropometry?.height !== null && completesheet?.anthropometry?.height !== undefined">
+                {{ completesheet.anthropometry.height }}
+              </div>
+              <div *ngIf="completesheet?.anthropometry?.height === null || completesheet?.anthropometry?.height === undefined">
+                Not defined
+              </div>
               <div class="metric-label">Height (CM)</div>
             </div>
             <div class="metric-card">
-              <div class="metric-value">20.55</div>
+              <div class="metric-value" *ngIf="completesheet?.anthropometry?.bmi !== null && completesheet?.anthropometry?.bmi !== undefined">
+                {{ completesheet.anthropometry.bmi }}
+              </div>
+              <div *ngIf="completesheet?.anthropometry?.bmi === null || completesheet?.anthropometry?.bmi === undefined">
+                Not defined
+              </div>
               <div class="metric-label">BMI</div>
             </div>
             <div class="metric-card">
-              <div class="metric-value">0.49</div>
+              <div class="metric-value" *ngIf="completesheet?.anthropometry?.bsaboyd !== null && completesheet?.anthropometry?.bsaboyd !== undefined">
+                {{ completesheet.anthropometry.bsaboyd }}
+              </div>
+              <div *ngIf="completesheet?.anthropometry?.bsaboyd === null || completesheet?.anthropometry?.bsaboyd === undefined">
+                Not defined
+              </div>
               <div class="metric-label">BSA BOYD</div>
             </div>
           </div>
         </div>
       
+
+
         <div class="chart-section">
           <h3 class="section-title">Hourly Observation</h3>
           <div class="timeline-container">
             <div class="timeline-hours">
               <div class="time-name">Time</div>
-              <div *ngFor="let hour of hours" class="hour-slot">{{hour}}AM</div>
+              <div *ngFor="let hour of completesheet.arryarange" class="hour-slot">{{hour}}AM</div>
             </div>
-            <div class="timeline-metric">
-              <div class="metric-name">Temperature (°C)</div>
-              <div class="metric-values">
-                <div *ngFor="let temp of temperatures" class="metric-value">{{temp || '-'}}</div>
-              </div>
+            <div *ngFor="let vital of hourrecords">
+                 <p class="vital-cat" *ngIf="completesheet.anthropometry.weight!=null">{{vital.vitalcategory}}</p>
+                 <div class="timeline-metric" *ngFor="let hour of vital.observationundercategory">
+                  <div class="metric-name">{{hour.vitalname}}</div>
+                  <div class="metric-values">
+                    <div *ngFor="let temp of hour.values" class="metric-value">{{temp}}</div>
+                  </div>
+                </div>
             </div>
-            <div class="timeline-metric">
+            <!--<div class="timeline-metric">
               <div class="metric-name">CVC</div>
               <div class="metric-values">
                 <div *ngFor="let temp of temperatures" class="metric-value">{{temp || '-'}}</div>
               </div>
-            </div>
+            </div>-->
             <!-- Repeat for other vitals -->
           </div>
         </div>
@@ -221,15 +287,34 @@
               <tbody>
                 <tr>
                   <td>qSOFA Score</td>
-                  <td>20</td>
-                </tr>
+                  <td>
+                    <span *ngIf="completesheet?.patientadditionalscore?.qsofa !== null && completesheet?.patientadditionalscore?.qsofa !== undefined">
+                      {{ completesheet.patientadditionalscore.qsofa }}
+                    </span>
+                    <span *ngIf="completesheet?.patientadditionalscore?.qsofa === null || completesheet?.patientadditionalscore?.qsofa === undefined">
+                      Not Defined
+                    </span>
+                  </td>                </tr>
                 <tr>
                   <td>MEWS Score</td>
-                  <td>26</td>
-                </tr>
+                  <td>
+                    <span *ngIf="completesheet?.patientadditionalscore?.mews !== null && completesheet?.patientadditionalscore?.mews !== undefined">
+                      {{ completesheet.patientadditionalscore.mews }}
+                    </span>
+                    <span *ngIf="completesheet?.patientadditionalscore?.mews === null || completesheet?.patientadditionalscore?.mews === undefined">
+                      Not Defined
+                    </span>
+                  </td>                </tr>
                 <tr>
                   <td>APACHE IV</td>
-                  <td>0</td>
+                  <td>
+                    <span *ngIf="completesheet?.patientadditionalscore?.apacheiv !== null && completesheet?.patientadditionalscore?.apacheiv !== undefined">
+                      {{ completesheet.patientadditionalscore.apacheiv }}
+                    </span>
+                    <span *ngIf="completesheet?.patientadditionalscore?.apacheiv === null || completesheet?.patientadditionalscore?.apacheiv === undefined">
+                      Not Defined
+                    </span>
+                  </td>                
                 </tr>
               </tbody>
             </table>
@@ -247,15 +332,34 @@
               <tbody>
                 <tr>
                   <td>DVT risk</td>
-                  <td>30</td>
-                </tr>
+                  <td>
+                    <span *ngIf="completesheet?.embolism?.dvtrisk !== null && completesheet?.embolism?.dvtrisk !== undefined">
+                      {{ completesheet.embolism.dvtrisk }}
+                    </span>
+                    <span *ngIf="completesheet?.embolism?.dvtrisk === null || completesheet?.embolism?.dvtrisk === undefined">
+                      Not Defined
+                    </span>
+                  </td>                </tr>
                 <tr>
                   <td>Anticoagulations</td>
-                  <td>30</td>
-                </tr>
+                  <td>
+                    <span *ngIf="completesheet?.embolism?.anticoagulation !== null && completesheet?.embolism?.anticoagulation !== undefined">
+                      {{ completesheet.embolism.anticoagulation }}
+                    </span>
+                    <span *ngIf="completesheet?.embolism?.anticoagulation === null || completesheet?.embolism?.anticoagulation === undefined">
+                      Not Defined
+                    </span>
+                  </td>                </tr>
                 <tr>
                   <td>Compression</td>
-                  <td>30</td>
+                  <td>
+                    <span *ngIf="completesheet?.embolism?.compression !== null && completesheet?.embolism?.compression !== undefined">
+                      {{ completesheet.embolism.compression }}
+                    </span>
+                    <span *ngIf="completesheet?.embolism?.compression === null || completesheet?.embolism?.compression === undefined">
+                      Not Defined
+                    </span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -277,23 +381,57 @@
               <tbody>
                 <tr>
                   <td>Physiothearpy</td>
-                  <td>20</td>
+                  <td>
+                    <span *ngIf="completesheet?.patienttest?.physiothearpy !== null && completesheet?.patienttest?.physiothearpy !== undefined">
+                      {{ completesheet.patienttest.physiothearpy.physiothearpy }}
+                    </span>
+                    <span *ngIf="completesheet?.patienttest?.physiothearpy === null || completesheet?.patienttest?.physiothearpy === undefined">
+                      Not Defined
+                    </span>
+                  </td>                
                 </tr>
                 <tr>
                   <td>Ambulation</td>
-                  <td>26</td>
-                </tr>
+                  <td>
+                    <span *ngIf="completesheet?.patienttest?.ambulation !== null && completesheet?.patienttest?.ambulation !== undefined">
+                      {{ completesheet.patienttest.ambulation }}
+                    </span>
+                    <span *ngIf="completesheet?.patienttest?.ambulation === null || completesheet?.patienttest?.ambulation === undefined">
+                      Not Defined
+                    </span>
+                  </td>                </tr>
                 <tr>
                   <td>Belt</td>
-                  <td>0</td>
+                  <td>
+                    <span *ngIf="completesheet?.patienttest?.belt !== null && completesheet?.patienttest?.belt !== undefined">
+                      {{ completesheet.patienttest.belt }}
+                    </span>
+                    <span *ngIf="completesheet?.patienttest?.belt === null || completesheet?.patienttest?.belt === undefined">
+                      Not Defined
+                    </span>
+                  </td>              
                 </tr>
                 <tr>
                   <td>Dressing</td>
-                  <td>14</td>
+                  <td>
+                    <span *ngIf="completesheet?.patienttest?.dressing !== null && completesheet?.patienttest?.dressing !== undefined">
+                      {{ completesheet.patienttest.dressing }}
+                    </span>
+                    <span *ngIf="completesheet?.patienttest?.dressing === null || completesheet?.patienttest?.dressing === undefined">
+                      Not Defined
+                    </span>
+                  </td>
                 </tr>
                 <tr>
                   <td>Trach/ETT</td>
-                  <td>14 days</td>
+                  <td>
+                    <span *ngIf="completesheet?.patienttest?.trachettsectretion !== null && completesheet?.patienttest?.trachettsectretion !== undefined">
+                      {{ completesheet.patienttest.trachettsectretion }}
+                    </span>
+                    <span *ngIf="completesheet?.patienttest?.trachettsectretion === null || completesheet?.patienttest?.trachettsectretion === undefined">
+                      Not Defined
+                    </span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -311,30 +449,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>RL</td>
-                  <td>30</td>
-                  <td>60</td>
-                </tr>
-                <tr>
-                  <td>RL</td>
-                  <td>30</td>
-                  <td>60</td>
-                </tr>
-                <tr>
-                  <td>RL</td>
-                  <td>30</td>
-                  <td>60</td>
-                </tr>
-                <tr>
-                  <td>RL</td>
-                  <td>30</td>
-                  <td>60</td>
-                </tr>
-                <tr>
-                  <td>RL</td>
-                  <td>30</td>
-                  <td>60</td>
+                <tr *ngFor="let iv of completesheet.patientivfluid">
+                   <th>{{iv.ivfluid.ivfluidname || 'Not Defined'}}</th>
+                   <th>{{iv.rate || 'Not Defined'}}</th>
+                   <th>{{iv.additionaldrugs || 'Not Defined'}}</th>
                 </tr>
               </tbody>
             </table>
@@ -356,55 +474,55 @@
                 <tbody>
                   <tr>
                     <td>Ventilator</td>
-                    <td>20</td>
+                    <td>{{ completesheet?.patientventialtor?.ventilatormode?.ventilatormode ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>Mode</td>
-                    <td>26</td>
+                    <td>{{ completesheet?.patientventialtor?.ventilatormode?.ventilatormode ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>FiO2</td>
-                    <td>47</td>
+                    <td>{{ completesheet?.patientventialtor?.fio2 ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>PEEP/CPAP</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.peepcpap ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>Rate</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.rate ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>TV</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.tv ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>P Peak</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.ppeak ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>MV</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.mv ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>SpO2</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.spo2 ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>CUFF PRESSURE</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.cuffpressure ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>EPAP</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.epap ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>Peak Insp Pressure</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.peakinsppressure ?? 'Not Defined' }}</td>
                   </tr>
                   <tr>
                     <td>Plateau Pressure</td>
-                    <td>14</td>
+                    <td>{{ completesheet?.patientventialtor?.plateaupressure ?? 'Not Defined' }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -423,77 +541,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
-                  </tr>
-                  <tr>
-                    <td>CVC</td>
-                    <td>11-9-24</td>
-                    <td>84</td>
-                    <td>83&hf</td>
+                  <tr *ngFor="let patientlineandtube of completesheet.patientlines">
+                    <td>{{patientlineandtube.linestubes.linestubesname}}</td>
+                    <td>{{patientlineandtube.dateofinsertion?.toString()?.split("T")?.at(0)}}</td>
+                    <td>{{patientlineandtube.patientdaysheet.date?.toString()?.split("T")}}</td>
+                    <td>{{patientlineandtube.site}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -517,55 +569,15 @@
                 </tr>
              </thead>
              <tbody>
-                 <tr>
-                   <td>33</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                 </tr>
-                 <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
+                 <tr *ngFor="let patientsosmedication of completesheet.patientsosmedication">
+                  <td>{{ patientsosmedication.indication }}</td>
+                  <td>{{ patientsosmedication.drug }}</td>
+                  <td>{{ patientsosmedication.dose }}</td>
+                  <td>{{ patientsosmedication.route }}</td>
+                  <td>{{ patientsosmedication.time?.toString()?.split("T")?.at(0) }}</td>
+                  <td>{{ patientsosmedication.administeredby.name }}</td>
+                  <td>{{ patientsosmedication.orderedbydoctor.name }}</td>
+                  <td>{{ patientsosmedication.telephoneverbal }}</td>
                 </tr>
              </tbody>
           </table>
@@ -588,75 +600,21 @@
                   <th>Prepared by</th>
                   <th>start time</th>
                   <th>End time</th>
-                  <th>Sign</th>
                 </tr>
              </thead>
              <tbody>
-                 <tr>
-                   <td>33</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
+                 <tr *ngFor="let chart of completesheet.patientinfusioncharts">
+                   <td>{{chart.patientinfusionid}}</td>
+                   <td>{{chart.time?.toString()?.split("T")?.at(0)}}</td>
+                   <td>{{chart.fluidname}}</td>
+                   <td>{{chart.fluidvolume}}</td>
+                   <td>{{chart.ivmedication}}</td>
+                   <td>{{chart.dose}}</td>
+                   <td>{{chart.rate}}</td>
+                   <td>{{chart.preparedby.name}}</td>
+                   <td>{{chart.starttime}}</td>
+                   <td>{{chart.endtime}}</td>
                  </tr>
-                 <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                </tr>
              </tbody>
           </table>
         </div>
@@ -675,55 +633,17 @@
                   <th>Dose</th>
                   <th>Route</th>
                   <th>Frequency</th>
-                  <th>Administration Time & SIgnature</th>
                 </tr>
              </thead>
              <tbody>
-                 <tr>
-                   <td>33</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                   <td>34</td>
-                 </tr>
-                 <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                  <td>34</td>
-                </tr>
+                 <tr *ngFor="let medication of completesheet.patientmedicationcharts">
+                   <td>{{medication.patientmedicationchartid}}</td>
+                   <td>{{medication.drug}}</td>
+                   <td>{{medication.date}}</td>
+                   <td>{{medication.dose}}</td>
+                   <td>{{medication.route}}</td>
+                   <td>{{medication.frequency}}</td>
+                  </tr>
              </tbody>
           </table>
         </div>

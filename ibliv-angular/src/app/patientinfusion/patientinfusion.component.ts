@@ -3,6 +3,7 @@ import { Patientinfusion, Patientdaysheet, User, Patient } from '../entities';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
+import { InputFormService } from '../input-form.service';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class PatientinfusionComponent {
          this.patientinfusion.createddate = new Date()
          this.patientinfusion.patient = this.patient
          this.patientinfusion.preparedby = this.users.filter((us)=>{return us.userid=this.preparedby})[0]
-         this.patientinfusion.time = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date 
+         this.patientinfusion.time = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date      
+         //InputFormService.completesheet.patientinfusioncharts.push(this.patientinfusion)
          this.webclient.post<Patientinfusion,typeof Patientinfusion>("addpatientinfusion",this.patientinfusion)
          .then((res)=>{
           this.spinner = true;

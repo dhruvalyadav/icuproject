@@ -3,6 +3,7 @@ import { Patientdaysheet, Patientventilator, Ventilatormode } from '../entities'
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-patient-ventilator',
@@ -41,6 +42,7 @@ export class PatientVentilatorComponent implements OnInit{
       this.patientventilator.createddate = new Date()
       this.patientventilator.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.sheetid})[0]
       this.patientventilator.ventilatormode = this.ventilators.filter((ven)=>{return ven.ventilatormodeid==this.ventilatorid})[0]
+      //InputFormService.completesheet.patientventialtor = this.patientventilator      
       this.webclient.post<Patientventilator,typeof Patientventilator>("addventilator",this.patientventilator)
       .then((res)=>{
         this.spin = false;

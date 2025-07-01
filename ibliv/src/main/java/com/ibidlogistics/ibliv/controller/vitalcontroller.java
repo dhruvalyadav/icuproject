@@ -46,4 +46,10 @@ public class vitalcontroller {
     {
         return this.vitalrepository.findByVitalcategory(cat);
     }
+    
+    @GetMapping("/getGroupByvital")
+    public List<Vital> getGroupByvital()
+    {
+        return this.vitalrepository.findAllByGroup();
+    }
 }

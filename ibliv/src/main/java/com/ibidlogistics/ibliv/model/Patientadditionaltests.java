@@ -30,6 +30,7 @@ import java.util.Date;
     @NamedQuery(name = "Patientadditionaltests.findAll", query = "SELECT p FROM Patientadditionaltests p"),
     @NamedQuery(name = "Patientadditionaltests.findByPatientadditionaltestsid", query = "SELECT p FROM Patientadditionaltests p WHERE p.patientadditionaltestsid = :patientadditionaltestsid"),
     @NamedQuery(name = "Patientadditionaltests.findByAmbulation", query = "SELECT p FROM Patientadditionaltests p WHERE p.ambulation = :ambulation"),
+    @NamedQuery(name = "Patientadditionaltests.findByPatientadditionaltests", query = "SELECT p FROM Patientadditionaltests p WHERE p.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY p.patientadditionaltestsid ASC"),
     @NamedQuery(name = "Patientadditionaltests.findByIncentivespirometry", query = "SELECT p FROM Patientadditionaltests p WHERE p.incentivespirometry = :incentivespirometry"),
     @NamedQuery(name = "Patientadditionaltests.findByBelt", query = "SELECT p FROM Patientadditionaltests p WHERE p.belt = :belt"),
     @NamedQuery(name = "Patientadditionaltests.findByDressing", query = "SELECT p FROM Patientadditionaltests p WHERE p.dressing = :dressing"),

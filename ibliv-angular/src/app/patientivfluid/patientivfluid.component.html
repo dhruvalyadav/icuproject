@@ -14,6 +14,14 @@
       </div>
     </div>
     <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="patientdaysheet" class="form-label">Day*</label>
+          <select id="sex" name="patidaysheet" class="form-control" [(ngModel)]="patientdaysheetid" required>
+            <option *ngFor="let patientsheet of patientdaysheets" value="{{patientsheet.patientdaysheetid}}">{{patientsheet.date?.toString()?.split("T")}}</option>
+          </select>
+      </div>
+  </div>
+    <div class="row mb-3">
         <div class="col-md-6">      
           <label for="rate" class="form-label">rate*</label>
           <input type="text" maxlength="50" required class="form-control"  name="rate" placeholder="Enter rate" [(ngModel)]="patientivfluid.rate">

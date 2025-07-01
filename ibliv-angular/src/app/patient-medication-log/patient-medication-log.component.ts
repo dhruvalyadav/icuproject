@@ -4,6 +4,7 @@ import { Patient } from './../entities';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-patient-medication-log',
@@ -64,7 +65,7 @@ export class PatientMedicationLogComponent implements OnInit{
       this.patientlogmedication.administeredby = this.userroles.filter((use)=>{return use.userroleid==this.userid})[0].user
       this.patientlogmedication.patientmedicationchart = this.patientmedicationcharts.filter((med)=>{return med.patientmedicationchartid==this.patientmedicationchartid})[0]
       this.patientlogmedication.date = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date
-      console.log(this.patientlogmedication)
+      //InputFormService.completesheet.patientmedicationlog.push(this.patientlogmedication)
       this.webclient.post<Patientmedicationlog,typeof Patientmedicationlog>("savepatientmedicationlog",this.patientlogmedication)
       .then((res)=>{
         this.spin = true

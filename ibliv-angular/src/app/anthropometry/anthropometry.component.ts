@@ -1,9 +1,10 @@
-import { Anthropometry } from './../entities';
+import { Anthropometry, Patientdaysheet } from './../entities';
 import { Component, Input } from '@angular/core';
 import { Patient } from './../entities';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-anthropometry',
@@ -15,7 +16,9 @@ import { NgForm } from '@angular/forms';
 export class AnthropometryComponent {
 
   @Input() patient : Patient = new Patient()
+  @Input() patientdaysheet : Patientdaysheet[] = []
   anthropometry=new Anthropometry;
+  patientdaysheetid : number = 0
   constructor(private router : Router,private webclient : WebClient){}
   
   spinner : boolean = true
@@ -38,6 +41,9 @@ export class AnthropometryComponent {
       this.anthropometry.height = this.anthropometry.height / 100
       this.anthropometry.bmi = this.anthropometry.weight / (this.anthropometry.height * this.anthropometry.height)
       this.anthropometry.patient = this.patient
+      this.anthropometry.createddate = this.patientdaysheet.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date
+      this.anthropometry.patientdaysheet = this.patientdaysheet.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]
+      //InputFormService.completesheet.anthropometry = this.anthropometry
       this.webclient.put<Anthropometry,typeof Anthropometry>("updateanthropometry",this.anthropometry)
       .then((res)=>{
         this.anthropometry = new Anthropometry()

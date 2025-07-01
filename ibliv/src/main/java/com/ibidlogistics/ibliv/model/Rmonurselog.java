@@ -30,6 +30,7 @@ import java.util.Date;
     @NamedQuery(name = "Rmonurselog.findAll", query = "SELECT r FROM Rmonurselog r"),
     @NamedQuery(name = "Rmonurselog.findByRmonurselogid", query = "SELECT r FROM Rmonurselog r WHERE r.rmonurselogid = :rmonurselogid"),
     @NamedQuery(name = "Rmonurselog.findByDatetime", query = "SELECT r FROM Rmonurselog r WHERE r.datetime = :datetime"),
+        @NamedQuery(name = "Rmonurselog.findByPatientdaysheet", query = "SELECT r FROM Rmonurselog r WHERE r.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY r.rmonurselogid ASC LIMIT 3"),
     @NamedQuery(name = "Rmonurselog.findByCreatedby", query = "SELECT r FROM Rmonurselog r WHERE r.createdby = :createdby"),
     @NamedQuery(name = "Rmonurselog.findByCreateddate", query = "SELECT r FROM Rmonurselog r WHERE r.createddate = :createddate"),
     @NamedQuery(name = "Rmonurselog.findByUpdatedby", query = "SELECT r FROM Rmonurselog r WHERE r.updatedby = :updatedby"),

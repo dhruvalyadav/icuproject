@@ -3,6 +3,7 @@ import { Patientadditionaltests, Patientdaysheet, Physiothearpy } from '../entit
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-patientadditionaltests',
@@ -41,6 +42,7 @@ export class PatientadditionaltestsComponent implements OnInit{
        this.Patientadditionaltests.physiothearpy = this.physiotherpies.filter((phy)=>{return phy.physiothearpyid==this.physiotheropyid})[0]
        this.Patientadditionaltests.createddate = new Date() 
        this.Patientadditionaltests.patientdaysheet = this.Patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.daysheetid})[0]
+       //InputFormService.completesheet.patienttest = this.Patientadditionaltests
        this.webclient.post<Patientadditionaltests,typeof Patientadditionaltests>("saveadditionalpatienttest",this.Patientadditionaltests)
        .then((res)=>{
         this.spin = false;
@@ -49,7 +51,7 @@ export class PatientadditionaltestsComponent implements OnInit{
         this.alertmode = true  
         this.Patientadditionaltests = new Patientadditionaltests()        
       })
-       .catch((err)=>{})
+      .catch((err)=>{})
     }
   }
 }

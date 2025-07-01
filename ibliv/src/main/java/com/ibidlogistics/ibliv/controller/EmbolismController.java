@@ -8,6 +8,8 @@ import com.ibidlogistics.ibliv.model.Embolism;
 import com.ibidlogistics.ibliv.repository.EmbolismRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +23,10 @@ public class EmbolismController {
     @PostMapping("/saveembolism")
     public Embolism saveembolism(@RequestBody Embolism embolism){
        return this.embolismRepository.save(embolism);
+    }
+    
+    @GetMapping("/getembolismbypatientdaysheetid/{patientdaysheetid}")
+    public Embolism getembolismbypatientdaysheetid(@PathVariable("patientdaysheetid") Integer patientdaysheetid){
+       return this.embolismRepository.findByPatientdaysheetid(patientdaysheetid);
     }
 }

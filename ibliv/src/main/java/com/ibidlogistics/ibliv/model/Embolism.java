@@ -30,6 +30,7 @@ import java.util.Date;
     @NamedQuery(name = "Embolism.findAll", query = "SELECT e FROM Embolism e"),
     @NamedQuery(name = "Embolism.findByEmbolismid", query = "SELECT e FROM Embolism e WHERE e.embolismid = :embolismid"),
     @NamedQuery(name = "Embolism.findByDvtrisk", query = "SELECT e FROM Embolism e WHERE e.dvtrisk = :dvtrisk"),
+    @NamedQuery(name = "Embolism.findByPatientdaysheetid", query = "SELECT e FROM Embolism e WHERE e.patientdaysheet.patientdaysheetid = :patientdaysheetid"),
     @NamedQuery(name = "Embolism.findByAnticoagulation", query = "SELECT e FROM Embolism e WHERE e.anticoagulation = :anticoagulation"),
     @NamedQuery(name = "Embolism.findByCompression", query = "SELECT e FROM Embolism e WHERE e.compression = :compression"),
     @NamedQuery(name = "Embolism.findByCreatedby", query = "SELECT e FROM Embolism e WHERE e.createdby = :createdby"),

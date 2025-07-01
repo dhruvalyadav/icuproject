@@ -3,6 +3,7 @@ import { Linestubes, Patient, Patientdaysheet, Patientlinestubes } from '../enti
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-patientlinestubes',
@@ -42,6 +43,7 @@ export class PatientlinestubesComponent implements OnInit{
           this.patlinestubes.createddate = new Date()
           this.patlinestubes.linestubes = this.linestubes.filter((lt)=>{return lt.linestubesid==this.linestubeid})[0]
           this.patlinestubes.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]    
+          //InputFormService.completesheet.patientlines.push(this.patlinestubes)
           this.webclient.post<Patientlinestubes,typeof Patientlinestubes>("savepatientlinestubes",this.patlinestubes)
           .then((res)=>{
             this.spinner = true;

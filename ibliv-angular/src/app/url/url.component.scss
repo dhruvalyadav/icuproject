@@ -223,6 +223,12 @@
     }
   }
   
+  .vital-cat{
+    border-bottom: 1px solid var(--orange);
+    max-width: 100px;
+    font-weight: 600;
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .patient-header {
@@ -306,6 +312,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-top: 30px;
+  margin-bottom: 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

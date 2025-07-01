@@ -3,6 +3,7 @@ import { Icu, Patientdaysheet, Shiftrmonurse, User } from '../entities';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-shiftrmonurse',
@@ -55,6 +56,7 @@ export class ShiftrmonurseComponent {
          this.shiftrmonurse.icu = this.icus.filter((ic)=>{return ic.icuid==this.icuid})[0]
          this.shiftrmonurse.createdby = 1
          this.shiftrmonurse.date = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date    
+         //InputFormService.completesheet.shiftnurses.push(this.shiftrmonurse)
          this.webclient.post<Shiftrmonurse,typeof Shiftrmonurse>("addshiftrmo",this.shiftrmonurse)
          .then((res)=>{
           this.spinner = true;
@@ -63,7 +65,7 @@ export class ShiftrmonurseComponent {
           this.alertmode = true  
           this.shiftrmonurse = new Shiftrmonurse()
         })
-         .catch((err)=>{console.log(err)})
+       .catch((err)=>{console.log(err)})
       }
   }
 }

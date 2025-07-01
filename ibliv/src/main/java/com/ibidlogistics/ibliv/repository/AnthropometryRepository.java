@@ -15,4 +15,10 @@ import org.springframework.stereotype.Repository;
 public interface AnthropometryRepository extends JpaRepository<Anthropometry,Integer> {
      @Query("SELECT a FROM Anthropometry a WHERE a.patient.patientname LIKE LOWER(CONCAT('%', :patientname, '%'))")
     List<Anthropometry> findByPatientname(@Param("patientname") String patientname);
+    
+    @Query("SELECT a FROM Anthropometry a " +
+       "WHERE a.patientdaysheet.patientdaysheetid = :patientdaysheetid " +
+       "AND a.anthropometryid = (SELECT MAX(ant.anthropometryid) FROM Anthropometry ant " +
+       "WHERE ant.patientdaysheet.patientdaysheetid = :patientdaysheetid)")
+    Anthropometry findByLatestPatientdaysheet(@Param("patientdaysheetid") Integer patientdaysheetid);
 }

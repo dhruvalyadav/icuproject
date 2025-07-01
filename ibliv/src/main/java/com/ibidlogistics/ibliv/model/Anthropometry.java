@@ -30,6 +30,10 @@ import java.util.Date;
 @NamedQueries({
     @NamedQuery(name = "Anthropometry.findAll", query = "SELECT a FROM Anthropometry a"),
     @NamedQuery(name = "Anthropometry.findByAnthropometryid", query = "SELECT a FROM Anthropometry a WHERE a.anthropometryid = :anthropometryid"),
+    @NamedQuery(name = "Anthropometry.findByLatestPatientdaysheet", query = "SELECT a FROM Anthropometry a " +
+       "WHERE a.patientdaysheet.patientdaysheetid = :patientdaysheetid " +
+       "AND a.anthropometryid = (SELECT MAX(ant.anthropometryid) FROM Anthropometry ant " +
+       "WHERE ant.patientdaysheet.patientdaysheetid = :patientdaysheetid)"),
     @NamedQuery(name = "Anthropometry.findByWeight", query = "SELECT a FROM Anthropometry a WHERE a.weight = :weight"),
     @NamedQuery(name = "Anthropometry.findByHeight", query = "SELECT a FROM Anthropometry a WHERE a.height = :height"),
     @NamedQuery(name = "Anthropometry.findByBmi", query = "SELECT a FROM Anthropometry a WHERE a.bmi = :bmi"),
@@ -70,6 +74,17 @@ public class Anthropometry implements Serializable {
     @JoinColumn(name = "patient", referencedColumnName = "patientid")
     @ManyToOne(optional = false)
     private Patient patient;
+    @JoinColumn(name = "patientdaysheet", referencedColumnName = "patientdaysheetid")
+    @ManyToOne(optional = false)
+    private Patientdaysheet patientdaysheet;
+
+    public void setPatientdaysheet(Patientdaysheet patientdaysheet) {
+        this.patientdaysheet = patientdaysheet;
+    }
+
+    public Patientdaysheet getPatientdaysheet() {
+        return patientdaysheet;
+    }
 
     public Anthropometry() {
     }

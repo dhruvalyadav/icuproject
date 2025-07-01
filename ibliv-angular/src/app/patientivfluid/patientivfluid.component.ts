@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Patientivfluid, Ivfluid, Patient } from '../entities';
+import { Patientivfluid, Ivfluid, Patient, Patientdaysheet } from '../entities';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class PatientivfluidComponent {
   ivfluidid : number = 0
   mainspinner : boolean = false
   @Input() pat : Patient = new Patient()
+  @Input() patientdaysheets : Patientdaysheet[] = []
+  patientdaysheetid : number =0
 
   ngOnInit(): void {
     this.mainspinner = true
@@ -38,9 +41,10 @@ export class PatientivfluidComponent {
      this.alerttype = 'error'
   } else {
      this.spin = true
-     this.patientivfluid.createddate = new Date()
      this.patientivfluid.patient = this.pat
+     this.patientivfluid.createddate = this.patientdaysheets.filter((day)=>{return day.patientdaysheetid==this.patientdaysheetid})[0].date
      this.patientivfluid.ivfluid = this.ivfluids.filter((iv)=>{return iv.ivfluidid==this.ivfluidid})[0]
+     //InputFormService.completesheet.patientivfluid.push(this.patientivfluid)
      this.webclient.post<Patientivfluid,typeof Patientivfluid>("addpatientivfluid",this.patientivfluid)
      .then((res)=>{
       this.spin = false;
@@ -49,7 +53,7 @@ export class PatientivfluidComponent {
         this.alertmode = true  
         this.patientivfluid = new Patientivfluid()
     })
-     .catch((err)=>{})
+    .catch((err)=>{})
    }
   }
 }

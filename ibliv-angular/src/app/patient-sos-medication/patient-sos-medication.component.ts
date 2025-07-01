@@ -4,6 +4,7 @@ import { Patient } from './../entities';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-patient-sos-medication',
@@ -14,6 +15,8 @@ import { NgForm } from '@angular/forms';
 })
 export class PatientSosMedicationComponent implements OnInit{
   @Input() patient : Patient = new Patient()
+  @Input() patientdaysheets : Patientdaysheet[] = []
+  patientdaysheetid : number = 0
   patientsosmedication : Patientsosmedication =new Patientsosmedication();
   user : User[] = []
   administeredby : number = 0 
@@ -42,9 +45,11 @@ export class PatientSosMedicationComponent implements OnInit{
     } else {
       this.spin = true
       this.patientsosmedication.createddate = new Date()
+      this.patientsosmedication.time = this.patientdaysheets.filter((day)=>{return day.patientdaysheetid == this.patientdaysheetid})[0].date
       this.patientsosmedication.patient = this.patient
       this.patientsosmedication.administeredby = this.user.filter((us)=>{return us.userid==this.administeredby})[0]
       this.patientsosmedication.orderedbydoctor = this.user.filter((us)=>{return us.userid==this.orderedbydoctor})[0]
+      //InputFormService.completesheet.patientsosmedication.push(this.patientsosmedication)
       this.webclient.post<Patientsosmedication,typeof Patientsosmedication>("savesosmedication",this.patientsosmedication)
       .then((res)=>{
         this.spin = false

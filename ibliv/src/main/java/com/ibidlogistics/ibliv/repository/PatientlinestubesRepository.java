@@ -5,10 +5,14 @@
 package com.ibidlogistics.ibliv.repository;
 
 import com.ibidlogistics.ibliv.model.Patientlinestubes;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientlinestubesRepository extends JpaRepository<Patientlinestubes,Integer>{
-    
+    @Query("SELECT p FROM Patientlinestubes p WHERE p.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY p.patientlinestubesid ASC")
+    List<Patientlinestubes> findByPatientdaysheet(@Param("patientdaysheetid") Integer patientdaysheetid);
 }

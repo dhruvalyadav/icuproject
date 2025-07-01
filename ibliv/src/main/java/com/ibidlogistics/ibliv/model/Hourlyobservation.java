@@ -30,6 +30,8 @@ import java.util.Date;
     @NamedQuery(name = "Hourlyobservation.findAll", query = "SELECT h FROM Hourlyobservation h"),
     @NamedQuery(name = "Hourlyobservation.findByHourlyobservationid", query = "SELECT h FROM Hourlyobservation h WHERE h.hourlyobservationid = :hourlyobservationid"),
     @NamedQuery(name = "Hourlyobservation.findByTimeslot", query = "SELECT h FROM Hourlyobservation h WHERE h.timeslot = :timeslot"),
+    @NamedQuery(name = "Hourlyobservation.findByPatientdaysheet", query = "SELECT h FROM Hourlyobservation h WHERE h.patientdaysheet.patientdaysheetid = :patientdaysheetid"),
+    @NamedQuery(name = "Hourlyobservation.findByPatientdaysheetGroupByvital", query = "SELECT h FROM Hourlyobservation h WHERE h.patientdaysheet.patientdaysheetid = :patientdaysheetid GROUP BY h.vital.vitalcategory"),
     @NamedQuery(name = "Hourlyobservation.findByValue", query = "SELECT h FROM Hourlyobservation h WHERE h.value = :value"),
     @NamedQuery(name = "Hourlyobservation.findByCreatedby", query = "SELECT h FROM Hourlyobservation h WHERE h.createdby = :createdby"),
     @NamedQuery(name = "Hourlyobservation.findByCreateddate", query = "SELECT h FROM Hourlyobservation h WHERE h.createddate = :createddate"),

@@ -31,6 +31,7 @@ import java.util.Date;
     @NamedQuery(name = "Patientadditionalscores.findAll", query = "SELECT p FROM Patientadditionalscores p"),
     @NamedQuery(name = "Patientadditionalscores.findByPatientadditionalscoresid", query = "SELECT p FROM Patientadditionalscores p WHERE p.patientadditionalscoresid = :patientadditionalscoresid"),
     @NamedQuery(name = "Patientadditionalscores.findByQsofa", query = "SELECT p FROM Patientadditionalscores p WHERE p.qsofa = :qsofa"),
+    @NamedQuery(name = "Patientadditionalscores.findByPatientdaysheet", query = "SELECT p FROM Patientadditionalscores p WHERE p.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY p.patientadditionalscoresid ASC"),
     @NamedQuery(name = "Patientadditionalscores.findByMews", query = "SELECT p FROM Patientadditionalscores p WHERE p.mews = :mews"),
     @NamedQuery(name = "Patientadditionalscores.findByApacheiv", query = "SELECT p FROM Patientadditionalscores p WHERE p.apacheiv = :apacheiv"),
     @NamedQuery(name = "Patientadditionalscores.findByCreatedby", query = "SELECT p FROM Patientadditionalscores p WHERE p.createdby = :createdby"),

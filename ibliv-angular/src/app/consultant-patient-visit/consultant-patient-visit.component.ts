@@ -4,6 +4,7 @@ import { Patient } from './../entities';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 
 @Component({
@@ -59,6 +60,8 @@ export class ConsultantPatientVisitComponent {
       this.consultantpatient.datetime = this.convertTimeToDate(this.datetime)
       this.consultantpatient.doctor = this.userroles.filter((use)=>{return use.userroleid==this.userid})[0].user
       this.consultantpatient.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]
+      //InputFormService.completesheet.consults = this.consultantpatient
+      //InputFormService
       this.webclient.post<Consultantpatientvisit,typeof Consultantpatientvisit>("addconsultantpatientvisit",this.consultantpatient)
       .then((res)=>{
         this.spin = true

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Patient, Patientadmission, Patientdaysheet, User } from '../entities';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
+import { InputFormService } from '../input-form.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -55,6 +56,7 @@ export class PatientdaysheetComponent implements OnInit{
        this.patidaysheet.createddate = new Date()
        this.patidaysheet.updateddate = new Date()
        this.patidaysheet.patientadmission = this.patientadmission
+       //InputFormService.completesheet.patientdaysheet = this.patidaysheet
        this.webclient.post<Patientdaysheet,Patientdaysheet>("savepatientdaysheet",this.patidaysheet)
        .then((res)=>{
           this.patidaysheet = res
@@ -63,9 +65,7 @@ export class PatientdaysheetComponent implements OnInit{
           this.alerttype = 'success'
           this.patidaysheet = new Patientdaysheet()
        })
-       .catch((err)=>{
-
-       })
+       .catch((err)=>{})
      }
   }
 

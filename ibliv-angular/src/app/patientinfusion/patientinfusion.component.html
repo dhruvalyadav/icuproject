@@ -24,7 +24,7 @@
    </div>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="Shift" class="form-label">Fluidname*</label>    
+        <label for="fluidname" class="form-label">Fluidname*</label>    
         <input type="text" class="form-control" name="fluidname" maxlength="200" required placeholder="Enter Fluidname" [(ngModel)]="patientinfusion.fluidname">   
       </div>
     </div>
@@ -55,13 +55,13 @@
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="starttime" class="form-label">Starttime*</label>    
-        <input type="datetime-local" class="form-control" name="starttime" [(ngModel)]="patientinfusion.starttime">   
+        <input type="datetime-local" class="form-control" name="starttime" required [(ngModel)]="patientinfusion.starttime">   
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="endtime" class="form-label">Endtime*</label>    
-        <input type="datetime-local" class="form-control" name="fluidname" [(ngModel)]="patientinfusion.endtime">   
+        <input type="datetime-local" class="form-control" name="fluidname" required [(ngModel)]="patientinfusion.endtime">   
       </div>
     </div>
   <button type="submit" class="add-patient-btn" *ngIf="spinner" (click)="addpatientinfusion(patinfusion)">Update Measurements</button>

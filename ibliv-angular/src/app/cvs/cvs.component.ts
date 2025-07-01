@@ -3,6 +3,7 @@ import { Hourlyobservation, Patient, Patientdaysheet, Vital } from '../entities'
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
 import { Time } from '@angular/common';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-cvs',
@@ -38,6 +39,7 @@ export class CvsComponent implements OnInit{
     this.hourlyobservation.vital = this.vitals.filter((vit)=>{return vit.vitalid==this.vitalid})[0]
     this.hourlyobservation.createddate = new Date()
     this.hourlyobservation.timeslot = parseInt(this.timeslot?.split(":")[0],10)
+    //InputFormService.completesheet.hourlyobservations.push(this.hourlyobservation)
     this.webclient.post<Hourlyobservation,Hourlyobservation>("addhourlyobservation",this.hourlyobservation)
      .then((res)=>{
         this.spinner = false

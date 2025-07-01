@@ -6,6 +6,14 @@
   <h3 class="form-label">Patient SOS Medication</h3>
   <form #patsosmedication="ngForm">
     <div class="row mb-3">
+      <div class="col-md-6">
+          <label for="orderedbydoctor" class="form-label">Time*</label>
+          <select name="orderedbydoctor" class="form-control" [(ngModel)]="patientdaysheetid" required>
+            <option *ngFor="let day of patientdaysheets" value="{{day.patientdaysheetid}}">{{day.date?.toString()?.split("T")?.at(0)}}</option>
+          </select>
+      </div>
+    </div>
+    <div class="row mb-3">
       <div class="col-md-6">      
         <label for="indication" class="form-label">Indication*</label>
         <textarea type="text" maxlength="200" rows="8" required class="form-control" name="indication" placeholder="Enter indication" [(ngModel)]="patientsosmedication.indication"></textarea>
@@ -29,10 +37,16 @@
            <textarea type="text" maxlength="2000" rows="11" class="form-control" name="route" required id="route" placeholder="Enter route" [(ngModel)]="patientsosmedication.route"></textarea>
         </div>
       </div>
-      <div class="row mb-3">
+      <!--<div class="row mb-3">
         <div class="col-md-6">      
           <label for="route" class="form-label">Route</label>
            <input type="datetime-local" class="form-control" name="route" required [(ngModel)]="patientsosmedication.time">
+        </div>
+      </div>-->
+      <div class="row mb-3">
+        <div class="col-md-6">      
+          <label for="TELEPHONIC/VERBAL" class="form-label">TELEPHONIC/VERBAL</label>
+          <textarea type="text" maxlength="200" rows="11" class="form-control" name="TELEPHONIC/VERBAL" required  placeholder="Enter TELEPHONIC/VERBAL" [(ngModel)]="patientsosmedication.telephoneverbal"></textarea>
         </div>
       </div>
       <div class="row mb-3">

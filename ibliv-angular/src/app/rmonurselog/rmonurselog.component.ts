@@ -3,6 +3,7 @@ import { Icu, Patientdaysheet, Rmonurselog, Shiftrmonurse, User } from '../entit
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
+import { InputFormService } from '../input-form.service';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class RmonurselogComponent {
          this.rmonurselog.createddate = new Date()
          this.rmonurselog.rmonurse = this.users.filter((shift)=>{return shift.userid==this.rmonurse})[0]
          this.rmonurselog.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]    
+         //InputFormService.completesheet.rmonurselog = this.rmonurselog
          this.webclient.post<Rmonurselog,typeof Rmonurselog>("addrmonurselog",this.rmonurselog)
          .then((res)=>{
           this.spinner = true;

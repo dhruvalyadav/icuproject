@@ -4,6 +4,7 @@ import { Patient } from './../entities';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-embolism',
@@ -34,6 +35,7 @@ export class EmbolismComponent implements OnInit{
     } else {
       this.embolism.createddate = new Date()
       this.embolism.patientdaysheet = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0]
+      //InputFormService.completesheet.embolism = this.embolism
       this.webclient.post<Embolism,typeof Embolism>("saveembolism",this.embolism)
       .then((res)=>{
         this.alertmode = true

@@ -11,7 +11,7 @@ export class Anthropometry {
   bmi: number=0;
   bsaboyd: number=0;
   updatedby: number=0;
-
+  patientdaysheet : Patientdaysheet = new Patientdaysheet()
   constructor() {}
 }
 
@@ -190,12 +190,12 @@ export class Patientadditionaltests {
 
 export class Patientadmission {
   patientadmissionid: number|null=null;
-  admissiondate: Date|null=null;
-  icuadmissiondate: Date|null=null;
+  admissiondate: Date = new Date();
+  icuadmissiondate: Date = new Date();
   createdby: number=0;
-  createddate: Date|null=null;
+  createddate: Date = new Date();
   updatedby: number=0;
-  updateddate: Date|null=null;
+  updateddate: Date = new Date();
   icu: Icu=new Icu();
   patient: Patient=new Patient();
 
@@ -497,3 +497,59 @@ export class Admissionstatus{
   patientadmission : Patientadmission|null=null
   addedstatus : boolean|null=null
 }
+
+export class completesheet {
+  patientdaysheet : Patientdaysheet = new Patientdaysheet();
+  anthropometry : Anthropometry = new Anthropometry()
+  rmonurselog : Rmonurselog = new Rmonurselog()
+  shiftnurses : Shiftrmonurse[] = []
+  hourlyobservations : Hourlyobservation[] = []
+  patientadditionalscore : Patientadditionalscores = new Patientadditionalscores()
+  patienttest : Patientadditionaltests = new Patientadditionaltests()
+  embolism : Embolism = new Embolism()
+  patientmedicationcharts : Patientmedicationchart[] = []
+  patientmedicationlog : Patientmedicationlog[] = []
+  patientventialtor :  Patientventilator = new Patientventilator()
+  patientsosmedication : Patientsosmedication[] = []
+  patientlines : Patientlinestubes[] = []
+  patientivfluid : Patientivfluid[] = []
+  patientinfusioncharts : Patientinfusion[] = []
+  consults : Consultantpatientvisit = new Consultantpatientvisit()
+}
+
+export class Singlesheet {
+  patientdaysheet : Patientdaysheet[] = []
+  anthropometry : Anthropometry = new Anthropometry()
+  rmonurselog : Rmonurselog[] = []
+  shiftnurses : Shiftrmonurse[] = []
+  hourlyobservations : Hourlyobservation[] = []
+  patientadditionalscore : Patientadditionalscores = new Patientadditionalscores()
+  patienttest : Patientadditionaltests = new Patientadditionaltests()
+  embolism : Embolism = new Embolism()
+  patientmedicationcharts : Patientmedicationchart[] = []
+  patientmedicationlog : Patientmedicationlog[] = []
+  patientventialtor :  Patientventilator = new Patientventilator()
+  patientsosmedication : Patientsosmedication[] = []
+  patientlines : Patientlinestubes[] = []
+  patientivfluid : Patientivfluid[] = []
+  patientinfusioncharts : Patientinfusion[] = []
+  consults : Consultantpatientvisit[] = []
+  vitals : Vital[] =[]
+  starttimeofhourlyobservation : number = 0
+  endtimeofhourlyobservation : number = 24
+  arryarange : number[] = []
+}
+
+
+export class Hourrecord {
+  vitalname : string = ''
+  values : string[] = []
+}
+export class Hourrecords {
+  vitalcategory : string = ''
+  observationundercategory : Hourrecord[] = []
+} 
+
+
+
+

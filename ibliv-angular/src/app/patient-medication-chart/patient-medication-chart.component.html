@@ -2,7 +2,7 @@
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
-<div class="container mt-4" >
+<div class="container mt-4" *ngIf="!mainspinner">
   <h3 class="form-label">Patient Medication Chart</h3>
   <form #patmedicationchart="ngForm">
     <div class="row mb-3">

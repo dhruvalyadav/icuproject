@@ -4,7 +4,6 @@
  */
 package com.ibidlogistics.ibliv.controller;
 
-import com.ibidlogistics.ibliv.model.Patient;
 import com.ibidlogistics.ibliv.model.Patientadditionaltests;
 import com.ibidlogistics.ibliv.repository.PatientadditionaltestRepository;
 import java.util.List;
@@ -31,6 +30,11 @@ public class PatientadditionaltestController {
     public List<Patientadditionaltests> getpatientadditionaltest()
     {
         return this.Patientadditionaltestrepository.findAll();
+    }
+    
+    @GetMapping("/getpatientadditionaltestbypatientdaysheetid/{patientdaysheetid}")
+    public Patientadditionaltests getpatientadditionaltestbypatientdaysheetid(@PathVariable("patientdaysheetid") Integer patientdaysheetid){
+       return this.Patientadditionaltestrepository.findByPatientadditionaltests(patientdaysheetid);
     }
 } 
  

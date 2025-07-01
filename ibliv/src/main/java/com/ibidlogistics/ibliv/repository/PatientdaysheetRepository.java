@@ -13,6 +13,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository 
 public interface PatientdaysheetRepository  extends JpaRepository<Patientdaysheet,Integer>{
-        @Query("SELECT p FROM Patientdaysheet p WHERE p.patientadmission.patient.patientid = :patientid")
+        @Query("SELECT p FROM Patientdaysheet p WHERE p.patientadmission.patient.patientid = :patientid ORDER BY p.patientdaysheetid ASC")
         List<Patientdaysheet> findByPatient(@Param("patientid") Integer patientid);
+        
+        @Query("SELECT p FROM Patientdaysheet p WHERE p.patientdaysheetid = :patientdaysheetid")
+         Patientdaysheet findByPatientdaysheetid(@Param("patientdaysheetid") Integer patientdaysheetid);
 }

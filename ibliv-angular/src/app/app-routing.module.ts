@@ -45,6 +45,7 @@ import { LoginComponent } from './login/login.component';
 import { UrlComponent } from './url/url.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReportsComponent } from './reports/reports.component';
+import { RoleComponent } from './role/role.component';
 
 const routes: Routes = [
   /*{
@@ -95,7 +96,9 @@ const routes: Routes = [
   {path : "reports",component : ReportsComponent},
   {path : "patient/details/:id",component : BasicPatientsDetailsComponent},
   {path : "admin",component : AdminComponent},
-  {path : "report/patient/:id",component : UrlComponent}
+  {path : "report/patient/:id",component : UrlComponent},
+  {path : "login",component : LoginComponent},
+  {path : "role",component : RoleComponent}
 ];
 
 @NgModule({

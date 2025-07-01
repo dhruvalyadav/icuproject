@@ -29,7 +29,7 @@ import java.util.Date;
 @NamedQueries({
     @NamedQuery(name = "Shiftrmonurse.findAll", query = "SELECT s FROM Shiftrmonurse s"),
     @NamedQuery(name = "Shiftrmonurse.findByShiftrmonurseid", query = "SELECT s FROM Shiftrmonurse s WHERE s.shiftrmonurseid = :shiftrmonurseid"),
-    @NamedQuery(name = "Shiftrmonurse.findByDate", query = "SELECT s FROM Shiftrmonurse s WHERE s.date = :date"),
+    @NamedQuery(name = "Shiftrmonurse.findByDate", query = "SELECT s FROM Shiftrmonurse s WHERE s.date = :date ORDER BY s.shiftrmonurseid DESC LIMIT 3"),
     @NamedQuery(name = "Shiftrmonurse.findByShift", query = "SELECT s FROM Shiftrmonurse s WHERE s.shift = :shift"),
     @NamedQuery(name = "Shiftrmonurse.findByCreatedby", query = "SELECT s FROM Shiftrmonurse s WHERE s.createdby = :createdby"),
     @NamedQuery(name = "Shiftrmonurse.findByCreateddate", query = "SELECT s FROM Shiftrmonurse s WHERE s.createddate = :createddate"),

@@ -6,8 +6,10 @@ package com.ibidlogistics.ibliv.controller;
 
 import com.ibidlogistics.ibliv.model.Patientmedicationchart;
 import com.ibidlogistics.ibliv.repository.PatientmedicationchartRepository;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,5 +32,12 @@ public class PatientmedicationchartController {
     public List<Patientmedicationchart> getpatientmedicationchartbypatient(@PathVariable("patientid") Integer patientid)
     {
         return this.Patientmedicationchartrepository.findByPatient(patientid);
+    }
+    
+    @GetMapping("/getpatientmedicationchartbydate/{date}/{patientid}")
+    public List<Patientmedicationchart> getpatientmedicationchartbydate(
+            @PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,
+            @PathVariable("patientid") Integer patientid){
+       return this.Patientmedicationchartrepository.findByDate(date,patientid);
     }
 }

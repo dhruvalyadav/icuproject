@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-role',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './role.component.html',
   styleUrl: './role.component.scss'
 })
-export class RoleComponent {
+export class RoleComponent{
 
 }

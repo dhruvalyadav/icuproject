@@ -4,6 +4,7 @@ import { Patient } from './../entities';
 import { Router } from '@angular/router';
 import { WebClient } from '../web-client';
 import { NgForm } from '@angular/forms';
+import { InputFormService } from '../input-form.service';
 
 @Component({
   selector: 'app-patient-medication-chart',
@@ -36,6 +37,7 @@ export class PatientMedicationChartComponent implements OnInit{
       this.patientmedicationchart.createddate = new Date()
       this.patientmedicationchart.patientadmission = this.patientdaysheets[0].patientadmission
       this.patientmedicationchart.date = this.patientdaysheets.filter((sheet)=>{return sheet.patientdaysheetid==this.patientdaysheetid})[0].date
+      //InputFormService.completesheet.patientmedicationcharts.push(this.patientmedicationchart)
       this.webclient.post<Patientmedicationchart,typeof Patientmedicationchart>("savepatientmedicationchart",this.patientmedicationchart)
       .then((res)=>{
         this.spin = false
