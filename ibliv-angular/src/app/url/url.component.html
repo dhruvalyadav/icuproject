@@ -612,8 +612,8 @@
                    <td>{{chart.dose}}</td>
                    <td>{{chart.rate}}</td>
                    <td>{{chart.preparedby.name}}</td>
-                   <td>{{chart.starttime}}</td>
-                   <td>{{chart.endtime}}</td>
+                   <td>{{chart.starttime?.toString()?.split("T")?.at(0)}}</td>
+                   <td>{{chart.endtime?.toString()?.split("T")?.at(0)}}</td>
                  </tr>
              </tbody>
           </table>

@@ -29,9 +29,7 @@ export class UrlComponent implements OnInit{
   constructor(private route:Router,private router : ActivatedRoute,private webclient : WebClient){}
 
   ngOnInit(): void {
-    this.patientid = Number(this.router.snapshot.paramMap.get("id"))     
-    this.mainspinner = true
-    this.mainspinner = false
+    this.patientid = Number(this.router.snapshot.paramMap.get("id"))   
     this.webclient.get<Patient>("patient/"+this.patientid)
     .then((res)=>{
       this.patient = res
@@ -40,99 +38,97 @@ export class UrlComponent implements OnInit{
         this.patientadmission = res
         this.webclient.getAll<Patientdaysheet[]>("getallpatientdaysheetbypatient/"+this.patient.patientid).subscribe(
           (response)=>{
-
-
-
-
             this.completesheet.patientdaysheet = response
             this.patientdaysheetid = this.completesheet.patientdaysheet[0].patientdaysheetid
             this.currentdaysheet = this.completesheet.patientdaysheet[0]
-            this.webclient.getAll<Anthropometry>("getanthropometrybypatientdaysheet/"+this.patientdaysheetid).subscribe(
-              (response)=>{
-                 this.completesheet.anthropometry = response
-              },(error)=>{}
-            )
-            this.webclient.getAll<Shiftrmonurse[]>("getshiftrmonurssebypatientdaysheetid/"+this.patientdaysheetid).subscribe(
-              (response)=>{this.completesheet.shiftnurses = response},(error)=>{}
-            )
-            this.webclient.getAll<Rmonurselog[]>("getrmonurselogbypatientdaysheet/"+this.patientdaysheetid).subscribe(
-              (response)=>{
-                 this.completesheet.rmonurselog = response
-              },(error)=>{}
-            )
-            this.webclient.getAll<Hourlyobservation[]>("gethourlyobservationbysheetid/"+this.patientdaysheetid).subscribe(
-              (response)=>{
-                 this.completesheet.hourlyobservations = response
-                 this.findminmax()
-                 this.createRange(this.completesheet.starttimeofhourlyobservation,this.completesheet.endtimeofhourlyobservation)
-                 this.webclient.getAll<Hourlyobservation[]>("getByPatientdaysheetGroupByvital/"+this.patientdaysheetid).subscribe(
-                  (response)=>{
-                    response.map((res)=>{
-                      this.completesheet.vitals.push(res.vital)
-                    })
-                    this.hourrecords = this.separetecatgory(this.completesheet.hourlyobservations)
-                  },(error)=>{}
-                )
-              },(error)=>{}
-            )
-            this.webclient.get<Patientadditionalscores>("getpatientadditionalscorebypatientdaysheetid/"+this.patientdaysheetid)
-            .then((patientscore)=>{
-                this.completesheet.patientadditionalscore = patientscore
-            })
-            .catch((err)=>{})
-            this.webclient.get<Embolism>("getembolismbypatientdaysheetid/"+this.patientdaysheetid)
-            .then((patientscore)=>{
-                this.completesheet.embolism = patientscore
-            })
-            .catch((err)=>{})
-            let date = this.completesheet.patientdaysheet.filter((day)=>{return day.patientdaysheetid == this.patientdaysheetid})[0].date
-            this.webclient.getAll<Patientivfluid[]>(
-              `getpatientivfluidbydate/${date}/${this.patient.patientid}`).subscribe(
-              (response)=>{
-                this.completesheet.patientivfluid = response
-              },(error)=>{}
-            )
-            this.webclient.get<Patientadditionaltests>("getpatientadditionaltestbypatientdaysheetid/"+this.patientdaysheetid)
-            .then((res)=>{
-                this.completesheet.patienttest = res
-            })
-            .catch((err)=>{})
-            this.webclient.get<Patientventilator>("getpatientventilatorbypatientdaysheetid/"+this.patientdaysheetid)
-            .then((res)=>{
-                this.completesheet.patientventialtor = res
-            })
-            .catch((err)=>{})
-            this.webclient.getAll<Patientlinestubes[]>("getpatientlinesandtubesbypatientdaysheetid/"+this.patientdaysheetid).subscribe(
-              (response)=>{
-                 this.completesheet.patientlines = response
-              },(error)=>{}
-            )
-            this.webclient.getAll<Patientsosmedication[]>("getpatientsosmedicationbydateandpatientid/"+date+"/"+this.patient.patientid).subscribe(
-              (response)=>{
-                  this.completesheet.patientsosmedication = response
-              },(error)=>{}
-            )
-            this.webclient.getAll<Patientinfusion[]>("getpatientindusionbydate/"+date+"/"+this.patient.patientid).subscribe(
-              (response)=>{
-                this.completesheet.patientinfusioncharts = response
-              },(error)=>{}
-            )
-            this.webclient.getAll<Patientmedicationchart[]>("getpatientmedicationchartbydate/"+date+"/"+this.patient.patientid).subscribe(
-              (response)=>{
-                 this.completesheet.patientmedicationcharts = response
-              },(error)=>{}
-            )
-
+            this.changesheet()
           },(error)=>{}
         )
       })
       .catch((err)=>{})
+      this.mainspinner = false
     })
-    .catch((err)=>{})
+    .catch((err)=>{})  
   }
 
   changesheet(){
-
+    this.mainspinner = true
+    this.webclient.getAll<Anthropometry>("getanthropometrybypatientdaysheet/"+this.patientdaysheetid).subscribe(
+      (response)=>{
+         this.completesheet.anthropometry = response
+      },(error)=>{}
+    )
+    this.webclient.getAll<Shiftrmonurse[]>("getshiftrmonurssebypatientdaysheetid/"+this.patientdaysheetid).subscribe(
+      (response)=>{this.completesheet.shiftnurses = response},(error)=>{}
+    )
+    this.webclient.getAll<Rmonurselog[]>("getrmonurselogbypatientdaysheet/"+this.patientdaysheetid).subscribe(
+      (response)=>{
+         this.completesheet.rmonurselog = response
+      },(error)=>{}
+    )
+    this.webclient.getAll<Hourlyobservation[]>("gethourlyobservationbysheetid/"+this.patientdaysheetid).subscribe(
+      (response)=>{
+         this.completesheet.hourlyobservations = response
+         this.findminmax()
+         this.createRange(this.completesheet.starttimeofhourlyobservation,this.completesheet.endtimeofhourlyobservation)
+         this.webclient.getAll<Hourlyobservation[]>("getByPatientdaysheetGroupByvital/"+this.patientdaysheetid).subscribe(
+          (response)=>{
+            response.map((res)=>{
+              this.completesheet.vitals.push(res.vital)
+            })
+            this.hourrecords = this.separetecatgory(this.completesheet.hourlyobservations)
+          },(error)=>{}
+        )
+      },(error)=>{}
+    )
+    this.webclient.get<Patientadditionalscores>("getpatientadditionalscorebypatientdaysheetid/"+this.patientdaysheetid)
+    .then((patientscore)=>{
+        this.completesheet.patientadditionalscore = patientscore
+    })
+    .catch((err)=>{})
+    this.webclient.get<Embolism>("getembolismbypatientdaysheetid/"+this.patientdaysheetid)
+    .then((patientscore)=>{
+        this.completesheet.embolism = patientscore
+    })
+    .catch((err)=>{})
+    let date = this.completesheet.patientdaysheet.filter((day)=>{return day.patientdaysheetid == this.patientdaysheetid})[0].date
+    this.webclient.getAll<Patientivfluid[]>(
+      `getpatientivfluidbydate/${date}/${this.patient.patientid}`).subscribe(
+      (response)=>{
+        this.completesheet.patientivfluid = response
+      },(error)=>{}
+    )
+    this.webclient.get<Patientadditionaltests>("getpatientadditionaltestbypatientdaysheetid/"+this.patientdaysheetid)
+    .then((res)=>{
+        this.completesheet.patienttest = res
+    })
+    .catch((err)=>{})
+    this.webclient.get<Patientventilator>("getpatientventilatorbypatientdaysheetid/"+this.patientdaysheetid)
+    .then((res)=>{
+        this.completesheet.patientventialtor = res
+    })
+    .catch((err)=>{})
+    this.webclient.getAll<Patientlinestubes[]>("getpatientlinesandtubesbypatientdaysheetid/"+this.patientdaysheetid).subscribe(
+      (response)=>{
+         this.completesheet.patientlines = response
+      },(error)=>{}
+    )
+    this.webclient.getAll<Patientsosmedication[]>("getpatientsosmedicationbydateandpatientid/"+date+"/"+this.patient.patientid).subscribe(
+      (response)=>{
+          this.completesheet.patientsosmedication = response
+      },(error)=>{}
+    )
+    this.webclient.getAll<Patientinfusion[]>("getpatientindusionbydate/"+date+"/"+this.patient.patientid).subscribe(
+      (response)=>{
+        this.completesheet.patientinfusioncharts = response
+      },(error)=>{}
+    )
+    this.webclient.getAll<Patientmedicationchart[]>("getpatientmedicationchartbydate/"+date+"/"+this.patient.patientid).subscribe(
+      (response)=>{
+         this.completesheet.patientmedicationcharts = response
+      },(error)=>{}
+    )
+    this.mainspinner = false
   }
 
   findminmax(){
