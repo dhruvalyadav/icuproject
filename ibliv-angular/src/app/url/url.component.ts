@@ -6,6 +6,7 @@ import { WebClient } from '../web-client';
 @Component({
   selector: 'app-url',
   standalone: false,
+
   templateUrl: './url.component.html',
   styleUrls: ['./url.component.scss']
 })
@@ -15,6 +16,7 @@ export class UrlComponent implements OnInit {
   icu: any = null;
   anthropometry: any = null;
   ventilators: any[] = [];
+  ivFluids: any[] = [];
   shiftrmo: any[] = [];
   shiftMap: { [key: number]: any } = {};
   patientAdmissionData: any=null;
@@ -48,7 +50,15 @@ groupedCategories: string[] = [];
       this.fetchPatientDetails(this.patientId);
       this.fetchAnthropometry(this.patientId);
       this.fetchVentilators(this.patientId);
-       this.fetchHourlyVitals(this.patientId);
+      this.fetchHourlyVitals(this.patientId);
+      this.fetchPatientAdditonalScores(this.patientId);
+      this.fetchEmbolism(this.patientId);
+      this.fetchInfusionChart(this.patientId);
+      this.fetchSosMedications(this.patientId);
+      this.fetchMedicationLogs(this.patientId);
+      this.fetchPatientAdditionalTests(this.patientId);
+      this.fetchPatientLineTubes(this.patientId);
+       this.fetchIvFluids(this.patientId);
      
     }
      this.hours = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, '0')}:00`);
@@ -68,8 +78,6 @@ groupedCategories: string[] = [];
         if (this.icu?.icuid) {
          // console.log("Calling fetchShiftRmoNurseData with ICU ID:", data.icu.icuid);
           this.fetchShiftRmoNurseData(this.icu.icuid);
-          
-
         }
       })
       .catch((err: any) => {
@@ -119,7 +127,188 @@ groupedCategories: string[] = [];
       console.error("Error fetching shift RMO nurse data:", err);
     }
   });
+
+  }
+
+  //patient infusion
+  infusionList: any[] = [];
+  infusionColumns: { key: string; label: string }[] = [];
+  
+  fetchInfusionChart(patientId: number): void {
+  this.webclient.getObservable<any[]>(`patientinfusion/${patientId}`).subscribe({
+    next: (data) => {
+      this.infusionList = data;
+      const field = [{ key: 'fluidname', label: 'Fluid Name' },
+  { key: 'fluidvolume', label: 'Fluid Volume (ml)' },
+  { key: 'ivmedication', label: 'IV Medication' },
+  { key: 'dose', label: 'Dose (mg)' },
+  { key: 'rate', label: 'Rate (ml/hr)' },
+  { key: 'starttime', label: 'Start Time' },
+  { key: 'endtime', label: 'End Time' },
+  { key: 'preparedby.name', label: 'Prepared By' }];
+    if (this.infusionList.length > 0) {
+       this.infusionColumns = field;
+      }
+    },
+    error: (err)=>{
+      console.log('Error fetching infsuin chart: ',err)
+    }
+  });
 }
+getValue(obj: any, path: string): any {
+  return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+}
+
+  // patient additonal score
+  patientScores: any[] = [];
+  scoreColumns: { key: string; label: string }[] = [];
+  fetchPatientAdditonalScores(id: Number): void{
+    this.webclient.getObservable<any[]>(`patientadditonalscores/${this.patientId}`).subscribe({
+      next: (data) => {
+        this.patientScores = data;
+
+        const selectedFeilds = ['qsofa', 'mews', 'apacheiv'];
+
+        if (this.patientScores.length > 0){
+          this.scoreColumns = selectedFeilds.map(key => ({
+            key,
+            label: this.formatLabel(key)
+          }));
+        }
+      },
+      error: (err) => {
+        console.log("Error fetching patient scores:", err);
+      }
+    });
+  }
+
+  //embolism
+  embolism: any[] = [];
+  embolismColumns: { key: string; label: string }[] = [];
+  fetchEmbolism(id: number): void{
+    this.webclient.getObservable<any[]>(`embolism/${id}`).subscribe(({
+      next: (data) =>{
+        this.embolism = data;
+
+        const selectedFields = ['dvtrisk', 'anticoagulation', 'compression'];
+
+        if(this.embolism.length>0){
+          this.embolismColumns = selectedFields.map(key =>({
+            key,
+            label: this.formatLabel(key)
+          }));
+        }
+      },
+      error: (err) =>{
+        console.log("Error fetching embolism data", err);
+      }
+    }))
+  }
+
+  //patient sos medication
+  sosMedications: any[] = [];
+sosColumns: { key: string; label: string }[] = [];
+ fetchSosMedications(patientId: number): void {
+  this.webclient.getObservable<any[]>(`sosmedication/${patientId}`).subscribe({
+    next: (data) => {
+      this.sosMedications = data;
+
+      if (this.sosMedications.length > 0) {
+        this.sosColumns = [
+          { key: 'indication', label: 'Indication' },
+          { key: 'drug', label: 'Drug' },
+          { key: 'dose', label: 'Dose' },
+          { key: 'route', label: 'Route' },
+          { key: 'time', label: 'Time' },
+          { key: 'telephoneverbal', label: 'Verbal/Phone' },
+          { key: 'administeredby.name', label: 'Administered By' },
+          { key: 'orderedbydoctor.name', label: 'Ordered By' }
+        ];
+      }
+    },
+    error: (err) => {
+      console.error('Error fetching SOS medication data:', err);
+    }
+  });
+}
+
+// patient medication chart
+medicationLogs: any[] = [];
+medicationLogColumns: { key: string; label: string }[] = [];
+fetchMedicationLogs(patientId: number): void {
+  this.webclient.getObservable<any[]>(`medicationlog/${patientId}`).subscribe({
+  next: (data) => {
+    this.medicationLogs = data;
+    this.medicationLogColumns = [
+      { key: 'drug', label: 'Drug' },
+      { key: 'dose', label: 'Dose' },
+      { key: 'route', label: 'Route' },
+      { key: 'administrationtime', label: 'Administration Time' },
+      { key: 'administeredby.name', label: 'Signature' }
+    ];
+  },
+  error: (err) => {
+    console.error('Error fetching medication logs:', err);
+  }
+});
+}
+
+// ivfliuds
+patientAdditionalTests: any[] = [];
+additionalTestColumns: { key: string; label: string }[] = [];
+
+fetchPatientAdditionalTests(patientId: number): void {
+  this.webclient.getObservable<any[]>(`additionaltest/${patientId}`).subscribe({
+    next: (data) => {
+      this.patientAdditionalTests = data;
+
+      this.additionalTestColumns = [
+        { key: 'physiothearpy.physiothearpy', label: 'Physiotherapy' },
+        { key: 'ambulation', label: 'Ambulation' },
+        { key: 'incentivespirometry', label: 'Incentivespirometry' },
+        { key: 'belt', label: 'Belt' },
+        { key: 'dressing', label: 'Dressing'},
+        { key: 'trachettsectretion', label: 'trachettsectretion'},
+      ];
+    },
+    error: (err) => {
+      console.error('Error fetching patient additional tests:', err);
+    }
+  });
+}
+
+// patientlines and tubes
+patientLineTubes: any[] = [];
+lineTubeColumns: { key: string; label: string }[] = [];
+
+fetchPatientLineTubes(patientId: number): void {
+  this.webclient.getObservable<any[]>(`linestubes/${patientId}`).subscribe({
+    next: (data) => {
+      this.patientLineTubes = data;
+
+      this.lineTubeColumns = [
+        { key: 'linestubes.linestubesname', label: 'Line/Tube Name' },
+        { key: 'site', label: 'Site' },
+        { key: 'dateofinsertion', label: 'Insertion Date' }
+      ];
+    },
+    error: (err) => {
+      console.error('Error fetching line/tube data:', err);
+    }
+  });
+}
+fetchIvFluids(patientId: number): void {
+  this.webclient.getObservable<any[]>(`getivfluidsbypatient/${patientId}`).subscribe({
+    next: (data) => {
+      this.ivFluids = data;
+    },
+    error: (err) => {
+      console.error("Error fetching IV Fluids:", err);
+    }
+  });
+}
+
+
 
 
 fetchHourlyVitals(id: number): void {
@@ -141,7 +330,7 @@ fetchHourlyVitals(id: number): void {
 
 
       // Store the list of categories
-      this.groupedCategories = Object.keys(this.hourlyVitalsGrouped);
+    this.groupedCategories = Object.keys(this.hourlyVitalsGrouped);
     },
     error: (err) => {
       console.error("Error fetching hourly vitals:", err);
@@ -149,86 +338,17 @@ fetchHourlyVitals(id: number): void {
   });
 }
 
+formatLabel(key: string): string {
+  return key
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, l => l.toUpperCase());
+}
+
+
 
  
 
 }
 
-/*import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { WebClient } from '../web-client';
 
-@Component({
-  selector: 'app-url',
-  standalone: false,
-
-  templateUrl: './url.component.html',
-  styleUrls: ['./url.component.scss']
-})
-export class UrlComponent implements OnInit {
-  patientid: number=0;
-
-  constructor(private route: ActivatedRoute, private webclient: WebClient) {}
-
-  formatLabel(key: string): string {
-  return key
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/_/g, ' ')
-      .replace(/\b\w/g, l => l.toUpperCase());
-  }
-
-  ngOnInit(): void {
-  this.route.paramMap.subscribe(params => {
-    const idParam = params.get('id');
-    const patientId = idParam ? +idParam : 0;
-      
-    if (patientId > 0) {
-      this.loadInfusionTable();
-      this.loadScoreTable();
-    }
-  });
-  }
-
-  // infusion Table 
-  infusionData: any[]=[];
-  infusionColumns: {key:string; label: string}[] = [];
-  loadInfusionTable(): void {
-    this.webclient.getAll<any[]>(`patientinfusion?patientid=${this.patientid}`).subscribe(data => {
-      this.infusionData = data;
-      if (data.length > 0) {
-        this.infusionColumns = Object.keys(data[0])
-          .filter(key => typeof data[0][key] !== 'object')
-          .map(key => ({
-            key,
-            label: this.formatLabel(key)
-          }));
-      }
-    });
-  }
-  isValid(data : any[]): boolean {
-    return Array.isArray(data) && data.length > 0;
-  }
-
-  //patient additional scores
-  scoreData: any[]=[];
-  scoreColumns: {key: string; label:string }[]= [];
-  scoreDisplayColumns: string[] = [ 'qsofa', 'mews', 'apacheiv'];
-
-  loadScoreTable(): void {
-    this.webclient.getAll<any[]>(`patientadditionalscores?patientid=${this.patientid}`).subscribe(data => {
-      this.scoreData = data;
-      if (data.length > 0) {
-        this.scoreColumns = this.scoreDisplayColumns.map(key => ({
-          key,
-          label: this.formatLabel(key)
-        }));
-      }
-    });
-  }
-
-  getValue(obj: any, path: string): any {
-    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-  }
-
-}
-  */

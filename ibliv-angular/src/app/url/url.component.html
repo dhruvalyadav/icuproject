@@ -68,6 +68,8 @@
         </tbody>
       </table>
     </div>
+
+    
     <div class="table-wrapper">
       <h3 class="section-title">Consultant</h3>
       <p>{{ patient?.consultant || '-' }}</p>
@@ -117,49 +119,172 @@
     </div>
   </div>
 
- 
-
-
-
-<!-- patient infusion 
-<div *ngIf="isValid(infusionData)" class="table-wrapper mt-4">
-  <h5>Patient Infusion</h5>
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover">
+<!-- Additional test + Embolism -->
+ <div class="dual-table-section-for-2">
+<div *ngIf="patientScores.length > 0" class="table-wrapper mt-4">
+    <h3 class="section-title">Additional Test Scores</h3>
+    <table class="table table-bordered table-sm">
       <thead>
         <tr>
-          <th *ngFor="let col of infusionColumns">{{ col.label }}</th>
+          <th *ngFor="let col of scoreColumns">{{ col.label }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of infusionData">
-          <td *ngFor="let col of infusionColumns">
-            {{ getValue(row, col.key) }}
+        <tr *ngFor="let row of patientScores">
+          <td *ngFor=" let col of scoreColumns">
+            {{ row[col.key] !== null && row[col.key] !== undefined?row[col.key] : '-'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div *ngIf="embolism.length>0" class="table-wrapper mt-4">
+    <h3 class="section-title">Embolism Data</h3>
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th *ngFor="let col of embolismColumns">{{ col.label }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of embolism">
+          <td *ngFor="let col of embolismColumns">{{ row[col.key] !== null && row[col.key] !== undefined ? row[col.key]: '-' }}
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+<!-- Pateint Infusion -->
+<div *ngIf="infusionList.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">Infusion Chart</h3>
 
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Sl No</th> <!-- Sr. No. -->
+        <th *ngFor="let col of infusionColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of infusionList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let col of infusionColumns">
+          {{ getValue(row, col.key) ?? '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
- Additional test scores table 
- <div *ngIf="isValid(scoreData)" class="table-wrapper mt-4">
-  <h5>Additional Test Scores</h5>
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th *ngFor="let col of scoreColumns">{{ col.label}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of scoreData">
-          <td *ngFor="let col of scoreColumns">{{ getValue(row, col.key) }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
- </div>
+<!-- Sos Medication Chart -->
+ <div *ngIf="sosMedications.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">SOS Medication Chart</h3>
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th *ngFor="let col of sosColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of sosMedications">
+        <td *ngFor="let col of sosColumns">
+          {{ getValue(row, col.key) ?? '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
--->
+<!-- pateint medication chart -->
+<div *ngIf="medicationLogs.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">Patient Medication Log</h3>
+
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>SL No.</th>
+        <th *ngFor="let col of medicationLogColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of medicationLogs; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let col of medicationLogColumns">
+          {{ getValue(row, col.key) ?? '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Additional test -->
+<div *ngIf="patientAdditionalTests.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">Patient Additional Test Data</h3>
+
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>SL No.</th>
+        <th *ngFor="let col of additionalTestColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of patientAdditionalTests; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let col of additionalTestColumns">
+          {{ getValue(row, col.key) || '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- patient Lines and tubes -->
+ <div class="dual-table-section-for-2">
+ <div *ngIf="patientLineTubes.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">Patient Lines & Tubes</h3>
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>SL No.</th>
+        <th *ngFor="let col of lineTubeColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of patientLineTubes; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let col of lineTubeColumns">
+          {{ getValue(row, col.key) || '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- iv fluids -->
+<div *ngIf="ivFluids && ivFluids.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">IV FLUIDS</h3>
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>IV Fluid</th>
+        <th>Rate</th>
+        <th>Additional Drug</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fluid of ivFluids">
+        <td>{{ fluid.ivfluid.ivfluidname }}</td> <!-- integer value shown here -->
+        <td>{{ fluid.rate }}</td>
+        <td>{{ fluid.additionaldrugs }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+</div>
+
+ 

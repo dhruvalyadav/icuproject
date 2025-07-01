@@ -8,7 +8,6 @@ import com.ibidlogistics.ibliv.model.Patientadmission;
 import com.ibidlogistics.ibliv.repository.IcuJpaRepository;
 import com.ibidlogistics.ibliv.repository.PatientAdmissionRepository;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,5 +42,4 @@ public class PatientAdmissionController {
         return this.patientrepository.findByPatient(patientid);
     } 
     
-     
 }

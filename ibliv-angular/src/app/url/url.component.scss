@@ -301,15 +301,18 @@
   }
 }
 
-.dual-table-section-for-2{
+.dual-table-section-for-2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* prevents collapsing */
   gap: 20px;
   margin-top: 30px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+}
+.table-wrapper {
+  width: 100%; /* ensure table container stretches fully */
 }
 
 .dual-table-section-for-1{

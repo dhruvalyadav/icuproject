@@ -32,5 +32,10 @@ public class PatientadditionaltestController {
     {
         return this.Patientadditionaltestrepository.findAll();
     }
+    @GetMapping("/additionaltest/{id}")
+    public List<Patientadditionaltests> getByPatientId(@PathVariable("id") Integer id) {
+        return Patientadditionaltestrepository.findByPatientId(id);
+    }
+
 } 
  

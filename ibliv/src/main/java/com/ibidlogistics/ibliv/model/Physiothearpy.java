@@ -8,6 +8,7 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,10 +44,10 @@ public class Physiothearpy implements Serializable {
     @Basic(optional = false)
     @Column(name = "physiothearpyid")
     private Integer physiothearpyid;
-    @Basic(optional = false)
+    @Basic(optional = false,  fetch = FetchType.EAGER)
     @Column(name = "physiothearpy")
     private String physiothearpy;
-    @Basic(optional = false)
+    @Basic(optional = false,  fetch = FetchType.EAGER)
     @Column(name = "createdby")
     private int createdby;
     @Column(name = "createddate")

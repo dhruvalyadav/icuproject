@@ -18,8 +18,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 @RestController
 @CrossOrigin("*")
-
-
 public class HourlyobservationController {
      @Autowired
     HourlyObservationRepository hourlyobserverrepository;
