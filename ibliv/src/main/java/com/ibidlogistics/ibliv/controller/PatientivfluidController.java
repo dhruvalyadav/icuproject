@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PathVariable;
 @CrossOrigin("*")
 @RestController    
 public class PatientivfluidController {
@@ -24,6 +24,12 @@ public class PatientivfluidController {
     @PostMapping("/addpatientivfluid")
     public void addpatientivfluid(@RequestBody Patientivfluid pativ){
         this.repository.save(pativ);
+    }
+    @GetMapping("/getivfluidsbypatient/{id}")
+public List<Patientivfluid> getIvFluidsByPatient(@PathVariable("id") Integer id) {
+    return repository.findByPatient_Patientid(id);
+}
+
     }
      @GetMapping("/getivfluidsbypatient/{id}")
 public List<Patientivfluid> getIvFluidsByPatient(@PathVariable("id") Integer id) {

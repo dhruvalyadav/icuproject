@@ -32,6 +32,7 @@ hours: string[] = [];
 hourlyVitals: any[] = []; 
 
 
+
 hourlyVitalsGrouped: { [category: string]: any[] } = {};
 groupedCategories: string[] = [];
 
