@@ -77,33 +77,24 @@
   <!-- Ventilator + ICU Stay Details side by side -->
   <div class="dual-table-section-for-2">
     <div *ngIf="ventilators.length > 0" class="table-wrapper">
+        <div *ngFor="let v of ventilators; let i = index" class="mb-4">
       <h3 class="section-title">Ventilator Records</h3>
       <table class="table table-bordered table-sm">
-        <thead>
-          <tr>
-            <th>Date</th><th>Mode</th><th>FIO2</th><th>PEEP/CPAP</th><th>Rate</th>
-            <th>TV</th><th>Ppeak</th><th>MV</th><th>SPO2</th><th>Cuff Pressure</th>
-            <th>EPAP</th><th>Peak Insp Pressure</th><th>Plateau Pressure</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let v of ventilators">
-            <td>{{ v.patientdaysheet?.date?.split('T')[0] }}</td>
-            <td>{{ v.ventilatormode?.ventilatormode }}</td>
-            <td>{{ v.fio2 }}</td>
-            <td>{{ v.peepcpap }}</td>
-            <td>{{ v.rate }}</td>
-            <td>{{ v.tv }}</td>
-            <td>{{ v.ppeak }}</td>
-            <td>{{ v.mv }}</td>
-            <td>{{ v.spo2 }}</td>
-            <td>{{ v.cuffpressure }}</td>
-            <td>{{ v.epap }}</td>
-            <td>{{ v.peakinsppressure }}</td>
-            <td>{{ v.plateaupressure }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <tr><th>Date</th><td>{{ v.patientdaysheet?.date?.split('T')[0] }}</td></tr>
+      <tr><th>Mode</th><td>{{ v.ventilatormode?.ventilatormode }}</td></tr>
+      <tr><th>FIO2</th><td>{{ v.fio2 }}</td></tr>
+      <tr><th>PEEP/CPAP</th><td>{{ v.peepcpap }}</td></tr>
+      <tr><th>Rate</th><td>{{ v.rate }}</td></tr>
+      <tr><th>TV</th><td>{{ v.tv }}</td></tr>
+      <tr><th>Ppeak</th><td>{{ v.ppeak }}</td></tr>
+      <tr><th>MV</th><td>{{ v.mv }}</td></tr>
+      <tr><th>SPO2</th><td>{{ v.spo2 }}</td></tr>
+      <tr><th>Cuff Pressure</th><td>{{ v.cuffpressure }}</td></tr>
+      <tr><th>EPAP</th><td>{{ v.epap }}</td></tr>
+      <tr><th>Peak Insp Pressure</th><td>{{ v.peakinsppressure }}</td></tr>
+      <tr><th>Plateau Pressure</th><td>{{ v.plateaupressure }}</td></tr>
+    </table>
+    </div>
     </div>
     <div *ngIf="patientAdmissionData" class="table-wrapper">
       <h3 class="section-title">ICU Stay Details</h3>
@@ -163,3 +154,22 @@
  </div>
 
 -->
+ <div *ngIf="ivFluids && ivFluids.length > 0" class="table-wrapper mt-3">
+  <h4 class="section-title">IV FLUIDS</h4>
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>IV Fluid</th>
+        <th>Rate</th>
+        <th>Additional Drug</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fluid of ivFluids">
+        <td>{{ fluid.ivfluid.ivfluidname }}</td> <!-- integer value shown here -->
+        <td>{{ fluid.rate }}</td>
+        <td>{{ fluid.additionaldrugs }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

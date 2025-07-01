@@ -28,6 +28,7 @@ export class UrlComponent implements OnInit {
 }
 hours: string[] = [];
 hourlyVitals: any[] = []; 
+ivFluids: any[] = [];
 
 
 hourlyVitalsGrouped: { [category: string]: any[] } = {};
@@ -48,8 +49,8 @@ groupedCategories: string[] = [];
       this.fetchPatientDetails(this.patientId);
       this.fetchAnthropometry(this.patientId);
       this.fetchVentilators(this.patientId);
-       this.fetchHourlyVitals(this.patientId);
-     
+      this.fetchHourlyVitals(this.patientId);
+      this.fetchIvFluids(this.patientId);
     }
      this.hours = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, '0')}:00`);
   }
@@ -149,11 +150,6 @@ fetchHourlyVitals(id: number): void {
   });
 }
 
-
- 
-
-}
-
 /*import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebClient } from '../web-client';
@@ -232,3 +228,15 @@ export class UrlComponent implements OnInit {
 
 }
   */
+
+fetchIvFluids(patientId: number): void {
+  this.webclient.getObservable<any[]>(`getivfluidsbypatient/${patientId}`).subscribe({
+    next: (data) => {
+      this.ivFluids = data;
+    },
+    error: (err) => {
+      console.error("Error fetching IV Fluids:", err);
+    }
+  });
+}
+}
