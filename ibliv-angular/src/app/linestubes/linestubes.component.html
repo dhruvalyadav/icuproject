@@ -1,13 +1,14 @@
 <div class="spinner-box" *ngIf="mainspinner">
   <div class="spinner-gradient"></div>
 </div>
+<app-alert [message]="message" [type]="alerttype" [show]="alertmode" (closed)="alertmode = false"></app-alert>
 <div class="container mt-4" >
   <h3 class="form-label">Lines And Tubes</h3>
   <form #line="ngForm" (submit)="createlinetube(line)">
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="linestubesName" class="form-label">Lines/Tubes Name* :</label>
-        <input type="number" class="form-control" name="linestubesName" [(ngModel)]="linestube.linestubesname" id="linestubesName" placeholder="Enter name">
+        <input type="text" class="form-control" name="linestubesName" [(ngModel)]="linestube.linestubesname" id="linestubesName" placeholder="Enter Lines&Tubes name">
       </div>
     </div>
     <div class="d-flex justify-content-between" >

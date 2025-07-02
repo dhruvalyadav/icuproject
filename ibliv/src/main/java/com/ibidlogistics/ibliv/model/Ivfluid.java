@@ -47,7 +47,7 @@ public class Ivfluid implements Serializable {
     private Integer ivfluidid;
     @Basic(optional = false)
     @Column(name = "ivfluidname")
-    private int ivfluidname;
+    private String ivfluidname;
     @Column(name = "active")
     private Integer active;
     @Basic(optional = false)
@@ -71,7 +71,7 @@ public class Ivfluid implements Serializable {
         this.ivfluidid = ivfluidid;
     }
 
-    public Ivfluid(Integer ivfluidid, int ivfluidname, int createdby) {
+    public Ivfluid(Integer ivfluidid, String ivfluidname, int createdby) {
         this.ivfluidid = ivfluidid;
         this.ivfluidname = ivfluidname;
         this.createdby = createdby;
@@ -85,11 +85,11 @@ public class Ivfluid implements Serializable {
         this.ivfluidid = ivfluidid;
     }
 
-    public int getIvfluidname() {
+    public String getIvfluidname() {
         return ivfluidname;
     }
 
-    public void setIvfluidname(int ivfluidname) {
+    public void setIvfluidname(String ivfluidname) {
         this.ivfluidname = ivfluidname;
     }
 

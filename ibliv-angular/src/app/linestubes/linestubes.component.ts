@@ -29,9 +29,9 @@ export class LinestubesComponent{
       this.linestube.active = 1
       this.webclient.post<Linestubes,typeof Linestubes>("savelinetube",this.linestube)
       .then((res)=>{
-        this.alertmode = true
         this.message = "Sucessfully Updated Linestubes "+this.linestube.linestubesname
-        this.alerttype = 'success'     
+        this.alerttype = 'success'    
+        this.alertmode = true 
         this.linestube = new Linestubes()
       })
       .catch((res)=>{})

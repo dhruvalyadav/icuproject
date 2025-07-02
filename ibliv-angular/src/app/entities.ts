@@ -96,7 +96,7 @@ export class Icu {
 
 export class Ivfluid {
   ivfluidid: number|null=null;
-  ivfluidname: number=0;
+  ivfluidname: string = '';
   active: number=0;
   createdby: number=0;
   createddate: Date|null=null;
@@ -108,7 +108,7 @@ export class Ivfluid {
 
 export class Linestubes {
   linestubesid: number|null=null;
-  linestubesname: number|null=null;
+  linestubesname: string = '';
   active: number=0;
   createdby: number=0;
   createddate: Date|null=null;

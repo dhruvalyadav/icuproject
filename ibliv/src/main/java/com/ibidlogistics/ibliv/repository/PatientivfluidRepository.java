@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientivfluidRepository extends JpaRepository<Patientivfluid,Integer>{
-    @Query("SELECT p FROM Patientivfluid p WHERE p.createddate = :createddate AND p.patient.patientid = :patientid ORDER BY p.patientivfluidid ASC")
+    @Query("SELECT p FROM Patientivfluid p WHERE p.createddate = :createddate AND p.patient.patientid = :patientid ORDER BY p.patientivfluidid DESC")
     List<Patientivfluid> findByPatientANDCreatedate(@Param("createddate") Date createddate,@Param("patientid") Integer patientid);
 }

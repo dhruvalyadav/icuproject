@@ -17,7 +17,7 @@ public interface PatientmedicationchartRepository extends JpaRepository<Patientm
         @Query("SELECT p FROM Patientmedicationchart p WHERE p.patientadmission.patient.patientid = :patientid")
         List<Patientmedicationchart> findByPatient(@Param("patientid") Integer  patientid);
         
-       @Query( "SELECT p FROM Patientmedicationchart p WHERE p.date = :date AND p.patientadmission.patient.patientid = :patientid ORDER BY p.patientmedicationchartid ASC")     
+       @Query( "SELECT p FROM Patientmedicationchart p WHERE p.date = :date AND p.patientadmission.patient.patientid = :patientid ORDER BY p.patientmedicationchartid DESC")     
         List<Patientmedicationchart> findByDate(@Param("date") Date date,@Param("patientid") Integer patientid);
 
 }

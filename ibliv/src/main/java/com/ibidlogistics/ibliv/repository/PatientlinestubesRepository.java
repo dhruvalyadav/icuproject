@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientlinestubesRepository extends JpaRepository<Patientlinestubes,Integer>{
-    @Query("SELECT p FROM Patientlinestubes p WHERE p.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY p.patientlinestubesid ASC")
+    @Query("SELECT p FROM Patientlinestubes p WHERE p.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY p.patientlinestubesid DESC")
     List<Patientlinestubes> findByPatientdaysheet(@Param("patientdaysheetid") Integer patientdaysheetid);
 }

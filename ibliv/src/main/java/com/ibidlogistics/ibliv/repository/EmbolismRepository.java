@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmbolismRepository extends JpaRepository<Embolism, Integer>{
     
-        @Query("SELECT e FROM Embolism e WHERE e.patientdaysheet.patientdaysheetid = :patientdaysheetid")
+        @Query("SELECT e FROM Embolism e WHERE e.patientdaysheet.patientdaysheetid = :patientdaysheetid ORDER BY e.embolismid DESC")
         Embolism findByPatientdaysheetid(@Param("patientdaysheetid") Integer patientdaysheetid);
 }

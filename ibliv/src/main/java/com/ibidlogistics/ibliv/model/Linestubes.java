@@ -47,7 +47,7 @@ public class Linestubes implements Serializable {
     private Integer linestubesid;
     @Basic(optional = false)
     @Column(name = "linestubesname")
-    private int linestubesname;
+    private String linestubesname;
     @Column(name = "active")
     private Integer active;
     @Basic(optional = false)
@@ -71,7 +71,7 @@ public class Linestubes implements Serializable {
         this.linestubesid = linestubesid;
     }
 
-    public Linestubes(Integer linestubesid, int linestubesname, int createdby) {
+    public Linestubes(Integer linestubesid, String linestubesname, int createdby) {
         this.linestubesid = linestubesid;
         this.linestubesname = linestubesname;
         this.createdby = createdby;
@@ -85,11 +85,11 @@ public class Linestubes implements Serializable {
         this.linestubesid = linestubesid;
     }
 
-    public int getLinestubesname() {
+    public String getLinestubesname() {
         return linestubesname;
     }
 
-    public void setLinestubesname(int linestubesname) {
+    public void setLinestubesname(String linestubesname) {
         this.linestubesname = linestubesname;
     }
 

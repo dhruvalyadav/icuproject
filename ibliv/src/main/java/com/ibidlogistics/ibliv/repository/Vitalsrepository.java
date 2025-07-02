@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Vitalsrepository extends JpaRepository<Vital, Integer> {
-       @Query("SELECT v FROM Vital v GROUP BY v.vitalcategory")
+       @Query("SELECT v FROM Vital v GROUP BY v.vitalcategory ORDER BY v.vitalid ASC")
        List<Vital> findAllByGroup();
        
        @Query("SELECT v FROM Vital v WHERE v.vitalcategory = :vitalcategory")
