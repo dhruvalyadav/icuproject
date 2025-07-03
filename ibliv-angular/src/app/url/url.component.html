@@ -1,28 +1,31 @@
-<div class="icu-chart-container">
+<div class="icu-chart-container" id="report-content">
   <h2 class="text-center section-title">ICU Patient Report</h2>
 
   <!-- Patient Info + Anthropometry side by side -->
-  <div class="dual-table-section-for-2">
-    <div class="table-wrapper">
-      <h3 class="section-title">Patient Information</h3>
-      <table class="table table-bordered table-sm">
-        <tr><th>Name</th><td>{{ patient.patientname }}</td></tr>
-        <tr><th>DOB</th><td>{{ patient.dob | date:'mediumDate' }}</td></tr>
-        <tr><th>Age</th><td>{{ patient.age }} years</td></tr>
-        <tr><th>Sex</th><td>{{ patient.sex }}</td></tr>
-        <tr><th>Contact</th><td>{{ patient.contact }}</td></tr>
-      </table>
-    </div>
-    <div class="table-wrapper" *ngIf="anthropometry">
-      <h3 class="section-title">Anthropometry</h3>
-      <table class="table table-bordered table-sm">
-        <tr><th>Weight (KG)</th><td>{{ anthropometry.weight }}</td></tr>
-        <tr><th>Height (CM)</th><td>{{ anthropometry.height }}</td></tr>
-        <tr><th>BMI</th><td>{{ anthropometry.bmi }}</td></tr>
-        <tr><th>BSA Boyd</th><td>{{ anthropometry.bsaboyd }}</td></tr>
-      </table>
-    </div>
+
+<div class="dual-table-section-for-2">
+  <div class="table-wrapper">
+    <h3 class="section-title">Patient Information</h3>
+    <table class="table table-bordered table-sm" id="P">
+      <tr><th>Name</th><td>{{ patient?.patientname }}</td></tr>
+      <tr><th>DOB</th><td>{{ patient?.dob | date:'mediumDate' }}</td></tr>
+      <tr><th>Age</th><td>{{ patient?.age }} years</td></tr>
+      <tr><th>Sex</th><td>{{ patient?.sex }}</td></tr>
+      <tr><th>Contact</th><td>{{ patient?.contact }}</td></tr>
+    </table>
   </div>
+
+  <div class="table-wrapper" *ngIf="anthropometry">
+    <h3 class="section-title">Anthropometry</h3>
+    <table class="table table-bordered table-sm">
+      <tr *ngFor="let col of anthropometryColumns">
+        <th>{{ col.label }}</th>
+        <td>{{ anthropometry[col.key] ?? '-' }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
 
   <!-- ICU Hourly Chart -->
 <!-- Hourly chart table -->
@@ -78,27 +81,31 @@
 
   <!-- Ventilator + ICU Stay Details side by side -->
   <div class="dual-table-section-for-2">
-    <div *ngIf="ventilators.length > 0" class="table-wrapper">
-        <div *ngFor="let v of ventilators; let i = index" class="mb-4">
-      <h3 class="section-title">Ventilator Records</h3>
-      <table class="table table-bordered table-sm">
-      <tr><th>Date</th><td>{{ v.patientdaysheet?.date?.split('T')[0] }}</td></tr>
-      <tr><th>Mode</th><td>{{ v.ventilatormode?.ventilatormode }}</td></tr>
-      <tr><th>FIO2</th><td>{{ v.fio2 }}</td></tr>
-      <tr><th>PEEP/CPAP</th><td>{{ v.peepcpap }}</td></tr>
-      <tr><th>Rate</th><td>{{ v.rate }}</td></tr>
-      <tr><th>TV</th><td>{{ v.tv }}</td></tr>
-      <tr><th>Ppeak</th><td>{{ v.ppeak }}</td></tr>
-      <tr><th>MV</th><td>{{ v.mv }}</td></tr>
-      <tr><th>SPO2</th><td>{{ v.spo2 }}</td></tr>
-      <tr><th>Cuff Pressure</th><td>{{ v.cuffpressure }}</td></tr>
-      <tr><th>EPAP</th><td>{{ v.epap }}</td></tr>
-      <tr><th>Peak Insp Pressure</th><td>{{ v.peakinsppressure }}</td></tr>
-      <tr><th>Plateau Pressure</th><td>{{ v.plateaupressure }}</td></tr>
-    </table>
-    </div>
-    </div>
-    <div *ngIf="patientAdmissionData" class="table-wrapper">
+    <div *ngIf="patientVentilators.length > 0" class="table-wrapper mt-4">
+  <h3 class="section-title">Ventilator Settings</h3>
+  <table id="ventilator-table" class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>SL No.</th>
+        <th>Mode</th>
+        <th *ngFor="let col of ventilatorColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of patientVentilators; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ v.ventilatormode?.ventilatormode || '-' }}</td>
+        <td *ngFor="let col of ventilatorColumns">
+          {{ v[col.key] !== null && v[col.key] !== undefined ? v[col.key] : '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    <div *ngIf="patientAdmissionData" class="table-wrapper mt-4">
       <h3 class="section-title">ICU Stay Details</h3>
       <table class="table table-bordered table-sm">
         <tr><th>Date</th><td>{{ patientAdmissionData.createddate | date:'dd-MM-yyyy' }}</td></tr>
@@ -132,7 +139,8 @@
 
 <div *ngIf="embolism.length>0" class="table-wrapper mt-4">
     <h3 class="section-title">Embolism Data</h3>
-    <table class="table table-bordered table-sm">
+    <table 
+    class="table table-bordered table-sm">
       <thead>
         <tr>
           <th *ngFor="let col of embolismColumns">{{ col.label }}</th>
@@ -147,29 +155,6 @@
     </table>
   </div>
  </div>
-
--->
- <div *ngIf="ivFluids && ivFluids.length > 0" class="table-wrapper mt-3">
-  <h4 class="section-title">IV FLUIDS</h4>
-  <table class="table table-bordered table-sm">
-    <thead>
-      <tr>
-        <th>IV Fluid</th>
-        <th>Rate</th>
-        <th>Additional Drug</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let fluid of ivFluids">
-        <td>{{ fluid.ivfluid.ivfluidname }}</td> <!-- integer value shown here -->
-        <td>{{ fluid.rate }}</td>
-        <td>{{ fluid.additionaldrugs }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-</div>
 <!-- Pateint Infusion -->
 <div *ngIf="infusionList.length > 0" class="table-wrapper mt-4">
   <h3 class="section-title">Infusion Chart</h3>
@@ -297,7 +282,11 @@
     </tbody>
   </table>
 </div>
+
+</div>
 </div>
 
-
- 
+<div class="export-button-container">
+  <button class="export-button" (click)="downloadPdf()">Download PDF</button>
+  <button class="export-button" (click)="exportToExcel()">Download Excel</button>
+</div>

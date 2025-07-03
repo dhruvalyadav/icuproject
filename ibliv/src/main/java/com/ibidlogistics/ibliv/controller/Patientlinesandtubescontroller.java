@@ -29,6 +29,7 @@ public class Patientlinesandtubescontroller {
     {
         return this.repository.save(patientlinetube);
     }
+    
     @GetMapping("/linestubes/{id}")
     public List<Patientlinestubes> getByPatientId(@PathVariable("id") Integer id) {
         return repository.findByPatientId(id);

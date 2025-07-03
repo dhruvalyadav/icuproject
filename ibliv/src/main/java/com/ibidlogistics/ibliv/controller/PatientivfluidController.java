@@ -31,8 +31,4 @@ public List<Patientivfluid> getIvFluidsByPatient(@PathVariable("id") Integer id)
 }
 
     }
-     @GetMapping("/getivfluidsbypatient/{id}")
-public List<Patientivfluid> getIvFluidsByPatient(@PathVariable("id") Integer id) {
-    return repository.findByPatient_Patientid(id);
-}
-}
+    

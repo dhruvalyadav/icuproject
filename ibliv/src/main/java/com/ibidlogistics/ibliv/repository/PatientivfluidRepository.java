@@ -11,6 +11,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientivfluidRepository extends JpaRepository<Patientivfluid,Integer>{
-               List<Patientivfluid> findByPatient_Patientid(Integer patientid);
     List<Patientivfluid> findByPatient_Patientid(Integer patientid);
 }

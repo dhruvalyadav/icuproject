@@ -1,7 +1,11 @@
-
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebClient } from '../web-client';
+import html2pdf from 'html2pdf.js';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
+
+
 
 @Component({
   selector: 'app-url',
@@ -15,7 +19,6 @@ export class UrlComponent implements OnInit {
   patient: any = null;
   icu: any = null;
   anthropometry: any = null;
-  ventilators: any[] = [];
   ivFluids: any[] = [];
   shiftrmo: any[] = [];
   shiftMap: { [key: number]: any } = {};
@@ -50,8 +53,9 @@ groupedCategories: string[] = [];
     if (this.patientId > 0) {
       this.fetchPatientDetails(this.patientId);
       this.fetchAnthropometry(this.patientId);
-      this.fetchVentilators(this.patientId);
+      this.fetchPatientVentilators(this.patientId);
       this.fetchHourlyVitals(this.patientId);
+      this.fetchShiftRmoNurseData(this.patientId);
       this.fetchPatientAdditonalScores(this.patientId);
       this.fetchEmbolism(this.patientId);
       this.fetchInfusionChart(this.patientId);
@@ -59,7 +63,7 @@ groupedCategories: string[] = [];
       this.fetchMedicationLogs(this.patientId);
       this.fetchPatientAdditionalTests(this.patientId);
       this.fetchPatientLineTubes(this.patientId);
-       this.fetchIvFluids(this.patientId);
+      this.fetchIvFluids(this.patientId);
      
     }
      this.hours = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, '0')}:00`);
@@ -86,50 +90,74 @@ groupedCategories: string[] = [];
       });
   }
 
-  fetchAnthropometry(id: number): void {
-    this.webclient.getObservable<any[]>(`getanthropometrybypatient/${id}`).subscribe({
-      next: (data) => {
-        this.anthropometry = data.length > 0 ? data[data.length - 1] : null;
-      },
-      error: (err) => {
-        console.error('Error fetching anthropometry:', err);
-      }
-    });
-  }
+anthropometryColumns: { key: string; label: string }[] = [];
 
-  fetchVentilators(id: number): void {
-    this.webclient.getObservable<any[]>(`getventilatorbypatientdaysheet/${id}`).subscribe({
-      next: (data) => this.ventilators = data,
-      error: (err) => console.error('Error fetching ventilator data:', err)
-    });
-  }
+fetchAnthropometry(patientId: number): void {
+  this.webclient.getObservable<any[]>(`anthropometry/${patientId}`).subscribe({
+    next: (data) => {
+      if (data.length > 0) {
+        this.anthropometry = data[0]; // Only show latest or first entry
+
+        const selectedFields = ['weight', 'height', 'bmi', 'bsaboyd'];
+        this.anthropometryColumns = selectedFields.map(key => ({
+          key,
+          label: this.formatLabel(key)
+        }));
+      }
+    },
+    error: (err) => {
+      console.error('Error fetching anthropometry data:', err);
+    }
+  });
+}
+
+  //patient ventilators
+  patientVentilators: any[] = [];
+  ventilatorColumns: { key: string; label: string }[] = [];
+  fetchPatientVentilators(patientId: number): void {
+  this.webclient.getObservable<any[]>(`getventilatorbypatient/${patientId}`).subscribe({
+    next: (data) => {
+      this.patientVentilators = data;
+
+      const selectedFields = [
+        'fio2', 'peepcpap', 'rate', 'tv', 'ppeak',
+        'mv', 'spo2', 'cuffpressure', 'epap', 'peakinsppressure', 'plateaupressure'
+      ];
+
+      if (this.patientVentilators.length > 0) {
+        this.ventilatorColumns = selectedFields.map(key => ({
+          key,
+          label: this.formatLabel(key)
+        }));
+      }
+    },
+    error: (err) => {
+      console.error('Error fetching ventilator data:', err);
+    }
+  });
+}
+
 
  fetchShiftRmoNurseData(icuId: number): void {
   //console.log("shift RMO nurse for ICU ID:", icuId);
-
-  this.webclient.getObservable<any[]>(`shiftrmonurse/getbyicu/${icuId}`).subscribe({
+  this.webclient.getObservable<any[]>(`getbyicu/${icuId}`).subscribe({
     next: (data) => {
       //console.log("shift RMO nurse data:", data);
-
       this.shiftrmo = data;
       this.shiftMap = {};
-
       for (let entry of data) {
         //console.log(" entry:", entry);
         if (entry.shift != null) {
           this.shiftMap[entry.shift] = entry;
         }
       }
-
       //console.log("shiftMap:", this.shiftMap);
-      
     },
     error: (err) => {
       console.error("Error fetching shift RMO nurse data:", err);
     }
   });
-
-  }
+}
 
   //patient infusion
   infusionList: any[] = [];
@@ -140,13 +168,14 @@ groupedCategories: string[] = [];
     next: (data) => {
       this.infusionList = data;
       const field = [{ key: 'fluidname', label: 'Fluid Name' },
-  { key: 'fluidvolume', label: 'Fluid Volume (ml)' },
-  { key: 'ivmedication', label: 'IV Medication' },
-  { key: 'dose', label: 'Dose (mg)' },
-  { key: 'rate', label: 'Rate (ml/hr)' },
-  { key: 'starttime', label: 'Start Time' },
-  { key: 'endtime', label: 'End Time' },
-  { key: 'preparedby.name', label: 'Prepared By' }];
+        { key: 'fluidvolume', label: 'Fluid Volume (ml)' },
+        { key: 'ivmedication', label: 'IV Medication' },
+        { key: 'dose', label: 'Dose (mg)' },
+        { key: 'rate', label: 'Rate (ml/hr)' },
+        { key: 'starttime', label: 'Start Time' },
+        { key: 'endtime', label: 'End Time' },
+        { key: 'preparedby.name', label: 'Prepared By' }];
+
     if (this.infusionList.length > 0) {
        this.infusionColumns = field;
       }
@@ -298,6 +327,8 @@ fetchPatientLineTubes(patientId: number): void {
     }
   });
 }
+
+// ivfliuds
 fetchIvFluids(patientId: number): void {
   this.webclient.getObservable<any[]>(`getivfluidsbypatient/${patientId}`).subscribe({
     next: (data) => {
@@ -308,9 +339,6 @@ fetchIvFluids(patientId: number): void {
     }
   });
 }
-
-
-
 
 fetchHourlyVitals(id: number): void {
   this.webclient.getObservable<any[]>(`gethourlyvitalsbypatient/${id}`).subscribe({
@@ -328,8 +356,6 @@ fetchHourlyVitals(id: number): void {
   acc[category].push(item);
   return acc;
 }, {});
-
-
       // Store the list of categories
     this.groupedCategories = Object.keys(this.hourlyVitalsGrouped);
     },
@@ -347,8 +373,68 @@ formatLabel(key: string): string {
 }
 
 
+// Download in pdf fromat
 
- 
+downloadPdf(): void{
+  const element = document.getElementById('report-content');
+  if(element){
+    const opt = {
+      margin: 0.5,
+      filename: `Patient-report-${this.patient.patientname || 'unknown'}.pdf`,
+      image:{ type: 'jpeg', quality: 0.98 },
+      html2canvas:{ scale: 4 },
+      jsPDF:{ unit: 'in', format: 'a4', orientation: 'landscape' }
+    };
+    html2pdf().set(opt).from(element).save();
+  }else{
+    console.error('Report content not found');
+  }
+}
+exportToExcel(): void {
+  const reportName = `Patient_Report_${this.patient?.patientname || 'Unknown'}`;
+
+  // Combine all tables into a single workbook
+  const workbook = XLSX.utils.book_new();
+
+  const addSheet = (data: any[], title: string) => {
+    if (data && data.length > 0) {
+      const flatData = data.map(row => {
+        const flatRow: any = {};
+        for (const key in row) {
+          if (typeof row[key] === 'object' && row[key] !== null) {
+            for (const subKey in row[key]) {
+              flatRow[`${key}.${subKey}`] = row[key][subKey];
+            }
+          } else {
+            flatRow[key] = row[key];
+          }
+        }
+        return flatRow;
+      });
+      const worksheet = XLSX.utils.json_to_sheet(flatData);
+      XLSX.utils.book_append_sheet(workbook, worksheet, title);
+    }
+  };
+
+  addSheet(this.patientAdmissionData, 'Admission Data');
+  addSheet(this.infusionList, 'Infusion');
+  addSheet(this.patientScores, 'Additional Scores');
+  addSheet(this.embolism, 'Embolism');
+  addSheet(this.sosMedications, 'SOS Medication');
+  addSheet(this.medicationLogs, 'Medication Chart');
+  addSheet(this.patientAdditionalTests, 'Additional Tests');
+  addSheet(this.patientLineTubes, 'Lines & Tubes');
+  addSheet(this.patientVentilators, 'Ventilators');
+  addSheet(this.ivFluids, 'IV Fluids');
+  addSheet(this.shiftrmo, 'Shift RMO');
+  addSheet(this.hourlyVitals, 'Hourly Charts');
+
+  const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+
+  FileSaver.saveAs(blob, `${reportName}.xlsx`);
+}
+
 
 }
 

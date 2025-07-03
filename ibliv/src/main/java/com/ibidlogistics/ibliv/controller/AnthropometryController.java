@@ -38,15 +38,11 @@ public class AnthropometryController {
         return this.anthropometryRepository.findAll();
     }
     
-    @GetMapping("/filteranthropometry/{patientname}")
-    public List<Anthropometry> filteranthropometry(@PathVariable("patientname") String patientname){
-        return this.anthropometryRepository.findByPatientname(patientname);
+ @GetMapping("/anthropometry/{id}")
+    public List<Anthropometry> getAnthropometryByPatient(@PathVariable("id") Integer id) {
+        return anthropometryRepository.findByPatientId(id);
     }
- @GetMapping("/getanthropometrybypatient/{patientId}")
-public List<Anthropometry> getAnthropometryByPatientId(@PathVariable("patientId") Integer patientId) {
-    return this.anthropometryRepository.findByPatientId(patientId);
 }
 
 
 
-}
